@@ -1,0 +1,13 @@
+{
+    "name": "Yunzai-Kuro-Plugin",
+    "prettier": {
+      "semi": false,
+      "singleQuote": true
+    },
+    "scripts": {
+      "format": "prettier --write \"**/*.js\""
+    },
+    "devDependencies": {
+      "prettier": "^2.4.1"
+    }
+  }
