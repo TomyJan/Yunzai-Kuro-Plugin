@@ -1,5 +1,6 @@
 import kurologin from '../model/kuroBBSLogin.js'
 import plugin from '../../../lib/plugins/plugin.js'
+import { checkTokenValidity, saveToken } from '../model/kuroBBSTokenHandler.js'
 import fetch from 'node-fetch'
 
 export class kuroBBSLogin extends plugin {
@@ -43,11 +44,20 @@ export class kuroBBSLogin extends plugin {
     }
     let kuro = new kurologin(e)
     let rsp = await kuro.captchaLoginResult()
-    if (rsp) await bindToken(e, rsp)
+    if (rsp) await this.bindToken(e, rsp)
     return rsp
   }
 
   async bindToken(e, res) {
-    // TODO
+	if(checkTokenValidity(res.data.token)) {
+		if(saveToken(e.user_id,res.data.token,res.data.refreshToken)){
+			e.reply('token 保存成功!')
+		} else {
+			e.reply('保存 token 出错!')
+		}
+	} else {
+		e.reply('token 失效!')
+	}
+
   }
 }

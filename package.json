@@ -1,5 +1,8 @@
 {
   "name": "Yunzai-Kuro-Plugin",
+  "author": "TomyJan",
+  "description": "Yunzai-Bot plugin for kuro games.",
+  "type": "module",
   "prettier": {
     "semi": false,
     "singleQuote": true

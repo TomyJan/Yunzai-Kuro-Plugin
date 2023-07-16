@@ -8,7 +8,7 @@ Yunzai-Kuro-Plugin 是 [Yunzai-Bot](https://github.com/yoimiya-kokomi/Miao-Yunza
 
 ## 功能介绍
 
-- [ ] 通过验证码登录库洛账号, 获取并保存 cookie 
+- [x] 通过验证码登录库洛账号, 获取并保存 cookie 
 - [ ] 指令直接提交 cookie 
 - [ ] 库街区游戏签到
 - [ ] 库洛币任务
