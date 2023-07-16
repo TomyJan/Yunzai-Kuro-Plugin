@@ -17,10 +17,20 @@ export default class kuroBBSLogin {
     }
     async captchaLoginResult() {
         let msg = this.e.msg.replace(/库洛账号|验证码|：|:/g, '').replace(/,|，/, ',').split(',');
-        if (msg.length != 2) {
+
+        if (msg.length != 2 || msg[0] == '' | msg[1] == '') {
             this.e.reply(`参数不完整`)
             return false;
         }
+        if(!isPhoneNumber(msg[0])) {
+            this.e.reply(`手机号格式错误`)
+            return false;
+        }
+        if (!/^\d{6}$/.test(msg[1])) {
+            this.e.reply(`验证码格式错误`)
+            return false;
+        }
+
         const url = 'https://api.kurobbs.com/user/sdkLogin';
         const headers = {
             'osversion': 'Android',
@@ -61,5 +71,10 @@ export default class kuroBBSLogin {
                 this.e.reply(`登录失败!\n` + error)
             });
         
-    }
+            function isPhoneNumber(str) {
+                const pattern = /^1[3456789]\d{9}$/;
+                return pattern.test(str);
+              }
+        }
+    
 }
