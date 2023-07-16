@@ -54,22 +54,34 @@ export default class kuroBBSLogin {
         formData.append('gameList', '');
         formData.append('mobile', msg[0]);
         logger.info(formData)
-        fetch(url, {
-            method: 'POST',
-            headers: headers,
-            body: formData
-        })
-            .then(response => response.json())
-            .then(data => {
-                logger.info('登陆成功\n' + data)
-                console.log(data)
-                // 处理返回的数据
-                this.e.reply(`登录成功!\n` + data)
-            })
-            .catch(error => {
-                logger.info('登陆失败\n' + error)
-                this.e.reply(`登录失败!\n` + error)
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: headers,
+                body: formData
             });
+    
+            if (!response.ok) {
+                this.e.reply('请求失败: ' + response.status);
+                throw new Error('请求失败: ' + response.status);
+            }
+    
+            const rsp = await response.json();
+    
+            if (rsp.code === 200) {
+                logger.info('[库洛插件] 登陆成功\n' + JSON.stringify(rsp));
+                this.e.reply('登录成功!\n' + JSON.stringify(rsp));
+                return rsp;
+            } else {
+                logger.info('[库洛插件] 登陆失败\n' + JSON.stringify(rsp));
+                this.e.reply('登录失败!\n' + JSON.stringify(rsp));
+                return false;
+            }
+        } catch (error) {
+            logger.info('[库洛插件] 登陆失败\n' + JSON.stringify(error));
+            this.e.reply('登录失败!\n' + JSON.stringify(error));
+            return false;
+        }
         
             function isPhoneNumber(str) {
                 const pattern = /^1[3456789]\d{9}$/;

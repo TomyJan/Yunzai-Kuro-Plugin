@@ -42,9 +42,13 @@ async captchaLoginResult(e) {
 		return false;
 	}
 	let kuro = new kurologin(e)
-	let res = await kuro.captchaLoginResult();
-	if (res) await bindSkCK(e, res)
-	return res;
+	let rsp = await kuro.captchaLoginResult();
+	if (rsp) await bindToken(e, rsp)
+	return rsp;
+}
+
+async bindToken(e, res) {
+	// TODO
 }
 
 }
