@@ -1,4 +1,3 @@
-
 import fs from 'fs'
 import _ from 'lodash'
 import cfg from '../../../lib/config/config.js'
@@ -48,7 +47,7 @@ try {
         }
         temp = {
           version: v,
-          logs: []
+          logs: [],
         }
       } else {
         if (!line.trim()) {
@@ -57,12 +56,12 @@ try {
         if (/^\*/.test(line)) {
           lastLine = {
             title: getLine(line),
-            logs: []
+            logs: [],
           }
           if (!temp.logs) {
             temp = {
               version: line,
-              logs: []
+              logs: [],
             }
           }
           temp.logs.push(lastLine)
@@ -85,7 +84,7 @@ try {
       currentVersion = reg[1]
     }
   }
-} catch (err) { }
+} catch (err) {}
 
 let yunzaiName = cfg.package.name
 if (yunzaiName == 'miao-yunzai') {
@@ -96,17 +95,17 @@ if (yunzaiName == 'miao-yunzai') {
   yunzaiName = _.capitalize(yunzaiName)
 }
 let Version = {
-  get ver () {
+  get ver() {
     return currentVersion
   },
-  get name () {
+  get name() {
     return yunzaiName
   },
-  get yunzai () {
+  get yunzai() {
     return yunzai_ver
   },
-  get logs () {
+  get logs() {
     return changelogs
-  }
+  },
 }
 export default Version

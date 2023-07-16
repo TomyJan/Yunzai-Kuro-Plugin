@@ -9,7 +9,7 @@ logger.info(chalk.rgb(253, 235, 255)('----------------------------'))
 const pluginPath = './plugins/Yunzai-Kuro-Plugin'
 const appsPath = pluginPath + '/apps'
 
-const files = fs.readdirSync(appsPath).filter(file => file.endsWith('.js'))
+const files = fs.readdirSync(appsPath).filter((file) => file.endsWith('.js'))
 
 let ret = []
 
@@ -28,7 +28,7 @@ for (let i in files) {
     logger.error(ret[i].reason)
     continue
   } else {
-	logger.info(chalk.rgb(134, 142, 204)(`[库洛插件] 载入模块成功：${name}`))
+    logger.info(chalk.rgb(134, 142, 204)(`[库洛插件] 载入模块成功：${name}`))
   }
   apps[name] = ret[i].value[Object.keys(ret[i].value)[0]]
 }
