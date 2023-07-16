@@ -49,15 +49,14 @@ export class kuroBBSLogin extends plugin {
   }
 
   async bindToken(e, res) {
-	if(checkTokenValidity(res.data.token)) {
-		if(saveToken(e.user_id,res.data.token,res.data.refreshToken)){
-			e.reply('token 保存成功!')
-		} else {
-			e.reply('保存 token 出错!')
-		}
-	} else {
-		e.reply('token 失效!')
-	}
-
+    if (checkTokenValidity(res.data.token)) {
+      if (saveToken(e.user_id, res.data.token, res.data.refreshToken)) {
+        e.reply('token 保存成功!')
+      } else {
+        e.reply('保存 token 出错!')
+      }
+    } else {
+      e.reply('token 失效!')
+    }
   }
 }

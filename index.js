@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import Ver from './components/Version.js'
 import chalk from 'chalk'
-import {appsPath} from './data/PluginConstants.js'
+import { appsPath } from './data/PluginConstants.js'
 
 logger.info(chalk.rgb(253, 235, 255)('-----------(≧∇≦)ﾉ-----------'))
 logger.info(chalk.rgb(134, 142, 204)(`[库洛插件] V${Ver.ver} 初始化中~`))
