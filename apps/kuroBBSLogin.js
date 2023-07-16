@@ -49,8 +49,8 @@ export class kuroBBSLogin extends plugin {
   }
 
   async bindToken(e, res) {
-    if (checkTokenValidity(res.data.token)) {
-      if (saveToken(e.user_id, res.data.token, res.data.refreshToken)) {
+    if (await checkTokenValidity(res.data.userId,res.data.token)) {
+      if (await saveToken(e.user_id, res.data.userId, res.data.token, res.data.refreshToken)) {
         e.reply('token 保存成功!')
       } else {
         e.reply('保存 token 出错!')
