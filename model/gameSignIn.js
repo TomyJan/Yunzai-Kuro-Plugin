@@ -18,8 +18,7 @@ export default class gameSignIn {
 
         if (tokenData && Object.keys(tokenData).length > 0) {
             const accNum = Object.keys(tokenData).length
-            await this.e.reply(`QQ ${uin} token: \n${JSON.stringify(tokenData, null, 2)}, 数量 ${accNum}`)
-            await this.e.reply('开始战双签到, 稍等一会儿哟...')
+            await this.e.reply(`QQ ${uin} 绑定了 ${accNum}个token\n开始战双签到, 稍等一会儿哟...`)
             let msg = ''
             for (const kuro_uid in tokenData) {
                 if (tokenData.hasOwnProperty(kuro_uid)) {
@@ -28,11 +27,8 @@ export default class gameSignIn {
                 }
                 await sleepAsync(3000)
             }
-            await this.e.reply(msg)
-            //
-            //
-            //
-            //
+
+            await this.e.reply(msg.trim())
             return true
         } else {
             this.e.reply(`QQ ${uin} 暂未绑定 token, 请发送 #库洛验证码登录 绑定 token `)
@@ -42,7 +38,7 @@ export default class gameSignIn {
         async function doPnsSignIn(kuro_uid, token) {
             // 哦 uid 好像用不到 先放着吧
             let doPnsSignInRet = ''
-            doPnsSignInRet += `账号 ${kuro_uid} token: \n${token}\n\n账号 ${kuro_uid}: \n`
+            doPnsSignInRet += `账号 ${kuro_uid}: \n`
             // 获取绑定的游戏 id 列表有俩接口, emmm 迷惑
             const url = 'https://api.kurobbs.com/user/role/findRoleList'
             const headers = {
@@ -79,6 +75,10 @@ export default class gameSignIn {
                 const rsp_findRoleList = await response_findRoleList.json()
 
                 if (rsp_findRoleList.code === 200) {
+                    if (rsp_findRoleList.data.length === 0) { // 没绑定游戏账号
+                        doPnsSignInRet += '未绑定游戏账号\n'
+                        return doPnsSignInRet
+                      }
                     for (const data of rsp_findRoleList.data) {
                         doPnsSignInRet += `${data.serverName}-${data.roleName}(${data.roleId}): \n`
                         //执行签到查询后执行签到
