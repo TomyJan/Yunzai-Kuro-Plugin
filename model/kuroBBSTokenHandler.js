@@ -38,26 +38,25 @@ export async function checkTokenValidity(kuro_uid, kuro_token) {
     logger.mark('token 检测:  ' + JSON.stringify(rsp))
 
     if (rsp.code === 200) {
-      logger.mark("token 有效!")
+      logger.mark('token 有效!')
       return true
     } else {
-        logger.mark("token 失效")
-        return false
+      logger.mark('token 失效')
+      return false
     }
   } catch (error) {
-    logger.mark("请求出错: " +  JSON.stringify(error))
+    logger.mark('请求出错: ' + JSON.stringify(error))
     return false
   }
-
 }
 
-export async function saveToken(uin, kuro_uid,kuro_token, kuro_refreshToken) {
+export async function saveToken(uin, kuro_uid, kuro_token, kuro_refreshToken) {
   try {
     const tokenData = {
       [kuro_uid]: {
         token: kuro_token,
         refreshToken: kuro_refreshToken,
-        }
+      },
     }
     const filePath = dataPath + `/token/${uin}.json`
     const jsonData = JSON.stringify(tokenData)
@@ -89,19 +88,19 @@ export async function saveToken(uin, kuro_uid,kuro_token, kuro_refreshToken) {
 export async function getToken(uin) {
   const filePath = dataPath + `/token/${uin}.json`
   try {
-    const data = fs.readFileSync(filePath, 'utf8');
+    const data = fs.readFileSync(filePath, 'utf8')
     if (!data) {
-      return null;
+      return null
     }
-    
+
     const tokenData = JSON.parse(data)
-    return tokenData;
+    return tokenData
   } catch (error) {
     if (error.code === 'ENOENT') {
-      console.log('Token file not found');
+      console.log('Token file not found')
     } else {
-      console.error('Error reading token data from file:', error);
+      console.error('Error reading token data from file:', error)
     }
-    return null;
+    return null
   }
 }
