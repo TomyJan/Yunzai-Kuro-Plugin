@@ -23,7 +23,6 @@ export async function checkTokenValidity(kuro_uid, kuro_token) {
   const formData = new URLSearchParams()
   formData.append('otherUserId', kuro_uid)
 
-  logger.info(formData)
   try {
     const response = await fetch(url, {
       method: 'POST',
@@ -51,6 +50,7 @@ export async function checkTokenValidity(kuro_uid, kuro_token) {
   }
 
 }
+
 export async function saveToken(uin, kuro_uid,kuro_token, kuro_refreshToken) {
   try {
     const tokenData = {
@@ -83,5 +83,25 @@ export async function saveToken(uin, kuro_uid,kuro_token, kuro_refreshToken) {
   } catch (error) {
     logger.warn(`保存 Token 时出错: ${error}`)
     return false
+  }
+}
+
+export async function getToken(uin) {
+  const filePath = dataPath + `/token/${uin}.json`
+  try {
+    const data = fs.readFileSync(filePath, 'utf8');
+    if (!data) {
+      return null;
+    }
+    
+    const tokenData = JSON.parse(data)
+    return tokenData;
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      console.log('Token file not found');
+    } else {
+      console.error('Error reading token data from file:', error);
+    }
+    return null;
   }
 }
