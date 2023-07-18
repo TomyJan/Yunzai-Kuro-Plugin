@@ -53,7 +53,7 @@ export class kuroBBSLogin extends plugin {
     let kuro = new kurologin(e)
     let rsp = await kuro.captchaLoginResult()
     if (rsp) await this.bindToken(e, rsp)
-    return rsp
+    return true
   }
 
   async tokenLoginHelp(e) {
@@ -61,8 +61,8 @@ export class kuroBBSLogin extends plugin {
       this.reply(`请私聊使用`)
       return false
     }
-    // TODO
-    this.reply(`前方施工中~`)
+    let kuro = new kurologin(e)
+    await kuro.tokenLoginHelp()
     return true
   }
 
@@ -71,8 +71,7 @@ export class kuroBBSLogin extends plugin {
       this.reply(`请私聊使用`)
       return false
     }
-    // TODO
-    this.reply(`前方施工中~`)
+    await this.bindToken(e, e.msg.replace(/#| /, '').replace(/库洛token/, ''))
     return true
   }
 
@@ -86,12 +85,12 @@ export class kuroBBSLogin extends plugin {
           res.data.refreshToken
         )
       ) {
-        e.reply('token 保存成功!\n已为您开启自动签到, 请确保我和你是好友, 以便我能及时给你推送签到结果')
+        e.reply('保存 token 成功!\n已为您开启自动签到, 请确保我们已经添加好友, 以便我能及时给你推送签到结果')
       } else {
         e.reply('保存 token 出错!')
       }
     } else {
-      e.reply('token 失效!')
+      e.reply('保存 token 失败: token 已失效!')
     }
   }
 }
