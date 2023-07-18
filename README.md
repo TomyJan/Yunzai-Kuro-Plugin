@@ -15,6 +15,7 @@ Yunzai-Kuro-Plugin 是 [Yunzai-Bot](https://github.com/yoimiya-kokomi/Miao-Yunza
 - [x] 库街区游戏签到
 - [ ] 库洛币任务
 - [ ] 角色墙信息
+- [ ] 库街区自定义头像
 
 ## 致谢
 

@@ -7,21 +7,29 @@ export class kuroBBSLogin extends plugin {
   constructor() {
     super({
       /** 功能名称 */
-      name: '库洛账号验证码登录',
+      name: '库洛账号登录',
       /** 功能描述 */
-      dsc: '库洛账号验证码登录',
+      dsc: '库洛账号登录',
       /** https://oicqjs.github.io/oicq/#events */
       event: 'message',
       /** 优先级，数字越小等级越高 */
       priority: 1000,
       rule: [
         {
-          reg: '^#库洛(账号|验证码|密码)(登录|绑定|登陆)$',
+          reg: '^#?库洛(账号|验证码|密码)(登录|绑定|登陆)$',
           fnc: 'captchaLoginHelp',
         },
         {
-          reg: '^库洛账号(.*)验证码(.*)$',
+          reg: '^#?库洛账号(.*)验证码(.*)$',
           fnc: 'captchaLoginResult',
+        },
+        {
+          reg: '^#?库洛token(登录|绑定|登陆)$',
+          fnc: 'tokenLoginHelp',
+        },
+        {
+          reg: '^#?库洛token(.*)$',
+          fnc: 'tokenLoginResult',
         },
       ],
     })
@@ -45,6 +53,26 @@ export class kuroBBSLogin extends plugin {
     let kuro = new kurologin(e)
     let rsp = await kuro.captchaLoginResult()
     if (rsp) await this.bindToken(e, rsp)
+    return rsp
+  }
+
+  async tokenLoginHelp(e) {
+    if (!e.isPrivate) {
+      this.reply(`请私聊使用`)
+      return false
+    }
+    // TODO
+    this.reply(`前方施工中~`)
+    return true
+  }
+
+  async tokenLoginResult(e) {
+    if (!e.isPrivate) {
+      this.reply(`请私聊使用`)
+      return false
+    }
+    // TODO
+    this.reply(`前方施工中~`)
     return rsp
   }
 
