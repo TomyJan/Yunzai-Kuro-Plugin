@@ -1,0 +1,11 @@
+# 修改即时生效, 无需重启
+- group: 账号登录
+  list:
+    - icon: kuro
+      title: "#库洛验证码登录"
+      desc: 通过手机号+验证码登录账号
+- group: 游戏签到
+  list:
+    - icon: pns
+      title: "#战双签到"
+      desc: 库街区战双游戏签到

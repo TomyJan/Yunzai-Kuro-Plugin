@@ -2,6 +2,8 @@
 
 Yunzai-Kuro-Plugin 是 [Yunzai-Bot](https://github.com/yoimiya-kokomi/Miao-Yunzai) 的 一个插件, 主要提供 库洛游戏 相关功能
 
+> js真你妈难写, 操
+
 ## 安装教程
 
 // TODO

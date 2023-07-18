@@ -1,0 +1,107 @@
+@font-face {
+  font-family: "HYWenHei-55W";
+  src: url("../../font/HYWenHei-55W.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  font-family: 'HYWenHei-55W';
+}
+
+body {
+  transform: scale(1);
+  width: 800px;
+  background: url(../../img/help/background/0.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.container {
+  width: 820px;
+  padding: 20px 15px 10px 15px;
+}
+
+.head-box {
+  margin: 60px 0 0 0;
+  padding-bottom: 0;
+}
+
+.head-box .title {
+  font-size: 50px;
+}
+
+.cont-box {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  overflow: hidden;
+  position: relative;
+  font-size: 20px;
+  background: rgba(62, 62, 62, 0.3);
+
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border-radius: 30px;
+}
+
+.help-group {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 15px 15px 10px 20px;
+  display: inline-block;
+}
+
+.list {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.list .item {
+  width: 235px;
+  display: flex;
+  align-items: center;
+  color: white;
+  background: transparent;
+  box-shadow: 0 0 1px 0 #ccc, 2px 2px 4px 0 rgba(50, 50, 50, 0.8);
+  padding: 8px 6px 8px 6px;
+  border-radius: 8px;
+  margin: 0 0px 10px 10px;
+}
+
+.list .item .icon {
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.list .item .title {
+  font-size: 16px;
+  margin-left: 6px;
+  line-height: 20px;
+}
+
+.list .item .title .text{
+  display: inline-block;
+  font-size: 22px;
+  line-height: 24px;
+}
+
+.list .item .title .dec {
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 14px;
+  color: white;
+  font-family: 'HYWenHei-55W';
+}

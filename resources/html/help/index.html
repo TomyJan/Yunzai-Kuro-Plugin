@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="{{pluResPath}}/html/help/index.css" />
+  <link rel="preload" href="{{pluResPath}}/font/HYWenHei-55W.ttf" as="font" />
+  <link rel="preload" href="{{pluResPath}}/img/help/background/0.jpg" as="image" />
+  <link rel="shortcut icon" href="#" />
+</head>
+{{@headStyle}}
+
+<body>
+  <div class="container" id="container">
+    <div class="head-box">
+      <div class="title" style="color: white;">{{pluginName}}</div>
+      <div class="label" style="color: white;">插件菜单</div>
+    </div>
+  
+
+    {{each helpData val}}
+    <div class="cont-box">
+      <div class="help-group" style="color: white;">
+        {{val.group}}{{val.disable ? ' (已禁用)' : ''}}
+      </div>
+      <div class="list">
+        {{each val.list item}}
+        <div class="item">
+          <img class="icon" src="{{pluResPath}}/img/common/icon/{{item.icon}}.png" />
+          <div class="title">
+            <div class="text">{{@item.title}}</div>
+            <div class="dec">{{item.desc}}</div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/each}}
+    <div class="copyright">Created By Yunzai-Bot & {{pluginName}} {{version}}</div>
+  </div>
+</body>
+
+</html>
