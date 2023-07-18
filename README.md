@@ -18,4 +18,6 @@ Yunzai-Kuro-Plugin 是 [Yunzai-Bot](https://github.com/yoimiya-kokomi/Miao-Yunza
 
 ## 致谢
 
-本插件部分代码抄袭自 [xiaoyao-cvs-plugin](https://github.com/ctrlcvs/xiaoyao-cvs-plugin) [yenai-plugin](https://github.com/yeyang52/yenai-plugin) 
+- [xiaoyao-cvs-plugin](https://github.com/ctrlcvs/xiaoyao-cvs-plugin) 插件部分代码来源
+- [yenai-plugin](https://github.com/yeyang52/yenai-plugin) 插件部分代码来源
+- [Kuro-API-Collection](https://github.com/TomyJan/Kuro-API-Collection) 库街区 API 文档

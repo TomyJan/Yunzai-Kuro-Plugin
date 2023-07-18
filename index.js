@@ -1,10 +1,10 @@
 import fs from 'node:fs'
-import Ver from './components/Version.js'
+import {pluginVer} from './data/system/pluginConstants.js'
 import chalk from 'chalk'
-import { appsPath } from './data/PluginConstants.js'
+import { appsPath } from './data/system/pluginConstants.js'
 
 logger.info(chalk.rgb(253, 235, 255)('-----------(≧∇≦)ﾉ-----------'))
-logger.info(chalk.rgb(134, 142, 204)(`[库洛插件] V${Ver.ver} 初始化中~`))
+logger.info(chalk.rgb(134, 142, 204)(`[库洛插件] V${pluginVer} 初始化中~`))
 logger.info(chalk.rgb(253, 235, 255)('----------------------------'))
 
 const files = fs.readdirSync(appsPath).filter((file) => file.endsWith('.js'))

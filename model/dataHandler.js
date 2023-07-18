@@ -1,4 +1,4 @@
-import {dataPath} from '../data/PluginConstants.js'
+import {dataPath} from '../data/system/pluginConstants.js'
 import fs from 'node:fs'
 import _ from 'lodash'
 import YAML from 'yaml'
@@ -7,13 +7,13 @@ import chokidar from 'chokidar'
 class dataHandler {
   constructor () {
     // 配置文件
-    this.configPath = dataPath
-    this.config = {}
+    this.dataPath = dataPath + '/system/yaml/'
+    this.data = {}
 
-    this.watcher = { config: {} }
+    this.watcher = { data: {} }
   }
 
-  getConfig (name) {
+  getData (name) {
     let ignore = []
 
     if (ignore.includes(`${name}`)) {
@@ -34,7 +34,7 @@ class dataHandler {
   }
 
   getFilePath (name) {
-    return `${this.configPath}/${name}.yaml`
+    return `${this.dataPath}${name}.yaml`
   }
 
   watch (file, name) {
@@ -42,7 +42,7 @@ class dataHandler {
 
     watcher.on('change', (path) => {
       delete
-      logger.mark(`[修改配置文件][${name}]`)
+      logger.mark(`[库洛插件] 修改配置文件 ${name} , 已重载`)
     })
   }
 }

@@ -1,4 +1,4 @@
-import { dataPath } from '../data/PluginConstants.js'
+import { dataPath } from '../data/system/pluginConstants.js'
 import fs from 'node:fs'
 import fetch from 'node-fetch'
 
