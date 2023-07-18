@@ -76,7 +76,10 @@ export default class kuroBBSLogin {
 
       if (rsp.code === 200) {
         logger.info('[库洛插件] 登陆成功!\n' + JSON.stringify(rsp))
-        this.e.reply('登录成功, 即将保存 token, 下面是此次获取的 token, 请勿泄露!\n' + JSON.stringify(rsp))
+        this.e.reply(
+          '登录成功, 即将保存 token, 下面是此次获取的 token, 请勿泄露!\n' +
+            JSON.stringify(rsp)
+        )
         return rsp
       } else {
         logger.info('[库洛插件] 登陆失败\n' + JSON.stringify(rsp))
@@ -103,24 +106,23 @@ export default class kuroBBSLogin {
   }
 
   async tokenLoginResult() {
-    let rsp1 = this.e.msg
-      .replace(/#| |\r\n|\n/g, '')
-      .replace(/库洛token/, '')
-    
-      try {
-        JSON.parse(rsp1);
-        if (JSON.parse(rsp1).hasOwnProperty('data')) {
-          if (JSON.parse(rsp1).data.hasOwnProperty('userId') && JSON.parse(rsp1).data.hasOwnProperty('token')) {
-            return JSON.parse(rsp1);
-          }
+    let rsp1 = this.e.msg.replace(/#| |\r\n|\n/g, '').replace(/库洛token/, '')
+
+    try {
+      JSON.parse(rsp1)
+      if (JSON.parse(rsp1).hasOwnProperty('data')) {
+        if (
+          JSON.parse(rsp1).data.hasOwnProperty('userId') &&
+          JSON.parse(rsp1).data.hasOwnProperty('token')
+        ) {
+          return JSON.parse(rsp1)
         }
-        this.e.reply('token 格式错误!')
-        return false;
-      } catch (e) {
-        this.e.reply('token 格式错误!')
-        return false;
       }
-
+      this.e.reply('token 格式错误!')
+      return false
+    } catch (e) {
+      this.e.reply('token 格式错误!')
+      return false
+    }
   }
-
 }

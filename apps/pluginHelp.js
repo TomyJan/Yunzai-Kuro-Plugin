@@ -2,7 +2,7 @@ import plugin from '../../../lib/plugins/plugin.js'
 import puppeteer from '../../../lib/puppeteer/puppeteer.js'
 import pluginHelpData from '../model/pluginHelp.js'
 import md5 from 'md5'
-import {gameSignTask} from '../model/autoTask.js'
+import { gameSignTask } from '../model/autoTask.js'
 
 export class pluginHelp extends plugin {
   constructor() {
@@ -37,7 +37,7 @@ export class pluginHelp extends plugin {
   async cache(data) {
     let tmp = md5(JSON.stringify(data))
     if (pluginHelp.helpData.md5 === tmp) {
-      return pluginHelp.helpData.img;
+      return pluginHelp.helpData.img
     }
 
     pluginHelp.helpData.img = await puppeteer.screenshot('help', data)
