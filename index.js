@@ -1,5 +1,5 @@
 import fs from 'node:fs'
-import {pluginVer} from './data/system/pluginConstants.js'
+import { pluginVer } from './data/system/pluginConstants.js'
 import chalk from 'chalk'
 import { appsPath } from './data/system/pluginConstants.js'
 
