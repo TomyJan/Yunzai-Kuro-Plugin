@@ -73,7 +73,7 @@ export class kuroBBSLogin extends plugin {
     }
     // TODO
     this.reply(`前方施工中~`)
-    return rsp
+    return true
   }
 
   async bindToken(e, res) {
