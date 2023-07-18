@@ -28,7 +28,7 @@ export class kuroBBSLogin extends plugin {
           fnc: 'tokenLoginHelp',
         },
         {
-          reg: '^#?库洛token(.*)$',
+          reg: new RegExp('^#?库洛token(.*)$', 's'),
           fnc: 'tokenLoginResult',
         },
       ],
@@ -71,7 +71,9 @@ export class kuroBBSLogin extends plugin {
       this.reply(`请私聊使用`)
       return false
     }
-    await this.bindToken(e, e.msg.replace(/#| /, '').replace(/库洛token/, ''))
+    let kuro = new kurologin(e)
+    let rsp = await kuro.tokenLoginResult()
+    if (rsp) await this.bindToken(e, rsp)
     return true
   }
 

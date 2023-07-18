@@ -16,11 +16,12 @@ export default class kuroBBSLogin {
       `请前往 https://www.kurobbs.com/pns/home/2 或库街区 APP 输入手机号点击发送验证码后, 将手机号和验证码用逗号隔开私聊发送以完成绑定\n例：库洛账号18888888888,验证码114514\n\n注意: 库街区 APP 同战双一样, 只能登录一个设备, 即机器人的登录和你自己手机 APP 的登录会互顶. 如果你需要用到库街区 APP, 请发送 #库洛token登录 查看抓包登录教程`
     )
   }
+
   async captchaLoginResult() {
     let msg = this.e.msg
       .replace(/库洛账号|验证码|：|:/g, '')
-      .replace(/,|，/, ',')
-      .replace(/#| /, '')
+      .replace(/,|，/g, ',')
+      .replace(/#| /g, '')
       .split(',')
 
     if (msg.length != 2 || (msg[0] == '') | (msg[1] == '')) {
@@ -74,8 +75,8 @@ export default class kuroBBSLogin {
       const rsp = await response.json()
 
       if (rsp.code === 200) {
-        logger.info('[库洛插件] 登陆成功, 即将保存 token, 下面是此次获取的 token, 请勿泄露!\n' + JSON.stringify(rsp))
-        this.e.reply('登录成功!\n' + JSON.stringify(rsp))
+        logger.info('[库洛插件] 登陆成功!\n' + JSON.stringify(rsp))
+        this.e.reply('登录成功, 即将保存 token, 下面是此次获取的 token, 请勿泄露!\n' + JSON.stringify(rsp))
         return rsp
       } else {
         logger.info('[库洛插件] 登陆失败\n' + JSON.stringify(rsp))
@@ -100,4 +101,26 @@ export default class kuroBBSLogin {
       `请私聊发送 #库洛token后面跟上你的token 完成登录\n抓包教程: https://blog.tomys.top/2023-07/kuro-token/`
     )
   }
+
+  async tokenLoginResult() {
+    let rsp1 = this.e.msg
+      .replace(/#| |\r\n|\n/g, '')
+      .replace(/库洛token/, '')
+    
+      try {
+        JSON.parse(rsp1);
+        if (JSON.parse(rsp1).hasOwnProperty('data')) {
+          if (JSON.parse(rsp1).data.hasOwnProperty('userId') && JSON.parse(rsp1).data.hasOwnProperty('token')) {
+            return JSON.parse(rsp1);
+          }
+        }
+        this.e.reply('token 格式错误!')
+        return false;
+      } catch (e) {
+        this.e.reply('token 格式错误!')
+        return false;
+      }
+
+  }
+
 }

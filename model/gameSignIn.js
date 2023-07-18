@@ -18,7 +18,7 @@ export default class gameSignIn {
     if (tokenData && Object.keys(tokenData).length > 0) {
       const accNum = Object.keys(tokenData).length
       await this.e.reply(
-        `QQ ${uin} 绑定了 ${accNum}个token\n开始战双签到, 稍等一会儿哟...`
+        `QQ ${uin} 绑定了 ${accNum} 个 token\n开始战双签到, 稍等一会儿哟...`
       )
       let msg = ''
       for (const kuro_uid in tokenData) {
