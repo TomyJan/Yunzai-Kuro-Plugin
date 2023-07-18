@@ -86,7 +86,7 @@ export class kuroBBSLogin extends plugin {
           res.data.refreshToken
         )
       ) {
-        e.reply('token 保存成功!')
+        e.reply('token 保存成功!\n已为您开启自动签到, 请确保我和你是好友, 以便我能及时给你推送签到结果')
       } else {
         e.reply('保存 token 出错!')
       }
