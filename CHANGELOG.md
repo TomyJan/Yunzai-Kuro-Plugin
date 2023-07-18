@@ -1,5 +1,9 @@
-# 0.0.2-dev (2023-07-18)
+# 0.0.2-dev (2023-07-19)
 
+
+### Features
+
+* 新增 游戏自动签到功能 ([51d4e04](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/51d4e04fba05b1a16ddf0d031f414d5433bf4c6a))
 
 
 # 0.0.1 (2023-07-18)

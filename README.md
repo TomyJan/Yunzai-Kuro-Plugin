@@ -13,7 +13,7 @@ Yunzai-Kuro-Plugin 是 [Yunzai-Bot](https://github.com/yoimiya-kokomi/Miao-Yunza
 - [x] 通过验证码登录库洛账号, 获取并保存 token 
 - [ ] 通过指令直接提交 token 
 - [x] 库街区游戏签到
-- [ ] 游戏签到定时任务
+- [x] 游戏签到定时任务
 - [ ] 库洛币任务
 - [ ] 角色墙信息
 - [ ] 库街区自定义头像
