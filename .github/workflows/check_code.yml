@@ -37,6 +37,6 @@ jobs:
       - run: git stash pop || true
 
       - name: Commit code changes
-        run: git add -u && git commit -m 'Format code [skip ci]' || true
+        run: git add -u && git commit -m 'style: format code [skip ci]' || true
       - name: Push code changes
         run: git push --set-upstream --force origin ${{ steps.extract_branch.outputs.branch }}
