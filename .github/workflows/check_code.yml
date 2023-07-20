@@ -32,8 +32,8 @@ jobs:
         run: npx prettier --write "**/*.js"
       - run: git config --global user.name "github-actions"
       - run: git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - run: git stash
       - run: git checkout -- package-lock.json
+      - run: git stash
       - run: git checkout ${{ steps.extract_branch.outputs.branch }} && git pull
       - run: git stash pop || true
 
