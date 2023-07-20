@@ -18,8 +18,8 @@ export class bbsHeadUpload extends plugin {
           fnc: 'bbsHeadUploadHelp',
         },
         {
-            reg: '^#?库洛头像上传账号(.*)头像(.*)$',
-            fnc: 'bbsHeadUploadResult',
+          reg: '^#?库洛头像上传账号(.*)头像(.*)$',
+          fnc: 'bbsHeadUploadResult',
         },
       ],
     })
