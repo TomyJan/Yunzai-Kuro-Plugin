@@ -1,2 +1,5 @@
 # 用户库洛 token 
 data/token/
+
+#nodejs
+node_modules/

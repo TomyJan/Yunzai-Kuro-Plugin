@@ -19,14 +19,14 @@ try {
   ) {
     const logText = fs.readFileSync(CHANGELOG_path, 'utf8') || ''
 
-    const vers = logText.match(/#\s*([\d.]+(?:-\w+)*)/)
-    ver = vers ? vers[1] : 'UnkVer'
+    const vers = logText.match(/\[(.*?)\]\(.*?\)/)
+    ver = vers ? vers[1] : 'unkVer'
   } else {
-    ver = 'UnkVer'
+    ver = 'unkVer'
   }
 } catch (e) {
   logger.error(e)
-  ver = 'UnkVer'
+  ver = 'unkVer'
 }
 
 export const pluginVer = ver

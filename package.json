@@ -1,5 +1,6 @@
 {
   "name": "Yunzai-Kuro-Plugin",
+  "version": "0.0.2-rel",
   "author": "TomyJan",
   "description": "Yunzai-Bot plugin for kuro games.",
   "type": "module",
@@ -8,9 +9,15 @@
     "singleQuote": true
   },
   "scripts": {
-    "format": "prettier --write \"**/*.js\""
+    "format": "prettier --write \"**/*.js\"",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
+  },
+  "dependencies": {
+    "form-data": "^4.0.0"
   },
   "devDependencies": {
-    "prettier": "^2.4.1"
+    "conventional-changelog": "^3.1.25",
+    "conventional-changelog-custom-config": "^0.3.1",
+    "prettier": "^2.8.8"
   }
 }
