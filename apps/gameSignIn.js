@@ -1,6 +1,5 @@
 import gamesign from '../model/gameSignIn.js'
 import plugin from '../../../lib/plugins/plugin.js'
-import fetch from 'node-fetch'
 
 export class kuroBBSLogin extends plugin {
   constructor() {

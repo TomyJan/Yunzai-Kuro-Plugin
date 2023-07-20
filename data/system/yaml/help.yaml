@@ -12,3 +12,8 @@
     - icon: pns
       title: "#战双签到"
       desc: 库街区战双游戏签到
+- group: 小工具
+  list:
+    - icon: pic
+      title: "#库洛头像帮助"
+      desc: 库街区自定义头像

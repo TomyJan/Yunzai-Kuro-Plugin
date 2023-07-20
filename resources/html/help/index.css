@@ -16,9 +16,8 @@
 body {
   transform: scale(1);
   width: 800px;
-  background: url(../../img/help/background/0.jpg);
-  background-size: 100%;
-  background-repeat: no-repeat;
+  background: url(../../img/help/background/0.jpg) no-repeat;
+  background-size:cover;
 }
 
 .container {

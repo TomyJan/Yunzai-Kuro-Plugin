@@ -2,7 +2,6 @@ import plugin from '../../../lib/plugins/plugin.js'
 import puppeteer from '../../../lib/puppeteer/puppeteer.js'
 import pluginHelpData from '../model/pluginHelp.js'
 import md5 from 'md5'
-import { gameSignTask } from '../model/autoTask.js'
 
 export class pluginHelp extends plugin {
   constructor() {

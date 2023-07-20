@@ -1,7 +1,6 @@
 import kurologin from '../model/kuroBBSLogin.js'
 import plugin from '../../../lib/plugins/plugin.js'
 import { checkTokenValidity, saveToken } from '../model/kuroBBSTokenHandler.js'
-import fetch from 'node-fetch'
 
 export class kuroBBSLogin extends plugin {
   constructor() {
