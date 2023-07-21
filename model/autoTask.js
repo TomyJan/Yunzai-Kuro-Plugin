@@ -28,7 +28,11 @@ export async function gameSignTask(gameName) {
       let msg = ''
       for (const kuro_uid in tokenData) {
         if (tokenData.hasOwnProperty(kuro_uid)) {
-          msg += await doPnsSignIn(gameSignUin, kuro_uid, tokenData[kuro_uid].token)
+          msg += await doPnsSignIn(
+            gameSignUin,
+            kuro_uid,
+            tokenData[kuro_uid].token
+          )
           msg += '\n'
         } else {
           msg += `账号 ${kuro_uid}: \ntoken 格式错误\n\n`
