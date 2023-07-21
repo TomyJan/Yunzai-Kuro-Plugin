@@ -30,6 +30,10 @@ export default class kuroApiHandler {
             body: body,
             method: method
         }
+        //logger.info(url)
+        //logger.info(headers)
+        //logger.info(body)
+        //logger.info(method)
 
         let response = {}
         try {
@@ -39,11 +43,12 @@ export default class kuroApiHandler {
             return `请求出错: \n${JSON.stringify(error)}\n`
         }
         if (!response.ok) {
-            logger.warn(`[库洛插件] 接口 ${ApiName}报错, 用户 ${this.e.uid}, 错误: ${response.status} ${response.statusText}`)
+            logger.warn(`[库洛插件] 接口 ${ApiName}报错, 错误: ${response.status} ${response.statusText}`)
             return `请求出错: ${response.status} ${response.statusText}\n`
         }
 
         let rsp = await response.json();
+        //logger.info(rsp)
         return rsp
     }
     /**
@@ -71,6 +76,10 @@ export default class kuroApiHandler {
             sdkLogin: { // APP 端登录
                 url: `${this.kuroApiUrl}/user/sdkLogin`,
                 body: `code=${data.code}&devCode=2fba3859fe9bfe9099f2696b8648c2c6&gameList=&mobile=${data.mobile}`
+            },
+            mineV2: { // 取个人信息 V2
+                url: `${this.kuroApiUrl}/user/mineV2`,
+                body: `otherUserId=${kuroUid}`
             },
         }
         if (!ApiMap[ApiName]) return false

@@ -1,53 +1,23 @@
 import { dataPath } from '../data/system/pluginConstants.js'
 import fs from 'node:fs'
 import fetch from 'node-fetch'
+import kuroApi from './kuroApi.js'
 
+/**
+ * 检查 token 是否有效
+ * @param {string} kuro_uid 库洛 ID
+ * @param {string} kuro_token 库洛 ID 的 token
+ * @returns {boolean} 是否有效
+ */
 export async function checkTokenValidity(kuro_uid, kuro_token) {
-  const url = 'https://api.kurobbs.com/user/mineV2'
-  const headers = {
-    osversion: 'Android',
-    devcode: '2fba3859fe9bfe9099f2696b8648c2c6',
-    countrycode: 'CN',
-    ip: '10.0.2.233',
-    model: '2211133C',
-    source: 'android',
-    lang: 'zh-Hans',
-    version: '1.0.9',
-    versioncode: '1090',
-    token: kuro_token,
-    'content-type': 'application/x-www-form-urlencoded',
-    'accept-encoding': 'gzip',
-    'user-agent': 'okhttp/3.10.0',
-  }
 
-  const formData = new URLSearchParams()
-  formData.append('otherUserId', kuro_uid)
+  let kuroapi = new kuroApi(false)
+  let rsp_checkToken_mineV2 = await kuroapi.checkToken_mineV2(kuro_uid, kuro_token)
+  logger.mark('rsp_checkToken_mineV2 ' + JSON.stringify(rsp_checkToken_mineV2))
 
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: headers,
-      body: formData,
-    })
+    logger.mark('token 检测:  ' + JSON.stringify(rsp_checkToken_mineV2))
+    return rsp_checkToken_mineV2
 
-    if (!response.ok) {
-      throw new Error('请求失败: ' + response.status)
-    }
-
-    const rsp = await response.json()
-    logger.mark('token 检测:  ' + JSON.stringify(rsp))
-
-    if (rsp.code === 200) {
-      logger.mark('token 有效!')
-      return true
-    } else {
-      logger.mark('token 失效')
-      return false
-    }
-  } catch (error) {
-    logger.mark('请求出错: ' + JSON.stringify(error))
-    return false
-  }
 }
 
 export async function saveToken(uin, kuro_uid, kuro_token, kuro_refreshToken) {
