@@ -1,8 +1,7 @@
 import fetch from "node-fetch"
 
 export default class kuroApiHandler {
-    constructor(uin) {
-        this.uin = uin
+    constructor() {
         this.kuroApiUrl = "https://api.kurobbs.com"
     }
 
@@ -61,13 +60,17 @@ export default class kuroApiHandler {
                 url: `${this.kuroApiUrl}/user/role/findRoleList`,
                 body: `gameId=${data.gameId}`
             },
-            initSignIn: { // 取绑定游戏账号列表
+            initSignIn: { // 取签到配置信息
                 url: `${this.kuroApiUrl}/encourage/signIn/initSignIn`,
                 body: `gameId=${data.gameId}&serverId=${data.serverId}&roleId=${data.roleId}`
             },
-            signIn: { // 取绑定游戏账号列表
+            signIn: { // 游戏签到
                 url: `${this.kuroApiUrl}/encourage/signIn/`,
                 body: `gameId=${data.gameId}&serverId=${data.serverId}&roleId=${data.roleId}&reqMonth=${data.reqMonth}`
+            },
+            sdkLogin: { // APP 端登录
+                url: `${this.kuroApiUrl}/user/sdkLogin`,
+                body: `code=${data.code}&devCode=2fba3859fe9bfe9099f2696b8648c2c6&gameList=&mobile=${data.mobile}`
             },
         }
         if (!ApiMap[ApiName]) return false
@@ -114,7 +117,7 @@ export default class kuroApiHandler {
 
         let headers = { // 共同请求头
             osversion: 'Android',
-            devcode: '2fba3859fe9bfe9099f2696b8648c2c6',
+            devcode: '2fba3859fe9bfe9099f2696b8648c2c6', // 注意 sdkLogin 请求体里有个一样的要一起更新
             countrycode: 'CN',
             ip: '10.0.2.233',
             model: '2211133C',

@@ -1,4 +1,4 @@
-import fetch from 'node-fetch'
+import kuroApi from './kuroApi.js'
 
 export default class kuroBBSLogin {
   constructor(e) {
@@ -37,60 +37,26 @@ export default class kuroBBSLogin {
       return false
     }
 
-    const url = 'https://api.kurobbs.com/user/sdkLogin'
-    const headers = {
-      osversion: 'Android',
-      devcode: '2fba3859fe9bfe9099f2696b8648c2c6',
-      distinct_id: '765485e7-30ce-4496-9a9c-a2ac1c03c02c',
-      countrycode: 'CN',
-      ip: '10.0.2.233',
-      model: '2211133C',
-      source: 'android',
-      lang: 'zh-Hans',
-      version: '1.0.9',
-      versioncode: '1090',
-      'content-type': 'application/x-www-form-urlencoded',
-      'accept-encoding': 'gzip',
-      'user-agent': 'okhttp/3.10.0',
-    }
-
-    const formData = new URLSearchParams()
-    formData.append('code', msg[1])
-    formData.append('devCode', '2fba3859fe9bfe9099f2696b8648c2c6')
-    formData.append('gameList', '')
-    formData.append('mobile', msg[0])
-    logger.info(formData)
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: headers,
-        body: formData,
-      })
-
-      if (!response.ok) {
-        this.e.reply('请求失败: ' + response.status)
-        throw new Error('请求失败: ' + response.status)
-      }
-
-      const rsp = await response.json()
-
-      if (rsp.code === 200) {
-        logger.info('[库洛插件] 登陆成功!\n' + JSON.stringify(rsp))
-        this.e.reply(
-          '登录成功, 即将保存 token, 下面是此次获取的 token, 请勿泄露!\n' +
-            JSON.stringify(rsp)
-        )
-        return rsp
-      } else {
-        logger.info('[库洛插件] 登陆失败\n' + JSON.stringify(rsp))
-        this.e.reply('登录失败!\n' + JSON.stringify(rsp))
-        return false
-      }
-    } catch (error) {
-      logger.info('[库洛插件] 登陆失败\n' + JSON.stringify(error))
-      this.e.reply('登录失败!\n' + JSON.stringify(error))
+    let kuroapi = new kuroApi(false)
+    let rsp_sdkLogin = await kuroapi.sdkLogin({mobile: msg[0], code: msg[1]})
+    logger.mark('rsp_sdkLogin ' + JSON.stringify(rsp_sdkLogin))
+    if(typeof rsp_sdkLogin == 'string') { // 不是 json, 即返回报错
+      this.e.reply(rsp_sdkLogin)
       return false
     }
+
+      if (rsp_sdkLogin.code === 200) {
+        logger.info('[库洛插件] 登陆成功!\n' + JSON.stringify(rsp_sdkLogin))
+        this.e.reply(
+          '登录成功, 即将保存 token, 下面是此次获取的 token, 请勿泄露!\n' +
+            JSON.stringify(rsp_sdkLogin)
+        )
+        return rsp_sdkLogin
+      } else {
+        logger.info('[库洛插件] 登陆失败\n' + JSON.stringify(rsp_sdkLogin))
+        this.e.reply('登录失败!\n' + JSON.stringify(rsp_sdkLogin.msg))
+        return false
+      }
 
     function isPhoneNumber(str) {
       const pattern = /^1[3456789]\d{9}$/

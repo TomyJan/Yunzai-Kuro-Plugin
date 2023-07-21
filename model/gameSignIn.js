@@ -1,4 +1,3 @@
-import fetch from 'node-fetch'
 import { getToken } from '../model/kuroBBSTokenHandler.js'
 import { sleepAsync } from '../model/utils.js'
 import kuroApi from './kuroApi.js'

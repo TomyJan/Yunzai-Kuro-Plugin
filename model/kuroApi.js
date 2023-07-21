@@ -1,10 +1,9 @@
-import fs from 'node:fs'
 import kuroApiHandler from "./kuroApiHandler.js"
 import { getToken } from './kuroBBSTokenHandler.js'
 export default class kuroApi {
     constructor(uin) {
         this.uin = uin
-        this.tokenDataPromise = this.initializeTokenData();
+        if(uin) this.tokenDataPromise = this.initializeTokenData();
     }
 
     /**
@@ -28,16 +27,16 @@ export default class kuroApi {
      * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
      */
     async getData(ApiName, kuroUid, data) {
-        await this.waitTokenData();
+        if(ApiName !== "sdkLogin") await this.waitTokenData();
         if (kuroUid) {
             // TODO: 检查 token 有效性
         }
-        this.kuroApiHandler = new kuroApiHandler(this.uin);
+        this.kuroApiHandler = new kuroApiHandler();
         let rsp = ""
         if (ApiName !== "sdkLogin") {
             rsp = await this.kuroApiHandler.getApiRsp(ApiName, kuroUid, this.tokenData[kuroUid].token, data)
         } else {
-            rsp = await this.kuroApiHandler.getApiRsp(ApiName, false, "", data)
+            rsp = await this.kuroApiHandler.getApiRsp(ApiName, null, null, data)
         }
 
         if(typeof rsp == 'string') { // 不是 json, 即返回报错
@@ -80,5 +79,14 @@ export default class kuroApi {
     async signIn(kuroUid, data) {
         data.reqMonth = (new Date().getMonth() + 1).toString().padStart(2, '0')
         return this.getData("signIn",kuroUid, data)
+    }
+
+    /**
+     *  APP 端验证码登录
+     * @param {object} data 传入 data.mobile 手机号 data.code 验证码
+     * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+     */
+    async sdkLogin(data) {
+        return this.getData("sdkLogin",null, data)
     }
 }
