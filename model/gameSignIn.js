@@ -24,7 +24,11 @@ export default class gameSignIn {
       let msg = ''
       for (const kuro_uid in tokenData) {
         if (tokenData.hasOwnProperty(kuro_uid)) {
-          msg += await doPnsSignIn(this.e.user_id, kuro_uid, tokenData[kuro_uid].token)
+          msg += await doPnsSignIn(
+            this.e.user_id,
+            kuro_uid,
+            tokenData[kuro_uid].token
+          )
           msg += '\n'
         } else {
           msg += `账号 ${kuro_uid}: \ntoken 格式错误\n\n`
@@ -48,50 +52,59 @@ export async function doPnsSignIn(uin, kuro_uid, token) {
   doPnsSignInRet += `账号 ${kuro_uid}: \n`
   // 获取绑定的游戏 id 列表有俩接口, emmm 迷惑
   let kuroapi = new kuroApi(uin)
-  let rsp_findRoleList = await kuroapi.findRoleList(kuro_uid,{gameId: 2})
+  let rsp_findRoleList = await kuroapi.findRoleList(kuro_uid, { gameId: 2 })
   logger.mark('rsp_findRoleList ' + JSON.stringify(rsp_findRoleList))
-  if(typeof rsp_findRoleList == 'string') { // 不是 json, 即返回报错
+  if (typeof rsp_findRoleList == 'string') {
+    // 不是 json, 即返回报错
     doPnsSignInRet += `${rsp_findRoleList}\n`
     return doPnsSignInRet
   }
-      if (rsp_findRoleList.data.length === 0) {
-        // 没绑定游戏账号
-        doPnsSignInRet += '未绑定游戏账号\n'
-        return doPnsSignInRet
+  if (rsp_findRoleList.data.length === 0) {
+    // 没绑定游戏账号
+    doPnsSignInRet += '未绑定游戏账号\n'
+    return doPnsSignInRet
+  }
+  for (const data of rsp_findRoleList.data) {
+    doPnsSignInRet += `${data.serverName}-${data.roleName}(${data.roleId}): \n`
+    //执行签到查询后执行签到
+
+    let rsp_initSignIn = await kuroapi.initSignIn(kuro_uid, {
+      gameId: 2,
+      serverId: data.serverId,
+      roleId: data.roleId,
+    })
+    logger.mark('rsp_initSignIn ' + JSON.stringify(rsp_initSignIn))
+    if (typeof rsp_initSignIn == 'string') {
+      // 不是 json, 即返回报错
+      doPnsSignInRet += `${rsp_initSignIn}\n`
+      return doPnsSignInRet
+    }
+    if (rsp_initSignIn.data.sigIn) {
+      //如果今天已经签到
+      doPnsSignInRet += `      今日已签`
+    } else {
+      // 签到
+      let rsp_signIn = await kuroapi.signIn(kuro_uid, {
+        gameId: 2,
+        serverId: data.serverId,
+        roleId: data.roleId,
+      })
+      logger.mark('rsp_signIn ' + JSON.stringify(rsp_signIn))
+      if (typeof rsp_signIn !== 'string') {
+        // 是 json
+        rsp_signIn = '签到成功'
       }
-      for (const data of rsp_findRoleList.data) {
-        doPnsSignInRet += `${data.serverName}-${data.roleName}(${data.roleId}): \n`
-        //执行签到查询后执行签到
+      doPnsSignInRet += `      ${rsp_signIn}`
+    }
+    doPnsSignInRet +=
+      `, 本月签${rsp_initSignIn.data.sigInNum}天` +
+      (rsp_initSignIn.data.omissionNnm !== 0
+        ? `, 漏${rsp_initSignIn.data.omissionNnm}天`
+        : '') +
+      `\n`
 
-          let rsp_initSignIn  = await kuroapi.initSignIn(kuro_uid,{gameId: 2,serverId: data.serverId, roleId: data.roleId})
-          logger.mark('rsp_initSignIn ' + JSON.stringify(rsp_initSignIn))
-          if(typeof rsp_initSignIn == 'string') { // 不是 json, 即返回报错
-            doPnsSignInRet += `${rsp_initSignIn}\n`
-            return doPnsSignInRet
-          }
-            if (rsp_initSignIn.data.sigIn) {
-              //如果今天已经签到
-              doPnsSignInRet +=
-                `      今日已签`
-            } else {
-              // 签到
-              let rsp_signIn  = await kuroapi.signIn(kuro_uid,{gameId: 2,serverId: data.serverId, roleId: data.roleId})
-              logger.mark('rsp_signIn ' + JSON.stringify(rsp_signIn))
-              if(typeof rsp_signIn !== 'string') { // 是 json
-                rsp_signIn = '签到成功'
-              }
-              doPnsSignInRet += `      ${rsp_signIn}`
-
-            }
-            doPnsSignInRet += `, 本月签${rsp_initSignIn.data.sigInNum}天` +
-            (rsp_initSignIn.data.omissionNnm !== 0
-              ? `, 漏${rsp_initSignIn.data.omissionNnm}天`
-              : '') +
-            `\n`
-
-
-        await sleepAsync(3000)
-      }
+    await sleepAsync(3000)
+  }
 
   return doPnsSignInRet
 }
