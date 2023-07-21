@@ -1,6 +1,7 @@
 import fetch from 'node-fetch'
 import { getToken } from '../model/kuroBBSTokenHandler.js'
 import { sleepAsync } from '../model/utils.js'
+import kuroApi from './kuroApi.js'
 
 export default class gameSignIn {
   constructor(e) {
@@ -23,7 +24,7 @@ export default class gameSignIn {
       let msg = ''
       for (const kuro_uid in tokenData) {
         if (tokenData.hasOwnProperty(kuro_uid)) {
-          msg += await doPnsSignIn(kuro_uid, tokenData[kuro_uid].token)
+          msg += await doPnsSignIn(this.e.user_id, kuro_uid, tokenData[kuro_uid].token)
           msg += '\n'
         } else {
           msg += `账号 ${kuro_uid}: \ntoken 格式错误\n\n`
@@ -42,45 +43,14 @@ export default class gameSignIn {
   }
 }
 
-export async function doPnsSignIn(kuro_uid, token) {
+export async function doPnsSignIn(uin, kuro_uid, token) {
   // 哦 uid 好像用不到 先放着吧
   let doPnsSignInRet = ''
   doPnsSignInRet += `账号 ${kuro_uid}: \n`
   // 获取绑定的游戏 id 列表有俩接口, emmm 迷惑
-  const url = 'https://api.kurobbs.com/user/role/findRoleList'
-  const headers = {
-    osversion: 'Android',
-    devcode: '2fba3859fe9bfe9099f2696b8648c2c6',
-    countrycode: 'CN',
-    ip: '10.0.2.233',
-    model: '2211133C',
-    source: 'android',
-    lang: 'zh-Hans',
-    version: '1.0.9',
-    versioncode: '1090',
-    token: token,
-    'content-type': 'application/x-www-form-urlencoded; charset=utf-8',
-    'accept-encoding': 'gzip',
-    'user-agent': 'okhttp/3.10.0',
-  }
-
-  const formData = new URLSearchParams()
-  formData.append('gameId', 2)
-
-  try {
-    const response_findRoleList = await fetch(url, {
-      method: 'POST',
-      headers: headers,
-      body: formData,
-    })
-
-    if (!response_findRoleList.ok) {
-      doPnsSignInRet += `${response_findRoleList.status}\n`
-      return doPnsSignInRet
-    }
-
-    const rsp_findRoleList = await response_findRoleList.json()
-
+  let kuroapi = new kuroApi(uin)
+  let rsp_findRoleList = await kuroapi.findRoleList(kuro_uid,{gameId: 2})
+  logger.info(rsp_findRoleList)
     if (rsp_findRoleList.code === 200) {
       if (rsp_findRoleList.data.length === 0) {
         // 没绑定游戏账号
@@ -227,8 +197,5 @@ export async function doPnsSignIn(kuro_uid, token) {
     } else {
       doPnsSignInRet += `token 失效\n`
     }
-  } catch (error) {
-    doPnsSignInRet += `请求出错: ${JSON.stringify(error)}\n`
-  }
   return doPnsSignInRet
 }
