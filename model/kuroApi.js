@@ -25,7 +25,7 @@ export default class kuroApi {
      * @param {string} ApiName 接口名称
      * @param {string|boolean} kuroUid 库洛 ID, sdkLogin 时传入 false
      * @param {object} data 传入数据, 具体业务需要的参数也不同
-     * @returns {JSON|string} 接口返回的 原始 json 或者报错信息
+     * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
      */
     async getData(ApiName, kuroUid, data) {
         await this.waitTokenData();
@@ -39,7 +39,15 @@ export default class kuroApi {
         } else {
             rsp = await this.kuroApiHandler.getApiRsp(ApiName, false, "", data)
         }
-        return rsp
+
+        if(typeof rsp == 'string') { // 不是 json, 即返回报错
+            return rsp
+          }
+            if (rsp.code === 200) {
+                return rsp
+            } else if(rsp.code === 220) {
+                return 'token 失效'
+            }else return rsp.msg
     }
 
 
@@ -47,7 +55,7 @@ export default class kuroApi {
      * 取绑定游戏账号列表
      * @param {string} kuroUid 库洛 ID
      * @param {object} data 传入 data.gameId 游戏 id
-     * @returns {JSON|string} 接口返回的 原始 json 或者报错信息
+     * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
      */
     async findRoleList(kuroUid, data) {
         return this.getData("findRoleList",kuroUid, data)
@@ -57,7 +65,7 @@ export default class kuroApi {
      *  取游戏签到信息
      * @param {string} kuroUid 库洛 ID
      * @param {object} data 传入 data.gameId 游戏 id data.serverId 服务器 id data.roleId 游戏 uid
-     * @returns {JSON|string} 接口返回的 原始 json 或者报错信息
+     * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
      */
         async initSignIn(kuroUid, data) {
             return this.getData("initSignIn",kuroUid, data)

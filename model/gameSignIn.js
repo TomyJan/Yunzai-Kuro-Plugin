@@ -44,7 +44,6 @@ export default class gameSignIn {
 }
 
 export async function doPnsSignIn(uin, kuro_uid, token) {
-  // 哦 uid 好像用不到 先放着吧
   let doPnsSignInRet = ''
   doPnsSignInRet += `账号 ${kuro_uid}: \n`
   // 获取绑定的游戏 id 列表有俩接口, emmm 迷惑
@@ -54,7 +53,6 @@ export async function doPnsSignIn(uin, kuro_uid, token) {
   if(typeof rsp_findRoleList == 'string') { // 不是 json, 即返回报错
     doPnsSignInRet += rsp_findRoleList
   }
-    if (rsp_findRoleList.code === 200) {
       if (rsp_findRoleList.data.length === 0) {
         // 没绑定游戏账号
         doPnsSignInRet += '未绑定游戏账号\n'
@@ -69,7 +67,6 @@ export async function doPnsSignIn(uin, kuro_uid, token) {
           if(typeof rsp_initSignIn == 'string') { // 不是 json, 即返回报错
             doPnsSignInRet += rsp_initSignIn
           }
-          if (rsp_initSignIn.code === 200) {
             if (rsp_initSignIn.data.sigIn) {
               //如果今天已经签到
               doPnsSignInRet +=
@@ -156,14 +153,10 @@ export async function doPnsSignIn(uin, kuro_uid, token) {
                   `\n`
               }
             }
-          } else {
-            doPnsSignInRet += `      ${rsp_initSignIn.msg}\n`
-          }
+
 
         await sleepAsync(3000)
       }
-    } else {
-      doPnsSignInRet += `token 失效\n`
-    }
+
   return doPnsSignInRet
 }
