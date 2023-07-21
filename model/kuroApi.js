@@ -50,7 +50,16 @@ export default class kuroApi {
      * @returns {JSON|string} 接口返回的 原始 json 或者报错信息
      */
     async findRoleList(kuroUid, data) {
-        //
         return this.getData("findRoleList",kuroUid, data)
     }
+
+        /**
+     *  取游戏签到信息
+     * @param {string} kuroUid 库洛 ID
+     * @param {object} data 传入 data.gameId 游戏 id data.serverId 服务器 id data.roleId 游戏 uid
+     * @returns {JSON|string} 接口返回的 原始 json 或者报错信息
+     */
+        async initSignIn(kuroUid, data) {
+            return this.getData("initSignIn",kuroUid, data)
+        }
 }

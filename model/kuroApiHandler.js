@@ -60,7 +60,11 @@ export default class kuroApiHandler {
             findRoleList: { // 取绑定游戏账号列表
                 url: `${this.kuroApiUrl}/user/role/findRoleList`,
                 body: `gameId=${data.gameId}`
-            }
+            },
+            initSignIn: { // 取绑定游戏账号列表
+                url: `${this.kuroApiUrl}/encourage/signIn/initSignIn`,
+                body: `gameId=${data.gameId}&serverId=${data.serverId}&roleId=${data.roleId}`
+            },
         }
         if (!ApiMap[ApiName]) return false
         let {
@@ -70,7 +74,6 @@ export default class kuroApiHandler {
             method = "POST"
         } = ApiMap[ApiName]
         if (query) url += `?${query}`
-        if (body) body = JSON.stringify(body)
         let headers = this.getHeaders(ApiName, token)
         return {
             url,
@@ -85,6 +88,26 @@ export default class kuroApiHandler {
      * @returns {object} 返回参数
      */
     getHeaders(ApiName, token) {
+        if (["initSignIn", "signIn"].includes(ApiName)) { // 这些 API 请求头是浏览器的
+            let headers = {
+                pragma: 'no-cache',
+                'cache-control': 'no-cache',
+                accept: 'application/json, text/plain, */*',
+                source: 'android',
+                'user-agent': 'Mozilla/5.0 (Linux; Android 13; 2211133C Build/TKQ1.220905.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/114.0.5735.131 Mobile Safari/537.36 Kuro/1.0.9 KuroGameBox/1.0.9',
+                token: token,
+                'content-type': 'application/x-www-form-urlencoded',
+                origin: 'https://web-static.kurobbs.com',
+                'x-requested-with': 'com.kurogame.kjq',
+                'sec-fetch-site': 'same-site',
+                'sec-fetch-mode': 'cors',
+                'sec-fetch-dest': 'empty',
+                'accept-encoding': 'gzip, deflate, br',
+                'accept-language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+            }
+            return headers
+        }
+
         let headers = {
             osversion: 'Android',
             devcode: '2fba3859fe9bfe9099f2696b8648c2c6',
