@@ -51,7 +51,8 @@ export async function doPnsSignIn(uin, kuro_uid, token) {
   let rsp_findRoleList = await kuroapi.findRoleList(kuro_uid,{gameId: 2})
   logger.mark('rsp_findRoleList ' + JSON.stringify(rsp_findRoleList))
   if(typeof rsp_findRoleList == 'string') { // 不是 json, 即返回报错
-    doPnsSignInRet += rsp_findRoleList
+    doPnsSignInRet += `${rsp_findRoleList}\n`
+    return doPnsSignInRet
   }
       if (rsp_findRoleList.data.length === 0) {
         // 没绑定游戏账号
@@ -65,94 +66,28 @@ export async function doPnsSignIn(uin, kuro_uid, token) {
           let rsp_initSignIn  = await kuroapi.initSignIn(kuro_uid,{gameId: 2,serverId: data.serverId, roleId: data.roleId})
           logger.mark('rsp_initSignIn ' + JSON.stringify(rsp_initSignIn))
           if(typeof rsp_initSignIn == 'string') { // 不是 json, 即返回报错
-            doPnsSignInRet += rsp_initSignIn
+            doPnsSignInRet += `${rsp_initSignIn}\n`
+            return doPnsSignInRet
           }
             if (rsp_initSignIn.data.sigIn) {
               //如果今天已经签到
               doPnsSignInRet +=
-                `      今日已签, 本月签${rsp_initSignIn.data.sigInNum}天` +
-                (rsp_initSignIn.data.omissionNnm !== 0
-                  ? `, 漏${rsp_initSignIn.data.omissionNnm}天`
-                  : '') +
-                `\n`
+                `      今日已签`
             } else {
-              //
-              const url = 'https://api.kurobbs.com/encourage/signIn/'
-              const headers = {
-                pragma: 'no-cache',
-                'cache-control': 'no-cache',
-                accept: 'application/json, text/plain, */*',
-                source: 'android',
-                'user-agent':
-                  'Mozilla/5.0 (Linux; Android 13; 2211133C Build/TKQ1.220905.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/114.0.5735.131 Mobile Safari/537.36 Kuro/1.0.9 KuroGameBox/1.0.9',
-                token: token,
-                'content-type': 'application/x-www-form-urlencoded',
-                origin: 'https://web-static.kurobbs.com',
-                'x-requested-with': 'com.kurogame.kjq',
-                'sec-fetch-site': 'same-site',
-                'sec-fetch-mode': 'cors',
-                'sec-fetch-dest': 'empty',
-                'accept-encoding': 'gzip, deflate, br',
-                'accept-language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+              // 签到
+              let rsp_signIn  = await kuroapi.signIn(kuro_uid,{gameId: 2,serverId: data.serverId, roleId: data.roleId})
+              logger.mark('rsp_signIn ' + JSON.stringify(rsp_signIn))
+              if(typeof rsp_signIn !== 'string') { // 是 json
+                rsp_signIn = '签到成功'
               }
-              const formData = new URLSearchParams()
-              formData.append('gameId', 2)
-              formData.append('serverId', data.serverId)
-              formData.append('roleId', data.roleId)
-              formData.append(
-                'reqMonth',
-                (new Date().getMonth() + 1).toString().padStart(2, '0')
-              ) // 去当前月份, 形如 07
+              doPnsSignInRet += `      ${rsp_signIn}`
 
-              try {
-                const response_signIn = await fetch(url, {
-                  method: 'POST',
-                  headers: headers,
-                  body: formData,
-                })
-
-                if (!response_signIn.ok) {
-                  doPnsSignInRet +=
-                    `      ${response_signIn.status}, 本月签${rsp_initSignIn.data.sigInNum}天` +
-                    (rsp_initSignIn.data.omissionNnm !== 0
-                      ? `, 漏${rsp_initSignIn.data.omissionNnm}天`
-                      : '') +
-                    `\n`
-                }
-
-                const rsp_signIn = await response_signIn.json()
-                logger.mark('rsp_signIn ' + JSON.stringify(rsp_signIn))
-
-                if (rsp_signIn.code === 200) {
-                  //签到成功
-                  // TODO: 获取签到获得的物品
-                  doPnsSignInRet +=
-                    `      签到成功, 本月签${
-                      rsp_initSignIn.data.sigInNum + 1
-                    }天` +
-                    (rsp_initSignIn.data.omissionNnm !== 0
-                      ? `, 漏${rsp_initSignIn.data.omissionNnm}天`
-                      : '') +
-                    `\n`
-                } else {
-                  doPnsSignInRet +=
-                    `      ${response_signIn.msg}, 本月签${rsp_initSignIn.data.sigInNum}天` +
-                    (rsp_initSignIn.data.omissionNnm !== 0
-                      ? `, 漏${rsp_initSignIn.data.omissionNnm}天`
-                      : '') +
-                    `\n`
-                }
-              } catch (error) {
-                doPnsSignInRet +=
-                  `      请求出错: ${JSON.stringify(error)}, 本月签${
-                    rsp_initSignIn.data.sigInNum
-                  }天` +
-                  (rsp_initSignIn.data.omissionNnm !== 0
-                    ? `, 漏${rsp_initSignIn.data.omissionNnm}天`
-                    : '') +
-                  `\n`
-              }
             }
+            doPnsSignInRet += `, 本月签${rsp_initSignIn.data.sigInNum}天` +
+            (rsp_initSignIn.data.omissionNnm !== 0
+              ? `, 漏${rsp_initSignIn.data.omissionNnm}天`
+              : '') +
+            `\n`
 
 
         await sleepAsync(3000)

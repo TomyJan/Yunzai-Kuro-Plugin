@@ -65,6 +65,10 @@ export default class kuroApiHandler {
                 url: `${this.kuroApiUrl}/encourage/signIn/initSignIn`,
                 body: `gameId=${data.gameId}&serverId=${data.serverId}&roleId=${data.roleId}`
             },
+            signIn: { // 取绑定游戏账号列表
+                url: `${this.kuroApiUrl}/encourage/signIn/`,
+                body: `gameId=${data.gameId}&serverId=${data.serverId}&roleId=${data.roleId}&reqMonth=${data.reqMonth}`
+            },
         }
         if (!ApiMap[ApiName]) return false
         let {
@@ -108,7 +112,7 @@ export default class kuroApiHandler {
             return headers
         }
 
-        let headers = {
+        let headers = { // 共同请求头
             osversion: 'Android',
             devcode: '2fba3859fe9bfe9099f2696b8648c2c6',
             countrycode: 'CN',
@@ -121,13 +125,13 @@ export default class kuroApiHandler {
             'accept-encoding': 'gzip',
             'user-agent': 'okhttp/3.10.0',
         }
-        if (ApiName !== "sdkLogin") {
+        if (ApiName !== "sdkLogin") { // 除了 login 再都要 token
             headers = {
                 ...headers,
                 token: token,
             }
         }
-        if (["uploadForumImg","mineV2","updateHeadUrl","sdkLogin"].includes(ApiName)) {
+        if (["uploadForumImg","mineV2","updateHeadUrl","sdkLogin"].includes(ApiName)) { // 这几个多个 distinct_id
             headers = {
                 ...headers,
                 distinct_id: '765485e7-30ce-4496-9a9c-a2ac1c03c02c',
@@ -135,15 +139,12 @@ export default class kuroApiHandler {
         }
           
         // 处理 content-type
-        // 普通请求为 application/x-www-form-urlencoded
-        // findRoleList 多了个 utf8
-        // uploadForumImg 为 multipart/form-data, 这里不用手动添加, 让那边的 form-data 自己处理
-        if (ApiName == "findRoleList") {
+        if (ApiName == "findRoleList") { // findRoleList 多了个 utf8
             headers = {
                 ...headers,
                 'content-type': 'application/x-www-form-urlencoded; charset=utf-8',
             }
-        } else if (ApiName !== "uploadForumImg") {
+        } else if (ApiName !== "uploadForumImg") { // 普通请求为 application/x-www-form-urlencoded, uploadForumImg 为 multipart/form-data, 这里不用手动添加, 让那边的 form-data 自己处理
             headers = {
                 ...headers,
                 'content-type': 'application/x-www-form-urlencoded',

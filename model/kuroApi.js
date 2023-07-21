@@ -70,4 +70,15 @@ export default class kuroApi {
         async initSignIn(kuroUid, data) {
             return this.getData("initSignIn",kuroUid, data)
         }
+
+    /**
+     *  游戏签到
+     * @param {string} kuroUid 库洛 ID
+     * @param {object} data 传入 data.gameId 游戏 id data.serverId 服务器 id data.roleId 游戏 uid
+     * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+     */
+    async signIn(kuroUid, data) {
+        data.reqMonth = (new Date().getMonth() + 1).toString().padStart(2, '0')
+        return this.getData("signIn",kuroUid, data)
+    }
 }
