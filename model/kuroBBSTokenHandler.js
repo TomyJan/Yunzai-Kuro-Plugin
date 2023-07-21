@@ -10,14 +10,15 @@ import kuroApi from './kuroApi.js'
  * @returns {boolean} 是否有效
  */
 export async function checkTokenValidity(kuro_uid, kuro_token) {
-
   let kuroapi = new kuroApi(false)
-  let rsp_checkToken_mineV2 = await kuroapi.checkToken_mineV2(kuro_uid, kuro_token)
+  let rsp_checkToken_mineV2 = await kuroapi.checkToken_mineV2(
+    kuro_uid,
+    kuro_token
+  )
   logger.mark('rsp_checkToken_mineV2 ' + JSON.stringify(rsp_checkToken_mineV2))
 
-    logger.mark('token 检测:  ' + JSON.stringify(rsp_checkToken_mineV2))
-    return rsp_checkToken_mineV2
-
+  logger.mark('token 检测:  ' + JSON.stringify(rsp_checkToken_mineV2))
+  return rsp_checkToken_mineV2
 }
 
 export async function saveToken(uin, kuro_uid, kuro_token, kuro_refreshToken) {
