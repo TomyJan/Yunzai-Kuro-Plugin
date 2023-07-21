@@ -66,8 +66,8 @@ export async function doPnsSignIn(uin, kuro_uid, token) {
           let rsp_initSignIn  = await kuroapi.initSignIn(kuro_uid,{gameId: 2,serverId: data.serverId, roleId: data.roleId})
           logger.mark('rsp_initSignIn ' + JSON.stringify(rsp_initSignIn))
           if(typeof rsp_initSignIn == 'string') { // 不是 json, 即返回报错
-            doPnsSignInRet += `${rsp_initSignIn}\n`
-            return doPnsSignInRet
+            doPnsSignInRet += `      ${rsp_initSignIn}\n`
+            continue
           }
             if (rsp_initSignIn.data.sigIn) {
               //如果今天已经签到
@@ -77,10 +77,14 @@ export async function doPnsSignIn(uin, kuro_uid, token) {
               // 签到
               let rsp_signIn  = await kuroapi.signIn(kuro_uid,{gameId: 2,serverId: data.serverId, roleId: data.roleId})
               logger.mark('rsp_signIn ' + JSON.stringify(rsp_signIn))
+              let tmp = ''
               if(typeof rsp_signIn !== 'string') { // 是 json
-                rsp_signIn = '签到成功'
+                tmp = '签到成功'
+                rsp_initSignIn.data.sigInNum++
+              } else {
+                tmp = rsp_signIn.msg
               }
-              doPnsSignInRet += `      ${rsp_signIn}`
+              doPnsSignInRet += `      ${tmp}`
 
             }
             doPnsSignInRet += `, 本月签${rsp_initSignIn.data.sigInNum}天` +
