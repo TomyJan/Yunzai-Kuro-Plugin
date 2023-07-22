@@ -88,6 +88,11 @@ export default class kuroApiHandler {
         url: `${this.kuroApiUrl}/user/updateHeadUrl`,
         body: `headUrl=${data.headUrl}`,
       },
+      uploadForumImg: {
+        // 上传图片
+        url: `${this.kuroApiUrl}/forum/uploadForumImg`,
+        body: data.body,
+      },
     }
     if (!ApiMap[ApiName]) return false
     let {

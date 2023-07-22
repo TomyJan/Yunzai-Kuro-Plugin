@@ -1,5 +1,7 @@
+import FormData from 'form-data'
 import kuroApiHandler from './kuroApiHandler.js'
 import { getToken } from './kuroBBSTokenHandler.js'
+
 export default class kuroApi {
   constructor(uin) {
     this.uin = uin
@@ -135,4 +137,17 @@ export default class kuroApi {
     async updateHeadUrl(kuroUid, data) {
         return this.getData('updateHeadUrl', kuroUid, data)
       }
+    
+    /**
+   *  上传图片
+   * @param {string} kuroUid 库洛 ID
+   * @param {object} data 传入 data.image 头像图片二进制
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+    async uploadForumImg(kuroUid, data) {
+        let formData = new FormData()
+        formData.append('files', data.image, 'image.jpg')
+        data.body = formData
+        return this.getData('uploadForumImg', kuroUid, data)
+    }
 }
