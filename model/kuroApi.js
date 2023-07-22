@@ -125,4 +125,14 @@ export default class kuroApi {
     if (tmp.code == 200) return true
     else return false
   }
+
+    /**
+   *  更新头像直链
+   * @param {string} kuroUid 库洛 ID
+   * @param {object} data 传入 data.headUrl 头像直链
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+    async updateHeadUrl(kuroUid, data) {
+        return this.getData('updateHeadUrl', kuroUid, data)
+      }
 }

@@ -83,6 +83,11 @@ export default class kuroApiHandler {
         url: `${this.kuroApiUrl}/user/mineV2`,
         body: `otherUserId=${kuroUid}`,
       },
+      updateHeadUrl: {
+        // 更新头像链接
+        url: `${this.kuroApiUrl}/user/updateHeadUrl`,
+        body: `headUrl=${data.headUrl}`,
+      },
     }
     if (!ApiMap[ApiName]) return false
     let {

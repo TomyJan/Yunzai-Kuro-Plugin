@@ -1,8 +1,8 @@
 import fetch from 'node-fetch'
-import fs from 'node:fs'
 import FormData from 'form-data'
 import { getToken } from './kuroBBSTokenHandler.js'
 import { sendForwardMsg } from './utils.js'
+import kuroApi from './kuroApi.js'
 
 export default class bbsHeadUpload {
   constructor(e) {
@@ -90,6 +90,8 @@ export default class bbsHeadUpload {
     }
     const tokenData = tokensData[msg[0]].token
 
+    let kuroapi = new kuroApi(this.e.user_id)
+
     const url = 'https://api.kurobbs.com/forum/uploadForumImg'
     const headers = {
       osversion: 'Android',
@@ -132,62 +134,19 @@ export default class bbsHeadUpload {
           '[库洛插件] 图片上传成功!\n' + JSON.stringify(rsp_uploadForumImg)
         )
         //上传图片成功, 开始更新头像
-        const url = 'https://api.kurobbs.com/user/updateHeadUrl'
-        const headers = {
-          osversion: 'Android',
-          devcode: '2fba3859fe9bfe9099f2696b8648c2c6',
-          distinct_id: '765485e7-30ce-4496-9a9c-a2ac1c03c02c',
-          countrycode: 'CN',
-          ip: '10.0.2.233',
-          model: '2211133C',
-          source: 'android',
-          lang: 'zh-Hans',
-          version: '1.0.9',
-          versioncode: '1090',
-          token: tokenData,
-          'content-type': 'application/x-www-form-urlencoded',
-          'accept-encoding': 'gzip',
-          'user-agent': 'okhttp/3.10.0',
-        }
 
-        const formData = new URLSearchParams()
-        formData.append('headUrl', rsp_uploadForumImg.data[0])
-        console.log(formData)
-        try {
-          const response_updateHeadUrl = await fetch(url, {
-            method: 'POST',
-            headers: headers,
-            body: formData,
-          })
-
-          if (!response_updateHeadUrl.ok) {
-            this.e.reply('请求失败: ' + response_updateHeadUrl.status)
-            throw new Error(
-              '[库洛插件] 请求失败: ' + response_updateHeadUrl.status
-            )
-          }
-
-          const rsp_updateHeadUrl = await response_updateHeadUrl.json()
-
-          if (rsp_updateHeadUrl.code === 200) {
-            logger.info(
-              '[库洛插件] 头像更新成功!\n' + JSON.stringify(rsp_updateHeadUrl)
-            )
-            this.e.reply('头像上传成功!')
-            return true
-          } else {
-            logger.info(
-              '[库洛插件] 头像更新失败\n' + JSON.stringify(rsp_updateHeadUrl)
-            )
-            this.e.reply('头像上传失败!\n' + JSON.stringify(rsp_updateHeadUrl))
-            return false
-          }
-        } catch (error) {
-          logger.info('[库洛插件] 头像更新失败\n' + JSON.stringify(error))
-          this.e.reply('头像上传失败!\n' + JSON.stringify(error))
+        let rsp_updateHeadUrl = await kuroapi.updateHeadUrl(msg[0], { headUrl: rsp_uploadForumImg.data[0] })
+        logger.mark('rsp_updateHeadUrl ' + JSON.stringify(rsp_updateHeadUrl))
+        if (typeof rsp_updateHeadUrl == 'string') {
+          // 不是 json, 即返回报错
+          logger.info('[库洛插件] 头像更新失败: ' + rsp_updateHeadUrl)
+          this.e.reply('头像上传失败: \n'+ rsp_updateHeadUrl)
           return false
         }
+        logger.info('[库洛插件] 头像更新成功: ' + JSON.stringify(rsp_updateHeadUrl))
+        this.e.reply('头像上传成功!')
         return false
+
       } else {
         logger.info(
           '[库洛插件] 图片上传失败\n' + JSON.stringify(rsp_uploadForumImg)
