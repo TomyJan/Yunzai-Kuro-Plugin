@@ -1,6 +1,5 @@
 import { dataPath } from '../data/system/pluginConstants.js'
 import fs from 'node:fs'
-import fetch from 'node-fetch'
 import kuroApi from './kuroApi.js'
 
 /**
@@ -51,7 +50,7 @@ export async function saveToken(uin, kuro_uid, kuro_token, kuro_refreshToken) {
     logger.mark(`Token 已保存至文件: ${filePath}`)
     return true
   } catch (error) {
-    logger.warn(`保存 Token 时出错: ${error}`)
+    logger.warn(`保存 Token 时出错: ${error.message}`)
     return false
   }
 }
@@ -70,7 +69,7 @@ export async function getToken(uin) {
     if (error.code === 'ENOENT') {
       console.log('Token file not found')
     } else {
-      console.error('Error reading token data from file:', error)
+      console.error('Error reading token data from file:', error.message)
     }
     return null
   }

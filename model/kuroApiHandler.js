@@ -34,8 +34,8 @@ export default class kuroApiHandler {
     try {
       response = await fetch(url, param)
     } catch (error) {
-      logger.warn(JSON.stringify(error))
-      return `请求出错: \n${JSON.stringify(error)}\n`
+      logger.warn('请求出错: ' + error.message)
+      return `请求出错: ${error.message}\n`
     }
     if (!response.ok) {
       logger.warn(

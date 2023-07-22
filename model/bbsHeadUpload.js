@@ -36,6 +36,7 @@ export default class bbsHeadUpload {
       '例1: \n#库洛头像上传账号10065669,头像https://public-cdn.tomys.top/head.png',
       tmp,
       '头像会居中截圆显示, 建议上传正方形图片',
+      '机器人会下载头像重新上传为库街区内图片后进行设置',
       tmp2
     )
 
@@ -140,7 +141,7 @@ export default class bbsHeadUpload {
         if (typeof rsp_updateHeadUrl == 'string') {
           // 不是 json, 即返回报错
           logger.info('[库洛插件] 头像更新失败: ' + rsp_updateHeadUrl)
-          this.e.reply('头像上传失败: \n'+ rsp_updateHeadUrl)
+          this.e.reply('头像上传失败: '+ rsp_updateHeadUrl)
           return false
         }
         logger.info('[库洛插件] 头像更新成功: ' + JSON.stringify(rsp_updateHeadUrl))
@@ -152,15 +153,15 @@ export default class bbsHeadUpload {
           '[库洛插件] 图片上传失败\n' + JSON.stringify(rsp_uploadForumImg)
         )
         this.e.reply(
-          '图片上传失败, 请稍后尝试或使用直链更新头像!\n' +
+          '图片上传失败: ' +
             JSON.stringify(rsp_uploadForumImg)
         )
         return false
       }
     } catch (error) {
-      logger.info('[库洛插件] 图片上传失败\n' + JSON.stringify(error))
+      logger.info('[库洛插件] 图片上传失败\n' + error.message)
       this.e.reply(
-        '图片上传失败, 请稍后尝试或使用直链更新头像!\n' + JSON.stringify(error)
+        '图片上传失败: ' + error.message
       )
       return false
     }
@@ -171,8 +172,8 @@ export default class bbsHeadUpload {
     try {
       const response = await fetch(url)
       if (!response.ok) {
-        this.e.reply('请求失败: ' + response.status)
-        throw new Error('[库洛插件] 请求失败: ' + response.status)
+        this.e.reply(`请求失败: ${response.status} ${response.statusText}` )
+        throw new Error(`[库洛插件] 请求失败: ${response.status} ${response.statusText}`)
       }
       return response.body
     } catch (error) {
