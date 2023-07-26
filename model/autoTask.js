@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import { doBBSDailyTask } from './bbsTask.js'
 import { dataPath } from '../data/system/pluginConstants.js'
-import { sendMsgFriend, sleepAsync } from './utils.js'
+import { getRandomInt,sendMsgFriend, sleepAsync } from './utils.js'
 import { getToken } from '../model/kuroBBSTokenHandler.js'
 
 export async function gameSignTask(gameName) {
@@ -23,9 +23,10 @@ export async function gameSignTask(gameName) {
     for (let i in gameSignUins) {
       let gameSignUin = gameSignUins[i].replace('.json', '')
       logger.info(`[库洛插件] 自动游戏签到: 开始为 ${gameSignUin} 战双签到`)
+      let startTime = Date.now()
       const tokenData = await getToken(gameSignUin)
       const accNum = Object.keys(tokenData).length
-      let msg = ''
+      let msg = '[库洛插件] 自动游戏签到任务结果推送\n'
       for (const kuro_uid in tokenData) {
         if (tokenData.hasOwnProperty(kuro_uid)) {
           msg += await doPnsSignIn(gameSignUin, kuro_uid)
@@ -33,8 +34,9 @@ export async function gameSignTask(gameName) {
         } else {
           msg += `账号 ${kuro_uid}: \ntoken 格式错误\n\n`
         }
-        await sleepAsync(3000)
+        await sleepAsync(getRandomInt(1000,3000))
       }
+      msg += `共用时 ${Math.floor((Date.now() - startTime) / 1000)}s\n`
       await sendMsgFriend(gameSignUin, msg.trimEnd())
     }
     logger.info(`[库洛插件] 自动游戏签到: 战双签到完成`)
@@ -52,9 +54,10 @@ export async function bbsDailyTask() {
     for (let i in gameSignUins) {
       let gameSignUin = gameSignUins[i].replace('.json', '')
       logger.info(`[库洛插件] 自动社区签到: 开始为 ${gameSignUin} 签到`)
+      let startTime = Date.now()
       const tokenData = await getToken(gameSignUin)
       const accNum = Object.keys(tokenData).length
-      let msg = ''
+      let msg = '[库洛插件] 自动社区签到任务结果推送\n'
       for (const kuro_uid in tokenData) {
         if (tokenData.hasOwnProperty(kuro_uid)) {
           msg += await doBBSDailyTask(gameSignUin, kuro_uid)
@@ -62,8 +65,9 @@ export async function bbsDailyTask() {
         } else {
           msg += `账号 ${kuro_uid}: \ntoken 格式错误\n\n`
         }
-        await sleepAsync(3000)
+        await sleepAsync(getRandomInt(1000,3000))
       }
+      msg += `共用时 ${Math.floor((Date.now() - startTime) / 1000)}s\n`
       await sendMsgFriend(gameSignUin, msg.trimEnd())
     }
     logger.info(`[库洛插件] 自动社区签到: 任务完成`)
