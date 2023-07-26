@@ -2,7 +2,7 @@ import chalk from 'chalk'
 import fs from 'node:fs'
 import schedule from 'node-schedule'
 import { appsPath, pluginVer } from './data/system/pluginConstants.js'
-import { gameSignTask,bbsDailyTask } from './model/autoTask.js'
+import { gameSignTask, bbsDailyTask } from './model/autoTask.js'
 
 logger.info(chalk.rgb(253, 235, 255)('-----------(≧∇≦)ﾉ-----------'))
 logger.info(chalk.rgb(134, 142, 204)(`[库洛插件] V${pluginVer} 初始化中~`))
@@ -49,9 +49,7 @@ async function task() {
   schedule.scheduleJob('0 2 0 * * ? ', function () {
     gameSignTask('mc')
   })
-  logger.info(
-    chalk.rgb(134, 142, 204)(`[库洛插件] 载入定时任务 bbsDailyTask`)
-  )
+  logger.info(chalk.rgb(134, 142, 204)(`[库洛插件] 载入定时任务 bbsDailyTask`))
   schedule.scheduleJob('0 2 0 * * ? ', function () {
     bbsDailyTask()
   })
