@@ -1,5 +1,5 @@
 import { getToken } from './kuroBBSTokenHandler.js'
-import { getRandomInt,sleepAsync } from './utils.js'
+import { getRandomInt, sleepAsync } from './utils.js'
 import kuroApi from './kuroApi.js'
 
 export default class bbsTask {
@@ -14,7 +14,9 @@ export default class bbsTask {
     if (tokenData && Object.keys(tokenData).length > 0) {
       const accNum = Object.keys(tokenData).length
       await this.e.reply(
-        `QQ ${uin} 绑定了 ${accNum} 个 token\n开始库街区每日, 预计需要 ${12*accNum}-${35*accNum}s~`
+        `QQ ${uin} 绑定了 ${accNum} 个 token\n开始库街区每日, 预计需要 ${
+          12 * accNum
+        }-${35 * accNum}s~`
       )
       let startTime = Date.now()
       let msg = ''
@@ -25,7 +27,7 @@ export default class bbsTask {
         } else {
           msg += `账号 ${kuro_uid}: \ntoken 格式错误\n\n`
         }
-        await sleepAsync(getRandomInt(1000,3000))
+        await sleepAsync(getRandomInt(1000, 3000))
       }
 
       await this.e.reply(msg.trimEnd())
@@ -77,12 +79,12 @@ export async function doBBSDailyTask(uin, kuro_uid) {
       // 顺便在这里直接处理 token 失效
       else if (rsp_signIn === 'token 失效')
         return `账号 ${kuro_uid}: \ntoken 失效\n`
-      else doBBSDailyTaskRet += `失败: ${rsp_signIn.msg||rsp_signIn}\n`
+      else doBBSDailyTaskRet += `失败: ${rsp_signIn.msg || rsp_signIn}\n`
       break
-    } else await sleepAsync(getRandomInt(600,1000))
+    } else await sleepAsync(getRandomInt(600, 1000))
   } while (tryAgain)
 
-  await sleepAsync(getRandomInt(1000,3000))
+  await sleepAsync(getRandomInt(1000, 3000))
   doBBSDailyTaskRet += '帖子浏览: '
   // 开始尝试 2 次取帖子列表, 获取不到就不浏览和点赞
   tryAgain = true
@@ -96,13 +98,15 @@ export async function doBBSDailyTask(uin, kuro_uid) {
 
     if (!tryAgain) {
       if (typeof rsp_list !== 'string' && rsp_list.code === 200) break
-      doBBSDailyTaskRet += `获取失败: ${rsp_list.msg||rsp_list}\n论坛点赞: 已取消\n` // 直接处理完返回值
+      doBBSDailyTaskRet += `获取失败: ${
+        rsp_list.msg || rsp_list
+      }\n论坛点赞: 已取消\n` // 直接处理完返回值
       rsp_list = ''
-    } else await sleepAsync(getRandomInt(200,400))
+    } else await sleepAsync(getRandomInt(200, 400))
   } while (tryAgain)
 
   if (rsp_list) {
-    await sleepAsync(getRandomInt(500,2000))
+    await sleepAsync(getRandomInt(500, 2000))
     // 获取到帖子就浏览点赞, 获取不到上面已经返回错误了
     // 开始尝试 6 次浏览帖子
     tryAgain = true
@@ -118,10 +122,10 @@ export async function doBBSDailyTask(uin, kuro_uid) {
 
       if (typeof rsp_getPostDetail !== 'string') if (++succCount >= 3) break // 成功浏览计数, 够了就返回
 
-      if (tryAgain) await sleepAsync(getRandomInt(500,2000))
+      if (tryAgain) await sleepAsync(getRandomInt(500, 2000))
     } while (tryAgain)
     doBBSDailyTaskRet += `成功 ${succCount} 次\n论坛点赞: `
-    await sleepAsync(getRandomInt(500,2000))
+    await sleepAsync(getRandomInt(500, 2000))
     // 开始尝试 10 次点赞
     tryAgain = true
     tryTimes = 0
@@ -144,13 +148,13 @@ export async function doBBSDailyTask(uin, kuro_uid) {
 
       if (typeof rsp_like !== 'string') if (++succCount >= 5) break // 成功点赞计数, 够了就返回
 
-      if (tryAgain) await sleepAsync(getRandomInt(500,2000))
+      if (tryAgain) await sleepAsync(getRandomInt(500, 2000))
     } while (tryAgain)
     doBBSDailyTaskRet += `成功 ${succCount} 次\n`
   }
 
   doBBSDailyTaskRet += `分享帖子: `
-  await sleepAsync(getRandomInt(500,2000))
+  await sleepAsync(getRandomInt(500, 2000))
   // 开始尝试 2 次分享
   tryAgain = true
   tryTimes = 0
@@ -160,10 +164,11 @@ export async function doBBSDailyTask(uin, kuro_uid) {
 
     if (tryTimes++ >= 2 || typeof rsp_like !== 'string') tryAgain = false
 
-    if (!tryAgain){
-      if (typeof rsp_shareTask !== 'string' && rsp_shareTask.code == 200) doBBSDailyTaskRet += `成功\n`
-      else doBBSDailyTaskRet += `失败: ${rsp_shareTask.msg||rsp_shareTask}\n`
-    } else await sleepAsync(getRandomInt(500,2000))
+    if (!tryAgain) {
+      if (typeof rsp_shareTask !== 'string' && rsp_shareTask.code == 200)
+        doBBSDailyTaskRet += `成功\n`
+      else doBBSDailyTaskRet += `失败: ${rsp_shareTask.msg || rsp_shareTask}\n`
+    } else await sleepAsync(getRandomInt(500, 2000))
   } while (tryAgain)
 
   return doBBSDailyTaskRet

@@ -1,5 +1,5 @@
 import { getToken } from './kuroBBSTokenHandler.js'
-import { getRandomInt,sleepAsync } from './utils.js'
+import { getRandomInt, sleepAsync } from './utils.js'
 import kuroApi from './kuroApi.js'
 
 export default class gameSignIn {
@@ -25,7 +25,7 @@ export default class gameSignIn {
         } else {
           msg += `账号 ${kuro_uid}: \ntoken 格式错误\n\n`
         }
-        await sleepAsync(getRandomInt(1000,3000))
+        await sleepAsync(getRandomInt(1000, 3000))
       }
 
       await this.e.reply(msg.trimEnd())
@@ -105,7 +105,7 @@ export async function doPnsSignIn(uin, kuro_uid) {
         : '') +
       `\n`
 
-    await sleepAsync(getRandomInt(1000,3000))
+    await sleepAsync(getRandomInt(1000, 3000))
   }
 
   return doPnsSignInRet
