@@ -8,6 +8,10 @@ export async function sleepAsync(sleepms) {
   })
 }
 
+export function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
 /**
  * 发送好友消息
  * @param QQ QQ号

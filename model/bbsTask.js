@@ -1,5 +1,5 @@
 import { getToken } from './kuroBBSTokenHandler.js'
-import { sleepAsync } from './utils.js'
+import { getRandomInt,sleepAsync } from './utils.js'
 import kuroApi from './kuroApi.js'
 
 export default class bbsTask {
@@ -14,7 +14,7 @@ export default class bbsTask {
     if (tokenData && Object.keys(tokenData).length > 0) {
       const accNum = Object.keys(tokenData).length
       await this.e.reply(
-        `QQ ${uin} 绑定了 ${accNum} 个 token\n开始库街区每日, 稍等一会儿哟...`
+        `QQ ${uin} 绑定了 ${accNum} 个 token\n开始库街区每日, 预计需要 ${12*accNum} - ${35*accNum} s ~`
       )
       let msg = ''
       for (const kuro_uid in tokenData) {
@@ -24,7 +24,7 @@ export default class bbsTask {
         } else {
           msg += `账号 ${kuro_uid}: \ntoken 格式错误\n\n`
         }
-        await sleepAsync(3000)
+        await sleepAsync(getRandomInt(1000,3000))
       }
 
       await this.e.reply(msg.trimEnd())
@@ -78,9 +78,10 @@ export async function doBBSDailyTask(uin, kuro_uid) {
         return `账号 ${kuro_uid}: \ntoken 失效\n`
       else doBBSDailyTaskRet += `失败: ${rsp_signIn.msg}\n`
       break
-    } else await sleepAsync(800)
+    } else await sleepAsync(getRandomInt(600,1000))
   } while (tryAgain)
 
+  await sleepAsync(getRandomInt(1000,3000))
   doBBSDailyTaskRet += '帖子浏览: '
   // 开始尝试 2 次取帖子列表, 获取不到就不浏览和点赞
   tryAgain = true
@@ -94,14 +95,15 @@ export async function doBBSDailyTask(uin, kuro_uid) {
 
     if (!tryAgain) {
       if (typeof rsp_list !== 'string' && rsp_list.code === 200) break
-      doBBSDailyTaskRet += `获取失败: ${rsp_list.msg}\n论坛点赞: 失败\n` // 直接处理完返回值
+      doBBSDailyTaskRet += `获取失败: ${rsp_list.msg}\n论坛点赞: 已取消\n` // 直接处理完返回值
       rsp_list = ''
-    } else await sleepAsync(300)
+    } else await sleepAsync(getRandomInt(200,400))
   } while (tryAgain)
 
   if (rsp_list) {
+    await sleepAsync(getRandomInt(500,2000))
     // 获取到帖子就浏览点赞, 获取不到上面已经返回错误了
-    //开始尝试 6 次浏览帖子
+    // 开始尝试 6 次浏览帖子
     tryAgain = true
     tryTimes = 0
     let succCount = 0
@@ -115,9 +117,10 @@ export async function doBBSDailyTask(uin, kuro_uid) {
 
       if (typeof rsp_getPostDetail !== 'string') if (++succCount >= 3) break // 成功浏览计数, 够了就返回
 
-      await sleepAsync(1000)
+      if (tryAgain) await sleepAsync(getRandomInt(500,2000))
     } while (tryAgain)
     doBBSDailyTaskRet += `成功 ${succCount} 次\n论坛点赞: `
+    await sleepAsync(getRandomInt(500,2000))
     // 开始尝试 10 次点赞
     tryAgain = true
     tryTimes = 0
@@ -140,13 +143,14 @@ export async function doBBSDailyTask(uin, kuro_uid) {
 
       if (typeof rsp_like !== 'string') if (++succCount >= 5) break // 成功浏览计数, 够了就返回
 
-      await sleepAsync(1000)
+      if (tryAgain) await sleepAsync(getRandomInt(500,2000))
     } while (tryAgain)
     doBBSDailyTaskRet += `成功 ${succCount} 次\n`
   }
 
   // TODO: 尝试 2 次分享任务
   //
+  await sleepAsync(getRandomInt(500,2000))
 
   return doBBSDailyTaskRet
 }
