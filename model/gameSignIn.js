@@ -21,12 +21,13 @@ export default class gameSignIn {
       for (const kuro_uid in tokenData) {
         if (tokenData.hasOwnProperty(kuro_uid)) {
           msg += await doPnsSignIn(this.e.user_id, kuro_uid)
-          msg += `\n共用时 ${Math.floor((Date.now() - startTime) / 1000)}s\n`
+          msg += `\n`
         } else {
           msg += `账号 ${kuro_uid}: \ntoken 格式错误\n\n`
         }
         await sleepAsync(getRandomInt(1000,3000))
       }
+      msg += `共用时 ${Math.floor((Date.now() - startTime) / 1000)}s\n`
 
       await this.e.reply(msg.trimEnd())
       return true

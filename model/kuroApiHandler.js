@@ -118,6 +118,16 @@ export default class kuroApiHandler {
         url: `${this.kuroApiUrl}/encourage/level/shareTask`,
         body: `gameId=${data.gameId}`,
       },
+      getTaskProcess: {
+        // 取任务进度
+        url: `${this.kuroApiUrl}/encourage/level/getTaskProcess`,
+        body: `gameId=0&userId=${kuroUid}`,
+      },
+      getTotalGold: {
+        // 取库洛币总数
+        url: `${this.kuroApiUrl}/encourage/gold/getTotalGold`,
+        body: ``,
+      },
     }
     if (!ApiMap[ApiName]) return false
     let {

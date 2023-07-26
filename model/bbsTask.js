@@ -21,12 +21,13 @@ export default class bbsTask {
       for (const kuro_uid in tokenData) {
         if (tokenData.hasOwnProperty(kuro_uid)) {
           msg += await doBBSDailyTask(this.e.user_id, kuro_uid)
-          msg += `\n共用时 ${Math.floor((Date.now() - startTime) / 1000)}s\n`
+          msg += `\n`
         } else {
           msg += `账号 ${kuro_uid}: \ntoken 格式错误\n\n`
         }
         await sleepAsync(getRandomInt(1000,3000))
       }
+      msg += `共用时 ${Math.floor((Date.now() - startTime) / 1000)}s\n`
 
       await this.e.reply(msg.trimEnd())
       return true
@@ -47,11 +48,29 @@ export default class bbsTask {
  */
 export async function doBBSDailyTask(uin, kuro_uid) {
   let doBBSDailyTaskRet = ''
-  // TODO: 先获取任务情况, 如果全都完成就不做了
-  doBBSDailyTaskRet += `账号 ${kuro_uid}: \n库洛币: 今日获得{{今日库洛币数量占位符}}, 总{{库洛币总数量占位符}}\n`
+  let kuroapi = new kuroApi(uin)
+  // 获取任务进度, 尝试两次
+  let rsp_getTaskProcess = await kuroapi.getTaskProcess(kuro_uid)
+  logger.mark('rsp_getTaskProcess ' + JSON.stringify(rsp_getTaskProcess))
+  if (typeof rsp_getTaskProcess == 'string' || rsp_getTaskProcess.code !== 200)
+    rsp_getTaskProcess = await kuroapi.getTaskProcess(kuro_uid)
+  if (typeof rsp_getTaskProcess == 'string' || rsp_getTaskProcess.code !== 200)
+    if (rsp_getTaskProcess === `token 失效`) return `账号 ${kuro_uid}: \ntoken 失效\n`
+    else return `账号 ${kuro_uid}: \n获取任务进度失败: ${rsp_getTaskProcess.msg||rsp_getTaskProcess}\n`
+  if(rsp_getTaskProcess.data.currentDailyGold == rsp_getTaskProcess.data.maxDailyGold) {
+    // 获取库洛币总数, 尝试两次
+    let rsp_getTotalGold = await kuroapi.getTotalGold(kuro_uid)
+    logger.mark('rsp_getTotalGold ' + JSON.stringify(rsp_getTotalGold))
+    if (typeof rsp_getTotalGold == 'string' || rsp_getTotalGold.code !== 200)
+      rsp_getTotalGold = await kuroapi.getTotalGold(kuro_uid)
+    if (typeof rsp_getTotalGold == 'string' || rsp_getTotalGold.code !== 200)
+      return `账号 ${kuro_uid}: \n今日任务已完成, 获得 ${rsp_getTaskProcess.data.currentDailyGold} 库洛币, 库洛币总数获取失败: ${rsp_getTotalGold.msg||rsp_getTotalGold}\n`
+    return `账号 ${kuro_uid}: \n今日任务已完成, 获得 ${rsp_getTaskProcess.data.currentDailyGold} 库洛币, 共 ${rsp_getTotalGold.data.goldNum} 库洛币\n`
+  }
+    
+  doBBSDailyTaskRet += `账号 ${kuro_uid}: \n{{库洛币详情占位符}}\n`
 
   // 每日: 签到x1, 帖子浏览x3, 点赞x5, 分享x1
-  let kuroapi = new kuroApi(uin)
   let tryAgain = true
   let tryTimes = 0
 
@@ -74,9 +93,6 @@ export async function doBBSDailyTask(uin, kuro_uid) {
       if (typeof rsp_signIn !== 'string' && rsp_signIn.code === 200)
         doBBSDailyTaskRet += '签到成功\n'
       else if (rsp_signIn === '您已签到') doBBSDailyTaskRet += '今日已签\n'
-      // 顺便在这里直接处理 token 失效
-      else if (rsp_signIn === 'token 失效')
-        return `账号 ${kuro_uid}: \ntoken 失效\n`
       else doBBSDailyTaskRet += `失败: ${rsp_signIn.msg||rsp_signIn}\n`
       break
     } else await sleepAsync(getRandomInt(600,1000))
@@ -165,6 +181,27 @@ export async function doBBSDailyTask(uin, kuro_uid) {
       else doBBSDailyTaskRet += `失败: ${rsp_shareTask.msg||rsp_shareTask}\n`
     } else await sleepAsync(getRandomInt(500,2000))
   } while (tryAgain)
+
+  // 获取库洛币详情
+  // `本次获得 80 库洛币, (今日还可获得 0 库洛币), 共 {{库洛币总数}} 库洛币\n`
+  // 
+  // 获取任务进度, 尝试两次
+  rsp_getTaskProcess = await kuroapi.getTaskProcess(kuro_uid)
+  logger.mark('rsp_getTaskProcess ' + JSON.stringify(rsp_getTaskProcess))
+  if (typeof rsp_getTaskProcess == 'string' || rsp_getTaskProcess.code !== 200)
+    rsp_getTaskProcess = await kuroapi.getTaskProcess(kuro_uid)
+  if (typeof rsp_getTaskProcess == 'string' || rsp_getTaskProcess.code !== 200)
+    doBBSDailyTaskRet += `获取今日任务进度失败: ${rsp_getTaskProcess.msg||rsp_getTaskProcess}, `
+  else
+    doBBSDailyTaskRet += `本次获得 ${rsp_getTaskProcess.data.currentDailyGold} 库洛币, ` + (rsp_getTaskProcess.data.currentDailyGold !== rsp_getTaskProcess.data.maxDailyGold ? `今日还可获得 ${rsp_getTaskProcess.data.maxDailyGold - rsp_getTaskProcess.data.currentDailyGold} 库洛币, ` : '今日任务已完成, ')
+  if(rsp_getTaskProcess.data.currentDailyGold == rsp_getTaskProcess.data.maxDailyGold) {}
+  // 获取库洛币总数
+  let rsp_getTotalGold = await kuroapi.getTotalGold(kuro_uid)
+  if (typeof rsp_getTotalGold == 'string' || rsp_getTotalGold.code !== 200)
+    rsp_getTotalGold = await kuroapi.getTotalGold(kuro_uid)
+  if (typeof rsp_getTotalGold == 'string' || rsp_getTotalGold.code !== 200)
+  // doBBSDailyTaskRet = doBBSDailyTaskRet.replace('{{库洛币详情占位符}}', `本次获得`)
+  doBBSDailyTaskRet += (rsp_getTotalGold.data.goldNum ? `共 ${rsp_getTotalGold.data.goldNum} 库洛币\n` : `库洛币总数获取失败: ${rsp_getTotalGold.msg||rsp_getTotalGold}\n`)
 
   return doBBSDailyTaskRet
 }

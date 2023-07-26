@@ -205,4 +205,22 @@ export default class kuroApi {
   async shareTask(kuroUid) {
     return this.getData('shareTask', kuroUid, {gameId: 2})
   }
+
+  /**
+   * 取任务进度
+   * @param {string} kuroUid 库洛 ID
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async getTaskProcess(kuroUid) {
+    return this.getData('getTaskProcess', kuroUid, {})
+  }
+
+  /**
+   * 取库洛币总数
+   * @param {string} kuroUid 库洛 ID
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async getTotalGold(kuroUid) {
+    return this.getData('getTotalGold', kuroUid, {})
+  }
 }
