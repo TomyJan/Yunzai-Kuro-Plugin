@@ -1,3 +1,7 @@
+## [0.0.4-dev](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.0.3-rel...v0.0.4-dev) (2023-07-26)
+
+
+
 ## [0.0.3-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.0.2-rel...v0.0.3-rel) (2023-07-22)
 
 

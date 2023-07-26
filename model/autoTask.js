@@ -39,7 +39,7 @@ export async function gameSignTask(gameName) {
         }
         await sleepAsync(3000)
       }
-      await sendMsgFriend(gameSignUin, msg)
+      await sendMsgFriend(gameSignUin, msg.trimEnd())
     }
     logger.info(`[库洛插件] 自动游戏签到: 战双签到完成`)
     return true

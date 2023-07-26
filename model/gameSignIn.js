@@ -35,7 +35,7 @@ export default class gameSignIn {
         await sleepAsync(3000)
       }
 
-      await this.e.reply(msg.trim())
+      await this.e.reply(msg.trimEnd())
       return true
     } else {
       this.e.reply(
