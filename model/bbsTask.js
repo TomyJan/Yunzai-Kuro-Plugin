@@ -229,8 +229,6 @@ export async function doBBSDailyTask(uin, kuro_uid) {
   let rsp_getTotalGold = await kuroapi.getTotalGold(kuro_uid)
   if (typeof rsp_getTotalGold == 'string' || rsp_getTotalGold.code !== 200)
     rsp_getTotalGold = await kuroapi.getTotalGold(kuro_uid)
-  if (typeof rsp_getTotalGold == 'string' || rsp_getTotalGold.code !== 200)
-    // doBBSDailyTaskRet = doBBSDailyTaskRet.replace('{{库洛币详情占位符}}', `本次获得`)
     doBBSDailyTaskRet += rsp_getTotalGold.data.goldNum
       ? `共 ${rsp_getTotalGold.data.goldNum} 库洛币\n`
       : `库洛币总数获取失败: ${rsp_getTotalGold.msg || rsp_getTotalGold}\n`

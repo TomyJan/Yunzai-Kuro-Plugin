@@ -27,7 +27,7 @@ export async function gameSignTask(gameName) {
       let startTime = Date.now()
       const tokenData = await getToken(gameSignUin)
       const accNum = Object.keys(tokenData).length
-      let msg = '[库洛插件] 自动游戏签到任务结果推送\n'
+      let msg = '[库洛插件]自动游戏签到\n\n'
       for (const kuro_uid in tokenData) {
         if (tokenData.hasOwnProperty(kuro_uid)) {
           msg += await doPnsSignIn(gameSignUin, kuro_uid)
@@ -58,7 +58,7 @@ export async function bbsDailyTask() {
     let startTime = Date.now()
     const tokenData = await getToken(gameSignUin)
     const accNum = Object.keys(tokenData).length
-    let msg = '[库洛插件] 自动社区签到任务结果推送\n'
+    let msg = '[库洛插件]自动社区签到\n\n'
     for (const kuro_uid in tokenData) {
       if (tokenData.hasOwnProperty(kuro_uid)) {
         msg += await doBBSDailyTask(gameSignUin, kuro_uid)
