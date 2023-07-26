@@ -1,4 +1,19 @@
-## [0.0.4-dev](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.0.3-rel...v0.0.4-dev) (2023-07-26)
+## [0.1.0-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.0.3-rel...v0.1.0-rel) (2023-07-26)
+
+
+### Features
+
+* 库街区每日任务::获取库洛币详情 ([2da7f5b](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/2da7f5be74174a4e527c234d98ee6bdbfce18893))
+* 库街区每日任务::社区分享 ([84629a8](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/84629a889b28a35f911bcc09e9fd5a7fad847999))
+* 库街区每日任务[WIP] ([5f04750](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/5f047505b0bf2be9d8a02630b15585b15d6191c5))
+* 任务耗时记录 ([d6a6c05](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/d6a6c05bd7f27c7afc8263fdbf90d6b68fc30a51))
+* 为社区每日任务添加自动任务 ([d60c070](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/d60c070be2a3dda2875769d2d17c4d3f7e32ed89))
+* 自动任务随机延迟 ([3e377b4](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/3e377b4d02c75826451ba9339f66a27adac18b5d))
+
+
+### Performance Improvements
+
+* 文本细节优化 ([03fa9d1](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/03fa9d1350b49a2a9dd5ef3862029c0077f5b248))
 
 
 

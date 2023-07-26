@@ -1,4 +1,5 @@
 <div align=center>
+
 [![State-of-the-art Shitcode](https://img.shields.io/static/v1?label=State-of-the-art&message=Shitcode&color=7B5804)](https://github.com/TomyJan/Yunzai-Kuro-Plugin)
 
 # Yunzai-Kuro-Plugin
@@ -43,7 +44,8 @@
 
 - [x] 库街区游戏签到(暂仅支持战双) `#战双签到`
 - [x] 库街区游戏签到定时任务(暂仅支持战双) 每天 00:02 自动开始签到并向用户私聊推送签到结果
-- [ ] 库街区库洛币任务 `#库街区每日`
+- [x] 库街区库洛币任务 `#库街区每日`
+- [x] 库街区社区任务定时任务 每天 00:02 自动开始签到并向用户私聊推送签到结果
 
 ### 查询相关
 
