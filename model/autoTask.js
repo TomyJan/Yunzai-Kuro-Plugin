@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import { doBBSDailyTask } from './bbsTask.js'
+import { doPnsSignIn } from './gameSignIn.js'
 import { dataPath } from '../data/system/pluginConstants.js'
 import { getRandomInt, sendMsgFriend, sleepAsync } from './utils.js'
 import { getToken } from '../model/kuroBBSTokenHandler.js'
