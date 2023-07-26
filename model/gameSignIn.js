@@ -5,11 +5,7 @@ import kuroApi from './kuroApi.js'
 export default class gameSignIn {
   constructor(e) {
     this.e = e
-    this.init()
-    //消息提示以及风险警告
-    this.captchaLoginHelpTip = `免责声明:您将通过短信验证码获取库街区 token . \n本 Bot 不会保存您的账号和密码, 但会保存获取到的账号 token . \n我方仅提供库街区签到, 查询及其它相关游戏内容服务, 您的账号出现封禁, 被盗等处罚与我方无关. \n\n继续登录即为您阅读并同意以上条款! `
   }
-  async init() {}
 
   async pnsSignIn(uin) {
     const tokenData = await getToken(uin)
@@ -20,11 +16,12 @@ export default class gameSignIn {
       await this.e.reply(
         `QQ ${uin} 绑定了 ${accNum} 个 token\n开始战双签到, 稍等一会儿哟...`
       )
+      let startTime = Date.now()
       let msg = ''
       for (const kuro_uid in tokenData) {
         if (tokenData.hasOwnProperty(kuro_uid)) {
           msg += await doPnsSignIn(this.e.user_id, kuro_uid)
-          msg += '\n'
+          msg += `\n共用时 ${Math.floor((Date.now() - startTime) / 1000)}s\n`
         } else {
           msg += `账号 ${kuro_uid}: \ntoken 格式错误\n\n`
         }

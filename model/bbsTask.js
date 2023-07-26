@@ -16,11 +16,12 @@ export default class bbsTask {
       await this.e.reply(
         `QQ ${uin} 绑定了 ${accNum} 个 token\n开始库街区每日, 预计需要 ${12*accNum}-${35*accNum}s~`
       )
+      let startTime = Date.now()
       let msg = ''
       for (const kuro_uid in tokenData) {
         if (tokenData.hasOwnProperty(kuro_uid)) {
           msg += await doBBSDailyTask(this.e.user_id, kuro_uid)
-          msg += '\n'
+          msg += `\n共用时 ${Math.floor((Date.now() - startTime) / 1000)}s\n`
         } else {
           msg += `账号 ${kuro_uid}: \ntoken 格式错误\n\n`
         }
