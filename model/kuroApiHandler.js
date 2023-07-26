@@ -68,7 +68,7 @@ export default class kuroApiHandler {
         url: `${this.kuroApiUrl}/encourage/signIn/initSignIn`,
         body: `gameId=${data.gameId}&serverId=${data.serverId}&roleId=${data.roleId}`,
       },
-      signIn: {
+      gameSignIn: {
         // 游戏签到
         url: `${this.kuroApiUrl}/encourage/signIn/`,
         body: `gameId=${data.gameId}&serverId=${data.serverId}&roleId=${data.roleId}&reqMonth=${data.reqMonth}`,
@@ -93,7 +93,7 @@ export default class kuroApiHandler {
         url: `${this.kuroApiUrl}/forum/uploadForumImg`,
         body: data.body,
       },
-      signIn: {
+      forumSignIn: {
         // 社区签到
         url: `${this.kuroApiUrl}/user/signIn`,
         body: `gameId=${data.gameId}`,
@@ -151,7 +151,7 @@ export default class kuroApiHandler {
    * @returns {object} 返回参数
    */
   getHeaders(ApiName, token) {
-    if (['initSignIn', 'signIn'].includes(ApiName)) {
+    if (['initSignIn', 'gameSignIn'].includes(ApiName)) {
       // 这些 API 请求头是浏览器的
       let headers = {
         pragma: 'no-cache',

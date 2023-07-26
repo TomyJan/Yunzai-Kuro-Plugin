@@ -92,9 +92,9 @@ export default class kuroApi {
    * @param {object} data 传入 data.gameId 游戏 id data.serverId 服务器 id data.roleId 游戏 uid
    * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
    */
-  async signIn(kuroUid, data) {
+  async gameSignIn(kuroUid, data) {
     data.reqMonth = (new Date().getMonth() + 1).toString().padStart(2, '0')
-    return this.getData('signIn', kuroUid, data)
+    return this.getData('gameSignIn', kuroUid, data)
   }
 
   /**
@@ -156,8 +156,8 @@ export default class kuroApi {
    * @param {string} kuroUid 库洛 ID
    * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
    */
-  async signIn(kuroUid) {
-    return this.getData('signIn', kuroUid, { gameId: 2 })
+  async forumSignIn(kuroUid) {
+    return this.getData('forumSignIn', kuroUid, { gameId: 2 })
   }
 
   /**

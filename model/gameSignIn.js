@@ -83,19 +83,19 @@ export async function doPnsSignIn(uin, kuro_uid) {
       doPnsSignInRet += `      今日已签`
     } else {
       // 签到
-      let rsp_signIn = await kuroapi.signIn(kuro_uid, {
+      let rsp_gameSignIn = await kuroapi.gameSignIn(kuro_uid, {
         gameId: 2,
         serverId: data.serverId,
         roleId: data.roleId,
       })
-      logger.mark('rsp_signIn ' + JSON.stringify(rsp_signIn))
+      logger.mark('rsp_gameSignIn ' + JSON.stringify(rsp_gameSignIn))
       let tmp = ''
-      if (typeof rsp_signIn !== 'string') {
+      if (typeof rsp_gameSignIn !== 'string') {
         // 是 json
         tmp = '签到成功'
         rsp_initSignIn.data.sigInNum++
       } else {
-        tmp = rsp_signIn.msg
+        tmp = rsp_gameSignIn.msg
       }
       doPnsSignInRet += `      ${tmp}`
     }

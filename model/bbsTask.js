@@ -90,23 +90,23 @@ export async function doBBSDailyTask(uin, kuro_uid) {
   // 开始尝试 3 次社区签到
   doBBSDailyTaskRet += '社区签到: '
   do {
-    let rsp_signIn = await kuroapi.signIn(kuro_uid)
-    logger.mark('rsp_signIn ' + JSON.stringify(rsp_signIn))
+    let rsp_forumSignIn = await kuroapi.forumSignIn(kuro_uid)
+    logger.mark('rsp_forumSignIn ' + JSON.stringify(rsp_forumSignIn))
 
     if (
       tryTimes++ >= 3 ||
-      typeof rsp_signIn !== 'string' ||
-      rsp_signIn === '您已签到' ||
-      rsp_signIn === 'token 失效'
+      typeof rsp_forumSignIn !== 'string' ||
+      rsp_forumSignIn === '您已签到' ||
+      rsp_forumSignIn === 'token 失效'
     )
       tryAgain = false
 
     if (!tryAgain) {
       // 最后一次尝试了那就处理返回值吧
-      if (typeof rsp_signIn !== 'string' && rsp_signIn.code === 200)
+      if (typeof rsp_forumSignIn !== 'string' && rsp_forumSignIn.code === 200)
         doBBSDailyTaskRet += '签到成功\n'
-      else if (rsp_signIn === '您已签到') doBBSDailyTaskRet += '今日已签\n'
-      else doBBSDailyTaskRet += `失败: ${rsp_signIn.msg || rsp_signIn}\n`
+      else if (rsp_forumSignIn === '您已签到') doBBSDailyTaskRet += '今日已签\n'
+      else doBBSDailyTaskRet += `失败: ${rsp_forumSignIn.msg || rsp_forumSignIn}\n`
       break
     } else await sleepAsync(getRandomInt(600, 1000))
   } while (tryAgain)
