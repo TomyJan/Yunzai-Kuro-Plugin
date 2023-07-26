@@ -30,8 +30,7 @@ export async function gameSignTask(gameName) {
         if (tokenData.hasOwnProperty(kuro_uid)) {
           msg += await doPnsSignIn(
             gameSignUin,
-            kuro_uid,
-            tokenData[kuro_uid].token
+            kuro_uid
           )
           msg += '\n'
         } else {

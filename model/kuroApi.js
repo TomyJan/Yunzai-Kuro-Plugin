@@ -150,4 +150,50 @@ export default class kuroApi {
     data.body = formData
     return this.getData('uploadForumImg', kuroUid, data)
   }
+
+  /**
+   * 社区签到
+   * @param {string} kuroUid 库洛 ID
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async signIn(kuroUid) {
+    return this.getData('signIn', kuroUid, { gameId: 2 })
+  }
+
+  /**
+   * 取帖子列表, 这里暂时写死了一些不常改变的参数
+   * @param {string} kuroUid 库洛 ID
+   * @param {object} data 传入 data.forumId 板块 id, data.gameId 游戏 id
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async list(kuroUid, data) {
+    data.pageIndex = 1
+    data.pageSize = 20
+    data.searchType = 2
+    data.timeType = 0
+    data.topicId = 0
+    return this.getData('list', kuroUid, data)
+  }
+
+  /**
+   * 取帖子详情, 这里暂时写死了未知参数
+   * @param {string} kuroUid 库洛 ID
+   * @param {object} data 传入 data.postId 帖子 id
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async getPostDetail(kuroUid, data) {
+    data.isOnlyPublisher = 0
+    data.showOrderType = 2
+    return this.getData('getPostDetail', kuroUid, data)
+  }
+
+  /**
+   * 取帖子详情
+   * @param {string} kuroUid 库洛 ID
+   * @param {object} data 传入 data.postId 帖子 id
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async like(kuroUid, data) {
+    return this.getData('like', kuroUid, data)
+  }
 }

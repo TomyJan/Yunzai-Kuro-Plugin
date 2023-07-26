@@ -1,5 +1,5 @@
-import { getToken } from '../model/kuroBBSTokenHandler.js'
-import { sleepAsync } from '../model/utils.js'
+import { getToken } from './kuroBBSTokenHandler.js'
+import { sleepAsync } from './utils.js'
 import kuroApi from './kuroApi.js'
 
 export default class gameSignIn {
@@ -25,8 +25,7 @@ export default class gameSignIn {
         if (tokenData.hasOwnProperty(kuro_uid)) {
           msg += await doPnsSignIn(
             this.e.user_id,
-            kuro_uid,
-            tokenData[kuro_uid].token
+            kuro_uid
           )
           msg += '\n'
         } else {
@@ -46,7 +45,13 @@ export default class gameSignIn {
   }
 }
 
-export async function doPnsSignIn(uin, kuro_uid, token) {
+  /**
+   * 执行单个库洛账号的战双签到, 可以不经构造调用
+   * @param {number} uin QQ
+   * @param {number} kuro_uid 库洛 ID
+   * @returns {string} 可以直接发送的签到结果
+   */
+export async function doPnsSignIn(uin, kuro_uid) {
   let doPnsSignInRet = ''
   doPnsSignInRet += `账号 ${kuro_uid}: \n`
   // 获取绑定的游戏 id 列表有俩接口, emmm 迷惑

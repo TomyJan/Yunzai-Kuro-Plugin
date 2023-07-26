@@ -93,6 +93,26 @@ export default class kuroApiHandler {
         url: `${this.kuroApiUrl}/forum/uploadForumImg`,
         body: data.body,
       },
+      signIn: {
+        // 社区签到
+        url: `${this.kuroApiUrl}/user/signIn`,
+        body: `gameId=${data.gameId}`,
+      },
+      list: {
+        //取帖子列表
+        url: `${this.kuroApiUrl}/forum/list`,
+        body: `forumId=${data.forumId}&gameId=${data.gameId}&pageIndex=${data.pageIndex}&pageSize=${data.pageSize}&searchType=${data.searchType}&timeType=${data.timeType}&topicId=${data.topicId}`,
+      },
+      getPostDetail: {
+        //取帖子详情
+        url: `${this.kuroApiUrl}/forum/getPostDetail`,
+        body: `isOnlyPublisher=${data.isOnlyPublisher}&postId=${data.postId}&showOrderType=${data.showOrderType}`,
+      },
+      like: {
+        //通用论坛点赞
+        url: `${this.kuroApiUrl}/forum/like`,
+        body: `forumId=${data.forumId}&gameId=${data.gameId}&likeType=${data.likeType}&operateType=${data.operateType}&postCommentId=${data.postCommentId}&postCommentReplyId=${data.postCommentReplyId}&postId=${data.postId}&postType=${data.postType}&toUserId=${data.toUserId}`,
+      },
     }
     if (!ApiMap[ApiName]) return false
     let {
@@ -160,11 +180,11 @@ export default class kuroApiHandler {
       }
     }
     if (
-      ['uploadForumImg', 'mineV2', 'updateHeadUrl', 'sdkLogin'].includes(
+      !['list', 'findRoleList'].includes(
         ApiName
       )
     ) {
-      // 这几个多个 distinct_id
+      // 除了上面几个其他都有 distinct_id
       headers = {
         ...headers,
         distinct_id: '765485e7-30ce-4496-9a9c-a2ac1c03c02c',
