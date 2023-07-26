@@ -53,16 +53,18 @@ export async function doBBSDailyTask(uin, kuro_uid) {
   let kuroapi = new kuroApi(uin)
   // 获取昵称
   let rsp_mineV2 = await kuroapi.mineV2(kuro_uid)
-  if(rsp_mineV2 == `token 失效`) return `账号 ${kuro_uid}: \ntoken 失效\n`
+  if (rsp_mineV2 == `token 失效`) return `账号 ${kuro_uid}: \ntoken 失效\n`
   // 获取任务进度, 尝试两次
   let rsp_getTaskProcess = await kuroapi.getTaskProcess(kuro_uid)
   logger.mark('rsp_getTaskProcess ' + JSON.stringify(rsp_getTaskProcess))
   if (typeof rsp_getTaskProcess == 'string' || rsp_getTaskProcess.code !== 200)
     rsp_getTaskProcess = await kuroapi.getTaskProcess(kuro_uid)
   if (typeof rsp_getTaskProcess == 'string' || rsp_getTaskProcess.code !== 200)
-      return `账号 ${rsp_mineV2.data.mine.userName||'未知昵称'}(${kuro_uid}): \n获取任务进度失败: ${
-        rsp_getTaskProcess.msg || rsp_getTaskProcess
-      }\n`
+    return `账号 ${
+      rsp_mineV2.data.mine.userName || '未知昵称'
+    }(${kuro_uid}): \n获取任务进度失败: ${
+      rsp_getTaskProcess.msg || rsp_getTaskProcess
+    }\n`
   if (
     rsp_getTaskProcess.data.currentDailyGold ==
     rsp_getTaskProcess.data.maxDailyGold
@@ -73,15 +75,23 @@ export async function doBBSDailyTask(uin, kuro_uid) {
     if (typeof rsp_getTotalGold == 'string' || rsp_getTotalGold.code !== 200)
       rsp_getTotalGold = await kuroapi.getTotalGold(kuro_uid)
     if (typeof rsp_getTotalGold == 'string' || rsp_getTotalGold.code !== 200)
-      return `账号 ${rsp_mineV2.data.mine.userName||'未知昵称'}(${kuro_uid}): \n今日任务已完成, 获得 ${
+      return `账号 ${
+        rsp_mineV2.data.mine.userName || '未知昵称'
+      }(${kuro_uid}): \n今日任务已完成, 获得 ${
         rsp_getTaskProcess.data.currentDailyGold
       } 库洛币, 库洛币总数获取失败: ${
         rsp_getTotalGold.msg || rsp_getTotalGold
       }\n`
-    return `账号 ${rsp_mineV2.data.mine.userName||'未知昵称'}(${kuro_uid}): \n今日任务已完成, 获得 ${rsp_getTaskProcess.data.currentDailyGold} 库洛币, 共 ${rsp_getTotalGold.data.goldNum} 库洛币\n`
+    return `账号 ${
+      rsp_mineV2.data.mine.userName || '未知昵称'
+    }(${kuro_uid}): \n今日任务已完成, 获得 ${
+      rsp_getTaskProcess.data.currentDailyGold
+    } 库洛币, 共 ${rsp_getTotalGold.data.goldNum} 库洛币\n`
   }
 
-  doBBSDailyTaskRet += `账号 ${rsp_mineV2.data.mine.userName||'未知昵称'}(${kuro_uid}): \n`
+  doBBSDailyTaskRet += `账号 ${
+    rsp_mineV2.data.mine.userName || '未知昵称'
+  }(${kuro_uid}): \n`
 
   // 每日: 签到x1, 帖子浏览x3, 点赞x5, 分享x1
   let tryAgain = true
