@@ -47,10 +47,13 @@ export default class gameSignIn {
  * @returns {string} 可以直接发送的签到结果
  */
 export async function doPnsSignIn(uin, kuro_uid) {
-  let doPnsSignInRet = ''
-  doPnsSignInRet += `账号 ${kuro_uid}: \n`
-  // 获取绑定的游戏 id 列表有俩接口, emmm 迷惑
   let kuroapi = new kuroApi(uin)
+  // 获取昵称
+  let rsp_mineV2 = await kuroapi.mineV2(kuro_uid)
+  if(rsp_mineV2 == `token 失效`) return `账号 ${kuro_uid}: \ntoken 失效\n`
+  let doPnsSignInRet = ''
+  doPnsSignInRet += `账号 ${rsp_mineV2.data.mine.userName||'未知昵称'}(${kuro_uid}): \n`
+  // 获取绑定的游戏 id 列表有俩接口, emmm 迷惑
   let rsp_findRoleList = await kuroapi.findRoleList(kuro_uid, { gameId: 2 })
   logger.mark('rsp_findRoleList ' + JSON.stringify(rsp_findRoleList))
   if (typeof rsp_findRoleList == 'string') {
