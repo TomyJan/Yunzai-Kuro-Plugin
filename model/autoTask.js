@@ -1,5 +1,5 @@
 import fs from 'node:fs'
-import { doPnsSignIn } from './gameSignIn.js'
+import { doBBSDailyTask } from './bbsTask.js'
 import { dataPath } from '../data/system/pluginConstants.js'
 import { sendMsgFriend, sleepAsync } from './utils.js'
 import { getToken } from '../model/kuroBBSTokenHandler.js'
@@ -40,4 +40,32 @@ export async function gameSignTask(gameName) {
     logger.info(`[库洛插件] 自动游戏签到: 战双签到完成`)
     return true
   }
+}
+
+export async function bbsDailyTask() {
+    logger.info(`[库洛插件] 自动社区游戏签到开始...`)
+
+    const gameSignUins = fs
+      .readdirSync(dataPath + '/token')
+      .filter((file) => file.endsWith('.json'))
+
+    for (let i in gameSignUins) {
+      let gameSignUin = gameSignUins[i].replace('.json', '')
+      logger.info(`[库洛插件] 自动社区签到: 开始为 ${gameSignUin} 签到`)
+      const tokenData = await getToken(gameSignUin)
+      const accNum = Object.keys(tokenData).length
+      let msg = ''
+      for (const kuro_uid in tokenData) {
+        if (tokenData.hasOwnProperty(kuro_uid)) {
+          msg += await doBBSDailyTask(gameSignUin, kuro_uid)
+          msg += '\n'
+        } else {
+          msg += `账号 ${kuro_uid}: \ntoken 格式错误\n\n`
+        }
+        await sleepAsync(3000)
+      }
+      await sendMsgFriend(gameSignUin, msg.trimEnd())
+    }
+    logger.info(`[库洛插件] 自动社区签到: 任务完成`)
+    return true
 }

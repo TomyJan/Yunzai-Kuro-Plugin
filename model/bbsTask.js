@@ -68,7 +68,7 @@ export async function doBBSDailyTask(uin, kuro_uid) {
     return `账号 ${kuro_uid}: \n今日任务已完成, 获得 ${rsp_getTaskProcess.data.currentDailyGold} 库洛币, 共 ${rsp_getTotalGold.data.goldNum} 库洛币\n`
   }
     
-  doBBSDailyTaskRet += `账号 ${kuro_uid}: \n{{库洛币详情占位符}}\n`
+  doBBSDailyTaskRet += `账号 ${kuro_uid}: \n`
 
   // 每日: 签到x1, 帖子浏览x3, 点赞x5, 分享x1
   let tryAgain = true
