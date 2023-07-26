@@ -113,6 +113,11 @@ export default class kuroApiHandler {
         url: `${this.kuroApiUrl}/forum/like`,
         body: `forumId=${data.forumId}&gameId=${data.gameId}&likeType=${data.likeType}&operateType=${data.operateType}&postCommentId=${data.postCommentId}&postCommentReplyId=${data.postCommentReplyId}&postId=${data.postId}&postType=${data.postType}&toUserId=${data.toUserId}`,
       },
+      shareTask: {
+        // 社区分享任务
+        url: `${this.kuroApiUrl}/encourage/level/shareTask`,
+        body: `gameId=${data.gameId}`,
+      },
     }
     if (!ApiMap[ApiName]) return false
     let {

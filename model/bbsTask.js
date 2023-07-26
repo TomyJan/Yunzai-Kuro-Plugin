@@ -14,7 +14,7 @@ export default class bbsTask {
     if (tokenData && Object.keys(tokenData).length > 0) {
       const accNum = Object.keys(tokenData).length
       await this.e.reply(
-        `QQ ${uin} 绑定了 ${accNum} 个 token\n开始库街区每日, 预计需要 ${12*accNum} - ${35*accNum} s ~`
+        `QQ ${uin} 绑定了 ${accNum} 个 token\n开始库街区每日, 预计需要 ${12*accNum}-${35*accNum}s~`
       )
       let msg = ''
       for (const kuro_uid in tokenData) {
@@ -76,7 +76,7 @@ export async function doBBSDailyTask(uin, kuro_uid) {
       // 顺便在这里直接处理 token 失效
       else if (rsp_signIn === 'token 失效')
         return `账号 ${kuro_uid}: \ntoken 失效\n`
-      else doBBSDailyTaskRet += `失败: ${rsp_signIn.msg}\n`
+      else doBBSDailyTaskRet += `失败: ${rsp_signIn.msg||rsp_signIn}\n`
       break
     } else await sleepAsync(getRandomInt(600,1000))
   } while (tryAgain)
@@ -95,7 +95,7 @@ export async function doBBSDailyTask(uin, kuro_uid) {
 
     if (!tryAgain) {
       if (typeof rsp_list !== 'string' && rsp_list.code === 200) break
-      doBBSDailyTaskRet += `获取失败: ${rsp_list.msg}\n论坛点赞: 已取消\n` // 直接处理完返回值
+      doBBSDailyTaskRet += `获取失败: ${rsp_list.msg||rsp_list}\n论坛点赞: 已取消\n` // 直接处理完返回值
       rsp_list = ''
     } else await sleepAsync(getRandomInt(200,400))
   } while (tryAgain)
@@ -141,16 +141,29 @@ export async function doBBSDailyTask(uin, kuro_uid) {
 
       if (tryTimes++ >= 10) tryAgain = false
 
-      if (typeof rsp_like !== 'string') if (++succCount >= 5) break // 成功浏览计数, 够了就返回
+      if (typeof rsp_like !== 'string') if (++succCount >= 5) break // 成功点赞计数, 够了就返回
 
       if (tryAgain) await sleepAsync(getRandomInt(500,2000))
     } while (tryAgain)
     doBBSDailyTaskRet += `成功 ${succCount} 次\n`
   }
 
-  // TODO: 尝试 2 次分享任务
-  //
+  doBBSDailyTaskRet += `分享帖子: `
   await sleepAsync(getRandomInt(500,2000))
+  // 开始尝试 2 次分享
+  tryAgain = true
+  tryTimes = 0
+  do {
+    let rsp_shareTask = await kuroapi.shareTask(kuro_uid)
+    logger.mark('rsp_shareTask ' + JSON.stringify(rsp_shareTask))
+
+    if (tryTimes++ >= 2 || typeof rsp_like !== 'string') tryAgain = false
+
+    if (!tryAgain){
+      if (typeof rsp_shareTask !== 'string' && rsp_shareTask.code == 200) doBBSDailyTaskRet += `成功\n`
+      else doBBSDailyTaskRet += `失败: ${rsp_shareTask.msg||rsp_shareTask}\n`
+    } else await sleepAsync(getRandomInt(500,2000))
+  } while (tryAgain)
 
   return doBBSDailyTaskRet
 }

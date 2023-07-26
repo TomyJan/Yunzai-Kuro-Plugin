@@ -196,4 +196,13 @@ export default class kuroApi {
   async like(kuroUid, data) {
     return this.getData('like', kuroUid, data)
   }
+
+  /**
+   * 社区分享任务, 游戏 id 无所谓所以暂时写死
+   * @param {string} kuroUid 库洛 ID
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async shareTask(kuroUid) {
+    return this.getData('shareTask', kuroUid, {gameId: 2})
+  }
 }
