@@ -106,7 +106,8 @@ export async function doBBSDailyTask(uin, kuro_uid) {
       if (typeof rsp_forumSignIn !== 'string' && rsp_forumSignIn.code === 200)
         doBBSDailyTaskRet += '签到成功\n'
       else if (rsp_forumSignIn === '您已签到') doBBSDailyTaskRet += '今日已签\n'
-      else doBBSDailyTaskRet += `失败: ${rsp_forumSignIn.msg || rsp_forumSignIn}\n`
+      else
+        doBBSDailyTaskRet += `失败: ${rsp_forumSignIn.msg || rsp_forumSignIn}\n`
       break
     } else await sleepAsync(getRandomInt(600, 1000))
   } while (tryAgain)
@@ -229,9 +230,9 @@ export async function doBBSDailyTask(uin, kuro_uid) {
   let rsp_getTotalGold = await kuroapi.getTotalGold(kuro_uid)
   if (typeof rsp_getTotalGold == 'string' || rsp_getTotalGold.code !== 200)
     rsp_getTotalGold = await kuroapi.getTotalGold(kuro_uid)
-    doBBSDailyTaskRet += rsp_getTotalGold.data.goldNum
-      ? `共 ${rsp_getTotalGold.data.goldNum} 库洛币\n`
-      : `库洛币总数获取失败: ${rsp_getTotalGold.msg || rsp_getTotalGold}\n`
+  doBBSDailyTaskRet += rsp_getTotalGold.data.goldNum
+    ? `共 ${rsp_getTotalGold.data.goldNum} 库洛币\n`
+    : `库洛币总数获取失败: ${rsp_getTotalGold.msg || rsp_getTotalGold}\n`
 
   return doBBSDailyTaskRet
 }
