@@ -179,11 +179,7 @@ export default class kuroApiHandler {
         token: token,
       }
     }
-    if (
-      !['list', 'findRoleList'].includes(
-        ApiName
-      )
-    ) {
+    if (!['list', 'findRoleList'].includes(ApiName)) {
       // 除了上面几个其他都有 distinct_id
       headers = {
         ...headers,

@@ -23,10 +23,7 @@ export default class gameSignIn {
       let msg = ''
       for (const kuro_uid in tokenData) {
         if (tokenData.hasOwnProperty(kuro_uid)) {
-          msg += await doPnsSignIn(
-            this.e.user_id,
-            kuro_uid
-          )
+          msg += await doPnsSignIn(this.e.user_id, kuro_uid)
           msg += '\n'
         } else {
           msg += `账号 ${kuro_uid}: \ntoken 格式错误\n\n`
@@ -45,12 +42,12 @@ export default class gameSignIn {
   }
 }
 
-  /**
-   * 执行单个库洛账号的战双签到, 可以不经构造调用
-   * @param {number} uin QQ
-   * @param {number} kuro_uid 库洛 ID
-   * @returns {string} 可以直接发送的签到结果
-   */
+/**
+ * 执行单个库洛账号的战双签到, 可以不经构造调用
+ * @param {number} uin QQ
+ * @param {number} kuro_uid 库洛 ID
+ * @returns {string} 可以直接发送的签到结果
+ */
 export async function doPnsSignIn(uin, kuro_uid) {
   let doPnsSignInRet = ''
   doPnsSignInRet += `账号 ${kuro_uid}: \n`
