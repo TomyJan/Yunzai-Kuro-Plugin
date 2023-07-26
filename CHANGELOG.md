@@ -1,6 +1,13 @@
 ## [0.1.1-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.0-rel...v0.1.1-rel) (2023-07-27)
 
 
+### Bug Fixes
+
+* 社区签到和游戏签到混淆 ([d9de6db](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/d9de6dbee34c8278f164f4df59d6a790b19bb4df))
+* 社区签到推送文本错误 ([06ccffb](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/06ccffb43fab343bd54f54a49171c5244d39121f))
+* 游戏签到自动任务失败 ([4d7863b](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/4d7863b2ac2d35198eeb42565e683c46774f4eeb))
+
+
 
 ## [0.1.0-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.0.3-rel...v0.1.0-rel) (2023-07-26)
 
