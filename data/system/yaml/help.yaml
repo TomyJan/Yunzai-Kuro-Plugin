@@ -15,8 +15,3 @@
     - icon: kurocorn
       title: "#库街区每日"
       desc: 完成库街区日常任务
-- group: 小工具
-  list:
-    - icon: pic
-      title: "#库洛头像帮助"
-      desc: 库街区自定义头像

@@ -26,12 +26,16 @@ export class bbsHeadUpload extends plugin {
   }
 
   async bbsHeadUploadHelp(e) {
+    this.reply(`功能已失效!`)
+    return
     let head = new headUp(e)
     await head.bbsHeadUploadHelp()
     return true
   }
 
   async bbsHeadUploadResult(e) {
+    this.reply(`功能已失效!`)
+    return
     let head = new headUp(e)
     await head.bbsHeadUploadResult()
     return true
