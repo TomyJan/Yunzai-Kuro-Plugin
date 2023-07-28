@@ -25,10 +25,7 @@ export class gameCard extends plugin {
 
   async gameCardPns(e) {
     let data = await gameCardData.get(this.e, 'gameCardPns', this.e.user_id)
-    if (!data) {
-      await this.reply('卡片信息获取失败')
-      return
-    }
+    if (!data) return false
     let img = await this.cache(data)
     await this.reply(img)
   }

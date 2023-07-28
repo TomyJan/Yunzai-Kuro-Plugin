@@ -13,15 +13,14 @@ export default class gameCard {
     this.e = e
   }
 
-  static async get(e, model, uin) {
+  static async get(e, model) {
     let accArr = []
-    let html = new gameCard(e, model)
-    const tokenData = await getToken(uin)
+    const tokenData = await getToken(e.user_id)
 
     if (tokenData && Object.keys(tokenData).length > 0) {
       for (const kuro_uid in tokenData) {
         if (tokenData.hasOwnProperty(kuro_uid)) {
-          let kuroapi = new kuroApi(uin)
+          let kuroapi = new kuroApi(e.user_id)
           // 获取昵称
           let rsp_mineV2 = await kuroapi.mineV2(kuro_uid)
           let accName = rsp_mineV2?.data?.mine?.userName || '未知昵称'
@@ -43,17 +42,21 @@ export default class gameCard {
       }
       logger.info(JSON.stringify(accArr))
 
-      return {
+      let ret = {
         tplFile: `${resPath}/html/${model}/index.html`,
         accArr,
         pluResPath: _ResPath,
         pluginName,
         pluginVer,
       }
+      if (!ret) {
+        await e.reply(`卡片信息获取失败: 未知错误`)
+        return false
+      }
+
+      return ret
     } else {
-      this.e.reply(
-        `QQ ${this.e.user_id} 暂未绑定 token, 请发送 #库洛验证码登录 绑定 token `
-      )
+      await e.reply(`QQ ${e.user_id} 暂未绑定 token, 请发送 #库洛验证码登录 绑定 token `)
       return false
     }
 
