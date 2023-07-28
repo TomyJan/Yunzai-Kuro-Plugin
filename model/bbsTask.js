@@ -127,23 +127,23 @@ export async function doBBSDailyTask(uin, kuro_uid) {
   // 开始尝试 2 次取帖子列表, 获取不到就不浏览和点赞
   tryAgain = true
   tryTimes = 0
-  let rsp_list = ''
+  let rsp_forumList = ''
   do {
-    rsp_list = await kuroapi.list(kuro_uid, { forumId: 2, gameId: 2 }) // 默认获取推荐板块
-    logger.mark('rsp_list ' + JSON.stringify(rsp_list))
+    rsp_forumList = await kuroapi.forumList(kuro_uid, { forumId: 2, gameId: 2 }) // 默认获取推荐板块
+    logger.mark('rsp_forumList ' + JSON.stringify(rsp_forumList))
 
-    if (tryTimes++ >= 2 || typeof rsp_list !== 'string') tryAgain = false
+    if (tryTimes++ >= 2 || typeof rsp_forumList !== 'string') tryAgain = false
 
     if (!tryAgain) {
-      if (typeof rsp_list !== 'string' && rsp_list.code === 200) break
+      if (typeof rsp_forumList !== 'string' && rsp_forumList.code === 200) break
       doBBSDailyTaskRet += `获取失败: ${
-        rsp_list.msg || rsp_list
+        rsp_forumList.msg || rsp_forumList
       }\n论坛点赞: 已取消\n` // 直接处理完返回值
-      rsp_list = ''
+      rsp_forumList = ''
     } else await sleepAsync(getRandomInt(200, 400))
   } while (tryAgain)
 
-  if (rsp_list) {
+  if (rsp_forumList) {
     await sleepAsync(getRandomInt(500, 2000))
     // 获取到帖子就浏览点赞, 获取不到上面已经返回错误了
     // 开始尝试 6 次浏览帖子
@@ -152,7 +152,7 @@ export async function doBBSDailyTask(uin, kuro_uid) {
     let succCount = 0
     do {
       let rsp_getPostDetail = await kuroapi.getPostDetail(kuro_uid, {
-        postId: rsp_list.data.postList[tryTimes].postId,
+        postId: rsp_forumList.data.postList[tryTimes].postId,
       })
       logger.mark('rsp_getPostDetail ' + JSON.stringify(rsp_getPostDetail))
 
@@ -176,9 +176,9 @@ export async function doBBSDailyTask(uin, kuro_uid) {
         operateType: 1,
         postCommentId: 0,
         postCommentReplyId: 0,
-        postId: rsp_list.data.postList[tryTimes].postId,
-        postType: rsp_list.data.postList[tryTimes].postType,
-        toUserId: rsp_list.data.postList[tryTimes].userId,
+        postId: rsp_forumList.data.postList[tryTimes].postId,
+        postType: rsp_forumList.data.postList[tryTimes].postType,
+        toUserId: rsp_forumList.data.postList[tryTimes].userId,
       })
       logger.mark('rsp_like ' + JSON.stringify(rsp_like))
 

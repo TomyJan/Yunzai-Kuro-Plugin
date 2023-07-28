@@ -176,13 +176,13 @@ export default class kuroApi {
    * @param {object} data 传入 data.forumId 板块 id, data.gameId 游戏 id
    * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
    */
-  async list(kuroUid, data) {
+  async forumList(kuroUid, data) {
     data.pageIndex = 1
     data.pageSize = 20
     data.searchType = 2
     data.timeType = 0
     data.topicId = 0
-    return this.getData('list', kuroUid, data)
+    return this.getData('forumList', kuroUid, data)
   }
 
   /**

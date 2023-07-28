@@ -103,7 +103,7 @@ export default class kuroApiHandler {
         url: `${this.kuroApiUrl}/user/signIn`,
         body: `gameId=${data.gameId}`,
       },
-      list: {
+      forumList: {
         //取帖子列表
         url: `${this.kuroApiUrl}/forum/list`,
         body: `forumId=${data.forumId}&gameId=${data.gameId}&pageIndex=${data.pageIndex}&pageSize=${data.pageSize}&searchType=${data.searchType}&timeType=${data.timeType}&topicId=${data.topicId}`,
@@ -199,7 +199,7 @@ export default class kuroApiHandler {
         token: token,
       }
     }
-    if (!['list', 'findRoleList', 'roleList'].includes(ApiName)) {
+    if (!['forumList', 'findRoleList', 'roleList'].includes(ApiName)) {
       // 除了上面几个其他都有 distinct_id
       headers = {
         ...headers,
