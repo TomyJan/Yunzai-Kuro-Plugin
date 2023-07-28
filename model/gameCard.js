@@ -25,10 +25,10 @@ export default class gameCard {
           let rsp_mineV2 = await kuroapi.mineV2(kuro_uid)
           let accName = rsp_mineV2?.data?.mine?.userName || '未知昵称'
           accName += ` (${kuro_uid})`
-          let rsp_roleList = await kuroapi.roleList(kuro_uid, {gameId: 2})
-          let acc = {account: accName, msg: '', data: null}
-          if(typeof rsp_roleList !== 'string') {
-            if(rsp_roleList.data.length > 0) {
+          let rsp_roleList = await kuroapi.roleList(kuro_uid, { gameId: 2 })
+          let acc = { account: accName, msg: '', data: null }
+          if (typeof rsp_roleList !== 'string') {
+            if (rsp_roleList.data.length > 0) {
               acc.msg = rsp_roleList.msg
               acc.data = rsp_roleList.data
             } else {
@@ -37,7 +37,11 @@ export default class gameCard {
           } else acc.msg = ` - 获取数据失败: ${rsp_roleList}`
           accArr.push(acc)
         } else {
-          accArr.push({ account: `未知昵称 (${kuro_uid})`, msg: ` - token 格式错误`, data: null})
+          accArr.push({
+            account: `未知昵称 (${kuro_uid})`,
+            msg: ` - token 格式错误`,
+            data: null,
+          })
         }
       }
       logger.info(JSON.stringify(accArr))
@@ -59,8 +63,5 @@ export default class gameCard {
       await e.reply(`QQ ${e.user_id} 暂未绑定 token, 请发送 #库洛验证码登录 绑定 token `)
       return false
     }
-
   }
-
-
 }
