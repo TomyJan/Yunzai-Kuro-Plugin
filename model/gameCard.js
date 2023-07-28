@@ -60,7 +60,9 @@ export default class gameCard {
 
       return ret
     } else {
-      await e.reply(`QQ ${e.user_id} 暂未绑定 token, 请发送 #库洛验证码登录 绑定 token `)
+      await e.reply(
+        `QQ ${e.user_id} 暂未绑定 token, 请发送 #库洛验证码登录 绑定 token `
+      )
       return false
     }
   }
