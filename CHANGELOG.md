@@ -1,4 +1,22 @@
-## [0.1.2-dev](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.1-rel...v0.1.2-dev) (2023-07-27)
+## [0.1.2-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.1-rel...v0.1.2-rel) (2023-07-28)
+
+
+### Bug Fixes
+
+* 防止kuroApi方法重名 ([f1ea940](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/f1ea94021bee07ea79b343a3817309c25a8662a2))
+* 移除失效的头像上传 ([c07d5c2](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/c07d5c2c1c3fb57afedfbcf1dc5144e1aa92d323))
+
+
+### Features
+
+* 任务返回文本显示账号昵称 ([7b38188](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/7b3818817dfe56ff3e1bd82bddd38e5bce8c5ceb))
+* 完成战双游戏卡片 ([886c3e8](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/886c3e899dc5d25178e4dd708824ca0f326674f8))
+* 游戏卡片::网页模板 ([aa7af57](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/aa7af57d655f54ada1a90164c993a098112620a8))
+
+
+### Performance Improvements
+
+* 改进游戏卡片模板 ([016737b](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/016737bb0d97e375082bf6a3775609b5e4fc010a))
 
 
 

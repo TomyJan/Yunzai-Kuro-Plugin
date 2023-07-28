@@ -36,7 +36,7 @@ export class gameCard extends plugin {
   async cache(data) {
     let tmp = md5(JSON.stringify(data))
     if (gameCard.pnsCardData.md5 === tmp) {
-      //return gameCard.pnsCardData.img
+      return gameCard.pnsCardData.img
     }
 
     gameCard.pnsCardData.img = await puppeteer.screenshot('gameCardPns', data)

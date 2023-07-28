@@ -15,3 +15,8 @@
     - icon: kurocorn
       title: "#库街区每日"
       desc: 完成库街区日常任务
+- group: 游戏查询
+  list:
+    - icon: pns
+      title: "#战双卡片"
+      desc: 查询库街区战双游戏卡片信息
