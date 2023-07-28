@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<!--
+    战双游戏卡片模板
+    抓取自 https://www.kurobbs.com/person-center 并做适当修改
+    by TomyJan
+    2023.07.28
+-->
 <html lang=zh-CN>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
@@ -7,8 +13,15 @@
 <meta name=description content=库洛插件>
 
 <style>
+    @font-face {
+        font-family: "MiSans-Normal";
+        src: url("../../font/MiSans-Normal.ttf");
+        font-weight: normal;
+        font-style: normal;
+    }
+
     body {
-        font-family: MiSans
+        font-family: MiSans-Normal
     }
 
     .mr-4 {
@@ -109,6 +122,10 @@
         border-radius: 2px
     }
 
+    .game-box-header .role-info .show[data-v-08c4bfda] {
+        margin-left: auto
+    }
+
     .game-box-header .sub-info[data-v-08c4bfda] {
         color: #aeb6c2;
         font-weight: 400;
@@ -152,6 +169,36 @@
     .game-box-footer .item .icon[data-v-08c4bfda] {
         cursor: pointer
     }
+
+    .better-checkbox:checked {
+        border: none;
+        background: #1673ff
+    }
+
+    .better-checkbox {
+        width: 16px;
+        height: 16px;
+        border: solid 1.5px #dddddd;
+        border-radius: 50%;
+        vertical-align: top;
+        margin-right: 4px;
+        position: relative;
+        appearance: none
+    }
+
+    .better-checkbox:checked::after {
+        content: '';
+        top: 4px;
+        left: 3.5px;
+        position: absolute;
+        background: transparent;
+        border: #fff solid 2px;
+        border-top: none;
+        border-right: none;
+        height: 4px;
+        width: 7px;
+        transform: rotate(-45deg)
+    }
 </style>
 </head>
 
@@ -165,9 +212,12 @@
                     <div class=flex-vertical-center data-v-08c4bfda>
                         <div class="mr-4 text-14 name" data-v-08c4bfda>TomyJan</div>
                         <div class=level data-v-08c4bfda>100级</div>
+                        <div class=show data-v-08c4bfda>
+                            <input name="checkbox" type="checkbox" class="better-checkbox " checked>展示
+                        </div>
                     </div>
                     <div class="sub-info text-12" data-v-08c4bfda>
-                        <span data-v-08c4bfda>星火服 | ID：46218962</span>
+                        <span data-v-08c4bfda>星火服 | ID: 46218962</span>
                     </div>
                 </div>
             </div>

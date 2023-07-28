@@ -47,14 +47,14 @@ export default class kuroBBSLogin {
     }
 
     if (rsp_sdkLogin.code === 200) {
-      logger.info('[库洛插件] 登陆成功!\n' + JSON.stringify(rsp_sdkLogin))
+      logger.info('[库洛插件] 登录成功!\n' + JSON.stringify(rsp_sdkLogin))
       this.e.reply(
         '登录成功, 即将保存 token, 下面是此次获取的 token, 请勿泄露!\n' +
           JSON.stringify(rsp_sdkLogin)
       )
       return rsp_sdkLogin
     } else {
-      logger.info('[库洛插件] 登陆失败\n' + JSON.stringify(rsp_sdkLogin))
+      logger.info('[库洛插件] 登录失败\n' + JSON.stringify(rsp_sdkLogin))
       this.e.reply('登录失败!\n' + JSON.stringify(rsp_sdkLogin.msg))
       return false
     }
