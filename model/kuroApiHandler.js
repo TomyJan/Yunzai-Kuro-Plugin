@@ -63,6 +63,11 @@ export default class kuroApiHandler {
         url: `${this.kuroApiUrl}/user/role/findRoleList`,
         body: `gameId=${data.gameId}`,
       },
+      roleList: {
+        // 取绑定游戏账号列表
+        url: `${this.kuroApiUrl}/gamer/role/list`,
+        body: `gameId=${data.gameId}`,
+      },
       initSignIn: {
         // 取签到配置信息
         url: `${this.kuroApiUrl}/encourage/signIn/initSignIn`,
@@ -194,7 +199,7 @@ export default class kuroApiHandler {
         token: token,
       }
     }
-    if (!['list', 'findRoleList'].includes(ApiName)) {
+    if (!['list', 'findRoleList', 'roleList'].includes(ApiName)) {
       // 除了上面几个其他都有 distinct_id
       headers = {
         ...headers,
@@ -203,8 +208,8 @@ export default class kuroApiHandler {
     }
 
     // 处理 content-type
-    if (ApiName == 'findRoleList') {
-      // findRoleList 多了个 utf8
+    if (['findRoleList', 'roleList'].includes(ApiName)) {
+      // findRoleList roleList 多了个 utf8
       headers = {
         ...headers,
         'content-type': 'application/x-www-form-urlencoded; charset=utf-8',

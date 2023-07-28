@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="{{pluResPath}}/html/gameCardPns/index.css" />
+  <link rel="shortcut icon" href="#" />
+</head>
+
+<body>
+  <div class="container" id="container">
+    <div class="head-box">
+      <div class="title" style="color: white;">战双卡片 - 库洛插件</div>
+      <div class="label" style="color: white;">Handmade With <font color=red>♥</font> by TomyJan.</div>
+    </div>
+
+
+    {{each accArr acc}}
+    <div class="cont-box">
+      <div class="help-group" style="color: white;">
+        {{acc.account}}{{acc.data ? '' : acc.msg}}
+      </div>
+      <div>
+        {{each acc.data item}}
+
+        <div class="game-box-container pns" data-v-08c4bfda>
+          <div class="game-box pd-16" data-v-08c4bfda>
+            <div class="game-box-header flex mb-16" data-v-08c4bfda>
+              <img class="icon mr-12" src="{{@item.gameHeadUrl}}" alt data-v-08c4bfda>
+              <div class=role-info data-v-08c4bfda>
+                <div class=flex-vertical-center data-v-08c4bfda>
+                  <div class="mr-4 text-14 name" data-v-08c4bfda>{{@item.roleName}}</div>
+                  <div class=level data-v-08c4bfda>{{@item.gameLevel}}级</div>
+                  <div class=show data-v-08c4bfda>
+                    <input name="checkbox" type="checkbox" class="better-checkbox " {{@item.isDefault ? 'checked' : ''
+                      }}>展示
+                  </div>
+                </div>
+                <div class="sub-info text-12" data-v-08c4bfda>
+                  <span data-v-08c4bfda>{{@item.serverName}} | ID: {{@item.roleId}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="game-box-footer flex" data-v-08c4bfda>
+              <div class=item data-v-08c4bfda>
+                <span class=number data-v-08c4bfda>{{@item.roleScore}}</span>
+                <span class=title data-v-08c4bfda>角色总评分</span>
+              </div>
+              <div class=item data-v-08c4bfda>
+                <span class=number data-v-08c4bfda>{{@item.roleNum}}</span>
+                <span class=title data-v-08c4bfda>角色数量</span>
+              </div>
+              <div class=item data-v-08c4bfda>
+                <span class=number data-v-08c4bfda>{{@item.fashionCollectionPercent*1000/10}}%</span>
+                <span class=title data-v-08c4bfda>涂装收集率</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/each}}
+    <div class="copyright">Created By Yunzai-Bot & {{pluginName}} {{pluginVer}}</div>
+  </div>
+</body>
+
+</html>
