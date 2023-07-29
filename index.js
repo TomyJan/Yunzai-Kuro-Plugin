@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import fs from 'node:fs'
 import { appsPath, pluginVer } from './data/system/pluginConstants.js'
-import {initAutoTask, checkUpdateTask} from './model/autoTask.js'
+import { initAutoTask, checkUpdateTask } from './model/autoTask.js'
 
 logger.info(chalk.rgb(253, 235, 255)('-----------(≧∇≦)ﾉ-----------'))
 logger.info(chalk.rgb(134, 142, 204)(`[库洛插件] V${pluginVer} 初始化中~`))
