@@ -1,4 +1,10 @@
-## [0.1.3-dev](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.2-rel...v0.1.3-dev) (2023-07-29)
+## [0.1.3-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.2-rel...v0.1.3-rel) (2023-07-29)
+
+
+### Features
+
+* 自动推送新版本 ([9ad6f7c](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/9ad6f7c49cd3ce4392a526e08abc324ab85b41f1))
+
 
 
 ## [0.1.2-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.1-rel...v0.1.2-rel) (2023-07-28)
@@ -7,6 +13,7 @@
 ### Bug Fixes
 
 * 防止kuroApi方法重名 ([f1ea940](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/f1ea94021bee07ea79b343a3817309c25a8662a2))
+* 未登录用户战双面板返回异常 ([6b3bc81](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/6b3bc81cda579aedca3d4e8fec2fe90418b5b787))
 * 移除失效的头像上传 ([c07d5c2](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/c07d5c2c1c3fb57afedfbcf1dc5144e1aa92d323))
 
 

@@ -1,5 +1,7 @@
-# 用户库洛 token 
+# 用户信息
 data/token/
+data/system/versionCache.json
 
 #nodejs
 node_modules/
+

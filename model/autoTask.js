@@ -3,12 +3,12 @@ import fs from 'node:fs'
 import schedule from 'node-schedule'
 import { doBBSDailyTask } from './bbsTask.js'
 import { doPnsSignIn } from './gameSignIn.js'
-import { dataPath, pluginVer } from '../data/system/pluginConstants.js'
+import { dataPath, pluginVer, _DataPath } from '../data/system/pluginConstants.js'
 import { getRandomInt, sendMsgFriend, sleepAsync } from './utils.js'
 import { getToken } from '../model/kuroBBSTokenHandler.js'
 import cfg from '../../../lib/config/config.js'
 
-export default async function initAutoTask() {
+export async function initAutoTask() {
   logger.info(
     chalk.rgb(134, 142, 204)(`[库洛插件] 载入定时任务 gameSignTask:pns`)
   )
@@ -102,7 +102,7 @@ async function bbsDailyTask() {
   return true
 }
 
-async function checkUpdateTask() {
+export async function checkUpdateTask() {
   logger.info(`[库洛插件] 检查更新任务开始...`)
   let remoteVersion = await getRemoteVersion('GitHub')
   if (!remoteVersion) {
@@ -113,35 +113,43 @@ async function checkUpdateTask() {
       return false
     }
   }
+  remoteVersion = remoteVersion.match(/\[(.*?)\]\(.*?\)/)[1] || false
+
+  if(!remoteVersion) {
+    logger.info(`[库洛插件] 检查更新任务: 解析版本信息失败`)
+    await sendMsgFriend(cfg.masterQQ[0], `[库洛插件]自动检查更新\n解析版本信息失败`)
+    return false
+  }
+
   logger.info(`[库洛插件] 检查更新任务: 获取到最新版本 ${remoteVersion}, 本地版本 ${pluginVer}`)
   if (remoteVersion != pluginVer) {
     // 推送并缓存
-    const cacheFilePath = '../data/system/versionCache.json'
+    const cacheFilePath = _DataPath + '/system/versionCache.json'
     let versionCache = ''
-    fs.readFile(cacheFilePath, 'utf8', (err, data) => {
-      if (err) {
-        logger.error('读取 versionCache.json 时出现错误：', err.message);
-      } else {
-        versionCache = data;
-        logger.mark('versionCache: ', versionCache);
-      }
-    });
-    if (versionCache?.remoteVersion == remoteVersion) {
-      // 已经推送过了
+
+    try {
+      versionCache = fs.readFileSync(cacheFilePath, 'utf8');
+      logger.mark('读取 versionCache: ', versionCache);
+    } catch (err) {
+      logger.error('读取 versionCache.json 时出现错误：', err.message);
+    }
+
+    if (versionCache?.remoteVersion == pluginVer) {
+      logger.mark('该版本已经推送过')
       return false
     }
-    versionCache = {remoteVersion: remoteVersion}
+    versionCache = JSON.stringify({remoteVersion: remoteVersion})
     let isCacheSucceed = false
 
-    fs.writeFile(cacheFilePath, versionCache, (err) => {
-      if (err) {
-        logger.error('写入versionCache.json 时出现错误: ', err.message);
-      } else {
-        logger.mark('缓存远程版本成功!');
-        isCacheSucceed = true
-      }
-    });
-    await sendMsgFriend(cfg.masterQQ[0], `[库洛插件]自动检查更新\n发现新版本: ${remoteVersion}, 本地版本 ${pluginVer}` + (isCacheSucceed ? '' : '\n缓存版本信息失败, 该信息可能会重复推送'))
+    try {
+      fs.writeFileSync(cacheFilePath, versionCache);
+      logger.mark('缓存远程版本成功!');
+      isCacheSucceed = true
+    } catch (err) {
+      logger.error('写入versionCache.json 时出现错误: ', err.message);
+    }
+
+    await sendMsgFriend(cfg.masterQQ[0], `[库洛插件]自动检查更新\n发现新版: ${remoteVersion}\n本地版本: ${pluginVer}\n建议尽快更新~` + (isCacheSucceed ? '' : '\n缓存版本信息失败, 该信息可能会重复推送'))
 
   }
 
