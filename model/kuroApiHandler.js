@@ -25,10 +25,10 @@ export default class kuroApiHandler {
       body: body,
       method: method,
     }
-    //logger.info(url)
-    //logger.info(headers)
-    //logger.info(body)
-    //logger.info(method)
+    logger.info('url:    ' + url)
+    logger.info('header: ' + JSON.stringify(headers))
+    logger.info('body:   ' + body)
+    logger.info('method: ' + method)
 
     let response = {}
     try {
@@ -45,7 +45,7 @@ export default class kuroApiHandler {
     }
 
     let rsp = await response.json()
-    //logger.info(rsp)
+    logger.info('rsp:    ' + JSON.stringify(rsp))
     return rsp
   }
   /**
@@ -133,6 +133,26 @@ export default class kuroApiHandler {
         url: `${this.kuroApiUrl}/encourage/gold/getTotalGold`,
         body: ``,
       },
+      getBindRoleInfo: {
+        // 取活动绑定游戏角色信息
+        url: `${this.kuroApiUrl}/activity/gamer/role/getBindRoleInfo`,
+        body: `userId=${kuroUid}`,
+      },
+      getActivityTaskList: {
+        // 取活动任务详情
+        url: `${this.kuroApiUrl}/activity/task/getList`,
+        body: `userId=${kuroUid}`,
+      },
+      completeActivityTask: {
+        // 完成活动任务
+        url: `${this.kuroApiUrl}/activity/task/complete`,
+        body: `userId=${kuroUid}&taskId=${data.taskId}&gameId=${data.gameId}`,
+      },
+      receiveActivityTask: {
+        // 领取活动任务奖励
+        url: `${this.kuroApiUrl}/activity/task/receive`,
+        body: `userId=${kuroUid}&taskId=${data.taskId}&gameId=${data.gameId}`,
+      }
     }
     if (!ApiMap[ApiName]) return false
     let {
@@ -156,7 +176,7 @@ export default class kuroApiHandler {
    * @returns {object} 返回参数
    */
   getHeaders(ApiName, token) {
-    if (['initSignIn', 'gameSignIn'].includes(ApiName)) {
+    if (['initSignIn', 'gameSignIn', 'getBindRoleInfo', 'getActivityTaskList', 'completeActivityTask', 'receiveActivityTask'].includes(ApiName)) {
       // 这些 API 请求头是浏览器的
       let headers = {
         pragma: 'no-cache',

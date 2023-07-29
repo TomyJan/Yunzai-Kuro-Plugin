@@ -233,4 +233,44 @@ export default class kuroApi {
   async getTotalGold(kuroUid) {
     return this.getData('getTotalGold', kuroUid, {})
   }
+
+  /**
+   * 取活动绑定游戏角色信息
+   * @param {string} kuroUid 库洛 ID
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async getBindRoleInfo(kuroUid) {
+    return this.getData('getBindRoleInfo', kuroUid, {})
+  }
+
+  /**
+   * 取活动任务详情
+   * @param {string} kuroUid 库洛 ID
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async getActivityTaskList(kuroUid) {
+    return this.getData('getActivityTaskList', kuroUid, {})
+  }
+
+  /**
+   * 完成活动任务, 暂时写死游戏 id
+   * @param {string} kuroUid 库洛 ID
+   * @param {object} data 传入 data.taskId 任务 id
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async completeActivityTask(kuroUid, data) {
+    data.gameId = 2
+    return this.getData('completeActivityTask', kuroUid, data)
+  }
+
+  /**
+   * 领取活动任务奖励, 暂时写死游戏 id
+   * @param {string} kuroUid 库洛 ID
+   * @param {object} data 传入 data.taskId 任务 id
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async receiveActivityTask(kuroUid, data) {
+    data.gameId = 2
+    return this.getData('receiveActivityTask', kuroUid, data)
+  }
 }
