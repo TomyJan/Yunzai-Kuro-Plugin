@@ -1,4 +1,21 @@
-## [0.1.4-dev](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.3-rel...v0.1.4-dev) (2023-07-29)
+## [0.1.4-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.3-rel...v0.1.4-rel) (2023-07-30)
+
+
+### Bug Fixes
+
+* 解析抽奖结果 ([0fc5881](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/0fc5881679fc64374ca5993c9ca6a346bc67b344))
+* 自动活动任务的几个问题 ([a6e4d49](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/a6e4d493b4486881dba57e215f56eadb580033cb))
+
+
+### Features
+
+* [WIP] 自动活动任务 ([3f9cdb0](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/3f9cdb0c0d81f43caa0572445ae8dd0e13dedb49))
+* [WIP] 自动活动任务 ([8da1eec](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/8da1eec3f728378f16d133820861d89fbcab9041))
+* 活动任务添加自动任务 ([e2b0da4](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/e2b0da4577958bd150e8c322e7925dd846f7659b))
+* 为活动任务添加随机延迟 ([7d99b43](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/7d99b4359d2006e6e390f4b8ded5f3d947b096fd))
+* 自动活动任务 ([83e47ba](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/83e47bad0245e98bdbb00b01119d5735fc4a3b1a))
+* 自动活动任务的里程碑奖励&抽奖 ([f63b4dc](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/f63b4dcb270e76d147cec34ab23d3792fdddf06f))
+
 
 
 ## [0.1.3-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.2-rel...v0.1.3-rel) (2023-07-29)
@@ -6,6 +23,7 @@
 
 ### Features
 
+* 自动推送新版本 ([4d5b366](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/4d5b366c9314e8b18fcb21c7a53e46d72821edcf))
 * 自动推送新版本 ([9ad6f7c](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/9ad6f7c49cd3ce4392a526e08abc324ab85b41f1))
 
 
