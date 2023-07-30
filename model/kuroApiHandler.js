@@ -168,6 +168,11 @@ export default class kuroApiHandler {
         url: `${this.kuroApiUrl}/activity/lottery/start`,
         body: `userId=${kuroUid}&gameId=${data.gameId}`,
       },
+      followUser: {
+        // 关注用户
+        url: `${this.kuroApiUrl}/user/followUser`,
+        body: `followUserId=${data.followUserId}&operateType=${data.operateType}`,
+      },
     }
     if (!ApiMap[ApiName]) return false
     let {

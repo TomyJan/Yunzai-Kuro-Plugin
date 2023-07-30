@@ -302,4 +302,14 @@ export default class kuroApi {
   async doActivityLottery(kuroUid) {
     return this.getData('doActivityLottery', kuroUid, { gameId: 2 })
   }
+
+  /**
+   * 关注用户
+   * @param {string} kuroUid 库洛 ID
+   * @param {object} data 传入 data.followUserId 被关注用户 id data.operateType 操作类型 1 关注 2 取消关注
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async followUser(kuroUid, data) {
+    return this.getData('followUser', kuroUid, data)
+  }
 }

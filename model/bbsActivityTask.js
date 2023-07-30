@@ -169,6 +169,8 @@ export async function doBbsActivityTask(uin, kuro_uid) {
             continue
           }
           await sleepAsync(getRandomInt(1000, 2000))
+          await kuroapi.getActivityTaskList(kuro_uid)
+          await sleepAsync(getRandomInt(1000, 2000))
           kuroapi.followUser(kuro_uid, {
             followUserId: followUserId,
             operateType: 2,
@@ -234,7 +236,7 @@ export async function doBbsActivityTask(uin, kuro_uid) {
       rsp_getActivityTaskList.data.taskMilestoneList[taskIndex]
     if (curTaskMilestone.status == 1) {
       noAnyPrize = false
-      doBbsActivityTaskRet += `${curTaskMilestone.prizeName}*${curTaskMilestone.prizeAmount}: `
+      doBbsActivityTaskRet += `${curTaskMilestone.milestoneCount}积分 - ${curTaskMilestone.prizeName}*${curTaskMilestone.prizeAmount}: `
       await sleepAsync(getRandomInt(1000, 3000))
       let rsp_receiveActivityTask = await kuroapi.receiveActivityTask(
         kuro_uid,
