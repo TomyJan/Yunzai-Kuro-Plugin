@@ -2,6 +2,7 @@ import chalk from 'chalk'
 import fs from 'node:fs'
 import schedule from 'node-schedule'
 import { doBBSDailyTask } from './bbsTask.js'
+import { doBbsActivityTask } from './bbsActivityTask.js'
 import { doPnsSignIn } from './gameSignIn.js'
 import {
   dataPath,
@@ -28,6 +29,11 @@ export async function initAutoTask() {
   logger.info(chalk.rgb(134, 142, 204)(`[库洛插件] 载入定时任务 bbsDailyTask`))
   schedule.scheduleJob('0 2 0 * * ? ', function () {
     bbsDailyTask()
+  })
+
+  logger.info(chalk.rgb(134, 142, 204)(`[库洛插件] 载入定时任务 bbsActivityTask`))
+  schedule.scheduleJob('0 2 5 * * ? ', function () {
+    bbsActivityTask()
   })
 
   logger.info(
@@ -105,6 +111,37 @@ async function bbsDailyTask() {
     await sendMsgFriend(gameSignUin, msg.trimEnd())
   }
   logger.info(`[库洛插件] 自动社区签到: 任务完成`)
+  return true
+}
+
+async function bbsActivityTask() {
+  logger.info(`[库洛插件] 自动活动任务开始...`)
+
+  const gameSignUins = fs
+    .readdirSync(dataPath + '/token')
+    .filter((file) => file.endsWith('.json'))
+
+  for (let i in gameSignUins) {
+    let gameSignUin = gameSignUins[i].replace('.json', '')
+    logger.info(`[库洛插件] 自动活动任务: 开始为 ${gameSignUin} 执行`)
+    let startTime = Date.now()
+    const tokenData = await getToken(gameSignUin)
+    const accNum = Object.keys(tokenData).length
+    let msg = '[库洛插件]自动活动任务\n\n'
+    for (const kuro_uid in tokenData) {
+      if (tokenData.hasOwnProperty(kuro_uid)) {
+        msg += await doBbsActivityTask(gameSignUin, kuro_uid)
+        // TODO: 没有活动时直接返回并且不推送消息
+        msg += '\n'
+      } else {
+        msg += `账号 ${kuro_uid}: \ntoken 格式错误\n\n`
+      }
+      await sleepAsync(getRandomInt(1000, 3000))
+    }
+    msg += `共用时 ${Math.floor((Date.now() - startTime) / 1000)}s\n`
+    await sendMsgFriend(gameSignUin, msg.trimEnd())
+  }
+  logger.info(`[库洛插件] 自动活动任务: 任务完成`)
   return true
 }
 
