@@ -64,8 +64,15 @@ export default class bbsActivityTask {
       this.e.reply('你并未绑定此库洛帐号, 请确认!')
       return false
     }
-    // TODO: 执行活动绑定逻辑
-    this.e.reply('前方施工中')
+
+    let kuroapi = new kuroApi(this.e.user_id)
+    // TODO: 没有活动时的返回处理
+    let serverId = 0
+    if (msg[1] == '星火') serverId = 1000
+    if (msg[1] == '信标') serverId = 1001
+    let rsp_activityBindRole = await kuroapi.activityBindRole(msg[0], {gameId: 2, serverId: serverId, roleId: msg[2]})
+    if (typeof rsp_activityBindRole == 'string') return this.e.reply(rsp_activityBindRole)
+    return this.e.reply(`绑定成功, 发送 #库街区一键活动 试试吧~`)
   }
 }
 
@@ -76,6 +83,7 @@ export default class bbsActivityTask {
  * @returns {string} 可以直接发送的签到结果
  */
 export async function doBbsActivityTask(uin, kuro_uid) {
+  // TODO: 没有活动时的返回处理
   let kuroapi = new kuroApi(uin)
   let doBbsActivityTaskRet = ''
   // getBindRoleInfo, 没绑定直接返回
@@ -84,9 +92,20 @@ export async function doBbsActivityTask(uin, kuro_uid) {
   if (rsp_getBindRoleInfo == `token 失效`) return `账号 ${kuro_uid}: \ntoken 失效\n`
   if (typeof rsp_getBindRoleInfo == 'string') return `账号 ${kuro_uid}: \n发生错误: ${rsp_getBindRoleInfo}\n`
   if(!rsp_getBindRoleInfo.data.haveBind) {
-    //
-    doBbsActivityTaskRet += `账号 ${kuro_uid}: \n未绑定游戏账号, 请前往库街区手动绑定或发送 #库街区活动${kuro_uid}绑定星火服12345678, 其中12345678替换为帐号已绑定的游戏 id, 可用 id 如下: \n` // TODO: 暂时没抓绑定账号的 API, 或许会去实现这个
-    // TODO: findRoleList 然后加入到文本
+    doBbsActivityTaskRet += `账号 ${kuro_uid}: \n未绑定游戏账号, 请前往库街区手动绑定或发送 #库街区活动${kuro_uid}绑定星火服12345678, 其中12345678替换为帐号已绑定的游戏 id, 可用 id : \n`
+    let rsp_findRoleList = await kuroapi.findRoleList(kuro_uid, {gameId: 2})
+    if(typeof rsp_findRoleList == 'string') {
+      doBbsActivityTaskRet += `获取失败: ${rsp_findRoleList}\n`
+      return doBbsActivityTaskRet
+    }
+    if(rsp_findRoleList.data.length == 0) {
+      doBbsActivityTaskRet += `暂未绑定任何角色\n`
+      return doBbsActivityTaskRet
+    }
+    for(let roleIndex in rsp_findRoleList.data) {
+      let curRole = rsp_findRoleList.data[roleIndex]
+      doBbsActivityTaskRet += `${curRole.serverName} - ${curRole.roleName}(${curRole.roleId})\n`
+    }
     return doBbsActivityTaskRet
   }
   doBbsActivityTaskRet += `账号 ${kuro_uid}: \n绑定角色: ${rsp_getBindRoleInfo.data.serverName} - ${rsp_getBindRoleInfo.data.roleName}(${rsp_getBindRoleInfo.data.roleId})\n`

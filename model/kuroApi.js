@@ -273,4 +273,15 @@ export default class kuroApi {
     data.gameId = 2
     return this.getData('receiveActivityTask', kuroUid, data)
   }
+
+  /**
+   * 活动绑定游戏角色, 暂时写死游戏 id
+   * @param {string} kuroUid 库洛 ID
+   * @param {object} data 传入 data.roleId 游戏账号 id data.serverId 游戏服务器 id
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async activityBindRole(kuroUid, data) {
+    data.gameId = 2
+    return this.getData('activityBindRole', kuroUid, data)
+  }
 }
