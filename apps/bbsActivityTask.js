@@ -17,14 +17,25 @@ export class bbsActivityTask extends plugin {
           reg: '^#?(库街区|库洛|战双)一键活动(任务)?$',
           fnc: 'bbsActivityTask',
         },
+        {
+          reg: '^#?(库街区|库洛|战双)活动(.*)绑定(星火|信标)服(.*)$',
+          fnc: 'bbsActivityTaskBind',
+        },
       ],
     })
   }
 
   async bbsActivityTask(e) {
     let bbsAct = new bbsActivity(e)
-    await bbsAct.bbsActivityTask(e.user_id)
+    await bbsAct.bbsActivityTask()
     return true
   }
+
+  async bbsActivityTaskBind(e) {
+    let bbsAct = new bbsActivity(e)
+    await bbsAct.bbsActivityTaskBind()
+    return true
+  }
+
 
 }

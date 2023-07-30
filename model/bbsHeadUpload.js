@@ -1,5 +1,4 @@
 import fetch from 'node-fetch'
-import FormData from 'form-data'
 import { getToken } from './kuroBBSTokenHandler.js'
 import { sendForwardMsg } from './utils.js'
 import kuroApi from './kuroApi.js'
@@ -89,7 +88,6 @@ export default class bbsHeadUpload {
       this.e.reply('你并未绑定此 ID, 请确认!')
       return false
     }
-    const tokenData = tokensData[msg[0]].token
     const image = await this.downloadImage(msg[1])
 
     let kuroapi = new kuroApi(this.e.user_id)

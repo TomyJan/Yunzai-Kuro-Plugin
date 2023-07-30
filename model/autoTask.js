@@ -145,7 +145,7 @@ export async function checkUpdateTask() {
       logger.error('读取 versionCache.json 时出现错误：', err.message)
     }
 
-    if (versionCache?.remoteVersion == pluginVer) {
+    if (versionCache?.remoteVersion == remoteVersion) {
       logger.mark('该版本已经推送过')
       return false
     }
