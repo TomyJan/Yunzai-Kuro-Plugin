@@ -284,4 +284,22 @@ export default class kuroApi {
     data.gameId = 2
     return this.getData('activityBindRole', kuroUid, data)
   }
+
+  /**
+   * 取活动奖券数量
+   * @param {string} kuroUid 库洛 ID
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async getActivityLotteryRemain(kuroUid) {
+    return this.getData('getActivityLotteryRemain', kuroUid, {})
+  }
+
+  /**
+   * 执行活动抽奖, 暂时写死游戏 id
+   * @param {string} kuroUid 库洛 ID
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async doActivityLottery(kuroUid) {
+    return this.getData('doActivityLottery', kuroUid, {gameId: 2})
+  }
 }

@@ -158,6 +158,16 @@ export default class kuroApiHandler {
         url: `${this.kuroApiUrl}/activity/gamer/role/bindRole`,
         body: `gameId=${data.gameId}&roleId=${data.roleId}&serverId=${data.serverId}&userId=${kuroUid}`,
       },
+      getActivityLotteryRemain: {
+        // 取活动奖券数量
+        url: `${this.kuroApiUrl}/activity/lottery/getRemain`,
+        body: ``,
+      },
+      doActivityLottery: {
+        // 执行活动抽奖
+        url: `${this.kuroApiUrl}/activity/lottery/start`,
+        body: `userId=${kuroUid}&gameId=${data.gameId}`,
+      },
     }
     if (!ApiMap[ApiName]) return false
     let {
@@ -190,6 +200,8 @@ export default class kuroApiHandler {
         'completeActivityTask',
         'receiveActivityTask',
         'activityBindRole',
+        'getActivityLotteryRemain',
+        'doActivityLottery',
       ].includes(ApiName)
     ) {
       // 这些 API 请求头是浏览器的

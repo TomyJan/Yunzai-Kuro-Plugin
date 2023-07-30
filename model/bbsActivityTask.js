@@ -131,7 +131,6 @@ export async function doBbsActivityTask(uin, kuro_uid) {
     let curTask = rsp_getActivityTaskList.data.taskList[taskIndex]
     doBbsActivityTaskRet += curTask.taskName + ': '
 
-    let rsp_completeActivityTask = ''
     if ([2, 3, 4].includes(curTask.type)) {
       if (curTask.status == 0) {
         // 手动完成特定版本活动任务
@@ -178,7 +177,7 @@ export async function doBbsActivityTask(uin, kuro_uid) {
       }
     } else if (curTask.status == 0) {
       // 可以自动做, 且还未完成的任务
-      rsp_completeActivityTask = await kuroapi.completeActivityTask(kuro_uid, {
+      let rsp_completeActivityTask = await kuroapi.completeActivityTask(kuro_uid, {
         taskId: curTask.taskId,
       })
       if (typeof rsp_completeActivityTask == 'string') {
@@ -206,10 +205,59 @@ export async function doBbsActivityTask(uin, kuro_uid) {
     if (curTask.status == 2) doBbsActivityTaskRet += `已领取\n`
   }
 
-  // 取任务列表
-  // 里程碑, 满足就领不满足就返回
-  //
-  //
-  //
-  return doBbsActivityTaskRet
+  // 刷新一下任务列表, 领里程碑奖励
+  doBbsActivityTaskRet += `\n`
+  rsp_getActivityTaskList = await kuroapi.getActivityTaskList(kuro_uid)
+  logger.mark(
+    'rsp_getActivityTaskList ' + JSON.stringify(rsp_getActivityTaskList)
+  )
+  let noAnyPrize = true
+  if (typeof rsp_getActivityTaskList == 'string') {
+    doBbsActivityTaskRet += `刷新任务列表失败: ${rsp_getActivityTaskList}, 取消里程碑奖励领取\n`
+    return doBbsActivityTaskRet
+  }
+  doBbsActivityTaskRet += `里程碑奖励: \n`
+  for (let taskIndex in rsp_getActivityTaskList.data.taskMilestoneList) {
+    let curTaskMilestone = rsp_getActivityTaskList.data.taskMilestoneList[taskIndex]
+    if (curTaskMilestone.status == 1){
+      noAnyPrize = false
+      doBbsActivityTaskRet += `${curTaskMilestone.prizeName}*${curTaskMilestone.prizeAmount}: `
+      let rsp_receiveActivityTask = await kuroapi.receiveActivityTask(
+        kuro_uid,
+        { taskId: curTaskMilestone.taskId }
+      )
+      if (typeof rsp_receiveActivityTask == 'string') {
+        doBbsActivityTaskRet += `领取失败: ${rsp_receiveActivityTask}\n`
+        continue
+      }
+      doBbsActivityTaskRet += `领取成功\n`
+    }
+
+  }
+  if(noAnyPrize) doBbsActivityTaskRet += `无可领取的里程碑奖励\n`
+
+  // 抽奖
+  doBbsActivityTaskRet += `\n`
+  // 取奖券数量
+  let rsp_getActivityLotteryRemain = await kuroapi.getActivityLotteryRemain(kuro_uid)
+  if (typeof rsp_getActivityLotteryRemain == 'string') {
+    doBbsActivityTaskRet += `获取奖券数量失败: ${rsp_getActivityLotteryRemain}, 取消自动抽奖\n`
+    return doBbsActivityTaskRet
+  }
+  doBbsActivityTaskRet += `奖券数量: ${rsp_getActivityLotteryRemain.data.remainCount}\n`
+  if(rsp_getActivityLotteryRemain.data.remainCount > 0){
+    // 自动抽奖
+    for(let i = 0; i < rsp_getActivityLotteryRemain.data.remainCount; i++){
+      let rsp_doActivityLottery = await kuroapi.doActivityLottery(kuro_uid)
+      if (typeof rsp_doActivityLottery == 'string') {
+        doBbsActivityTaskRet += `抽奖失败: ${rsp_doActivityLottery}\n`
+        return doBbsActivityTaskRet
+      }
+      // TODO: 解析这里的结果
+      doBbsActivityTaskRet += `抽奖获得: ${JSON.stringify(rsp_doActivityLottery.data)}\n`
+    }
+    
+  }
+
+  return doBbsActivityTaskRet + `\n`
 }
