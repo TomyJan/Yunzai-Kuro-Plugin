@@ -300,6 +300,6 @@ export default class kuroApi {
    * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
    */
   async doActivityLottery(kuroUid) {
-    return this.getData('doActivityLottery', kuroUid, {gameId: 2})
+    return this.getData('doActivityLottery', kuroUid, { gameId: 2 })
   }
 }

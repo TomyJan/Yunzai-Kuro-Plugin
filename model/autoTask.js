@@ -31,7 +31,9 @@ export async function initAutoTask() {
     bbsDailyTask()
   })
 
-  logger.info(chalk.rgb(134, 142, 204)(`[库洛插件] 载入定时任务 bbsActivityTask`))
+  logger.info(
+    chalk.rgb(134, 142, 204)(`[库洛插件] 载入定时任务 bbsActivityTask`)
+  )
   schedule.scheduleJob('0 2 5 * * ? ', function () {
     bbsActivityTask()
   })
