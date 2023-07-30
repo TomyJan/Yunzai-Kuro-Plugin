@@ -157,7 +157,7 @@ export default class kuroApiHandler {
         // 活动绑定游戏角色
         url: `${this.kuroApiUrl}/activity/gamer/role/bindRole`,
         body: `gameId=${data.gameId}&roleId=${data.roleId}&serverId=${data.serverId}&userId=${kuroUid}`,
-      }
+      },
     }
     if (!ApiMap[ApiName]) return false
     let {
@@ -181,7 +181,17 @@ export default class kuroApiHandler {
    * @returns {object} 返回参数
    */
   getHeaders(ApiName, token) {
-    if (['initSignIn', 'gameSignIn', 'getBindRoleInfo', 'getActivityTaskList', 'completeActivityTask', 'receiveActivityTask', 'activityBindRole'].includes(ApiName)) {
+    if (
+      [
+        'initSignIn',
+        'gameSignIn',
+        'getBindRoleInfo',
+        'getActivityTaskList',
+        'completeActivityTask',
+        'receiveActivityTask',
+        'activityBindRole',
+      ].includes(ApiName)
+    ) {
       // 这些 API 请求头是浏览器的
       let headers = {
         pragma: 'no-cache',

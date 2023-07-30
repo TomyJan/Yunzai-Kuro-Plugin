@@ -36,6 +36,4 @@ export class bbsActivityTask extends plugin {
     await bbsAct.bbsActivityTaskBind()
     return true
   }
-
-
 }

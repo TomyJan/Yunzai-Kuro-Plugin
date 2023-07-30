@@ -40,11 +40,12 @@ export default class bbsActivityTask {
   }
 
   async bbsActivityTaskBind() {
-    let msg = this.e.msg.replace(/,|，/g, ',')
-    .replace(/库街区|库洛|战双|活动/g, '')
-    .replace(/#| /g, '')
-    .replace(/绑定/g, '服')
-    .split('服')
+    let msg = this.e.msg
+      .replace(/,|，/g, ',')
+      .replace(/库街区|库洛|战双|活动/g, '')
+      .replace(/#| /g, '')
+      .replace(/绑定/g, '服')
+      .split('服')
 
     if (msg.length != 3 || msg[0] == '' || msg[1] == '' || msg[2] == '') {
       this.e.reply('参数不完整')
@@ -70,8 +71,13 @@ export default class bbsActivityTask {
     let serverId = 0
     if (msg[1] == '星火') serverId = 1000
     if (msg[1] == '信标') serverId = 1001
-    let rsp_activityBindRole = await kuroapi.activityBindRole(msg[0], {gameId: 2, serverId: serverId, roleId: msg[2]})
-    if (typeof rsp_activityBindRole == 'string') return this.e.reply(rsp_activityBindRole)
+    let rsp_activityBindRole = await kuroapi.activityBindRole(msg[0], {
+      gameId: 2,
+      serverId: serverId,
+      roleId: msg[2],
+    })
+    if (typeof rsp_activityBindRole == 'string')
+      return this.e.reply(rsp_activityBindRole)
     return this.e.reply(`绑定成功, 发送 #库街区一键活动 试试吧~`)
   }
 }
@@ -89,20 +95,22 @@ export async function doBbsActivityTask(uin, kuro_uid) {
   // getBindRoleInfo, 没绑定直接返回
   let rsp_getBindRoleInfo = await kuroapi.getBindRoleInfo(kuro_uid)
   logger.mark('rsp_getBindRoleInfo ' + JSON.stringify(rsp_getBindRoleInfo))
-  if (rsp_getBindRoleInfo == `token 失效`) return `账号 ${kuro_uid}: \ntoken 失效\n`
-  if (typeof rsp_getBindRoleInfo == 'string') return `账号 ${kuro_uid}: \n发生错误: ${rsp_getBindRoleInfo}\n`
-  if(!rsp_getBindRoleInfo.data.haveBind) {
+  if (rsp_getBindRoleInfo == `token 失效`)
+    return `账号 ${kuro_uid}: \ntoken 失效\n`
+  if (typeof rsp_getBindRoleInfo == 'string')
+    return `账号 ${kuro_uid}: \n发生错误: ${rsp_getBindRoleInfo}\n`
+  if (!rsp_getBindRoleInfo.data.haveBind) {
     doBbsActivityTaskRet += `账号 ${kuro_uid}: \n未绑定游戏账号, 请前往库街区手动绑定或发送 #库街区活动${kuro_uid}绑定星火服12345678, 其中12345678替换为帐号已绑定的游戏 id, 可用 id : \n`
-    let rsp_findRoleList = await kuroapi.findRoleList(kuro_uid, {gameId: 2})
-    if(typeof rsp_findRoleList == 'string') {
+    let rsp_findRoleList = await kuroapi.findRoleList(kuro_uid, { gameId: 2 })
+    if (typeof rsp_findRoleList == 'string') {
       doBbsActivityTaskRet += `获取失败: ${rsp_findRoleList}\n`
       return doBbsActivityTaskRet
     }
-    if(rsp_findRoleList.data.length == 0) {
+    if (rsp_findRoleList.data.length == 0) {
       doBbsActivityTaskRet += `暂未绑定任何角色\n`
       return doBbsActivityTaskRet
     }
-    for(let roleIndex in rsp_findRoleList.data) {
+    for (let roleIndex in rsp_findRoleList.data) {
       let curRole = rsp_findRoleList.data[roleIndex]
       doBbsActivityTaskRet += `${curRole.serverName} - ${curRole.roleName}(${curRole.roleId})\n`
     }
@@ -112,54 +120,68 @@ export async function doBbsActivityTask(uin, kuro_uid) {
 
   // getList 取活动列表, 成功了根据任务的 status 执行完成和领取
   let rsp_getActivityTaskList = await kuroapi.getActivityTaskList(kuro_uid)
-  logger.mark('rsp_getActivityTaskList ' + JSON.stringify(rsp_getActivityTaskList))
-  if(typeof rsp_getActivityTaskList == 'string') {
+  logger.mark(
+    'rsp_getActivityTaskList ' + JSON.stringify(rsp_getActivityTaskList)
+  )
+  if (typeof rsp_getActivityTaskList == 'string') {
     doBbsActivityTaskRet += `获取任务列表失败: ${rsp_getActivityTaskList}\n`
     return doBbsActivityTaskRet
   }
-  for(let taskIndex in rsp_getActivityTaskList.data.taskList) {
+  for (let taskIndex in rsp_getActivityTaskList.data.taskList) {
     let curTask = rsp_getActivityTaskList.data.taskList[taskIndex]
     doBbsActivityTaskRet += curTask.taskName + ': '
-    
+
     let rsp_completeActivityTask = ''
-    if([2, 3, 4].includes(curTask.type)) {
-      if(curTask.status == 0) {
-      // 手动完成特定版本活动任务
-      if (curTask.type == 4) { // 帖子浏览任务
-        let rsp_getPostDetail = await kuroapi.getPostDetail(kuro_uid, {postId: '1134959614593597440'})
-        if (typeof rsp_getPostDetail == 'string') {
-          doBbsActivityTaskRet += `完成失败: ${rsp_getPostDetail}\n`
-          continue
+    if ([2, 3, 4].includes(curTask.type)) {
+      if (curTask.status == 0) {
+        // 手动完成特定版本活动任务
+        if (curTask.type == 4) {
+          // 帖子浏览任务
+          let rsp_getPostDetail = await kuroapi.getPostDetail(kuro_uid, {
+            postId: '1134959614593597440',
+          })
+          if (typeof rsp_getPostDetail == 'string') {
+            doBbsActivityTaskRet += `完成失败: ${rsp_getPostDetail}\n`
+            continue
+          }
+          curTask.status = 1
         }
-        curTask.status = 1
-      }
-      if (curTask.type == 3) { // 关注任务
-        // TODO: 自动搜索用户名并关注
-        let followUserId = 0
-        if(curTask.taskName == '关注赛利卡') followUserId = 10002006
-        if(curTask.taskName == '关注战双帕弥什') followUserId = 10001001
-        if(!followUserId) {
-          doBbsActivityTaskRet += `未完成且暂不可自动完成\n`
-          continue
+        if (curTask.type == 3) {
+          // 关注任务
+          // TODO: 自动搜索用户名并关注
+          let followUserId = 0
+          if (curTask.taskName == '关注赛利卡') followUserId = 10002006
+          if (curTask.taskName == '关注战双帕弥什') followUserId = 10001001
+          if (!followUserId) {
+            doBbsActivityTaskRet += `未完成且暂不可自动完成\n`
+            continue
+          }
+          let rsp_followUser = await kuroapi.followUser(kuro_uid, {
+            followUserId: followUserId,
+            operateType: 1,
+          })
+          if (typeof rsp_followUser == 'string') {
+            doBbsActivityTaskRet += `完成失败: ${rsp_followUser}\n`
+            continue
+          }
+          kuroapi.followUser(kuro_uid, {
+            followUserId: followUserId,
+            operateType: 2,
+          }) // 毁尸灭迹
+          curTask.status = 1
         }
-        let rsp_followUser = await kuroapi.followUser(kuro_uid, {followUserId: followUserId, operateType: 1})
-        if (typeof rsp_followUser == 'string') {
-          doBbsActivityTaskRet += `完成失败: ${rsp_followUser}\n`
-          continue
-        }
-        kuroapi.followUser(kuro_uid, {followUserId: followUserId, operateType: 2}) // 毁尸灭迹
-        curTask.status = 1
       }
-      }
-      if(curTask.status == 0) {
-        doBbsActivityTaskRet += curTask.type == 2 ? `未完成\n` : `未完成且不可自动完成\n`
+      if (curTask.status == 0) {
+        doBbsActivityTaskRet +=
+          curTask.type == 2 ? `未完成\n` : `未完成且不可自动完成\n`
         continue
       }
-
-    } else if(curTask.status == 0) {
+    } else if (curTask.status == 0) {
       // 可以自动做, 且还未完成的任务
-      rsp_completeActivityTask = await kuroapi.completeActivityTask(kuro_uid, {taskId: curTask.taskId})
-      if(typeof rsp_completeActivityTask == 'string') {
+      rsp_completeActivityTask = await kuroapi.completeActivityTask(kuro_uid, {
+        taskId: curTask.taskId,
+      })
+      if (typeof rsp_completeActivityTask == 'string') {
         doBbsActivityTaskRet += `完成失败: ${rsp_completeActivityTask}\n`
         continue
       }
@@ -168,9 +190,12 @@ export async function doBbsActivityTask(uin, kuro_uid) {
     }
 
     // 如果任务待领取, 或者刚刚完成了
-    if(curTask.status == 1){
-      let rsp_receiveActivityTask = await kuroapi.receiveActivityTask(kuro_uid, {taskId: curTask.taskId})
-      if(typeof rsp_receiveActivityTask == 'string') {
+    if (curTask.status == 1) {
+      let rsp_receiveActivityTask = await kuroapi.receiveActivityTask(
+        kuro_uid,
+        { taskId: curTask.taskId }
+      )
+      if (typeof rsp_receiveActivityTask == 'string') {
         doBbsActivityTaskRet += `领取失败: ${rsp_receiveActivityTask}\n`
         continue
       }
@@ -178,7 +203,7 @@ export async function doBbsActivityTask(uin, kuro_uid) {
     }
 
     // 任务领取过了
-    if(curTask.status == 2) doBbsActivityTaskRet += `已领取\n`
+    if (curTask.status == 2) doBbsActivityTaskRet += `已领取\n`
   }
 
   // 取任务列表
@@ -187,5 +212,4 @@ export async function doBbsActivityTask(uin, kuro_uid) {
   //
   //
   return doBbsActivityTaskRet
-
 }

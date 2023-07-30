@@ -140,7 +140,12 @@ export async function checkUpdateTask() {
 
     try {
       versionCache = fs.readFileSync(cacheFilePath, 'utf8')
-      logger.mark('读取 versionCache: ', versionCache, ', 解析到缓存的版本: ', JSON.parse(versionCache)?.remoteVersion)
+      logger.mark(
+        '读取 versionCache: ',
+        versionCache,
+        ', 解析到缓存的版本: ',
+        JSON.parse(versionCache)?.remoteVersion
+      )
     } catch (err) {
       logger.error('读取 versionCache.json 时出现错误：', err.message)
     }
