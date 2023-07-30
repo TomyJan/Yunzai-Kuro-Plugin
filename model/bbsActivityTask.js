@@ -272,7 +272,8 @@ export async function doBbsActivityTask(uin, kuro_uid) {
         doBbsActivityTaskRet += `抽奖失败: ${rsp_doActivityLottery}\n`
         return doBbsActivityTaskRet
       }
-      doBbsActivityTaskRet += `抽奖获得: ${rsp_doActivityLottery.data.prizeName}*${rsp_doActivityLottery.data.prizeCount}\n`}
+      doBbsActivityTaskRet += `抽奖获得: ${rsp_doActivityLottery.data.prizeName}*${rsp_doActivityLottery.data.prizeCount}\n`
+    }
   }
 
   return doBbsActivityTaskRet + `\n`
