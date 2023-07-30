@@ -15,6 +15,9 @@
     - icon: kurocorn
       title: "#库街区每日"
       desc: 完成库街区日常任务
+    - icon: pns
+      title: "#库街区一键活动"
+      desc: 一键完成库街区活动任务
 - group: 游戏查询
   list:
     - icon: pns
