@@ -23,7 +23,7 @@ export default class bbsActivityTask {
       for (const kuro_uid in tokenData) {
         if (tokenData.hasOwnProperty(kuro_uid)) {
           msg += await doBbsActivityTask(this.e.user_id, kuro_uid)
-          if(/活动已结束/.test(msg)) return await this.e.reply('活动已结束')
+          if (/活动已结束/.test(msg)) return await this.e.reply('活动已结束')
           msg += `\n`
         } else {
           msg += `账号 ${kuro_uid}: \ntoken 格式错误\n\n`
@@ -96,7 +96,7 @@ export async function doBbsActivityTask(uin, kuro_uid) {
   let doBbsActivityTaskRet = ''
   // 先检查, 没有活动时直接返回
   let rsp_getActivityTaskList = await kuroapi.getActivityTaskList(kuro_uid)
-  if(rsp_getActivityTaskList === '活动已结束') return rsp_getActivityTaskList
+  if (rsp_getActivityTaskList === '活动已结束') return rsp_getActivityTaskList
   // getBindRoleInfo, 没绑定直接返回
   let rsp_getBindRoleInfo = await kuroapi.getBindRoleInfo(kuro_uid)
   logger.mark('rsp_getBindRoleInfo ' + JSON.stringify(rsp_getBindRoleInfo))
