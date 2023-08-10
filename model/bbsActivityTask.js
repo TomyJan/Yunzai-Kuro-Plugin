@@ -23,6 +23,7 @@ export default class bbsActivityTask {
       for (const kuro_uid in tokenData) {
         if (tokenData.hasOwnProperty(kuro_uid)) {
           msg += await doBbsActivityTask(this.e.user_id, kuro_uid)
+          if(/活动已结束/.test(msg)) return await this.e.reply('活动已结束')
           msg += `\n`
         } else {
           msg += `账号 ${kuro_uid}: \ntoken 格式错误\n\n`
@@ -91,9 +92,11 @@ export default class bbsActivityTask {
  * @returns {string} 可以直接发送的签到结果
  */
 export async function doBbsActivityTask(uin, kuro_uid) {
-  // TODO: 没有活动时的返回处理
   let kuroapi = new kuroApi(uin)
   let doBbsActivityTaskRet = ''
+  // 先检查, 没有活动时直接返回
+  let rsp_getActivityTaskList = await kuroapi.getActivityTaskList(kuro_uid)
+  if(rsp_getActivityTaskList === '活动已结束') return rsp_getActivityTaskList
   // getBindRoleInfo, 没绑定直接返回
   let rsp_getBindRoleInfo = await kuroapi.getBindRoleInfo(kuro_uid)
   logger.mark('rsp_getBindRoleInfo ' + JSON.stringify(rsp_getBindRoleInfo))
@@ -122,7 +125,7 @@ export async function doBbsActivityTask(uin, kuro_uid) {
 
   // getList 取活动列表, 成功了根据任务的 status 执行完成和领取
   await sleepAsync(getRandomInt(1000, 3000))
-  let rsp_getActivityTaskList = await kuroapi.getActivityTaskList(kuro_uid)
+  rsp_getActivityTaskList = await kuroapi.getActivityTaskList(kuro_uid)
   logger.mark(
     'rsp_getActivityTaskList ' + JSON.stringify(rsp_getActivityTaskList)
   )

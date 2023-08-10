@@ -133,7 +133,7 @@ async function bbsActivityTask() {
     for (const kuro_uid in tokenData) {
       if (tokenData.hasOwnProperty(kuro_uid)) {
         msg += await doBbsActivityTask(gameSignUin, kuro_uid)
-        // TODO: 没有活动时直接返回并且不推送消息
+        if(/活动已结束/.test(msg)) return false 
         msg += '\n'
       } else {
         msg += `账号 ${kuro_uid}: \ntoken 格式错误\n\n`
