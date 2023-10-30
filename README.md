@@ -84,6 +84,8 @@ git -C ./plugins/Yunzai-Kuro-Plugin/ pull
 
 ### 咕咕咕
 
+(可能 11 月中下旬开始继续更新咕咕咕)
+
 - [x] 代码重构: 将所有fetch请求提取到一个方法
 - [ ] 代码重构: logger 套娃
 - [x] 检查更新通知
