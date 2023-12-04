@@ -153,9 +153,13 @@ export async function checkUpdateTask() {
   if (!remoteVersion) {
     remoteVersion = await getRemoteVersion('GHProxy')
     if (!remoteVersion) {
-      logger.warn(`[库洛插件] 检查更新任务失败`)
-      await sendMsgFriend(cfg.masterQQ[0], `[库洛插件]自动检查更新失败!`)
-      return false
+      remoteVersion = await getRemoteVersion('TomyJan')
+      if (!remoteVersion) {
+        logger.warn(`[库洛插件] 检查更新任务失败`)
+        await sendMsgFriend(cfg.masterQQ[0], `[库洛插件]自动检查更新失败!`)
+        return false
+      }
+      
     }
   }
   remoteVersion = remoteVersion.match(/\[(.*?)\]\(.*?\)/)[1] || false
@@ -212,10 +216,12 @@ export async function checkUpdateTask() {
   }
 
   async function getRemoteVersion(type) {
+    logger.debug(`[库洛插件] 尝试从 ${type} 检查更新...`)
     let checkUrl =
       'https://github.com/TomyJan/Yunzai-Kuro-Plugin/raw/master/CHANGELOG.md'
-    if (type == 'GHProxy') checkUrl = 'https://ghproxy.com/' + checkUrl
-    try {
+      if (type == 'GHProxy') checkUrl = 'https://mirror.ghproxy.com/' + checkUrl
+      if (type == 'TomyJan') checkUrl = 'https://www.tomys.top/yunzai-kuro-plug-vercheck'
+      try {
       let rsp = await fetch(checkUrl)
       if (!rsp.ok) {
         logger.warn(
