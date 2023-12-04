@@ -1,4 +1,14 @@
-## [0.1.5-dev](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.4-rel...v0.1.5-dev) (2023-08-10)
+## [0.1.5-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.4-rel...v0.1.5-rel) (2023-12-04)
+
+
+### Bug Fixes
+
+* 修复检查更新源&更多的flag ([bd903f6](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/bd903f6445e3864f2aec49e81e08c88181799fac))
+
+
+### Features
+
+* 库街区活动任务前先检查活动有效性&活动不存在就不推送自动签到结果 ([f0ff87d](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/f0ff87dc88858fd5021324116ae0d1aa4e826898))
 
 
 
