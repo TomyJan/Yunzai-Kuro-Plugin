@@ -220,7 +220,8 @@ export async function checkUpdateTask() {
       'https://raw.githubusercontent.com/TomyJan/Yunzai-Kuro-Plugin/master/CHANGELOG.md'
     if (type == 'GHProxy') checkUrl = 'https://mirror.ghproxy.com/' + checkUrl
     if (type == 'TomyJan')
-      checkUrl = 'https://proxy.vov.moe/https/raw.githubusercontent.com/TomyJan/Yunzai-Kuro-Plugin/master/CHANGELOG.md'
+      checkUrl =
+        'https://proxy.vov.moe/https/raw.githubusercontent.com/TomyJan/Yunzai-Kuro-Plugin/master/CHANGELOG.md'
     try {
       let rsp = await fetch(checkUrl)
       if (!rsp.ok) {
