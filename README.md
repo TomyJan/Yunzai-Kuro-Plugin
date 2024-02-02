@@ -92,7 +92,6 @@ git -C ./plugins/Yunzai-Kuro-Plugin/ pull
 - [ ] ~~token 刷新 (应该是用 refreshToken 但是抓不到包)~~ 库洛好像不再刷新 token 了
 - [ ] 大工程: 库街区角色信息查询
 - [ ] 战双签到 指令的时间估计
-- [ ] 修复 `库洛token登录`指令返回两条消息的问题
 - [ ] 增加 游戏签到 补签功能
 - [ ] 多uid切换
 ## 关于

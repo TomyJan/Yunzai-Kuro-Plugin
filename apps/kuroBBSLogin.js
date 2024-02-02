@@ -27,7 +27,7 @@ export class kuroBBSLogin extends plugin {
           fnc: 'tokenLoginHelp',
         },
         {
-          reg: new RegExp('^#?库洛token(.*)$', 's'),
+          reg: new RegExp('^#?库洛token(?!登录|绑定|登陆)(.*)$', 's'),
           fnc: 'tokenLoginResult',
         },
       ],
