@@ -217,21 +217,22 @@ export async function checkUpdateTask() {
   async function getRemoteVersion(type) {
     logger.debug(`[库洛插件] 尝试从 ${type} 检查更新...`)
     let checkUrl =
-      'https://github.com/TomyJan/Yunzai-Kuro-Plugin/raw/master/CHANGELOG.md'
+      'https://raw.githubusercontent.com/TomyJan/Yunzai-Kuro-Plugin/master/CHANGELOG.md'
     if (type == 'GHProxy') checkUrl = 'https://mirror.ghproxy.com/' + checkUrl
     if (type == 'TomyJan')
-      checkUrl = 'https://www.tomys.top/yunzai-kuro-plug-vercheck'
+      checkUrl = 'https://proxy.vov.moe/https/raw.githubusercontent.com/TomyJan/Yunzai-Kuro-Plugin/master/CHANGELOG.md'
     try {
       let rsp = await fetch(checkUrl)
       if (!rsp.ok) {
         logger.warn(
-          `[库洛插件] 从 ${type} 检查更新失败: ${rsp.status} ${rsp.statusText}`
+          `[库洛插件] 从 ${type} 获取更新信息失败: ${rsp.status} ${rsp.statusText}`
         )
         return false
       }
+      logger.info(`[库洛插件] 从 ${type} 获取更新信息成功, 尝试解析信息...`)
       return await rsp.text()
     } catch (error) {
-      logger.warn(`[库洛插件] 从 ${type} 检查更新失败: ${error.message}`)
+      logger.warn(`[库洛插件] 从 ${type} 获取更新信息失败: ${error.message}`)
       return false
     }
   }
