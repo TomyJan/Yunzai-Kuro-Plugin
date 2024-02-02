@@ -27,12 +27,12 @@ export async function getRandomInt(min, max) {
  * 获取当前月份天数
  * @returns {number} 当前月份天数
  */
-export async function mGetDate(){
-  var date = new Date();
-  var year = date.getFullYear();
-  var month = date.getMonth()+1;
-  var d = new Date(year, month, 0);
-  return d.getDate();
+export async function mGetDate() {
+  var date = new Date()
+  var year = date.getFullYear()
+  var month = date.getMonth() + 1
+  var d = new Date(year, month, 0)
+  return d.getDate()
 }
 
 /**

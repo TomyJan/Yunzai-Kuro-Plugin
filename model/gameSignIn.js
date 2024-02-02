@@ -109,9 +109,8 @@ export async function doPnsSignIn(uin, kuro_uid) {
       (rsp_initSignIn.data.omissionNnm !== 0
         ? `, 漏${rsp_initSignIn.data.omissionNnm}天`
         : rsp_initSignIn.data.sigInNum === mGetDate()
-          ? ', 达成全勤!'
-          : ''
-        ) +
+        ? ', 达成全勤!'
+        : '') +
       `\n`
 
     await sleepAsync(getRandomInt(1000, 3000))
