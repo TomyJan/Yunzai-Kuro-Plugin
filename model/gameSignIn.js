@@ -1,5 +1,5 @@
 import { getToken } from './kuroBBSTokenHandler.js'
-import { getRandomInt, sleepAsync } from './utils.js'
+import { getRandomInt, sleepAsync, mGetDate } from './utils.js'
 import kuroApi from './kuroApi.js'
 
 export default class gameSignIn {
@@ -108,7 +108,10 @@ export async function doPnsSignIn(uin, kuro_uid) {
       `, 本月签${rsp_initSignIn.data.sigInNum}天` +
       (rsp_initSignIn.data.omissionNnm !== 0
         ? `, 漏${rsp_initSignIn.data.omissionNnm}天`
-        : '') +
+        : rsp_initSignIn.data.sigInNum === mGetDate()
+          ? ', 达成全勤!'
+          : ''
+        ) +
       `\n`
 
     await sleepAsync(getRandomInt(1000, 3000))

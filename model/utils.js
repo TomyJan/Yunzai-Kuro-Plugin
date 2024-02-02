@@ -1,5 +1,10 @@
 import _ from 'lodash'
 
+/**
+ * 程序延时
+ * @param {number} sleepms 延时时间
+ * @returns {Promise<void>}
+ */
 export async function sleepAsync(sleepms) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -8,8 +13,26 @@ export async function sleepAsync(sleepms) {
   })
 }
 
-export function getRandomInt(min, max) {
+/**
+ * 获取随机整数
+ * @param {number} min 最小值
+ * @param {number} max 最大值
+ * @returns {number} 随机整数
+ */
+export async function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min
+}
+
+/**
+ * 获取当前月份天数
+ * @returns {number} 当前月份天数
+ */
+export async function mGetDate(){
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = date.getMonth()+1;
+  var d = new Date(year, month, 0);
+  return d.getDate();
 }
 
 /**
