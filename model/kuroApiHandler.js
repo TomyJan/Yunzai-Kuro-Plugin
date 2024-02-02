@@ -25,10 +25,10 @@ export default class kuroApiHandler {
       body: body,
       method: method,
     }
-    logger.info('url:    ' + url)
-    logger.info('header: ' + JSON.stringify(headers))
-    logger.info('body:   ' + body)
-    logger.info('method: ' + method)
+    // logger.info('url:    ' + url)
+    // logger.info('header: ' + JSON.stringify(headers))
+    // logger.info('body:   ' + body)
+    // logger.info('method: ' + method)
 
     let response = {}
     try {

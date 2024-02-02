@@ -89,17 +89,12 @@ git -C ./plugins/Yunzai-Kuro-Plugin/ pull
 - [ ] 代码重构: logger 套娃
 - [ ] 部分项目可配置化, 适配锅巴
 - [ ] 自动任务运行中记录运行进度, 以便重启后/第一次起洞时继续运行
-- [ ] 精简日志输出
 - [ ] ~~token 刷新 (应该是用 refreshToken 但是抓不到包)~~ 库洛好像不再刷新 token 了
 - [ ] 大工程: 库街区角色信息查询
-- [ ] 清理忘了删掉的日志输出http请求信息
-- [ ] 检查更新用自己域名代理或者其他方案
 - [ ] 战双签到 指令的时间估计
-- [ ] 修复 token 失效判定错误 (可能是用来判定的api不要ck了?)
-  ![image-20231116133326567](C:\Users\TomyJan\AppData\Roaming\Typora\typora-user-images\image-20231116133326567.png)
 - [ ] 修复 `库洛token登录`指令返回两条消息的问题
 - [ ] 增加 游戏签到 补签功能
-
+- [ ] 多uid切换
 ## 关于
 
 ### 免责声明
