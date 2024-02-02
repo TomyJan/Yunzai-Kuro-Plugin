@@ -1,3 +1,7 @@
+## [0.1.6-dev](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.5-rel...v0.1.6-dev) (2024-02-02)
+
+
+
 ## [0.1.5-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.4-rel...v0.1.5-rel) (2023-12-04)
 
 
@@ -65,7 +69,7 @@
 
 
 
-## [0.1.1-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.0-rel...v0.1.1-rel) (2023-07-27)
+## [0.1.1-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.0-rel...v0.1.1-rel) (2023-07-26)
 
 
 ### Bug Fixes
@@ -76,7 +80,7 @@
 
 
 
-## [0.1.0-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.0.3-rel...v0.1.0-rel) (2023-07-26)
+# [0.1.0-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.0.3-rel...v0.1.0-rel) (2023-07-26)
 
 
 ### Features
@@ -106,17 +110,6 @@
 ### Performance Improvements
 
 * 修改一些报错逻辑 ([2d21b25](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/2d21b252dc33aebd5c1ec9f0cf4532a84a2c82a4))
-
-
-### Refactor
-
-* 完成 重构 http 请求 ([02cc2f0](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/02cc2f0929d44dc40bac74e0cc32e98225fef9dd))
-* 重构 http 请求 part 6 ([06b6f55](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/06b6f55af965b5bc365bd3763464c391ba0d9140))
-* 重构 http 请求 part 4 ([f8fce9c](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/f8fce9c991899b47b6825ea4584ee1164f28e8d1))
-* 重构 http 请求 part 4 ([19d51e0](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/19d51e0d1e190164f4314f04331bfeb52863dc4e))
-* 重构 http 请求 part 3 ([bca95fa](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/bca95fa15d6c170604ee184771927543b688dc9e))
-* 重构 http 请求 part 2 ([9dbf656](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/9dbf656d3febae60733ad2f3039e9043ddb8ea01))
-* 重构 http 请求 part 1 ([1c67301](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/1c67301a3f4696a0438a7ff11f13851ee6b04976))
 
 
 ### Reverts
