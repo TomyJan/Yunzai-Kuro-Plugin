@@ -8,7 +8,7 @@
 
 [Yunzai-Kuro-Plugin(库洛插件)](https://github.com/TomyJan/Yunzai-Kuro-Plugin) 是 [Yunzai-Bot](https://github.com/yoimiya-kokomi/Miao-Yunzai) 的 一个插件, 主要提供 库洛游戏 相关功能
 
-> js真你妈难写, 操
+> ~~js真你妈难写, 操~~ 我现在体会到 js 的乐趣了
 
 ## 安装与维护
 
