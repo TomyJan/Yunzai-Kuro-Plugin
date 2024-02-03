@@ -1,5 +1,6 @@
 {
   "logger": {
-    "logLevel": "info"
+    "logLevel": "info",
+    "saveToFile": true
   }
 }

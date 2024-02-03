@@ -22,31 +22,35 @@ class Logger {
   }
 
   logMessage(message, logType = 'INFO ') {
-    const timestamp = new Date().toISOString()
     const baseLogContent = `[${logType} ] ${message}`
-    const logToFile = `[${timestamp}] ${baseLogContent}`
     const logToConsole = `[库洛插件]${baseLogContent}`
-    const currentLogFilePath = path.join(this.logDirectory, this.currentLogFile)
-
-    if (fs.existsSync(currentLogFilePath)) {
-      const stats = fs.statSync(currentLogFilePath)
-      if (stats.size >= this.maxLogFileSize) {
-        this.currentLogFile = this.generateLogFileName()
-      }
-    }
-
-    fs.appendFile(currentLogFilePath, logToFile + '\n', (err) => {
-      if (err) {
-        logger.info(
-          chalk.yellow(`[库洛插件][WARN  ] 写入日志文件时发生错误：${err}`)
-        )
-      }
-    })
 
     if (logType === 'INFO ') logger.info(chalk.white(logToConsole))
     if (logType === 'DEBUG') logger.info(chalk.gray(logToConsole))
     if (logType === 'WARN ') logger.warn(chalk.yellow(logToConsole))
     if (logType === 'ERROR') logger.error(chalk.red(logToConsole))
+
+    // 保存日志到文件
+    if(config.logger.saveToFile) {
+      const timestamp = new Date().toISOString()
+      const logToFile = `[${timestamp}] ${baseLogContent}`
+      const currentLogFilePath = path.join(this.logDirectory, this.currentLogFile)
+
+      if (fs.existsSync(currentLogFilePath)) {
+        const stats = fs.statSync(currentLogFilePath)
+        if (stats.size >= this.maxLogFileSize) {
+          this.currentLogFile = this.generateLogFileName()
+        }
+      }
+  
+      fs.appendFile(currentLogFilePath, logToFile + '\n', (err) => {
+        if (err) {
+          logger.info(
+            chalk.yellow(`[库洛插件][WARN  ] 写入日志文件时发生错误：${err.message}`)
+          )
+        }
+      })
+    }
   }
 
   debug(...args) {

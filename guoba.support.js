@@ -63,6 +63,12 @@ export function supportGuoba() {
             placeholder: '读取失败',
           },
         },
+        {
+          field: 'logger.saveToFile',
+          label: '保存日志',
+          bottomHelpMessage: '将日志保存到文件',
+          component: 'Switch'
+        },
       ],
       // 获取配置数据方法（用于前端填充显示数据）
       getConfigData() {
