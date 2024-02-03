@@ -1,35 +1,32 @@
 import fs from 'fs'
+import chalk from 'chalk'
 
-export const pluginName = 'Yunzai-Kuro-Plugin'
-export const pluginPath = './plugins/' + pluginName
+// 插件目录
+export const pluginPath = './plugins/Yunzai-Kuro-Plugin'
+
+// 读取package.json文件
+const rawData = fs.readFileSync(pluginPath + '/package.json');
+const packageJson = JSON.parse(rawData);
+logger.info(JSON.stringify(packageJson))
+// 插件包信息
+export const pluginAuthor = packageJson.author || '获取失败'
+export const pluginName = packageJson.name || '获取失败'
+export const pluginNameReadable = '库洛插件'
+export const pluginVer = packageJson.version || 'unkVer'
+export const pluginDesc = packageJson.description || '获取失败'
+export const pluginRepo = packageJson.repository.url || 'Unknown'
+
+// 插件数据目录
 export const appsPath = pluginPath + '/apps'
 export const dataPath = pluginPath + '/data'
-export const _DataPath = `${process
+export const _DataPath = `${process // 绝对目录
   .cwd()
   .replace(/\\/g, '/')}/plugins/${pluginName}/data`
 export const resPath = pluginPath + '/resources'
-export const _ResPath = `${process
+export const _ResPath = `${process // 绝对目录
   .cwd()
   .replace(/\\/g, '/')}/plugins/${pluginName}/resources`
 const CHANGELOG_path = `${pluginPath}/CHANGELOG.md`
 
-var ver
-
-try {
-  if (
-    fs.existsSync(CHANGELOG_path) &&
-    fs.readFileSync(CHANGELOG_path, 'utf8') !== ''
-  ) {
-    const logText = fs.readFileSync(CHANGELOG_path, 'utf8') || ''
-
-    const vers = logText.match(/\[(.*?)\]\(.*?\)/)
-    ver = vers ? vers[1] : 'unkVer'
-  } else {
-    ver = 'unkVer'
-  }
-} catch (e) {
-  kuroLogger.error(`获取插件本地版本信息失败:`, e)
-  ver = 'unkVer'
-}
-
-export const pluginVer = ver
+// 其它信息
+export const pluginThemeColor = chalk.rgb(57, 197, 187)

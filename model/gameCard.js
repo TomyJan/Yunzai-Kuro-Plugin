@@ -1,3 +1,4 @@
+import kuroLogger from '../components/logger.js'
 import { getToken } from './kuroBBSTokenHandler.js'
 import {
   pluginName,

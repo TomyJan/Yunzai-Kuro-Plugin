@@ -1,4 +1,5 @@
 import fetch from 'node-fetch'
+import kuroLogger from '../components/logger.js'
 import { getToken } from './kuroBBSTokenHandler.js'
 import { sendForwardMsg } from './utils.js'
 import kuroApi from './kuroApi.js'

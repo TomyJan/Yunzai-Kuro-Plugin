@@ -1,8 +1,9 @@
-import { dataPath } from '../data/system/pluginConstants.js'
 import fs from 'node:fs'
 import _ from 'lodash'
 import YAML from 'yaml'
 import chokidar from 'chokidar'
+import kuroLogger from '../components/logger.js'
+import { dataPath } from '../data/system/pluginConstants.js'
 
 class dataHandler {
   constructor() {

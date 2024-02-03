@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import kuroLogger from '../components/logger.js'
 
 /**
  * 程序延时

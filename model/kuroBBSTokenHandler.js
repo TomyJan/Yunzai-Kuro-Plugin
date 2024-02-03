@@ -1,6 +1,7 @@
-import { dataPath } from '../data/system/pluginConstants.js'
 import fs from 'node:fs'
 import kuroApi from './kuroApi.js'
+import kuroLogger from '../components/logger.js'
+import { dataPath } from '../data/system/pluginConstants.js'
 
 /**
  * 检查 token 是否有效

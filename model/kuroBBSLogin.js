@@ -1,3 +1,4 @@
+import kuroLogger from '../components/logger.js'
 import kuroApi from './kuroApi.js'
 
 export default class kuroBBSLogin {

@@ -1,6 +1,7 @@
 import chalk from 'chalk'
 import fs from 'node:fs'
 import schedule from 'node-schedule'
+import kuroLogger from '../components/logger.js'
 import { doBBSDailyTask } from './bbsTask.js'
 import { doBbsActivityTask } from './bbsActivityTask.js'
 import { doPnsSignIn } from './gameSignIn.js'
@@ -8,6 +9,7 @@ import {
   dataPath,
   pluginVer,
   _DataPath,
+  pluginThemeColor
 } from '../data/system/pluginConstants.js'
 import { getRandomInt, sendMsgFriend, sleepAsync } from './utils.js'
 import { getToken } from '../model/kuroBBSTokenHandler.js'
@@ -15,31 +17,31 @@ import cfg from '../../../lib/config/config.js'
 
 export async function initAutoTask() {
   kuroLogger.info(
-    chalk.rgb(134, 142, 204)(`载入定时任务 gameSignTask:pns`)
+    pluginThemeColor(`载入定时任务 gameSignTask:pns`)
   )
   schedule.scheduleJob('0 2 0 * * ? ', function () {
     gameSignTask('pns')
   })
   kuroLogger.info(
-    chalk.rgb(134, 142, 204)(`载入定时任务 gameSignTask:mc`)
+    pluginThemeColor(`载入定时任务 gameSignTask:mc`)
   )
   schedule.scheduleJob('0 2 0 * * ? ', function () {
     gameSignTask('mc')
   })
-  kuroLogger.info(chalk.rgb(134, 142, 204)(`载入定时任务 bbsDailyTask`))
+  kuroLogger.info(pluginThemeColor(`载入定时任务 bbsDailyTask`))
   schedule.scheduleJob('0 2 0 * * ? ', function () {
     bbsDailyTask()
   })
 
   kuroLogger.info(
-    chalk.rgb(134, 142, 204)(`载入定时任务 bbsActivityTask`)
+    pluginThemeColor(`载入定时任务 bbsActivityTask`)
   )
   schedule.scheduleJob('0 2 5 * * ? ', function () {
     bbsActivityTask()
   })
 
   kuroLogger.info(
-    chalk.rgb(134, 142, 204)(`载入定时任务 checkUpdateTask`)
+    pluginThemeColor(`载入定时任务 checkUpdateTask`)
   )
   schedule.scheduleJob('0 0 6/12 * * ? ', function () {
     checkUpdateTask()

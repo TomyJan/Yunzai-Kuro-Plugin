@@ -1,4 +1,5 @@
 import fetch from 'node-fetch'
+import kuroLogger from '../components/logger.js'
 
 export default class kuroApiHandler {
   constructor() {
