@@ -13,7 +13,11 @@ class ConfigReader {
     try {
       if (!fs.existsSync(this.filePath)) {
         const defaultConfigPath = _DataPath + '/system/default_config.json'
-        fs.writeFileSync(this.filePath, fs.readFileSync(defaultConfigPath), 'utf8')
+        fs.writeFileSync(
+          this.filePath,
+          fs.readFileSync(defaultConfigPath),
+          'utf8'
+        )
       }
       const data = fs.readFileSync(this.filePath, 'utf8')
       const configObject = JSON.parse(data)
