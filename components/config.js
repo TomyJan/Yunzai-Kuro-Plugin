@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { _CfgPath } from '../data/system/pluginConstants.js'
+import { _CfgPath, _DataPath } from '../data/system/pluginConstants.js'
 import kuroLogger from './logger.js'
 
 class ConfigReader {
@@ -11,6 +11,10 @@ class ConfigReader {
 
   readConfig() {
     try {
+      if (!fs.existsSync(this.filePath)) {
+        const defaultConfigPath = _DataPath + '/system/default_config.json'
+        fs.writeFileSync(this.filePath, fs.readFileSync(defaultConfigPath), 'utf8')
+      }
       const data = fs.readFileSync(this.filePath, 'utf8')
       const configObject = JSON.parse(data)
       return configObject

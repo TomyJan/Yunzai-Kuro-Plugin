@@ -3,6 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import { dataPath } from '../data/system/pluginConstants.js'
 import config from './config.js'
+import { sleepAsync } from '../model/utils.js'
 
 class Logger {
   constructor(
@@ -104,7 +105,12 @@ class Logger {
 }
 
 // 初始化全局日志记录器实例
-const kuroLogger = new Logger(config.getConfig().logger.logLevel || 'info')
+const kuroLogger = new Logger(config.getConfig()?.logger?.logLevel || 'info')
 logger.info(chalk.gray(`[库洛插件][LOGGER] Logger initialized!`))
 
+while (typeof kuroLogger === 'undefined' || !(kuroLogger instanceof Logger)) {
+  // 类尚未初始化，可以加入适当的延时以避免阻塞主线程
+  // 例如：使用 setTimeout 或其他方式
+  sleepAsync(100)
+}
 export default kuroLogger
