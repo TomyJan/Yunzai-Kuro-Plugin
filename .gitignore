@@ -1,6 +1,9 @@
 # logs
 data/logs/
 
+# 配置文件
+config/
+
 # 用户信息
 data/token/
 data/system/versionCache.json

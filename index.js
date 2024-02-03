@@ -40,9 +40,8 @@ initAutoTask()
 
 kuroLogger.info(pluginThemeColor(`载入定时任务完成啦!`))
 
-kuroLogger.info(pluginThemeColor(`-----------检查更新-----------`))
-// 起洞就检查一下更新
-await checkUpdateTask()
-
 kuroLogger.info(pluginThemeColor('插件载入完成, 欢迎使用~'))
 kuroLogger.info(pluginThemeColor('=============================='))
+
+// 起洞就检查一下更新
+await checkUpdateTask()
