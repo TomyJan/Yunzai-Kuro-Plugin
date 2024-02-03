@@ -1,4 +1,24 @@
-## [0.1.6-dev](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.5-rel...v0.1.6-dev) (2024-02-02)
+## [0.1.6-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.5-rel...v0.1.6-rel) (2024-02-03)
+
+
+### Bug Fixes
+
+* 错误的命令正则导致`库洛token登录`指令的多条回复 ([e9cbe01](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/e9cbe01c035e635f88d27d7b9e7b67a67e826ba2))
+* 更换检查更新源, close [#2](https://github.com/TomyJan/Yunzai-Kuro-Plugin/issues/2) ([18c6d5b](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/18c6d5b46dd8ee4d890f5e51fa07c4a408e7c70d))
+* 删除多余调试日志输出 ([8785292](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/87852925b64db0d4eaf953d25cbf947cf547a65c))
+* 我现在体会到 js 的乐趣了 ([76a0680](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/76a0680a7694d12344a2601c70143aba6d300661))
+* 优化日志输出 ([c207329](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/c2073290c59d323359939ec68b12be15879ac8f4))
+
+
+### Features
+
+* [WIP]锅巴支持 ([cc27eb2](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/cc27eb2b09d597fb3a025df9bcbc5652c35f3c40))
+* 锅巴支持 ([a323d67](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/a323d67ac1d71219a5e38ccf359916488e8ec37a))
+* 可配置是否保存日志 ([6691431](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/6691431cd4037c7b12d394332358d212eef32881))
+* 游戏签到判断全勤增加提示 ([cd9adfb](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/cd9adfb6f55d0d2497036b4f7f3044fbd9744a9d))
+* 自定义日志等级支持 ([fb795c4](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/fb795c45d37da8da001b206c1830913cb21b5bfc))
+* 自动比较并更新配置文件 ([508bd8e](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/508bd8e5c71d792a4e821fa6e492c5c705e83156))
+* 自动任务执行时间可配置, Colse [#1](https://github.com/TomyJan/Yunzai-Kuro-Plugin/issues/1) ([9c471fa](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/9c471fa1d8df903cdea582c46b6e9532d0c0c0d9))
 
 
 
