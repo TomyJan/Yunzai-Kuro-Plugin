@@ -46,7 +46,7 @@ export default class kuroApiHandler {
     }
 
     let rsp = await response.json()
-    kuroLogger.debug('rsp:    ', JSON.stringify(rsp))
+    // kuroLogger.debug('rsp:    ', JSON.stringify(rsp))
     return rsp
   }
   /**

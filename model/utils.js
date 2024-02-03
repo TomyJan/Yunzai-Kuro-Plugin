@@ -49,7 +49,7 @@ export async function sendMsgFriend(uin, msg) {
     return await Bot.pickUser(uin)
       .sendMsg(msg)
       .catch((err) => {
-        kuroLogger.error('发送好友消息错误:', err)
+        kuroLogger.error('发送好友消息错误:', err.message)
       })
   } else {
     kuroLogger.warn(`${uin} 非好友, 无法推送签到消息`)
