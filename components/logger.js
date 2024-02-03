@@ -6,7 +6,7 @@ import config from './config.js'
 
 class Logger {
   constructor(
-    logLevel = config.logger.logLevel || 'info',
+    logLevel = config.getConfig().logger.logLevel || 'info',
     logDirectory = dataPath + '/logs'
   ) {
     this.logLevel = logLevel.toLowerCase()
@@ -31,7 +31,7 @@ class Logger {
     if (logType === 'ERROR') logger.error(chalk.red(logToConsole))
 
     // 保存日志到文件
-    if(config.logger.saveToFile) {
+    if(config.getConfig().logger.saveToFile) {
       const timestamp = new Date().toISOString()
       const logToFile = `[${timestamp}] ${baseLogContent}`
       const currentLogFilePath = path.join(this.logDirectory, this.currentLogFile)
@@ -99,8 +99,7 @@ class Logger {
 }
 
 // 初始化全局日志记录器实例
-console.log(JSON.stringify(config))
-const kuroLogger = new Logger(config.logger.logLevel || 'info')
+const kuroLogger = new Logger(config.getConfig().logger.logLevel || 'info')
 logger.info(chalk.gray(`[库洛插件][LOGGER] Logger initialized!`))
 
 export default kuroLogger

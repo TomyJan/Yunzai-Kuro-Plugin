@@ -35,4 +35,4 @@ class ConfigReader {
   }
 }
 
-export default new ConfigReader().readConfig()
+export default new ConfigReader()
