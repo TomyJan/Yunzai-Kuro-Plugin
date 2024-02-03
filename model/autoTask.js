@@ -14,23 +14,29 @@ import {
 import { getRandomInt, sendMsgFriend, sleepAsync } from './utils.js'
 import { getToken } from '../model/kuroBBSTokenHandler.js'
 import cfg from '../../../lib/config/config.js'
+import config from '../components/config.js'
 
 export async function initAutoTask() {
+  if(!config.getConfig().autoTask.enabled) {
+    kuroLogger.info(pluginThemeColor(`自动任务已被禁用, 取消载入定时任务`))
+    return false
+  }
+  const autoTaskTime = config.getConfig().autoTask.execTime
   kuroLogger.info(pluginThemeColor(`载入定时任务 gameSignTask:pns`))
-  schedule.scheduleJob('0 2 0 * * ? ', function () {
+  schedule.scheduleJob(autoTaskTime, function () {
     gameSignTask('pns')
   })
-  kuroLogger.info(pluginThemeColor(`载入定时任务 gameSignTask:mc`))
-  schedule.scheduleJob('0 2 0 * * ? ', function () {
-    gameSignTask('mc')
-  })
+  // kuroLogger.info(pluginThemeColor(`载入定时任务 gameSignTask:mc`))
+  // schedule.scheduleJob(autoTaskTime, function () {
+  //   gameSignTask('mc')
+  // })
   kuroLogger.info(pluginThemeColor(`载入定时任务 bbsDailyTask`))
-  schedule.scheduleJob('0 2 0 * * ? ', function () {
+  schedule.scheduleJob(autoTaskTime, function () {
     bbsDailyTask()
   })
 
   kuroLogger.info(pluginThemeColor(`载入定时任务 bbsActivityTask`))
-  schedule.scheduleJob('0 2 5 * * ? ', function () {
+  schedule.scheduleJob(autoTaskTime, function () {
     bbsActivityTask()
   })
 

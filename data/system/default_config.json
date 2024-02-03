@@ -2,5 +2,9 @@
   "logger": {
     "logLevel": "info",
     "saveToFile": true
+  },
+  "autoTask": {
+    "enabled": true,
+    "execTime": "0 2 0 * * ? "
   }
 }
