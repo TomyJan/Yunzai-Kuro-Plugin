@@ -1,17 +1,27 @@
 import path from 'path'
 import fs from 'fs'
-import { pluginName, pluginNameReadable, pluginAuthor, pluginRepo, pluginDesc, pluginThemeColor, _ResPath, _CfgPath, _DataPath } from './data/system/pluginConstants.js'
+import {
+  pluginName,
+  pluginNameReadable,
+  pluginAuthor,
+  pluginRepo,
+  pluginDesc,
+  pluginThemeColor,
+  _ResPath,
+  _CfgPath,
+  _DataPath,
+} from './data/system/pluginConstants.js'
 import kuroLogger from './components/logger.js'
 import { sendMsgFriend } from './model/utils.js'
 import cfg from '../../lib/config/config.js'
 
 // 支持锅巴
 export function supportGuoba() {
-  const configPath = path.join(_CfgPath, 'config.json');
-  const defaultConfigPath = path.join(_DataPath, 'system/default_config.json');
+  const configPath = path.join(_CfgPath, 'config.json')
+  const defaultConfigPath = path.join(_DataPath, 'system/default_config.json')
 
-  let configJson;
-  getConfigFromFile();
+  let configJson
+  getConfigFromFile()
   return {
     // 插件信息，将会显示在前端页面
     // 如果你的插件没有在插件库里，那么需要填上补充信息
@@ -48,10 +58,10 @@ export function supportGuoba() {
               { label: 'debug', value: 'debug' },
               { label: 'info', value: 'info' },
               { label: 'warn', value: 'warn' },
-              { label: 'error', value: 'error' }
+              { label: 'error', value: 'error' },
             ],
-            placeholder: '读取失败'
-          }
+            placeholder: '读取失败',
+          },
         },
       ],
       // 获取配置数据方法（用于前端填充显示数据）
@@ -59,15 +69,13 @@ export function supportGuoba() {
         return configJson
       },
       // 设置配置的方法（前端点确定后调用的方法）
-      setConfigData(data, {Result}) {
+      setConfigData(data, { Result }) {
         kuroLogger.info('设置配置数据:', JSON.stringify(data))
         configJson = flattenObject(data)
         kuroLogger.info('展开后的配置数据:', JSON.stringify(configJson))
         let saveRst = updateConfigFile()
-        if(saveRst)
-          return Result.error(saveRst)
-        else
-          return Result.ok({}, '保存成功辣ε(*´･ω･)з')
+        if (saveRst) return Result.error(saveRst)
+        else return Result.ok({}, '保存成功辣ε(*´･ω･)з')
       },
     },
   }
@@ -75,102 +83,103 @@ export function supportGuoba() {
   function getConfigFromFile() {
     try {
       // 尝试读取config.json
-      const rawData = fs.readFileSync(configPath);
-      configJson = JSON.parse(rawData);
+      const rawData = fs.readFileSync(configPath)
+      configJson = JSON.parse(rawData)
 
       // 读取 default_config.json
-      const defaultRawData = fs.readFileSync(defaultConfigPath);
-      const defaultConfigJson = JSON.parse(defaultRawData);
+      const defaultRawData = fs.readFileSync(defaultConfigPath)
+      const defaultConfigJson = JSON.parse(defaultRawData)
 
       // 比较配置文件更新
-      let testConfigJson = mergeObjects(defaultConfigJson, configJson);
+      let testConfigJson = mergeObjects(defaultConfigJson, configJson)
       if (testConfigJson !== configJson) {
-        kuroLogger.warn('配置文件有更新, 建议检查是否有新的项目需要配置!');
-        configJson = testConfigJson;
-        updateConfigFile();
-        sendMsgFriend(cfg.masterQQ[0], `[库洛插件] 配置文件有更新, 建议检查是否有新的项目需要配置!`)
+        kuroLogger.warn('配置文件有更新, 建议检查是否有新的项目需要配置!')
+        configJson = testConfigJson
+        updateConfigFile()
+        sendMsgFriend(
+          cfg.masterQQ[0],
+          `[库洛插件] 配置文件有更新, 建议检查是否有新的项目需要配置!`
+        )
       }
-
     } catch (error) {
       if (error.code === 'ENOENT') {
         // 如果config.json不存在，则从default_config.json复制一份
-        kuroLogger.warn('config.json 不存在, 生成默认配置...');
-        const defaultRawData = fs.readFileSync(defaultConfigPath);
-        fs.writeFileSync(configPath, defaultRawData);
-        configJson = JSON.parse(defaultRawData);
+        kuroLogger.warn('config.json 不存在, 生成默认配置...')
+        const defaultRawData = fs.readFileSync(defaultConfigPath)
+        fs.writeFileSync(configPath, defaultRawData)
+        configJson = JSON.parse(defaultRawData)
       } else {
         // 处理其他可能的读取错误
-        kuroLogger.error('读取 config.json 出错:', error.message);
+        kuroLogger.error('读取 config.json 出错:', error.message)
       }
     }
   }
 
-/**
- * 更新配置文件
- * @returns {string | null} 返回错误信息，如果成功则返回null
- */
+  /**
+   * 更新配置文件
+   * @returns {string | null} 返回错误信息，如果成功则返回null
+   */
   function updateConfigFile() {
     try {
-      fs.writeFileSync(configPath, JSON.stringify(configJson, null, 2));
-      kuroLogger.info('更新配置文件成功');
-      return null;
+      fs.writeFileSync(configPath, JSON.stringify(configJson, null, 2))
+      kuroLogger.info('更新配置文件成功')
+      return null
     } catch (error) {
-      let errMsg = '更新配置文件失败: ' + error.message;
-      kuroLogger.error(errMsg);
-      return errMsg;
+      let errMsg = '更新配置文件失败: ' + error.message
+      kuroLogger.error(errMsg)
+      return errMsg
     }
   }
 
-/**
- * 展开 json
- * @param {Object} inputJson 输入的 json
- * @returns {Object} 展开后的 json
- */
+  /**
+   * 展开 json
+   * @param {Object} inputJson 输入的 json
+   * @returns {Object} 展开后的 json
+   */
   function flattenObject(inputJson) {
-    const outputJson = {};
+    const outputJson = {}
 
     for (const key in inputJson) {
-        const keys = key.split('.');
-        let currentObject = outputJson;
+      const keys = key.split('.')
+      let currentObject = outputJson
 
-        for (let i = 0; i < keys.length; i++) {
-            const currentKey = keys[i];
-            if (!currentObject[currentKey]) {
-                currentObject[currentKey] = {};
-            }
-
-            if (i === keys.length - 1) {
-                // 最后一个键，赋予值
-                currentObject[currentKey] = inputJson[key];
-            } else {
-                // 还不是最后一个键，继续进入下一层对象
-                currentObject = currentObject[currentKey];
-            }
+      for (let i = 0; i < keys.length; i++) {
+        const currentKey = keys[i]
+        if (!currentObject[currentKey]) {
+          currentObject[currentKey] = {}
         }
+
+        if (i === keys.length - 1) {
+          // 最后一个键，赋予值
+          currentObject[currentKey] = inputJson[key]
+        } else {
+          // 还不是最后一个键，继续进入下一层对象
+          currentObject = currentObject[currentKey]
+        }
+      }
     }
 
-    return outputJson;
+    return outputJson
   }
 
-/**
- * 使用 newObj 补充 oldObj 缺失的字段
- * @param {Object} newObj 新对象
- * @param {Object} oldObj 旧对象
- * @returns {Object} 合并后的对象
- */
+  /**
+   * 使用 newObj 补充 oldObj 缺失的字段
+   * @param {Object} newObj 新对象
+   * @param {Object} oldObj 旧对象
+   * @returns {Object} 合并后的对象
+   */
   function mergeObjects(newObj, oldObj) {
-    let mergedObj = { ...oldObj };
+    let mergedObj = { ...oldObj }
     for (const key in newObj) {
-        if (typeof newObj[key] === 'object') {
-          if (!(key in mergedObj)) {
-            mergedObj[key] = {};
-          }
-          mergedObj[key] = mergeObjects(newObj[key], mergedObj[key]);
-        } else if (!(key in mergedObj)) {
-          mergedObj[key] = newObj[key];
+      if (typeof newObj[key] === 'object') {
+        if (!(key in mergedObj)) {
+          mergedObj[key] = {}
         }
+        mergedObj[key] = mergeObjects(newObj[key], mergedObj[key])
+      } else if (!(key in mergedObj)) {
+        mergedObj[key] = newObj[key]
+      }
     }
-    return mergedObj;
+    return mergedObj
   }
-
 }

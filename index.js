@@ -1,7 +1,10 @@
-
 import fs from 'node:fs'
 import kuroLogger from './components/logger.js'
-import { appsPath, pluginVer, pluginThemeColor } from './data/system/pluginConstants.js'
+import {
+  appsPath,
+  pluginVer,
+  pluginThemeColor,
+} from './data/system/pluginConstants.js'
 import { initAutoTask, checkUpdateTask } from './model/autoTask.js'
 
 kuroLogger.info(pluginThemeColor('============(≧∇≦)ﾉ============'))

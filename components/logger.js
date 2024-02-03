@@ -4,7 +4,10 @@ import path from 'path'
 import { dataPath, pluginVer } from '../data/system/pluginConstants.js'
 
 class Logger {
-  constructor(logLevel = pluginVer.slice(-3) ==='rel' ? 'info' : 'debug', logDirectory = dataPath + '/logs') {
+  constructor(
+    logLevel = pluginVer.slice(-3) === 'rel' ? 'info' : 'debug',
+    logDirectory = dataPath + '/logs'
+  ) {
     this.logLevel = logLevel.toLowerCase()
     this.logDirectory = logDirectory
     this.maxLogFileSize = 20 * 1024 * 1024 // 20 MB

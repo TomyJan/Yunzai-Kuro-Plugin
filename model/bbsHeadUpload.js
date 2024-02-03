@@ -103,9 +103,7 @@ export default class bbsHeadUpload {
       this.e.reply('图片上传失败: ' + rsp_uploadForumImg)
       return false
     }
-    kuroLogger.info(
-      '图片上传成功:', JSON.stringify(rsp_uploadForumImg)
-    )
+    kuroLogger.info('图片上传成功:', JSON.stringify(rsp_uploadForumImg))
     //this.e.reply('图片上传成功!')
 
     //上传图片成功, 开始更新头像

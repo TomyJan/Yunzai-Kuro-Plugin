@@ -127,7 +127,10 @@ export async function doBbsActivityTask(uin, kuro_uid) {
   // getList 取活动列表, 成功了根据任务的 status 执行完成和领取
   await sleepAsync(getRandomInt(1000, 3000))
   rsp_getActivityTaskList = await kuroapi.getActivityTaskList(kuro_uid)
-  kuroLogger.debug('rsp_getActivityTaskList:', JSON.stringify(rsp_getActivityTaskList))
+  kuroLogger.debug(
+    'rsp_getActivityTaskList:',
+    JSON.stringify(rsp_getActivityTaskList)
+  )
   if (typeof rsp_getActivityTaskList == 'string') {
     doBbsActivityTaskRet += `获取任务列表失败: ${rsp_getActivityTaskList}\n`
     return doBbsActivityTaskRet
@@ -224,7 +227,10 @@ export async function doBbsActivityTask(uin, kuro_uid) {
   doBbsActivityTaskRet += `\n`
   await sleepAsync(getRandomInt(500, 1000))
   rsp_getActivityTaskList = await kuroapi.getActivityTaskList(kuro_uid)
-  kuroLogger.debug('rsp_getActivityTaskList:', JSON.stringify(rsp_getActivityTaskList))
+  kuroLogger.debug(
+    'rsp_getActivityTaskList:',
+    JSON.stringify(rsp_getActivityTaskList)
+  )
   let noAnyPrize = true
   if (typeof rsp_getActivityTaskList == 'string') {
     doBbsActivityTaskRet += `刷新任务列表失败: ${rsp_getActivityTaskList}, 取消里程碑奖励领取\n`
