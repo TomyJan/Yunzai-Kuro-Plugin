@@ -31,10 +31,13 @@ class Logger {
     if (logType === 'ERROR') logger.error(chalk.red(logToConsole))
 
     // 保存日志到文件
-    if(config.getConfig().logger.saveToFile) {
+    if (config.getConfig().logger.saveToFile) {
       const timestamp = new Date().toISOString()
       const logToFile = `[${timestamp}] ${baseLogContent}`
-      const currentLogFilePath = path.join(this.logDirectory, this.currentLogFile)
+      const currentLogFilePath = path.join(
+        this.logDirectory,
+        this.currentLogFile
+      )
 
       if (fs.existsSync(currentLogFilePath)) {
         const stats = fs.statSync(currentLogFilePath)
@@ -42,11 +45,13 @@ class Logger {
           this.currentLogFile = this.generateLogFileName()
         }
       }
-  
+
       fs.appendFile(currentLogFilePath, logToFile + '\n', (err) => {
         if (err) {
           logger.info(
-            chalk.yellow(`[库洛插件][WARN  ] 写入日志文件时发生错误：${err.message}`)
+            chalk.yellow(
+              `[库洛插件][WARN  ] 写入日志文件时发生错误：${err.message}`
+            )
           )
         }
       })

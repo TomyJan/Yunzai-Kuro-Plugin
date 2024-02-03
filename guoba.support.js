@@ -49,7 +49,7 @@ export function supportGuoba() {
       schemas: [
         {
           component: 'Divider',
-          label: '日志设置'
+          label: '日志设置',
         },
         {
           field: 'logger.logLevel',
@@ -70,27 +70,31 @@ export function supportGuoba() {
         {
           field: 'logger.saveToFile',
           label: '保存日志',
-          helpMessage: '独立保存库洛插件的日志, 保存目录位于插件根目录 ./data/logs/',
+          helpMessage:
+            '独立保存库洛插件的日志, 保存目录位于插件根目录 ./data/logs/',
           bottomHelpMessage: '是否将日志保存到文件',
-          component: 'Switch'
+          component: 'Switch',
         },
         {
           component: 'Divider',
-          label: '自动任务设置'
+          label: '自动任务设置',
         },
         {
           field: 'autoTask.enabled',
           label: '启用自动任务',
-          helpMessage: '若关闭, 将一同关闭插件的检查更新任务, 但是插件每次被载入仍会检查更新',
+          helpMessage:
+            '若关闭, 将一同关闭插件的检查更新任务, 但是插件每次被载入仍会检查更新',
           bottomHelpMessage: '是否启用自动任务, 重启 Yunzai 生效',
-          component: 'Switch'
+          component: 'Switch',
         },
         {
           field: 'autoTask.execTime',
           label: '任务执行时间',
-          helpMessage: '默认为每天 00:02:00 自动执行, 暂不可配置检查更新任务(默认每天 6/18 点检查)',
-          bottomHelpMessage: '任务执行时间, <a href="https://www.runoob.com/linux/linux-comm-crontab.html" target="_blank">corntab 表达式</a>, 请<a href="https://tool.lu/crontab/" target="_blank">检查</a>后再保存, 重启 Yunzai 生效',
-          component: 'Input'
+          helpMessage:
+            '默认为每天 00:02:00 自动执行, 暂不可配置检查更新任务(默认每天 6/18 点检查)',
+          bottomHelpMessage:
+            '任务执行时间, <a href="https://www.runoob.com/linux/linux-comm-crontab.html" target="_blank">corntab 表达式</a>, 请<a href="https://tool.lu/crontab/" target="_blank">检查</a>后再保存, 重启 Yunzai 生效',
+          component: 'Input',
         },
       ],
       // 获取配置数据方法（用于前端填充显示数据）
