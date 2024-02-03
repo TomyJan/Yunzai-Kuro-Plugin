@@ -2,6 +2,8 @@ import path from 'path'
 import fs from 'fs'
 import { pluginName, pluginNameReadable, pluginAuthor, pluginRepo, pluginDesc, pluginThemeColor, _ResPath, _CfgPath, _DataPath } from './data/system/pluginConstants.js'
 import kuroLogger from './components/logger.js'
+import { sendMsgFriend } from './model/utils.js'
+import cfg from '../../lib/config/config.js'
 
 // 支持锅巴
 export function supportGuoba() {
@@ -75,6 +77,20 @@ export function supportGuoba() {
       // 尝试读取config.json
       const rawData = fs.readFileSync(configPath);
       configJson = JSON.parse(rawData);
+
+      // 读取 default_config.json
+      const defaultRawData = fs.readFileSync(defaultConfigPath);
+      const defaultConfigJson = JSON.parse(defaultRawData);
+
+      // 比较配置文件更新
+      let testConfigJson = mergeObjects(defaultConfigJson, configJson);
+      if (testConfigJson !== configJson) {
+        kuroLogger.warn('配置文件有更新, 建议检查是否有新的项目需要配置!');
+        configJson = testConfigJson;
+        updateConfigFile();
+        sendMsgFriend(cfg.masterQQ[0], `[库洛插件] 配置文件有更新, 建议检查是否有新的项目需要配置!`)
+      }
+
     } catch (error) {
       if (error.code === 'ENOENT') {
         // 如果config.json不存在，则从default_config.json复制一份
@@ -134,6 +150,27 @@ export function supportGuoba() {
     }
 
     return outputJson;
+  }
+
+/**
+ * 使用 newObj 补充 oldObj 缺失的字段
+ * @param {Object} newObj 新对象
+ * @param {Object} oldObj 旧对象
+ * @returns {Object} 合并后的对象
+ */
+  function mergeObjects(newObj, oldObj) {
+    let mergedObj = { ...oldObj };
+    for (const key in newObj) {
+        if (typeof newObj[key] === 'object') {
+          if (!(key in mergedObj)) {
+            mergedObj[key] = {};
+          }
+          mergedObj[key] = mergeObjects(newObj[key], mergedObj[key]);
+        } else if (!(key in mergedObj)) {
+          mergedObj[key] = newObj[key];
+        }
+    }
+    return mergedObj;
   }
 
 }
