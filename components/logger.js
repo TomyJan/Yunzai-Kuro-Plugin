@@ -1,11 +1,12 @@
 import chalk from 'chalk'
 import fs from 'fs'
 import path from 'path'
-import { dataPath, pluginVer } from '../data/system/pluginConstants.js'
+import { dataPath } from '../data/system/pluginConstants.js'
+import config from './config.js'
 
 class Logger {
   constructor(
-    logLevel = pluginVer.slice(-3) === 'rel' ? 'info' : 'debug',
+    logLevel = config.logger.logLevel || 'info',
     logDirectory = dataPath + '/logs'
   ) {
     this.logLevel = logLevel.toLowerCase()
@@ -94,7 +95,8 @@ class Logger {
 }
 
 // 初始化全局日志记录器实例
-const kuroLogger = new Logger('debug')
+console.log(JSON.stringify(config))
+const kuroLogger = new Logger(config.logger.logLevel || 'info')
 logger.info(chalk.gray(`[库洛插件][LOGGER] Logger initialized!`))
 
 export default kuroLogger

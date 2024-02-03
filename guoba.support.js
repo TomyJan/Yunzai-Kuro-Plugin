@@ -91,8 +91,10 @@ export function supportGuoba() {
 
       // 比较配置文件更新
       let testConfigJson = mergeObjects(defaultConfigJson, configJson)
-      if (testConfigJson !== configJson) {
+      if (JSON.stringify(testConfigJson) !== JSON.stringify(configJson)) {
         kuroLogger.warn('配置文件有更新, 建议检查是否有新的项目需要配置!')
+        kuroLogger.debug('testConfigJson:', JSON.stringify(testConfigJson))
+        kuroLogger.debug('configJson:', JSON.stringify(configJson))
         configJson = testConfigJson
         updateConfigFile()
         sendMsgFriend(
