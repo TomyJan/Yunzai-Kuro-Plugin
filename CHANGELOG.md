@@ -1,3 +1,12 @@
+## [0.1.7-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.6-rel...v0.1.7-rel) (2024-02-03)
+
+
+### Bug Fixes
+
+* 生成默认config ([f0ede89](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/f0ede895ba7737facf6ae1b637b8c5f9172164ef))
+
+
+
 ## [0.1.6-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.5-rel...v0.1.6-rel) (2024-02-03)
 
 
