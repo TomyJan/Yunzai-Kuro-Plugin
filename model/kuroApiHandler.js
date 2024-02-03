@@ -25,27 +25,27 @@ export default class kuroApiHandler {
       body: body,
       method: method,
     }
-    // logger.info('url:    ' + url)
-    // logger.info('header: ' + JSON.stringify(headers))
-    // logger.info('body:   ' + body)
-    // logger.info('method: ' + method)
+    // kuroLogger.info('url:    ' + url)
+    // kuroLogger.info('header: ' + JSON.stringify(headers))
+    // kuroLogger.info('body:   ' + body)
+    // kuroLogger.info('method: ' + method)
 
     let response = {}
     try {
       response = await fetch(url, param)
     } catch (error) {
-      logger.warn('请求出错: ' + error.message)
+      kuroLogger.warn('请求出错:', error.message)
       return `请求出错: ${error.message}\n`
     }
     if (!response.ok) {
-      logger.warn(
-        `[库洛插件] 接口 ${ApiName}报错, 错误: ${response.status} ${response.statusText}`
+      kuroLogger.warn(
+        `接口 ${ApiName}报错, 错误: ${response.status} ${response.statusText}`
       )
       return `请求出错: ${response.status} ${response.statusText}\n`
     }
 
     let rsp = await response.json()
-    logger.info('rsp:    ' + JSON.stringify(rsp))
+    kuroLogger.debug('rsp:    ', JSON.stringify(rsp))
     return rsp
   }
   /**

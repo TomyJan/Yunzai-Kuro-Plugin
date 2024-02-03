@@ -14,32 +14,32 @@ import { getToken } from '../model/kuroBBSTokenHandler.js'
 import cfg from '../../../lib/config/config.js'
 
 export async function initAutoTask() {
-  logger.info(
-    chalk.rgb(134, 142, 204)(`[库洛插件] 载入定时任务 gameSignTask:pns`)
+  kuroLogger.info(
+    chalk.rgb(134, 142, 204)(`载入定时任务 gameSignTask:pns`)
   )
   schedule.scheduleJob('0 2 0 * * ? ', function () {
     gameSignTask('pns')
   })
-  logger.info(
-    chalk.rgb(134, 142, 204)(`[库洛插件] 载入定时任务 gameSignTask:mc`)
+  kuroLogger.info(
+    chalk.rgb(134, 142, 204)(`载入定时任务 gameSignTask:mc`)
   )
   schedule.scheduleJob('0 2 0 * * ? ', function () {
     gameSignTask('mc')
   })
-  logger.info(chalk.rgb(134, 142, 204)(`[库洛插件] 载入定时任务 bbsDailyTask`))
+  kuroLogger.info(chalk.rgb(134, 142, 204)(`载入定时任务 bbsDailyTask`))
   schedule.scheduleJob('0 2 0 * * ? ', function () {
     bbsDailyTask()
   })
 
-  logger.info(
-    chalk.rgb(134, 142, 204)(`[库洛插件] 载入定时任务 bbsActivityTask`)
+  kuroLogger.info(
+    chalk.rgb(134, 142, 204)(`载入定时任务 bbsActivityTask`)
   )
   schedule.scheduleJob('0 2 5 * * ? ', function () {
     bbsActivityTask()
   })
 
-  logger.info(
-    chalk.rgb(134, 142, 204)(`[库洛插件] 载入定时任务 checkUpdateTask`)
+  kuroLogger.info(
+    chalk.rgb(134, 142, 204)(`载入定时任务 checkUpdateTask`)
   )
   schedule.scheduleJob('0 0 6/12 * * ? ', function () {
     checkUpdateTask()
@@ -48,15 +48,15 @@ export async function initAutoTask() {
 
 async function gameSignTask(gameName) {
   if (!gameName || (gameName !== 'pns' && gameName !== 'mc')) {
-    logger.error(`[库洛插件] 自动游戏签到: 游戏 ${gameName} 未定义!`)
+    kuroLogger.error(`自动游戏签到: 游戏 ${gameName} 未定义!`)
     return false
   }
   if (gameName == 'mc') {
-    logger.info(`[库洛插件] 自动游戏签到: 鸣潮签到测试结束`)
+    kuroLogger.info(`自动游戏签到: 鸣潮签到测试结束`)
     return true
   }
   if (gameName == 'pns') {
-    logger.info(`[库洛插件] 自动游戏签到: 战双签到开始...`)
+    kuroLogger.info(`自动游戏签到: 战双签到开始...`)
 
     const gameSignUins = fs
       .readdirSync(dataPath + '/token')
@@ -64,11 +64,11 @@ async function gameSignTask(gameName) {
 
     for (let i in gameSignUins) {
       let gameSignUin = gameSignUins[i].replace('.json', '')
-      logger.info(`[库洛插件] 自动游戏签到: 开始为 ${gameSignUin} 战双签到`)
+      kuroLogger.info(`自动游戏签到: 开始为 ${gameSignUin} 战双签到`)
       let startTime = Date.now()
       const tokenData = await getToken(gameSignUin)
       const accNum = Object.keys(tokenData).length
-      let msg = '[库洛插件]自动游戏签到\n\n'
+      let msg = '[库洛插件] 自动游戏签到\n\n'
       for (const kuro_uid in tokenData) {
         if (tokenData.hasOwnProperty(kuro_uid)) {
           msg += await doPnsSignIn(gameSignUin, kuro_uid)
@@ -81,13 +81,13 @@ async function gameSignTask(gameName) {
       msg += `共用时 ${Math.floor((Date.now() - startTime) / 1000)}s\n`
       await sendMsgFriend(gameSignUin, msg.trimEnd())
     }
-    logger.info(`[库洛插件] 自动游戏签到: 战双签到完成`)
+    kuroLogger.info(`自动游戏签到: 战双签到完成`)
     return true
   }
 }
 
 async function bbsDailyTask() {
-  logger.info(`[库洛插件] 自动社区游戏签到开始...`)
+  kuroLogger.info(`自动社区游戏签到开始...`)
 
   const gameSignUins = fs
     .readdirSync(dataPath + '/token')
@@ -95,11 +95,11 @@ async function bbsDailyTask() {
 
   for (let i in gameSignUins) {
     let gameSignUin = gameSignUins[i].replace('.json', '')
-    logger.info(`[库洛插件] 自动社区签到: 开始为 ${gameSignUin} 签到`)
+    kuroLogger.info(`自动社区签到: 开始为 ${gameSignUin} 签到`)
     let startTime = Date.now()
     const tokenData = await getToken(gameSignUin)
     const accNum = Object.keys(tokenData).length
-    let msg = '[库洛插件]自动社区签到\n\n'
+    let msg = '[库洛插件] 自动社区签到\n\n'
     for (const kuro_uid in tokenData) {
       if (tokenData.hasOwnProperty(kuro_uid)) {
         msg += await doBBSDailyTask(gameSignUin, kuro_uid)
@@ -112,12 +112,12 @@ async function bbsDailyTask() {
     msg += `共用时 ${Math.floor((Date.now() - startTime) / 1000)}s\n`
     await sendMsgFriend(gameSignUin, msg.trimEnd())
   }
-  logger.info(`[库洛插件] 自动社区签到: 任务完成`)
+  kuroLogger.info(`自动社区签到: 任务完成`)
   return true
 }
 
 async function bbsActivityTask() {
-  logger.info(`[库洛插件] 自动活动任务开始...`)
+  kuroLogger.info(`自动活动任务开始...`)
 
   const gameSignUins = fs
     .readdirSync(dataPath + '/token')
@@ -125,11 +125,11 @@ async function bbsActivityTask() {
 
   for (let i in gameSignUins) {
     let gameSignUin = gameSignUins[i].replace('.json', '')
-    logger.info(`[库洛插件] 自动活动任务: 开始为 ${gameSignUin} 执行`)
+    kuroLogger.info(`自动活动任务: 开始为 ${gameSignUin} 执行`)
     let startTime = Date.now()
     const tokenData = await getToken(gameSignUin)
     const accNum = Object.keys(tokenData).length
-    let msg = '[库洛插件]自动活动任务\n\n'
+    let msg = '[库洛插件] 自动活动任务\n\n'
     for (const kuro_uid in tokenData) {
       if (tokenData.hasOwnProperty(kuro_uid)) {
         msg += await doBbsActivityTask(gameSignUin, kuro_uid)
@@ -143,20 +143,20 @@ async function bbsActivityTask() {
     msg += `共用时 ${Math.floor((Date.now() - startTime) / 1000)}s\n`
     await sendMsgFriend(gameSignUin, msg.trimEnd())
   }
-  logger.info(`[库洛插件] 自动活动任务: 任务完成`)
+  kuroLogger.info(`自动活动任务: 任务完成`)
   return true
 }
 
 export async function checkUpdateTask() {
-  logger.info(`[库洛插件] 检查更新任务开始...`)
+  kuroLogger.info(`检查更新任务开始...`)
   let remoteVersion = await getRemoteVersion('GitHub')
   if (!remoteVersion) {
     remoteVersion = await getRemoteVersion('GHProxy')
     if (!remoteVersion) {
       remoteVersion = await getRemoteVersion('TomyJan')
       if (!remoteVersion) {
-        logger.warn(`[库洛插件] 检查更新任务失败`)
-        await sendMsgFriend(cfg.masterQQ[0], `[库洛插件]自动检查更新失败!`)
+        kuroLogger.warn(`检查更新任务失败`)
+        await sendMsgFriend(cfg.masterQQ[0], `[库洛插件] 自动检查更新失败!`)
         return false
       }
     }
@@ -164,16 +164,16 @@ export async function checkUpdateTask() {
   remoteVersion = remoteVersion.match(/\[(.*?)\]\(.*?\)/)[1] || false
 
   if (!remoteVersion) {
-    logger.info(`[库洛插件] 检查更新任务: 解析版本信息失败`)
+    kuroLogger.info(`检查更新任务: 解析版本信息失败`)
     await sendMsgFriend(
       cfg.masterQQ[0],
-      `[库洛插件]自动检查更新\n解析版本信息失败`
+      `[库洛插件] 自动检查更新\n解析版本信息失败\n请检查网络或前往项目地址检查版本信息\nhttps://github.com/TomyJan/Yunzai-Kuro-Plugin`
     )
     return false
   }
 
-  logger.info(
-    `[库洛插件] 检查更新任务: 获取到最新版本 ${remoteVersion}, 本地版本 ${pluginVer}`
+  kuroLogger.info(
+    `检查更新任务: 获取到最新版本 ${remoteVersion}, 本地版本 ${pluginVer}`
   )
   if (remoteVersion != pluginVer) {
     // 推送并缓存
@@ -182,18 +182,18 @@ export async function checkUpdateTask() {
 
     try {
       versionCache = fs.readFileSync(cacheFilePath, 'utf8')
-      logger.mark(
-        '读取 versionCache: ',
+      kuroLogger.debug(
+        '读取 versionCache:',
         versionCache,
-        ', 解析到缓存的版本: ',
+        ', 解析到缓存的版本:',
         JSON.parse(versionCache)?.remoteVersion
       )
     } catch (err) {
-      logger.error('读取 versionCache.json 时出现错误：', err.message)
+      kuroLogger.error('读取 versionCache.json 时出现错误:', err.message)
     }
 
     if (JSON.parse(versionCache)?.remoteVersion == remoteVersion) {
-      logger.mark('该版本已经推送过')
+      kuroLogger.warn('该新版本已经推送过, 不再重复推送, 请及时更新!')
       return false
     }
     versionCache = JSON.stringify({ remoteVersion: remoteVersion })
@@ -201,21 +201,21 @@ export async function checkUpdateTask() {
 
     try {
       fs.writeFileSync(cacheFilePath, versionCache)
-      logger.mark('缓存远程版本成功!')
+      kuroLogger.debug('缓存远程版本成功!')
       isCacheSucceed = true
     } catch (err) {
-      logger.error('写入versionCache.json 时出现错误: ', err.message)
+      kuroLogger.error('写入versionCache.json 时出现错误:', err.message)
     }
 
     await sendMsgFriend(
       cfg.masterQQ[0],
-      `[库洛插件]自动检查更新\n发现新版: ${remoteVersion}\n本地版本: ${pluginVer}\n建议尽快更新~` +
-        (isCacheSucceed ? '' : '\n缓存版本信息失败, 该信息可能会重复推送')
+      `[库洛插件] 自动检查更新\n发现新版: ${remoteVersion}\n本地版本: ${pluginVer}\n更新日志: https://github.com/TomyJan/Yunzai-Kuro-Plugin/blob/master/CHANGELOG.md\n建议尽快更新~` +
+        (isCacheSucceed ? '' : '\n缓存新版本信息失败, 该信息可能会重复推送')
     )
   }
 
   async function getRemoteVersion(type) {
-    logger.debug(`[库洛插件] 尝试从 ${type} 检查更新...`)
+    kuroLogger.debug(`尝试从 ${type} 检查更新...`)
     let checkUrl =
       'https://raw.githubusercontent.com/TomyJan/Yunzai-Kuro-Plugin/master/CHANGELOG.md'
     if (type == 'GHProxy') checkUrl = 'https://mirror.ghproxy.com/' + checkUrl
@@ -225,15 +225,15 @@ export async function checkUpdateTask() {
     try {
       let rsp = await fetch(checkUrl)
       if (!rsp.ok) {
-        logger.warn(
-          `[库洛插件] 从 ${type} 获取更新信息失败: ${rsp.status} ${rsp.statusText}`
+        kuroLogger.warn(
+          `从 ${type} 获取更新信息失败: ${rsp.status} ${rsp.statusText}`
         )
         return false
       }
-      logger.info(`[库洛插件] 从 ${type} 获取更新信息成功, 尝试解析信息...`)
+      kuroLogger.info(`从 ${type} 获取更新信息成功, 尝试解析信息...`)
       return await rsp.text()
     } catch (error) {
-      logger.warn(`[库洛插件] 从 ${type} 获取更新信息失败: ${error.message}`)
+      kuroLogger.warn(`从 ${type} 获取更新信息失败: ${error.message}`)
       return false
     }
   }

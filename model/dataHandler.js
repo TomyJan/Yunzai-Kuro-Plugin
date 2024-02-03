@@ -41,7 +41,7 @@ class dataHandler {
     const watcher = chokidar.watch(file)
 
     watcher.on('change', (path) => {
-      delete logger.mark(`[库洛插件] 修改配置文件 ${name} , 已重载`)
+      delete kuroLogger.info(`修改配置文件 ${name} , 已重载`)
     })
   }
 }

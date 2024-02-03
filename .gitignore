@@ -1,3 +1,6 @@
+# logs
+data/logs/
+
 # 用户信息
 data/token/
 data/system/versionCache.json

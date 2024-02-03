@@ -44,14 +44,14 @@ export async function sendMsgFriend(uin, msg) {
   uin = Number(uin)
   let friend = Bot.fl.get(uin)
   if (friend) {
-    logger.mark(`发送好友消息[${friend.nickname}](${uin})`)
+    kuroLogger.debug(`发送好友消息[${friend.nickname}](${uin})`)
     return await Bot.pickUser(uin)
       .sendMsg(msg)
       .catch((err) => {
-        logger.mark(err)
+        kuroLogger.error('发送好友消息错误:', err)
       })
   } else {
-    logger.mark(`${uin} 非好友, 无法推送签到消息`)
+    kuroLogger.warn(`${uin} 非好友, 无法推送签到消息`)
   }
 }
 
@@ -66,8 +66,10 @@ export async function sendForwardMsg(
   { recallMsg = 0, info, fkmsg, isxml, xmlTitle, oneMsg, anony } = {}
 ) {
   let forwardMsg = []
-  if (_.isEmpty(message))
-    throw Error('[库洛插件] 合并转发: 发送的转发消息不能为空')
+  if (_.isEmpty(message)) {
+    kuroLogger.error('合并转发: 发送的转发消息不能为空')
+    return
+  }
   let add = (msg) =>
     forwardMsg.push({
       message: msg,

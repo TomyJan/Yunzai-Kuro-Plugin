@@ -39,7 +39,7 @@ export default class kuroBBSLogin {
 
     let kuroapi = new kuroApi(false)
     let rsp_sdkLogin = await kuroapi.sdkLogin({ mobile: msg[0], code: msg[1] })
-    logger.mark('rsp_sdkLogin ' + JSON.stringify(rsp_sdkLogin))
+    kuroLogger.mark('rsp_sdkLogin:', JSON.stringify(rsp_sdkLogin))
     if (typeof rsp_sdkLogin == 'string') {
       // 不是 json, 即返回报错
       this.e.reply(rsp_sdkLogin)
@@ -47,14 +47,14 @@ export default class kuroBBSLogin {
     }
 
     if (rsp_sdkLogin.code === 200) {
-      logger.info('[库洛插件] 登录成功!\n' + JSON.stringify(rsp_sdkLogin))
+      // kuroLogger.debug('登录成功!', JSON.stringify(rsp_sdkLogin))
       this.e.reply(
         '登录成功, 即将保存 token, 下面是此次获取的 token, 请勿泄露!\n' +
           JSON.stringify(rsp_sdkLogin)
       )
       return rsp_sdkLogin
     } else {
-      logger.info('[库洛插件] 登录失败\n' + JSON.stringify(rsp_sdkLogin))
+      kuroLogger.info('登录失败:', JSON.stringify(rsp_sdkLogin))
       this.e.reply('登录失败!\n' + JSON.stringify(rsp_sdkLogin.msg))
       return false
     }

@@ -56,7 +56,7 @@ export async function doBBSDailyTask(uin, kuro_uid) {
   if (rsp_mineV2 == `token 失效`) return `账号 ${kuro_uid}: \ntoken 失效\n`
   // 获取任务进度, 尝试两次
   let rsp_getTaskProcess = await kuroapi.getTaskProcess(kuro_uid)
-  logger.mark('rsp_getTaskProcess ' + JSON.stringify(rsp_getTaskProcess))
+  kuroLogger.debug('rsp_getTaskProcess:', JSON.stringify(rsp_getTaskProcess))
   if (typeof rsp_getTaskProcess == 'string' || rsp_getTaskProcess.code !== 200)
     rsp_getTaskProcess = await kuroapi.getTaskProcess(kuro_uid)
   if (typeof rsp_getTaskProcess == 'string' || rsp_getTaskProcess.code !== 200)
@@ -71,7 +71,7 @@ export async function doBBSDailyTask(uin, kuro_uid) {
   ) {
     // 获取库洛币总数, 尝试两次
     let rsp_getTotalGold = await kuroapi.getTotalGold(kuro_uid)
-    logger.mark('rsp_getTotalGold ' + JSON.stringify(rsp_getTotalGold))
+    kuroLogger.debug('rsp_getTotalGold:', JSON.stringify(rsp_getTotalGold))
     if (typeof rsp_getTotalGold == 'string' || rsp_getTotalGold.code !== 200)
       rsp_getTotalGold = await kuroapi.getTotalGold(kuro_uid)
     if (typeof rsp_getTotalGold == 'string' || rsp_getTotalGold.code !== 200)
@@ -101,7 +101,7 @@ export async function doBBSDailyTask(uin, kuro_uid) {
   doBBSDailyTaskRet += '社区签到: '
   do {
     let rsp_forumSignIn = await kuroapi.forumSignIn(kuro_uid)
-    logger.mark('rsp_forumSignIn ' + JSON.stringify(rsp_forumSignIn))
+    kuroLogger.debug('rsp_forumSignIn:', JSON.stringify(rsp_forumSignIn))
 
     if (
       tryTimes++ >= 3 ||
@@ -130,7 +130,7 @@ export async function doBBSDailyTask(uin, kuro_uid) {
   let rsp_forumList = ''
   do {
     rsp_forumList = await kuroapi.forumList(kuro_uid, { forumId: 2, gameId: 2 }) // 默认获取推荐板块
-    logger.mark('rsp_forumList ' + JSON.stringify(rsp_forumList))
+    kuroLogger.debug('rsp_forumList:', JSON.stringify(rsp_forumList))
 
     if (tryTimes++ >= 2 || typeof rsp_forumList !== 'string') tryAgain = false
 
@@ -154,7 +154,7 @@ export async function doBBSDailyTask(uin, kuro_uid) {
       let rsp_getPostDetail = await kuroapi.getPostDetail(kuro_uid, {
         postId: rsp_forumList.data.postList[tryTimes].postId,
       })
-      logger.mark('rsp_getPostDetail ' + JSON.stringify(rsp_getPostDetail))
+      kuroLogger.debug('rsp_getPostDetail:', JSON.stringify(rsp_getPostDetail))
 
       if (tryTimes++ >= 6) tryAgain = false
 
@@ -180,7 +180,7 @@ export async function doBBSDailyTask(uin, kuro_uid) {
         postType: rsp_forumList.data.postList[tryTimes].postType,
         toUserId: rsp_forumList.data.postList[tryTimes].userId,
       })
-      logger.mark('rsp_like ' + JSON.stringify(rsp_like))
+      kuroLogger.debug('rsp_like:', JSON.stringify(rsp_like))
 
       if (tryTimes++ >= 10) tryAgain = false
 
@@ -198,7 +198,7 @@ export async function doBBSDailyTask(uin, kuro_uid) {
   tryTimes = 0
   do {
     let rsp_shareTask = await kuroapi.shareTask(kuro_uid)
-    logger.mark('rsp_shareTask ' + JSON.stringify(rsp_shareTask))
+    kuroLogger.debug('rsp_shareTask:', JSON.stringify(rsp_shareTask))
 
     if (tryTimes++ >= 2 || typeof rsp_like !== 'string') tryAgain = false
 
@@ -214,7 +214,7 @@ export async function doBBSDailyTask(uin, kuro_uid) {
   //
   // 获取任务进度, 尝试两次
   rsp_getTaskProcess = await kuroapi.getTaskProcess(kuro_uid)
-  logger.mark('rsp_getTaskProcess ' + JSON.stringify(rsp_getTaskProcess))
+  kuroLogger.debug('rsp_getTaskProcess:', JSON.stringify(rsp_getTaskProcess))
   if (typeof rsp_getTaskProcess == 'string' || rsp_getTaskProcess.code !== 200)
     rsp_getTaskProcess = await kuroapi.getTaskProcess(kuro_uid)
   if (typeof rsp_getTaskProcess == 'string' || rsp_getTaskProcess.code !== 200)

@@ -95,15 +95,15 @@ export default class bbsHeadUpload {
     let rsp_uploadForumImg = await kuroapi.uploadForumImg(msg[0], {
       image: image,
     })
-    logger.mark('rsp_uploadForumImg ' + JSON.stringify(rsp_uploadForumImg))
+    kuroLogger.debug('rsp_uploadForumImg:', JSON.stringify(rsp_uploadForumImg))
     if (typeof rsp_uploadForumImg == 'string') {
       // 不是 json, 即返回报错
-      logger.info('[库洛插件] 图片上传失败: ' + rsp_uploadForumImg)
+      kuroLogger.info('图片上传失败:', rsp_uploadForumImg)
       this.e.reply('图片上传失败: ' + rsp_uploadForumImg)
       return false
     }
-    logger.info(
-      '[库洛插件] 图片上传成功: ' + JSON.stringify(rsp_uploadForumImg)
+    kuroLogger.info(
+      '图片上传成功:', JSON.stringify(rsp_uploadForumImg)
     )
     //this.e.reply('图片上传成功!')
 
@@ -112,14 +112,14 @@ export default class bbsHeadUpload {
     let rsp_updateHeadUrl = await kuroapi.updateHeadUrl(msg[0], {
       headUrl: rsp_uploadForumImg.data[0],
     })
-    logger.mark('rsp_updateHeadUrl ' + JSON.stringify(rsp_updateHeadUrl))
+    kuroLogger.debug('rsp_updateHeadUrl:', JSON.stringify(rsp_updateHeadUrl))
     if (typeof rsp_updateHeadUrl == 'string') {
       // 不是 json, 即返回报错
-      logger.info('[库洛插件] 头像更新失败: ' + rsp_updateHeadUrl)
+      kuroLogger.info('头像更新失败:', rsp_updateHeadUrl)
       this.e.reply('头像上传失败: ' + rsp_updateHeadUrl)
       return false
     }
-    logger.info('[库洛插件] 头像更新成功: ' + JSON.stringify(rsp_updateHeadUrl))
+    kuroLogger.info('头像更新成功:', JSON.stringify(rsp_updateHeadUrl))
     this.e.reply('头像上传成功!')
     return false
   }
@@ -129,14 +129,12 @@ export default class bbsHeadUpload {
       const response = await fetch(url)
       if (!response.ok) {
         this.e.reply(`请求失败: ${response.status} ${response.statusText}`)
-        throw new Error(
-          `[库洛插件] 请求失败: ${response.status} ${response.statusText}`
-        )
+        kuroLogger.error(`请求失败: ${response.status} ${response.statusText}`)
       }
       return response.body
     } catch (error) {
       this.e.reply('图片下载失败: ' + error.message)
-      logger.info('[库洛插件] 图片下载失败: ' + error.message)
+      kuroLogger.info('图片下载失败:', error.message)
       return null
     }
   }

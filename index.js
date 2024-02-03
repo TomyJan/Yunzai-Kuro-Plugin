@@ -1,11 +1,13 @@
 import chalk from 'chalk'
 import fs from 'node:fs'
+import kuroLogger from './components/logger.js'
 import { appsPath, pluginVer } from './data/system/pluginConstants.js'
 import { initAutoTask, checkUpdateTask } from './model/autoTask.js'
 
-logger.info(chalk.rgb(253, 235, 255)('-----------(≧∇≦)ﾉ-----------'))
-logger.info(chalk.rgb(134, 142, 204)(`[库洛插件] V${pluginVer} 初始化中~`))
-logger.info(chalk.rgb(253, 235, 255)('----------------------------'))
+kuroLogger.info(chalk.rgb(57, 197, 187)('============(≧∇≦)ﾉ============'))
+kuroLogger.info(chalk.rgb(57, 197, 187)(`库洛插件 V${pluginVer} 开始载入~`))
+
+kuroLogger.info(chalk.rgb(57, 197, 187)(`-----------载入模块-----------`))
 
 const files = fs.readdirSync(appsPath).filter((file) => file.endsWith('.js'))
 
@@ -22,21 +24,25 @@ for (let i in files) {
   let name = files[i].replace('.js', '')
 
   if (ret[i].status !== 'fulfilled') {
-    logger.error(`[库洛插件] 载入模块错误：${logger.red(name)}`)
-    logger.error(ret[i].reason)
+    kuroLogger.error(`载入模块错误：${name}`)
+    kuroLogger.error(ret[i].reason)
     continue
   } else {
-    logger.info(chalk.rgb(134, 142, 204)(`[库洛插件] 载入模块成功：${name}`))
+    kuroLogger.info(chalk.rgb(57, 197, 187)(`载入模块成功：${name}`))
   }
   apps[name] = ret[i].value[Object.keys(ret[i].value)[0]]
 }
-logger.info(chalk.rgb(134, 142, 204)(`[库洛插件] 载入模块完成!`))
+kuroLogger.info(chalk.rgb(57, 197, 187)(`载入模块完成!`))
 export { apps }
 
-logger.info(chalk.rgb(134, 142, 204)(`[库洛插件] 载入定时任务中...`))
+kuroLogger.info(chalk.rgb(57, 197, 187)(`---------载入定时任务---------`))
 initAutoTask()
 
-logger.info(chalk.rgb(134, 142, 204)(`[库洛插件] 载入定时任务完成!`))
+kuroLogger.info(chalk.rgb(57, 197, 187)(`载入定时任务完成啦!`))
 
+kuroLogger.info(chalk.rgb(57, 197, 187)(`-----------检查更新-----------`))
 // 起洞就检查一下更新
-checkUpdateTask()
+await checkUpdateTask()
+
+kuroLogger.info(chalk.rgb(57, 197, 187)('插件载入完成, 欢迎使用~'))
+kuroLogger.info(chalk.rgb(57, 197, 187)('=============================='))

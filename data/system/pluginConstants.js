@@ -28,7 +28,7 @@ try {
     ver = 'unkVer'
   }
 } catch (e) {
-  logger.error(e)
+  kuroLogger.error(`获取插件本地版本信息失败:`, e)
   ver = 'unkVer'
 }
 

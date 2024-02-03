@@ -5,7 +5,6 @@ import {
   resPath,
   _ResPath,
 } from '../data/system/pluginConstants.js'
-import cfg from '../../../lib/config/config.js'
 import kuroApi from './kuroApi.js'
 
 export default class gameCard {
@@ -44,7 +43,7 @@ export default class gameCard {
           })
         }
       }
-      logger.info(JSON.stringify(accArr))
+      kuroLogger.debug('账号数组:', JSON.stringify(accArr))
 
       let ret = {
         tplFile: `${resPath}/html/${model}/index.html`,

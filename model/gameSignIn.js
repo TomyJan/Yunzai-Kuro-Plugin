@@ -57,7 +57,7 @@ export async function doPnsSignIn(uin, kuro_uid) {
   }(${kuro_uid}): \n`
   // 获取绑定的游戏 id 列表有俩接口, emmm 迷惑
   let rsp_findRoleList = await kuroapi.findRoleList(kuro_uid, { gameId: 2 })
-  logger.mark('rsp_findRoleList ' + JSON.stringify(rsp_findRoleList))
+  kuroLogger.debug('rsp_findRoleList:', JSON.stringify(rsp_findRoleList))
   if (typeof rsp_findRoleList == 'string') {
     // 不是 json, 即返回报错
     doPnsSignInRet += `${rsp_findRoleList}\n`
@@ -77,7 +77,7 @@ export async function doPnsSignIn(uin, kuro_uid) {
       serverId: data.serverId,
       roleId: data.roleId,
     })
-    logger.mark('rsp_initSignIn ' + JSON.stringify(rsp_initSignIn))
+    kuroLogger.debug('rsp_initSignIn:', JSON.stringify(rsp_initSignIn))
     if (typeof rsp_initSignIn == 'string') {
       // 不是 json, 即返回报错
       doPnsSignInRet += `      ${rsp_initSignIn}\n`
@@ -93,7 +93,7 @@ export async function doPnsSignIn(uin, kuro_uid) {
         serverId: data.serverId,
         roleId: data.roleId,
       })
-      logger.mark('rsp_gameSignIn ' + JSON.stringify(rsp_gameSignIn))
+      kuroLogger.debug('rsp_gameSignIn:', JSON.stringify(rsp_gameSignIn))
       let tmp = ''
       if (typeof rsp_gameSignIn !== 'string') {
         // 是 json

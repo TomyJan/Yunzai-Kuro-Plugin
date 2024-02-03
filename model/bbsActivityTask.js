@@ -99,7 +99,7 @@ export async function doBbsActivityTask(uin, kuro_uid) {
   if (rsp_getActivityTaskList === '活动已结束') return rsp_getActivityTaskList
   // getBindRoleInfo, 没绑定直接返回
   let rsp_getBindRoleInfo = await kuroapi.getBindRoleInfo(kuro_uid)
-  logger.mark('rsp_getBindRoleInfo ' + JSON.stringify(rsp_getBindRoleInfo))
+  kuroLogger.debug('rsp_getBindRoleInfo:', JSON.stringify(rsp_getBindRoleInfo))
   if (rsp_getBindRoleInfo == `token 失效`)
     return `账号 ${kuro_uid}: \ntoken 失效\n`
   if (typeof rsp_getBindRoleInfo == 'string')
@@ -126,9 +126,7 @@ export async function doBbsActivityTask(uin, kuro_uid) {
   // getList 取活动列表, 成功了根据任务的 status 执行完成和领取
   await sleepAsync(getRandomInt(1000, 3000))
   rsp_getActivityTaskList = await kuroapi.getActivityTaskList(kuro_uid)
-  logger.mark(
-    'rsp_getActivityTaskList ' + JSON.stringify(rsp_getActivityTaskList)
-  )
+  kuroLogger.debug('rsp_getActivityTaskList:', JSON.stringify(rsp_getActivityTaskList))
   if (typeof rsp_getActivityTaskList == 'string') {
     doBbsActivityTaskRet += `获取任务列表失败: ${rsp_getActivityTaskList}\n`
     return doBbsActivityTaskRet
@@ -225,9 +223,7 @@ export async function doBbsActivityTask(uin, kuro_uid) {
   doBbsActivityTaskRet += `\n`
   await sleepAsync(getRandomInt(500, 1000))
   rsp_getActivityTaskList = await kuroapi.getActivityTaskList(kuro_uid)
-  logger.mark(
-    'rsp_getActivityTaskList ' + JSON.stringify(rsp_getActivityTaskList)
-  )
+  kuroLogger.debug('rsp_getActivityTaskList:', JSON.stringify(rsp_getActivityTaskList))
   let noAnyPrize = true
   if (typeof rsp_getActivityTaskList == 'string') {
     doBbsActivityTaskRet += `刷新任务列表失败: ${rsp_getActivityTaskList}, 取消里程碑奖励领取\n`

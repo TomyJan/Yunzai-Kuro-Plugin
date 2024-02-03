@@ -14,9 +14,9 @@ export async function checkTokenValidity(kuro_uid, kuro_token) {
     kuro_uid,
     kuro_token
   )
-  logger.mark('rsp_checkToken_mineV2 ' + JSON.stringify(rsp_checkToken_mineV2))
+  kuroLogger.debug('rsp_checkToken_mineV2:', JSON.stringify(rsp_checkToken_mineV2))
 
-  logger.mark('token 检测:  ' + JSON.stringify(rsp_checkToken_mineV2))
+  kuroLogger.debug('token 检测:', JSON.stringify(rsp_checkToken_mineV2))
   return rsp_checkToken_mineV2
 }
 
@@ -47,10 +47,10 @@ export async function saveToken(uin, kuro_uid, kuro_token, kuro_refreshToken) {
     const newJsonData = JSON.stringify(newData)
 
     await fs.promises.writeFile(filePath, newJsonData)
-    logger.mark(`Token 已保存至文件: ${filePath}`)
+    kuroLogger.debug(`token 已保存至文件: ${filePath}`)
     return true
   } catch (error) {
-    logger.warn(`保存 Token 时出错: ${error.message}`)
+    kuroLogger.debug(`保存 Token 时出错: ${error.message}`)
     return false
   }
 }
