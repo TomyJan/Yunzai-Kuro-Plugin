@@ -70,9 +70,8 @@ export function supportGuoba() {
       },
       // 设置配置的方法（前端点确定后调用的方法）
       setConfigData(data, { Result }) {
-        kuroLogger.info('设置配置数据:', JSON.stringify(data))
         configJson = flattenObject(data)
-        kuroLogger.info('展开后的配置数据:', JSON.stringify(configJson))
+        kuroLogger.debug('欲保存的新配置数据:', JSON.stringify(configJson))
         let saveRst = updateConfigFile()
         if (saveRst) return Result.error(saveRst)
         else return Result.ok({}, '保存成功辣ε(*´･ω･)з')
@@ -126,7 +125,7 @@ export function supportGuoba() {
       return null
     } catch (error) {
       let errMsg = '更新配置文件失败: ' + error.message
-      kuroLogger.error(errMsg)
+      kuroLogger.error('更新配置文件失败:', errMsg)
       return errMsg
     }
   }
