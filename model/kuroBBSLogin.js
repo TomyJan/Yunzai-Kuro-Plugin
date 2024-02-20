@@ -40,7 +40,7 @@ export default class kuroBBSLogin {
 
     let kuroapi = new kuroApi(false)
     let rsp_sdkLogin = await kuroapi.sdkLogin({ mobile: msg[0], code: msg[1] })
-    kuroLogger.mark('rsp_sdkLogin:', JSON.stringify(rsp_sdkLogin))
+    kuroLogger.debug('rsp_sdkLogin:', JSON.stringify(rsp_sdkLogin))
     if (typeof rsp_sdkLogin == 'string') {
       // 不是 json, 即返回报错
       this.e.reply(rsp_sdkLogin)
