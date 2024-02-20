@@ -1,3 +1,12 @@
+## [0.1.8-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.7-rel...v0.1.8-rel) (2024-02-20)
+
+
+### Bug Fixes
+
+* error log output ([208b14a](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/208b14acaf0114416bfe6e848b07b401129766ab))
+
+
+
 ## [0.1.7-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.6-rel...v0.1.7-rel) (2024-02-03)
 
 
