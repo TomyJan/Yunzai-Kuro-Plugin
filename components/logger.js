@@ -33,8 +33,7 @@ class Logger {
 
     // 保存日志到文件
     if (config.getConfig().logger.saveToFile) {
-      const timestamp = new Date().toISOString()
-      const logToFile = `[${timestamp}] ${baseLogContent}`
+      const logToFile = `[${this.getTimeForLog()}] ${baseLogContent}`
       const currentLogFilePath = path.join(
         this.logDirectory,
         this.currentLogFile
@@ -93,8 +92,30 @@ class Logger {
   }
 
   generateLogFileName(onStart = false) {
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-')
+    const now = new Date()
+    const year = now.getFullYear().toString().padStart(4, '0')
+    const month = (now.getMonth() + 1).toString().padStart(2, '0')
+    const day = now.getDate().toString().padStart(2, '0')
+    const hours = now.getHours().toString().padStart(2, '0')
+    const minutes = now.getMinutes().toString().padStart(2, '0')
+    const seconds = now.getSeconds().toString().padStart(2, '0')
+    const milliseconds = now.getMilliseconds().toString().padStart(3, '0')
+
+    const timestamp = `${year}-${month}-${day}T${hours}-${minutes}-${seconds}-${milliseconds}`
     return onStart ? `${timestamp}-start.log` : `${timestamp}.log`
+  }
+
+  getTimeForLog() {
+    const now = new Date()
+    const year = now.getFullYear().toString().padStart(4, '0')
+    const month = (now.getMonth() + 1).toString().padStart(2, '0')
+    const day = now.getDate().toString().padStart(2, '0')
+    const hours = now.getHours().toString().padStart(2, '0')
+    const minutes = now.getMinutes().toString().padStart(2, '0')
+    const seconds = now.getSeconds().toString().padStart(2, '0')
+    const milliseconds = now.getMilliseconds().toString().padStart(3, '0')
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}.${milliseconds}`
   }
 
   ensureLogDirectoryExists() {
