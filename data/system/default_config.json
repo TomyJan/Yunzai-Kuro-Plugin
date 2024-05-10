@@ -1,7 +1,7 @@
 {
   "logger": {
     "logLevel": "info",
-    "saveToFile": true
+    "saveToFile": false
   },
   "autoTask": {
     "enabled": true,
