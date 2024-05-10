@@ -92,8 +92,9 @@ git -C ./plugins/Yunzai-Kuro-Plugin/ pull
 - [ ] 战双签到 指令的时间估计
 - [ ] 增加 游戏签到 补签功能
 - [ ] 自动任务运行中记录运行进度, 以便重启后/第一次起洞时继续运行
-- [ ] ~~token 刷新 (应该是用 refreshToken 但是抓不到包)~~ 库洛好像不再刷新 token 了
+- [x] ~~token 刷新 (应该是用 refreshToken 但是抓不到包)~~ 库洛好像不再刷新 token 了
 - [ ] 修复失效的库街区一键活动功能
+- [ ] 库街区现在有体力卡片了, 可以做一个
 - [ ] 大工程: 库街区角色信息查询
 - [ ] 大工程: 库街区资源月报查询
 - [ ] 大工程: 库街区囚笼数据查询
@@ -107,7 +108,11 @@ git -C ./plugins/Yunzai-Kuro-Plugin/ pull
 
 ### 贡献/帮助
 
-[提交 issue](https://github.com/TomyJan/Yunzai-Kuro-Plugin/issues/new) | [提交 pr](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare)
+[提交 issue](https://github.com/TomyJan/Yunzai-Kuro-Plugin/issues/new) | [提交 pr](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare) | 如果插件有帮到你, 欢迎 [给我打赏](https://donate.tomys.top) 
+
+### 一起玩
+
+[TG](https://t.me/TomyJan) | [Q 战双群](https://qun-pgr.tomys.top) | [Q 闲聊群](https://qun.tomys.top) 
 
 ### 链接
 
