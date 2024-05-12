@@ -7,9 +7,6 @@
     - icon: kuro
       title: "#库洛token登录"
       desc: 通过token登录账号
-    - icon: pns
-      title: "#战双uid"
-      desc: 查看和切换战双uid
 - group: 签到工具
   list:
     - icon: pns
@@ -25,4 +22,4 @@
   list:
     - icon: pns
       title: "#战双卡片"
-      desc: 查询库街区战双游戏卡片信息
+      desc: 查询和切换战双UID信息
