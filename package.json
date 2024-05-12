@@ -1,6 +1,6 @@
 {
   "name": "Yunzai-Kuro-Plugin",
-  "version": "0.1.9-dev",
+  "version": "0.1.9-rel",
   "author": "TomyJan",
   "description": "Yunzai-Bot plugin for kuro games.",
   "type": "module",
@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "conventional-changelog": "^3.1.25",
+    "conventional-changelog-cli": "^5.0.0",
     "conventional-changelog-custom-config": "^0.3.1",
     "prettier": "^2.8.8"
   },
