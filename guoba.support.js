@@ -110,8 +110,10 @@ export function supportGuoba() {
         {
           field: 'botQQ',
           label: '机器人QQ',
-          helpMessage: '如果使用第三方适配器, 请设置, 否则 bot 的自动任务消息将无法推送, 留空则为自动获取',
-          bottomHelpMessage: '如果使用第三方适配器, 请设置, 否则 bot 的自动任务消息将无法推送, 留空则为自动获取',
+          helpMessage:
+            '如果使用第三方适配器, 请设置, 否则 bot 的自动任务消息将无法推送, 留空则为自动获取',
+          bottomHelpMessage:
+            '如果使用第三方适配器, 请设置, 否则 bot 的自动任务消息将无法推送, 留空则为自动获取',
           component: 'Input',
         },
       ],

@@ -48,8 +48,13 @@ export async function sendMsgFriend(uin, msg) {
   // await sleepAsync(5000)
   let friend = Bot.fl.get(uin)
   if (friend || config.getConfig().attemptSendNonFriend) {
-    kuroLogger.debug(`bot ${config.getConfig().botQQ || Bot.uin} 发送好友消息[${friend?.nickname}](${uin})`)
-    return await Bot[config.getConfig().botQQ || Bot.uin].pickUser(uin)
+    kuroLogger.debug(
+      `bot ${config.getConfig().botQQ || Bot.uin} 发送好友消息[${
+        friend?.nickname
+      }](${uin})`
+    )
+    return await Bot[config.getConfig().botQQ || Bot.uin]
+      .pickUser(uin)
       .sendMsg(msg)
       .catch((err) => {
         kuroLogger.error('发送好友消息错误:', err.message)
