@@ -9,7 +9,7 @@ export class gameCard extends plugin {
   constructor() {
     super({
       /** 功能名称 */
-      name: '库洛游戏卡片',
+      name: '[库洛插件]库洛游戏卡片',
       /** 功能描述 */
       dsc: '库洛游戏卡片',
       /** https://oicqjs.github.io/oicq/#events */

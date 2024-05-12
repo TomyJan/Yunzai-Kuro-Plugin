@@ -5,7 +5,7 @@ export class bbsHeadUpload extends plugin {
   constructor() {
     super({
       /** 功能名称 */
-      name: '库洛头像上传',
+      name: '[库洛插件]库洛头像上传',
       /** 功能描述 */
       dsc: '库洛头像上传',
       /** https://oicqjs.github.io/oicq/#events */

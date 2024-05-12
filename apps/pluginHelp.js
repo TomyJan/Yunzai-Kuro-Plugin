@@ -7,7 +7,7 @@ export class pluginHelp extends plugin {
   constructor() {
     super({
       /** 功能名称 */
-      name: '库洛帮助',
+      name: '[库洛插件]库洛帮助',
       /** 功能描述 */
       dsc: '库洛帮助',
       /** https://oicqjs.github.io/oicq/#events */

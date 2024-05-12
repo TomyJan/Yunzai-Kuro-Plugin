@@ -5,7 +5,7 @@ export class bbsActivityTask extends plugin {
   constructor() {
     super({
       /** 功能名称 */
-      name: '库街区活动任务',
+      name: '[库洛插件]库街区活动任务',
       /** 功能描述 */
       dsc: '库街区活动任务',
       /** https://oicqjs.github.io/oicq/#events */

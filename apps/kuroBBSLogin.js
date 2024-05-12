@@ -6,7 +6,7 @@ export class kuroBBSLogin extends plugin {
   constructor() {
     super({
       /** 功能名称 */
-      name: '库洛账号登录',
+      name: '[库洛插件]库洛账号登录',
       /** 功能描述 */
       dsc: '库洛账号登录',
       /** https://oicqjs.github.io/oicq/#events */
