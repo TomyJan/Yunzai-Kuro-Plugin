@@ -29,15 +29,14 @@ export class gameCard extends plugin {
     kuroLogger.debug('战双卡片:', e.msg)
     // 提取消息文本末尾的数字
     let index = this.e.msg
-                      .replace(/战双|帕弥什|卡片|面板|：|:/g, '')
-                      .replace(/,|，/g, ',')
-                      .replace(/#| /g, '')
+      .replace(/战双|帕弥什|卡片|面板|：|:/g, '')
+      .replace(/,|，/g, ',')
+      .replace(/#| /g, '')
     kuroLogger.debug('战双卡片索引:', index)
     if (index) {
       if (await saveAccCurPnsUidIndex(this.e.user_id, index - 1))
         await this.reply(`已切换至第 ${index} 个账号`)
-      else
-        await this.reply(`切换账号失败`)
+      else await this.reply(`切换账号失败`)
     }
     let data = await gameCardData.get(this.e, 'gameCardPns', this.e.user_id)
     if (!data) return false

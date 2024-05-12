@@ -50,7 +50,7 @@ export default class gameCard {
       let ret = {
         tplFile: `${resPath}/html/${model}/index.html`,
         accArr,
-        accCurPnsUidIndex: await getAccCurPnsUidIndex(e.user_id) +1,
+        accCurPnsUidIndex: (await getAccCurPnsUidIndex(e.user_id)) + 1,
         pluResPath: _ResPath,
         pluginName,
         pluginVer,
