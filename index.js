@@ -46,4 +46,7 @@ await kuroLogger.info(pluginThemeColor('插件载入完成, 欢迎使用~'))
 await kuroLogger.info(pluginThemeColor('=============================='))
 
 // 起洞就检查一下更新
-await checkUpdateTask()
+// 延迟5s再开始以防止第三方适配器没连接上
+setTimeout(() => {
+  checkUpdateTask()
+}, 5000)

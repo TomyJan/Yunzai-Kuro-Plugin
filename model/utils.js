@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import kuroLogger from '../components/logger.js'
+import config from '../components/config.js'
 
 /**
  * 程序延时
@@ -43,10 +44,12 @@ export async function mGetDate() {
  */
 export async function sendMsgFriend(uin, msg) {
   uin = Number(uin)
+  // 延迟五秒
+  // await sleepAsync(5000)
   let friend = Bot.fl.get(uin)
-  if (friend) {
-    kuroLogger.debug(`发送好友消息[${friend.nickname}](${uin})`)
-    return await Bot.pickUser(uin)
+  if (friend || config.getConfig().attemptSendNonFriend) {
+    kuroLogger.debug(`bot ${config.getConfig().botQQ || Bot.uin} 发送好友消息[${friend?.nickname}](${uin})`)
+    return await Bot[config.getConfig().botQQ || Bot.uin].pickUser(uin)
       .sendMsg(msg)
       .catch((err) => {
         kuroLogger.error('发送好友消息错误:', err.message)

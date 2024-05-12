@@ -96,6 +96,24 @@ export function supportGuoba() {
             '任务执行时间, <a href="https://www.runoob.com/linux/linux-comm-crontab.html" target="_blank">corntab 表达式</a>, 请<a href="https://tool.lu/crontab/" target="_blank">检查</a>后再保存, 重启 Yunzai 生效',
           component: 'Input',
         },
+        {
+          component: 'Divider',
+          label: '其他设置',
+        },
+        {
+          field: 'attemptSendNonFriend',
+          label: '发送非好友',
+          helpMessage: '是否尝试向非好友发送消息',
+          bottomHelpMessage: '是否尝试向非好友发送消息',
+          component: 'Switch',
+        },
+        {
+          field: 'botQQ',
+          label: '机器人QQ',
+          helpMessage: '如果使用第三方适配器, 请设置, 否则 bot 的自动任务消息将无法推送, 留空则为自动获取',
+          bottomHelpMessage: '如果使用第三方适配器, 请设置, 否则 bot 的自动任务消息将无法推送, 留空则为自动获取',
+          component: 'Input',
+        },
       ],
       // 获取配置数据方法（用于前端填充显示数据）
       getConfigData() {

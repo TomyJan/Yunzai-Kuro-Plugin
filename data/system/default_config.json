@@ -6,5 +6,7 @@
   "autoTask": {
     "enabled": true,
     "execTime": "0 2 0 * * ? "
-  }
+  },
+  "attemptSendNonFriend": true,
+  "botQQ": 0
 }
