@@ -1,5 +1,5 @@
 # 修改即时生效, 无需重启
-- group: 账号登录
+- group: 账号管理
   list:
     - icon: kuro
       title: "#库洛验证码登录"
@@ -7,6 +7,9 @@
     - icon: kuro
       title: "#库洛token登录"
       desc: 通过token登录账号
+    - icon: pns
+      title: "#战双uid"
+      desc: 查看和切换战双uid
 - group: 签到工具
   list:
     - icon: pns
