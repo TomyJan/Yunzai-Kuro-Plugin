@@ -32,8 +32,8 @@
                   <div class="mr-4 text-14 name" data-v-08c4bfda>{{@item.roleName}}</div>
                   <div class=level data-v-08c4bfda>{{@item.gameLevel}}级</div>
                   <div class=show data-v-08c4bfda>
-                    <input name="checkbox" type="checkbox" class="better-checkbox " {{@item.isDefault ? 'checked' : ''
-                      }}>展示
+                    <input name="checkbox" type="checkbox" class="better-checkbox " {{@++countIndex === accCurPnsUidIndex ? 'checked' : ''
+                      }}> {{@countIndex === accCurPnsUidIndex ? '&nbsp;当前' : 'No.' + countIndex}}
                   </div>
                 </div>
                 <div class="sub-info text-12" data-v-08c4bfda>

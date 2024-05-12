@@ -6,6 +6,7 @@ config/
 
 # 用户信息
 data/token/
+data/userSetting/
 data/system/versionCache.json
 
 #nodejs

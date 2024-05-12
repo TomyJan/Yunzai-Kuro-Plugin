@@ -7,6 +7,7 @@ import {
   _ResPath,
 } from '../data/system/pluginConstants.js'
 import kuroApi from './kuroApi.js'
+import { getAccCurPnsUidIndex } from './userConfig.js'
 
 export default class gameCard {
   constructor(e, model) {
@@ -49,9 +50,11 @@ export default class gameCard {
       let ret = {
         tplFile: `${resPath}/html/${model}/index.html`,
         accArr,
+        accCurPnsUidIndex: await getAccCurPnsUidIndex(e.user_id) +1,
         pluResPath: _ResPath,
         pluginName,
         pluginVer,
+        countIndex: 0,
       }
       if (!ret) {
         await e.reply(`卡片信息获取失败: 未知错误`)

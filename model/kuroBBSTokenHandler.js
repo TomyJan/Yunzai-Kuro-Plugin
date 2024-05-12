@@ -59,6 +59,11 @@ export async function saveToken(uin, kuro_uid, kuro_token, kuro_refreshToken) {
   }
 }
 
+/**
+ * 从文件获取用户的 token 数据
+ * @param {number} uin QQ 号
+ * @returns {object} 多账号的原始 token 数据
+ */
 export async function getToken(uin) {
   const filePath = dataPath + `/token/${uin}.json`
   try {
