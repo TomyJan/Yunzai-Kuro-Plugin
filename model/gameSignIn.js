@@ -133,7 +133,7 @@ export async function doPnsSignIn(uin, kuro_uid) {
         tmp = '签到成功'
         rsp_initSignIn.data.sigInNum++
       } else {
-        tmp = rsp_gameSignIn.msg
+        tmp = rsp_gameSignIn
       }
       doPnsSignInRet += `      ${tmp}`
     }
@@ -195,7 +195,7 @@ export async function doMcSignIn(uin, kuro_uid) {
       doMcSignInRet += `      ${rsp_initSignIn}\n`
       continue
     }
-    if (rsp_initSignIn.data.sigIn) {
+    if (rsp_initSignIn.data.isSigIn) {
       //如果今天已经签到
       doMcSignInRet += `      今日已签`
     } else {
@@ -212,7 +212,7 @@ export async function doMcSignIn(uin, kuro_uid) {
         tmp = '签到成功'
         rsp_initSignIn.data.sigInNum++
       } else {
-        tmp = rsp_gameSignIn.msg
+        tmp = rsp_gameSignIn
       }
       doMcSignInRet += `      ${tmp}`
     }
