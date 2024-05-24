@@ -152,7 +152,6 @@ export async function doPnsSignIn(uin, kuro_uid) {
   return doPnsSignInRet
 }
 
-
 /**
  * 执行单个库洛账号的鸣潮签到, 可以不经构造调用
  * @param {number} uin QQ
