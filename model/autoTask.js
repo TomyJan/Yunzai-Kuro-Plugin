@@ -4,7 +4,7 @@ import schedule from 'node-schedule'
 import kuroLogger from '../components/logger.js'
 import { doBBSDailyTask } from './bbsTask.js'
 import { doBbsActivityTask } from './bbsActivityTask.js'
-import { doPnsSignIn } from './gameSignIn.js'
+import { doPnsSignIn, doMcSignIn } from './gameSignIn.js'
 import {
   dataPath,
   pluginVer,
@@ -26,10 +26,10 @@ export async function initAutoTask() {
   schedule.scheduleJob(autoTaskTime, function () {
     gameSignTask('pns')
   })
-  // kuroLogger.info(pluginThemeColor(`载入定时任务 gameSignTask:mc`))
-  // schedule.scheduleJob(autoTaskTime, function () {
-  //   gameSignTask('mc')
-  // })
+  kuroLogger.info(pluginThemeColor(`载入定时任务 gameSignTask:mc`))
+  schedule.scheduleJob(autoTaskTime, function () {
+    gameSignTask('mc')
+  })
   kuroLogger.info(pluginThemeColor(`载入定时任务 bbsDailyTask`))
   schedule.scheduleJob(autoTaskTime, function () {
     bbsDailyTask()
@@ -52,7 +52,32 @@ async function gameSignTask(gameName) {
     return false
   }
   if (gameName == 'mc') {
-    kuroLogger.info(`自动游戏签到: 鸣潮签到测试结束`)
+    kuroLogger.info(`自动游戏签到: 鸣潮签到开始...`)
+
+    const gameSignUins = fs
+      .readdirSync(dataPath + '/token')
+      .filter((file) => file.endsWith('.json'))
+
+    for (let i in gameSignUins) {
+      let gameSignUin = gameSignUins[i].replace('.json', '')
+      kuroLogger.info(`自动游戏签到: 开始为 ${gameSignUin} 鸣潮签到`)
+      let startTime = Date.now()
+      const tokenData = await getToken(gameSignUin)
+      const accNum = Object.keys(tokenData).length
+      let msg = '[库洛插件] 自动游戏签到\n\n'
+      for (const kuro_uid in tokenData) {
+        if (tokenData.hasOwnProperty(kuro_uid)) {
+          msg += await doMcSignIn(gameSignUin, kuro_uid)
+          msg += '\n'
+        } else {
+          msg += `账号 ${kuro_uid}: \ntoken 格式错误\n\n`
+        }
+        await sleepAsync(getRandomInt(1000, 3000))
+      }
+      msg += `共用时 ${Math.floor((Date.now() - startTime) / 1000)}s\n`
+      await sendMsgFriend(gameSignUin, msg.trimEnd())
+    }
+    kuroLogger.info(`自动游戏签到: 鸣潮签到完成`)
     return true
   }
   if (gameName == 'pns') {

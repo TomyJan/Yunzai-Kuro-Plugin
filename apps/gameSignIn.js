@@ -32,7 +32,8 @@ export class kuroBBSLogin extends plugin {
   }
 
   async mcSignIn(e) {
-    this.reply(`敬请期待~`)
-    return false
+    let mcsign = new gamesign(e)
+    await mcsign.mcSignIn(e.user_id)
+    return true
   }
 }

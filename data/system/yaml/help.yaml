@@ -12,6 +12,9 @@
     - icon: pns
       title: "#战双签到"
       desc: 库街区战双游戏签到
+    - icon: mingchao
+      title: "#鸣潮签到"
+      desc: 库街区鸣潮游戏签到
     - icon: kurocorn
       title: "#库街区每日"
       desc: 完成库街区日常任务
