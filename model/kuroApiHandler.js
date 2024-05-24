@@ -69,15 +69,15 @@ export default class kuroApiHandler {
         url: `${this.kuroApiUrl}/gamer/role/list`,
         body: `gameId=${data.gameId}`,
       },
-      initSignIn: {
+      initSignInV2: {
         // 取签到配置信息
-        url: `${this.kuroApiUrl}/encourage/signIn/initSignIn`,
-        body: `gameId=${data.gameId}&serverId=${data.serverId}&roleId=${data.roleId}`,
+        url: `${this.kuroApiUrl}/encourage/signIn/initSignInV2`,
+        body: `gameId=${data.gameId}&serverId=${data.serverId}&roleId=${data.roleId}&userId=${kuroUid}`,
       },
-      gameSignIn: {
+      gameSignInV2: {
         // 游戏签到
-        url: `${this.kuroApiUrl}/encourage/signIn/`,
-        body: `gameId=${data.gameId}&serverId=${data.serverId}&roleId=${data.roleId}&reqMonth=${data.reqMonth}`,
+        url: `${this.kuroApiUrl}/encourage/signIn/v2`,
+        body: `gameId=${data.gameId}&serverId=${data.serverId}&roleId=${data.roleId}&userId=${kuroUid}&reqMonth=${data.reqMonth}`,
       },
       sdkLogin: {
         // APP 端登录

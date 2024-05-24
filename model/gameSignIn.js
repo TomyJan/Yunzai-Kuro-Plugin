@@ -116,7 +116,7 @@ export async function doPnsSignIn(uin, kuro_uid) {
       doPnsSignInRet += `      ${rsp_initSignIn}\n`
       continue
     }
-    if (rsp_initSignIn.data.sigIn) {
+    if (rsp_initSignIn.data.isSigIn) {
       //如果今天已经签到
       doPnsSignInRet += `      今日已签`
     } else {
