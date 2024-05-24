@@ -14,7 +14,7 @@ export default class kuroBBSLogin {
   async captchaLoginHelp() {
     this.e.reply(this.captchaLoginHelpTip)
     this.e.reply(
-      `请前往 https://www.kurobbs.com/pns/home/2 或库街区 APP 输入手机号点击发送验证码后, 将手机号和验证码用逗号隔开私聊发送以完成绑定\n例: 库洛账号18888888888,验证码114514\n\n注意: 库街区 APP 同战双一样, 只能登录一个设备, 即机器人的登录和你自己手机 APP 的登录会互顶. 如果你需要用到库街区 APP, 请发送 #库洛token登录 查看抓包登录教程`
+      `请前往 https://wiki.kurobbs.com/pns/home 或库街区 APP 输入手机号点击发送验证码后, 将手机号和验证码用逗号隔开私聊发送以完成绑定\n例: 库洛账号18888888888,验证码114514\n\n注意: 库街区 APP 同战双一样, 只能登录一个设备, 即机器人的登录和你自己手机 APP 的登录会互顶. 如果你需要用到库街区 APP, 请发送 #库洛token登录 查看抓包登录教程`
     )
   }
 
