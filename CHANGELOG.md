@@ -1,14 +1,16 @@
-## [0.1.9-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.8-rel...v0.1.9-rel) (2024-05-12)
+## [0.1.10-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.8-rel...v0.1.10-rel) (2024-05-24)
 
 
 ### Bug Fixes
 
 * 定时任务推送失败 ([7506f38](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/7506f381dffc084f585b73b6159a669dc0a7d181))
 * 默认不保存日志文件 ([771fcfb](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/771fcfb6e51da3106b59c5526ec5b72c92d4363c))
+* 修复游戏签到 ([9d0bffb](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/9d0bffbbf153b446c309c1e46206b9171cc4c762))
 
 
 ### Features
 
+* 鸣潮游戏签到 ([fc75ab2](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/fc75ab2c044540261159b44f7959d1f5d56947d2))
 * 现在bot的功能将指定具体游戏uid来运行 ([d95767b](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/d95767b9c6e695d2f2fa4433b319ac5cdcf0b91c))
 * 新增菜单项 ([44c5d59](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/44c5d5908eafefb281f5cfb11c1f7fc4db3fdd86))
 
