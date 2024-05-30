@@ -10,7 +10,7 @@ export default class bbsActivityTask {
 
   async bbsActivityTask() {
     const tokenData = await getToken(this.e.user_id)
-    console.log(tokenData)
+    kuroLogger.debug(`QQ ${this.e.user_id} 的 tokenData: ${tokenData}`)
 
     if (tokenData && Object.keys(tokenData).length > 0) {
       const accNum = Object.keys(tokenData).length

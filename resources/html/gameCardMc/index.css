@@ -1,0 +1,259 @@
+@font-face {
+    font-family: "MiSans-Normal";
+    src: url("../../font/MiSans-Normal.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "HYWenHei-55W";
+    src: url("../../font/HYWenHei-55W.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    font-family: MiSans-Normal
+}
+
+body {
+    transform: scale(1);
+    width: 725px;
+    background: url(../../img/help/background/0.jpg) no-repeat;
+    background-size: cover;
+}
+
+.container {
+    width: 745px;
+    padding: 20px 15px 10px 15px;
+}
+
+.head-box {
+    margin: 60px 0 0 0;
+    padding-bottom: 0;
+}
+
+.head-box .title {
+    font-size: 50px;
+    font-family: HYWenHei-55W
+}
+
+.head-box .label {
+    font-family: HYWenHei-55W
+}
+
+.cont-box {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    position: relative;
+    font-size: 20px;
+    background: rgba(62, 62, 62, 0.3);
+
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+}
+
+.help-group {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px 15px 10px 20px;
+    display: inline-block;
+}
+
+.list {
+    display: flex;
+
+    flex-wrap: wrap;
+}
+
+
+
+.mr-4 {
+    margin-right: 8px
+}
+
+.mr-12 {
+    margin-right: 24px;
+}
+
+.pd-16 {
+    padding: 32px
+}
+
+.mb-16 {
+    margin-bottom: 32px
+}
+
+div,
+body {
+    box-sizing: border-box;
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+span,
+div {
+    word-break: break-word;
+    vertical-align: middle
+        /*英文和中文竖直居中*/
+}
+
+.text-12 {
+    font-size: 24px;
+    line-height: 40px
+}
+
+.text-14 {
+    font-size: 28px;
+    line-height: 44px
+}
+
+.flex {
+    display: flex
+}
+
+.flex-vertical-center {
+    display: flex;
+    align-items: center
+}
+
+.game-box-container[data-v-08c4bfda] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 710px;
+    height: 304px
+}
+
+.pns .game-box[data-v-08c4bfda] {
+    width: 662px;
+    height: 256px;
+    background: url(https://web-static.kurobbs.com/resource/prod/assets/game-box-pns-02781a5b.png);
+    background-size: 100% 100%
+}
+
+.game-box[data-v-08c4bfda] {
+    position: absolute;
+    font-size: 32px;
+    color: #fff;
+    flex: 1
+}
+
+.game-box-header .icon[data-v-08c4bfda] {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px
+}
+
+.game-box-header .role-info[data-v-08c4bfda] {
+    flex: 1
+}
+
+.game-box-header .role-info .name[data-v-08c4bfda] {
+    font-weight: 700
+}
+
+.game-box-header .role-info .level[data-v-08c4bfda] {
+    height: 32px;
+    font-size: 24px;
+    line-height: 24px;
+    padding: 4px 8px;
+    color: #fff;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .32) 100%);
+    border: .8px solid rgba(255, 255, 255, .5);
+    border-radius: 4px
+}
+
+.game-box-header .role-info .show[data-v-08c4bfda] {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.game-box-header .sub-info[data-v-08c4bfda] {
+    color: #aeb6c2;
+    font-weight: 400;
+    opacity: .5
+}
+
+.game-box-footer[data-v-08c4bfda] {
+
+    display: flex;
+    justify-content: space-between
+}
+
+.game-box-footer .item[data-v-08c4bfda] {
+    flex: 1;
+    font-size: 24px;
+    line-height: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    color: #8c95a3
+}
+
+.game-box-footer .item .number[data-v-08c4bfda] {
+    display: flex;
+    align-items: center;
+    font-size: 32px;
+    line-height: 48px;
+    font-weight: 700;
+    color: #fff
+}
+
+.game-box-footer .item .title[data-v-08c4bfda] {
+    width: 100%;
+    color: #8c95a3;
+    font-weight: 400;
+    text-align: center
+}
+
+.game-box-footer .item .icon[data-v-08c4bfda] {
+    cursor: pointer
+}
+
+.better-checkbox:checked {
+    border: none;
+    background: #1673ff
+}
+
+.better-checkbox {
+    width: 32px;
+    height: 32px;
+    border: solid 3px #dddddd;
+    border-radius: 50%;
+    vertical-align: top;
+    margin-right: 8px;
+    position: relative;
+    appearance: none
+}
+
+.better-checkbox:checked::after {
+    content: '';
+    top: 9px;
+    left: 8px;
+    position: absolute;
+    background: transparent;
+    border: #fff solid 3px;
+    border-top: none;
+    border-right: none;
+    height: 8px;
+    width: 14px;
+    transform: rotate(-45deg)
+}
+
+.copyright {
+    text-align: center;
+    font-size: 14px;
+    color: white;
+    font-family: HYWenHei-55W
+}

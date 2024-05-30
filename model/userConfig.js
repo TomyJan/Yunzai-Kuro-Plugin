@@ -171,7 +171,7 @@ export default class userConfig {
    * @param {number} uin QQ
    * @param {number} uidIndex uid 索引
    * @param {number} gameId 游戏 id, 战双=2, 鸣潮=3
-   * @returns {boolean} 是否成功
+   * @returns {boolean} 是否成功, 失败一般原因是索引不存在
    */
   async saveCurGameUidByIndex(qq, uidIndex, gameId) {
     kuroLogger.debug(`保存用户 ${qq} 使用的游戏 ${gameId} 的 uid 索引 ${uidIndex}...`)

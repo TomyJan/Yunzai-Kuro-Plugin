@@ -19,6 +19,9 @@ export default class gameCard {
     const tokenData = await getToken(e.user_id)
 
     if (tokenData && Object.keys(tokenData).length > 0) {
+      let gameId = 2
+      if (model === 'gameCardMc') gameId = 3
+      
       for (const kuro_uid in tokenData) {
         if (tokenData.hasOwnProperty(kuro_uid)) {
           let kuroapi = new kuroApi(e.user_id)
@@ -26,7 +29,7 @@ export default class gameCard {
           let rsp_mineV2 = await kuroapi.mineV2(kuro_uid)
           let accName = rsp_mineV2?.data?.mine?.userName || '未知昵称'
           accName += ` (${kuro_uid})`
-          let rsp_roleList = await kuroapi.roleList(kuro_uid, { gameId: 2 })
+          let rsp_roleList = await kuroapi.roleList(kuro_uid, { gameId })
           let acc = { account: accName, msg: '', data: null }
           if (typeof rsp_roleList !== 'string') {
             if (rsp_roleList.data.length > 0) {
@@ -52,7 +55,7 @@ export default class gameCard {
       let ret = {
         tplFile: `${resPath}/html/${model}/index.html`,
         accArr,
-        accCurPnsUidIndex: (await user.getCurGameUidIndex(e.user_id, 2)) + 1,
+        curGameUidIndex: (await user.getCurGameUidIndex(e.user_id, gameId)) + 1,
         pluResPath: _ResPath,
         pluginName,
         pluginVer,
