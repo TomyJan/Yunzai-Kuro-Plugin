@@ -7,7 +7,7 @@ import { sleepAsync } from '../model/utils.js'
 
 class Logger {
   constructor(
-    logLevel = config.getConfig().logger.logLevel || 'info',
+    logLevel = config.getConfig()?.logger?.logLevel || 'info',
     logDirectory = dataPath + '/logs'
   ) {
     this.logLevel = logLevel.toLowerCase()
@@ -32,7 +32,7 @@ class Logger {
     if (logType === 'ERROR') logger.error(chalk.red(logToConsole))
 
     // 保存日志到文件
-    if (config.getConfig().logger.saveToFile) {
+    if (config.getConfig()?.logger?.saveToFile || false) {
       const logToFile = `[${this.getTimeForLog()}] ${baseLogContent}`
       const currentLogFilePath = path.join(
         this.logDirectory,

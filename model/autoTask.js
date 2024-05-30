@@ -17,7 +17,7 @@ import cfg from '../../../lib/config/config.js'
 import config from '../components/config.js'
 
 export async function initAutoTask() {
-  if (!config.getConfig().autoTask.enabled) {
+  if (!config.getConfig()?.autoTask?.enabled) {
     kuroLogger.info(pluginThemeColor(`自动任务已被禁用, 取消载入定时任务`))
     return false
   }

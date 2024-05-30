@@ -7,7 +7,7 @@ import {
   _ResPath,
 } from '../data/system/pluginConstants.js'
 import kuroApi from './kuroApi.js'
-import { getAccCurPnsUidIndex } from './userConfig.js'
+import userConfig from './userConfig.js'
 
 export default class gameCard {
   constructor(e, model) {
@@ -47,10 +47,12 @@ export default class gameCard {
       }
       kuroLogger.debug('账号数组:', JSON.stringify(accArr))
 
+      let user = new userConfig()
+
       let ret = {
         tplFile: `${resPath}/html/${model}/index.html`,
         accArr,
-        accCurPnsUidIndex: (await getAccCurPnsUidIndex(e.user_id)) + 1,
+        accCurPnsUidIndex: (await user.getCurGameUidIndex(e.user_id, 2)) + 1,
         pluResPath: _ResPath,
         pluginName,
         pluginVer,

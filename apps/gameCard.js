@@ -2,7 +2,7 @@ import plugin from '../../../lib/plugins/plugin.js'
 import puppeteer from '../../../lib/puppeteer/puppeteer.js'
 import gameCardData from '../model/gameCard.js'
 import md5 from 'md5'
-import { saveAccCurPnsUidIndex } from '../model/userConfig.js'
+import userConfig from '../model/userConfig.js'
 import kuroLogger from '../components/logger.js'
 
 export class gameCard extends plugin {
@@ -34,8 +34,9 @@ export class gameCard extends plugin {
       .replace(/#| /g, '')
     kuroLogger.debug('战双卡片索引:', index)
     if (index) {
-      if (await saveAccCurPnsUidIndex(this.e.user_id, index - 1))
-        await this.reply(`已切换至第 ${index} 个账号`)
+      let user = new userConfig()
+      if (await user.saveCurGameUidByIndex(this.e.user_id, index - 1, 2))
+        await this.reply(`已切换至第 ${index} 个账号, UID: ${(await user.getCurGameUidLocal(this.e.user_id, 2))?.gameUid}`)
       else await this.reply(`切换账号失败`)
     }
     let data = await gameCardData.get(this.e, 'gameCardPns', this.e.user_id)
