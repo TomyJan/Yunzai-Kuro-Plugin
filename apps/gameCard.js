@@ -40,7 +40,13 @@ export class gameCard extends plugin {
     if (index) {
       let user = new userConfig()
       if (await user.saveCurGameUidByIndex(this.e.user_id, index - 1, 2))
-        await this.reply(`已切换至第 ${index} 个账号, UID: ${(await user.getCurGameUidLocal(this.e.user_id, 2))?.gameUid}`)
+        await this.reply(
+          `已切换至第 ${index} 个账号, UID: ${
+            (
+              await user.getCurGameUidLocal(this.e.user_id, 2)
+            )?.gameUid
+          }`
+        )
       else await this.reply(`切换账号失败, 请检查索引是否正确`)
     }
     let data = await gameCardData.get(this.e, 'gameCardPns', this.e.user_id)
@@ -77,7 +83,12 @@ export class gameCard extends plugin {
     if (index) {
       let user = new userConfig()
       if (await user.saveCurGameUidByIndex(this.e.user_id, index - 1, 3))
-        await this.reply(`已切换至第 ${index} 个账号, UID: ${await user.getCurGameUidLocal(this.e.user_id, 3)?.gameUid}`)
+        await this.reply(
+          `已切换至第 ${index} 个账号, UID: ${await user.getCurGameUidLocal(
+            this.e.user_id,
+            3
+          )?.gameUid}`
+        )
       else await this.reply(`切换账号失败, 请检查索引是否正确`)
     }
     let data = await gameCardData.get(this.e, 'gameCardMc', this.e.user_id)

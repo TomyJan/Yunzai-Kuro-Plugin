@@ -17,7 +17,9 @@ export default class userConfig {
     let { gameUid, inKuroUid } = await this.getCurGameUidLocal(qq, gameId)
     if (!gameUid || !inKuroUid) {
       // 如果没找到使用的 uid, 就设置为第一个 uid
-      kuroLogger.debug(`用户 ${qq} 未设置使用的游戏 ${gameId} 的 uid, 尝试获取第一个 uid...`)
+      kuroLogger.debug(
+        `用户 ${qq} 未设置使用的游戏 ${gameId} 的 uid, 尝试获取第一个 uid...`
+      )
       let tokenData = await getToken(qq)
       let kuroUidToFetch = 0
       let kuroUidIndex = 0
@@ -72,7 +74,9 @@ export default class userConfig {
           kuroLogger.debug(
             `在第 ${uidIndex + 1} 个库洛 id ${kuro_uid} 下找到 ${
               rsp_roleList.data.length
-            } 个 uid: ${rsp_roleList.data.map((role) => role.roleId).join(', ')}`
+            } 个 uid: ${rsp_roleList.data
+              .map((role) => role.roleId)
+              .join(', ')}`
           )
           // 遍历data数组查找uid
           for (const role of rsp_roleList.data) {
@@ -88,7 +92,9 @@ export default class userConfig {
       } else continue // 如果获取数据失败就跳过吧
     }
     kuroLogger.debug(
-      `用户 ${qq} 使用的游戏 ${gameId} 的 uid 索引 ${succeed ? '已' : '未'} 获取`
+      `用户 ${qq} 使用的游戏 ${gameId} 的 uid 索引 ${
+        succeed ? '已' : '未'
+      } 获取`
     )
     // TODO: 如果没有获取到, 应该再写入一下配置文件, 这里的代码以后再整理
     return succeed ? uidIndex : 0
@@ -154,7 +160,10 @@ export default class userConfig {
       }
 
       // 将数据存入 curGameUid.gameId 对象
-      existingData.curGameUid[gameId] = { ...existingData.curGameUid[gameId], ...qqData }
+      existingData.curGameUid[gameId] = {
+        ...existingData.curGameUid[gameId],
+        ...qqData,
+      }
       const newJsonData = JSON.stringify(existingData)
 
       await fs.promises.writeFile(filePath, newJsonData)
@@ -174,7 +183,9 @@ export default class userConfig {
    * @returns {boolean} 是否成功, 失败一般原因是索引不存在
    */
   async saveCurGameUidByIndex(qq, uidIndex, gameId) {
-    kuroLogger.debug(`保存用户 ${qq} 使用的游戏 ${gameId} 的 uid 索引 ${uidIndex}...`)
+    kuroLogger.debug(
+      `保存用户 ${qq} 使用的游戏 ${gameId} 的 uid 索引 ${uidIndex}...`
+    )
     let tokenData = await getToken(qq)
     let kuroUidIndex = 0
     let kuroUidToFetch = Object.keys(tokenData)[kuroUidIndex]
@@ -194,7 +205,9 @@ export default class userConfig {
       kuroUidToFetch = Object.keys(tokenData)[++kuroUidIndex]
     } while (kuroUidIndex < Object.keys(tokenData).length)
 
-    kuroLogger.warn(`保存用户 ${qq} 使用的游戏 ${gameId} 的 uid 索引 ${uidIndex} 失败: 未找到 uid`)
+    kuroLogger.warn(
+      `保存用户 ${qq} 使用的游戏 ${gameId} 的 uid 索引 ${uidIndex} 失败: 未找到 uid`
+    )
 
     return false
   }

@@ -21,7 +21,7 @@ export default class gameCard {
     if (tokenData && Object.keys(tokenData).length > 0) {
       let gameId = 2
       if (model === 'gameCardMc') gameId = 3
-      
+
       for (const kuro_uid in tokenData) {
         if (tokenData.hasOwnProperty(kuro_uid)) {
           let kuroapi = new kuroApi(e.user_id)
