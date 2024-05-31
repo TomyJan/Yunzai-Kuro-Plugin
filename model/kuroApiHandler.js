@@ -182,12 +182,12 @@ export default class kuroApiHandler {
         body: JSON.stringify({
           cardPoolId: data.cardPoolId,
           cardPoolType: data.cardPoolType,
-          languageCode: "zh-Hans", // 暂时固定简中
+          languageCode: 'zh-Hans', // 暂时固定简中
           playerId: data.playerId,
           recordId: data.recordId,
           serverId: data.serverId,
         }),
-      }
+      },
     }
     if (!ApiMap[ApiName]) return false
     let {

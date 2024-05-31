@@ -63,10 +63,10 @@ export default class kuroApi {
       return rsp
     } else if (rsp.code === 220) {
       return 'token 失效'
-    } else if(ApiName == 'mcGachaRecord') {
-      if(rsp.code === 0) return rsp
+    } else if (ApiName == 'mcGachaRecord') {
+      if (rsp.code === 0) return rsp
       else return rsp?.message || rsp?.msg || '未知错误'
-    }else return rsp?.msg || rsp?.message || '未知错误'
+    } else return rsp?.msg || rsp?.message || '未知错误'
   }
 
   /**
