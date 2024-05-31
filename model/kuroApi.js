@@ -50,7 +50,7 @@ export default class kuroApi {
       rsp = await this.kuroApiHandler.getApiRsp(
         ApiName,
         kuroUid,
-        this.tokenData[kuroUid].token,
+        this.tokenData[kuroUid]?.token,
         data
       )
     }
@@ -63,7 +63,10 @@ export default class kuroApi {
       return rsp
     } else if (rsp.code === 220) {
       return 'token 失效'
-    } else return rsp.msg
+    } else if(ApiName == 'mcGachaRecord') {
+      if(rsp.code === 0) return rsp
+      else return rsp?.message || rsp?.msg || '未知错误'
+    }else return rsp?.msg || rsp?.message || '未知错误'
   }
 
   /**
@@ -311,5 +314,15 @@ export default class kuroApi {
    */
   async followUser(kuroUid, data) {
     return this.getData('followUser', kuroUid, data)
+  }
+
+  /**
+   * 鸣潮抽卡记录
+   * @param {string} kuroUid 库洛 ID, 传 0 即可
+   * @param {object} data 传入 data.cardPoolId 卡池 id data.cardPoolType 卡池类型 data.playerId 游戏 uid data.recordId 记录 id data.serverId 服务器 id
+   * @returns {JSON|string} code=0 时接口返回的原始 json 或者报错信息
+   */
+  async mcGachaRecord(kuroUid, data) {
+    return this.getData('mcGachaRecord', kuroUid, data)
   }
 }

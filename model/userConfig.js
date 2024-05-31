@@ -101,7 +101,7 @@ export default class userConfig {
   }
 
   /**
-   * 从本地获取指定 QQ 目前使用的游戏 uid
+   * 从本地获取指定 QQ 目前使用的游戏 uid 和所在的库洛 uid, 如果不存在则返回 0
    * @param {number} uin QQ
    * @param {number} gameId 游戏 id, 战双=2, 鸣潮=3
    * @returns {object} 游戏 uid 和所在的库洛 uid { gameUid: 0, inKuroUid: 0}
@@ -115,7 +115,7 @@ export default class userConfig {
         'utf-8'
       )
       qqData = JSON.parse(fileData)?.curGameUid?.[gameId] || {}
-      kuroLogger.debug(`用户设置文件已读取: ${JSON.stringify(qqData)}`)
+      kuroLogger.debug(`获取用户当前游戏 uid: 用户设置文件已读取: ${JSON.stringify(qqData)}`)
       return {
         gameUid: qqData.gameUid || 0,
         inKuroUid: qqData.inKuroUid || 0,
@@ -167,7 +167,7 @@ export default class userConfig {
       const newJsonData = JSON.stringify(existingData)
 
       await fs.promises.writeFile(filePath, newJsonData)
-      kuroLogger.debug(`用户设置已保存至文件: ${filePath}`)
+      kuroLogger.debug(`保存用户 ${qq} 使用的游戏 ${gameId} 的 uid ${uid} 和所在库洛 uid ${kuro_uid} 到文件: ${filePath}, 内容: ${newJsonData}`)
       return true
     } catch (error) {
       kuroLogger.warn(`保存用户设置时出错: ${error.message}`)
@@ -210,5 +210,74 @@ export default class userConfig {
     )
 
     return false
+  }
+
+  /**
+   * 通过 QQ 和 uid 获取用户提交的鸣潮抽卡记录链接
+   * @param {number} qq QQ
+   * @param {number} gameUid 鸣潮 uid, 如果传递 0 则返回第一个 uid 的链接
+   * @returns {string|null} 抽卡数据链接, 不存在则返回 null
+   */
+  async getMcGachaDataLink(qq, gameUid) {
+    kuroLogger.debug(`获取用户 ${qq} 的鸣潮 uid ${gameUid} 提交的鸣潮抽卡记录链接...`)
+    let qqData = {}
+    try {
+      const fileData = await fs.promises.readFile(
+        dataPath + `/userSetting/${qq}.json`,
+        'utf-8'
+      )
+      qqData = JSON.parse(fileData)?.mcGachaDataLink || {}
+      kuroLogger.debug(`获取鸣潮抽卡记录链接: 用户设置文件已读取: ${JSON.stringify(qqData)}`)
+      // 如果 gameUid 为 0, 则返回第一个 uid 的链接
+      if (gameUid === 0) {
+        gameUid = Object.keys(qqData)[0]
+      }
+      return qqData[gameUid] || null
+    } catch (error) {
+      kuroLogger.error(`读取用户设置文件时出错: ${error.message}`)
+      return null
+    }
+  }
+
+  /**
+   * 保存用户提交的鸣潮抽卡记录链接
+   * @param {number} qq QQ
+   * @param {number} gameUid 鸣潮 uid
+   * @param {string} link 抽卡数据链接
+   * @returns {boolean} 是否成功
+   */
+  async saveMcGachaDataLink(qq, gameUid, link) {
+    kuroLogger.debug(`保存用户 ${qq} 的鸣潮 uid ${gameUid} 提交的鸣潮抽卡记录链接 ${link} ...`)
+    try {
+      const filePath = dataPath + `/userSetting/${qq}.json`
+
+      await fs.promises.mkdir(dataPath + '/userSetting', { recursive: true })
+
+      let existingData = {}
+      try {
+        const fileData = await fs.promises.readFile(filePath, 'utf-8')
+        existingData = JSON.parse(fileData)
+      } catch (error) {
+        if (error.code !== 'ENOENT') {
+          kuroLogger.error(`读取用户设置文件时出错: ${error.message}`)
+        }
+      }
+
+      // 确保 mcGachaDataLink 对象存在
+      if (!existingData.mcGachaDataLink) {
+        existingData.mcGachaDataLink = {}
+      }
+
+      // 将数据存入 mcGachaDataLink.gameUid 对象
+      existingData.mcGachaDataLink[gameUid] = link
+      const newJsonData = JSON.stringify(existingData)
+
+      await fs.promises.writeFile(filePath, newJsonData)
+      kuroLogger.debug(`保存用户 ${qq} 的鸣潮 uid ${gameUid} 提交的抽卡记录链接 ${link} 到文件: ${filePath}, 内容: ${newJsonData}`)
+      return true
+    } catch (error) {
+      kuroLogger.warn(`保存用户设置时出错: ${error.message}`)
+      return false
+    }
   }
 }

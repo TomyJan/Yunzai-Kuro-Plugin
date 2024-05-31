@@ -4,6 +4,7 @@ import kuroLogger from '../components/logger.js'
 export default class kuroApiHandler {
   constructor() {
     this.kuroApiUrl = 'https://api.kurobbs.com'
+    this.mcGachaApiUrl = 'https://gmserver-api.aki-game2.com'
   }
 
   /**
@@ -174,6 +175,19 @@ export default class kuroApiHandler {
         url: `${this.kuroApiUrl}/user/followUser`,
         body: `followUserId=${data.followUserId}&operateType=${data.operateType}`,
       },
+      mcGachaRecord: {
+        // 鸣潮抽卡记录
+        url: `${this.mcGachaApiUrl}/gacha/record/query`,
+        // 这个的body是json
+        body: JSON.stringify({
+          cardPoolId: data.cardPoolId,
+          cardPoolType: data.cardPoolType,
+          languageCode: "zh-Hans", // 暂时固定简中
+          playerId: data.playerId,
+          recordId: data.recordId,
+          serverId: data.serverId,
+        }),
+      }
     }
     if (!ApiMap[ApiName]) return false
     let {
@@ -266,6 +280,11 @@ export default class kuroApiHandler {
       headers = {
         ...headers,
         'content-type': 'application/x-www-form-urlencoded; charset=utf-8',
+      }
+    } else if (ApiName == 'mcGachaRecord') {
+      headers = {
+        ...headers,
+        'content-type': 'application/json',
       }
     } else if (ApiName !== 'uploadForumImg') {
       // 普通请求为 application/x-www-form-urlencoded, uploadForumImg 为 multipart/form-data, 这里不用手动添加, 让那边的 form-data 自己处理

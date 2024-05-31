@@ -5,10 +5,11 @@ data/logs/
 config/
 
 # 用户信息
+
+data/gachaData/
+data/system/versionCache.json
 data/token/
 data/userSetting/
-data/system/versionCache.json
 
 #nodejs
 node_modules/
-

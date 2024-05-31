@@ -30,6 +30,7 @@ export const cfgPath = pluginPath + '/config'
 export const _CfgPath = `${process // 绝对目录
   .cwd()
   .replace(/\\/g, '/')}/plugins/${pluginName}/config`
+export const mcGachaDataPath = dataPath + '/gachaData/mc'
 
 // 其它信息
 export const pluginThemeColor = chalk.rgb(57, 197, 187)
