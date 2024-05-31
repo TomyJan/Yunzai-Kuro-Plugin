@@ -64,7 +64,7 @@ async function gameSignTask(gameName) {
       let startTime = Date.now()
       const tokenData = await getToken(gameSignUin)
       const accNum = Object.keys(tokenData).length
-      let msg = '[库洛插件] 自动游戏签到\n\n'
+      let msg = '[库洛插件] 自动游戏签到 - 鸣潮\n\n'
       for (const kuro_uid in tokenData) {
         if (tokenData.hasOwnProperty(kuro_uid)) {
           msg += await doMcSignIn(gameSignUin, kuro_uid)
@@ -93,7 +93,7 @@ async function gameSignTask(gameName) {
       let startTime = Date.now()
       const tokenData = await getToken(gameSignUin)
       const accNum = Object.keys(tokenData).length
-      let msg = '[库洛插件] 自动游戏签到\n\n'
+      let msg = '[库洛插件] 自动游戏签到 - 战双\n\n'
       for (const kuro_uid in tokenData) {
         if (tokenData.hasOwnProperty(kuro_uid)) {
           msg += await doPnsSignIn(gameSignUin, kuro_uid)

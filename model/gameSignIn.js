@@ -84,7 +84,7 @@ export async function doPnsSignIn(uin, kuro_uid) {
   // 获取昵称
   let rsp_mineV2 = await kuroapi.mineV2(kuro_uid)
   if (rsp_mineV2 == `token 失效`) return `账号 ${kuro_uid}: \ntoken 失效\n`
-  let doPnsSignInRet = ''
+  let doPnsSignInRet = '游戏签到 - 战双\n'
   doPnsSignInRet += `账号 ${
     rsp_mineV2.data.mine.userName || '未知昵称'
   }(${kuro_uid}): \n`
@@ -163,7 +163,7 @@ export async function doMcSignIn(uin, kuro_uid) {
   // 获取昵称
   let rsp_mineV2 = await kuroapi.mineV2(kuro_uid)
   if (rsp_mineV2 == `token 失效`) return `账号 ${kuro_uid}: \ntoken 失效\n`
-  let doMcSignInRet = ''
+  let doMcSignInRet = '游戏签到 - 鸣潮\n'
   doMcSignInRet += `账号 ${
     rsp_mineV2.data.mine.userName || '未知昵称'
   }(${kuro_uid}): \n`
