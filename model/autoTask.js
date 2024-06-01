@@ -112,7 +112,7 @@ async function gameSignTask(gameName) {
 }
 
 async function bbsDailyTask() {
-  kuroLogger.info(`自动社区游戏签到开始...`)
+  kuroLogger.info(`自动社区任务开始...`)
 
   const gameSignUins = fs
     .readdirSync(dataPath + '/token')
@@ -120,11 +120,11 @@ async function bbsDailyTask() {
 
   for (let i in gameSignUins) {
     let gameSignUin = gameSignUins[i].replace('.json', '')
-    kuroLogger.info(`自动社区签到: 开始为 ${gameSignUin} 签到`)
+    kuroLogger.info(`自动社区任务: 开始为 ${gameSignUin} 执行`)
     let startTime = Date.now()
     const tokenData = await getToken(gameSignUin)
     const accNum = Object.keys(tokenData).length
-    let msg = '[库洛插件] 自动社区签到\n\n'
+    let msg = '[库洛插件] 自动社区任务\n\n'
     for (const kuro_uid in tokenData) {
       if (tokenData.hasOwnProperty(kuro_uid)) {
         msg += await doBBSDailyTask(gameSignUin, kuro_uid)
@@ -137,7 +137,7 @@ async function bbsDailyTask() {
     msg += `共用时 ${Math.floor((Date.now() - startTime) / 1000)}s\n`
     await sendMsgFriend(gameSignUin, msg.trimEnd())
   }
-  kuroLogger.info(`自动社区签到: 任务完成`)
+  kuroLogger.info(`自动社区任务: 任务完成`)
   return true
 }
 

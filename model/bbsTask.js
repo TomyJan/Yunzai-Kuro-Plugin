@@ -20,7 +20,7 @@ export default class bbsTask {
         }-${35 * accNum}s~`
       )
       let startTime = Date.now()
-      let msg = ''
+      let msg = '[库洛插件] 社区任务\n\n'
       for (const kuro_uid in tokenData) {
         if (tokenData.hasOwnProperty(kuro_uid)) {
           msg += await doBBSDailyTask(this.e.user_id, kuro_uid)
