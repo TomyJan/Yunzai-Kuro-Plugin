@@ -20,9 +20,9 @@ export default class mcGachaData {
     }
   }
 
-/** 检查是否可以生成抽卡记录
- * @returns {boolean} 是否通过检查, 没通过检查就不生成了
- */
+  /** 检查是否可以生成抽卡记录
+   * @returns {boolean} 是否通过检查, 没通过检查就不生成了
+   */
   async check() {
     const tokenData = await getToken(this.e.user_id)
     kuroLogger.debug(
@@ -339,11 +339,11 @@ export default class mcGachaData {
     }
   }
 
-/** 以原格式输出抽卡记录
- * @param {number} qq QQ
- * @param {number} gameUid 游戏 uid, 如果传入 0 则输出第一个 uid
- * @returns {object|string} 成功则返回原始 UIGF 格式的抽卡记录, 失败则返回 str 原因
- */
+  /** 以原格式输出抽卡记录
+   * @param {number} qq QQ
+   * @param {number} gameUid 游戏 uid, 如果传入 0 则输出第一个 uid
+   * @returns {object|string} 成功则返回原始 UIGF 格式的抽卡记录, 失败则返回 str 原因
+   */
   async getUigfRecord(qq, gameUid) {
     // gameUid 无效时获取第一个 uid
     if (!gameUid) {

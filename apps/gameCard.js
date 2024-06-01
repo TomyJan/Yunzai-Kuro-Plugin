@@ -53,7 +53,8 @@ export class gameCard extends plugin {
     if (!data) {
       kuroLogger.warn('战双卡片数据获取失败')
       await this.reply('卡片数据获取失败')
-      return false}
+      return false
+    }
     let img = await this.cachePns(data)
     await this.reply(img)
   }
@@ -98,7 +99,8 @@ export class gameCard extends plugin {
     if (!data) {
       kuroLogger.warn('战双卡片数据获取失败')
       await this.reply('卡片数据获取失败')
-      return false}
+      return false
+    }
     let img = await this.cacheMc(data)
     await this.reply(img)
   }

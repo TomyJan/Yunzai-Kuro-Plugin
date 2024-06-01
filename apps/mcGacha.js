@@ -43,9 +43,12 @@ export class mcGacha extends plugin {
 
   async mcGachaDataShow(e) {
     let gacha = new mcGachaData(e)
-    if(await gacha.check()){ // 通过检查, 可以生成抽卡分析
+    if (await gacha.check()) {
+      // 通过检查, 可以生成抽卡分析
       // 从消息中提取卡池类型
-      let msg = this.e.msg.replace(/#| /g, '').replace(/鸣潮|记录|唤取|分析|池/g, '')
+      let msg = this.e.msg
+        .replace(/#| /g, '')
+        .replace(/鸣潮|记录|唤取|分析|池/g, '')
       let gachaType = 0
       let cardPoolName = ''
       switch (msg) {
@@ -86,10 +89,11 @@ export class mcGacha extends plugin {
           gachaType = 1
           cardPoolName = '角色活动唤取'
       }
-      let data = await mcGachaCard.get(this.e, gachaType, cardPoolName) 
+      let data = await mcGachaCard.get(this.e, gachaType, cardPoolName)
       if (!data) {
         kuroLogger.warn('抽卡记录卡片数据获取失败')
-        return false}
+        return false
+      }
       if (typeof data === 'string') {
         await this.reply(data)
         return false
@@ -106,7 +110,10 @@ export class mcGacha extends plugin {
       return mcGacha.mcGachaCardData.img
     }
 
-    mcGacha.mcGachaCardData.img = await puppeteer.screenshot('mcGachaRecord', data)
+    mcGacha.mcGachaCardData.img = await puppeteer.screenshot(
+      'mcGachaRecord',
+      data
+    )
     mcGacha.mcGachaCardData.md5 = tmp
 
     return mcGacha.mcGachaCardData.img
