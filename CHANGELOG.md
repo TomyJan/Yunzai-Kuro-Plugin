@@ -1,4 +1,4 @@
-# [0.2.0-dev](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.11-rel...v0.2.0-dev) (2024-06-01)
+# [0.2.0-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.11-rel...v0.2.0-rel) (2024-06-01)
 
 
 ### Features
