@@ -1,3 +1,12 @@
+## [0.2.3-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.2-rel...v0.2.3-rel) (2024-06-01)
+
+
+### Bug Fixes
+
+* 修复保存抽卡链接时损坏数据 ([dc4f0ad](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/dc4f0ad27bea9139609c7b3f7749ae6aafba5259))
+
+
+
 ## [0.2.2-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.1-rel...v0.2.2-rel) (2024-06-01)
 
 
