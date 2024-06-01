@@ -49,8 +49,11 @@ export class gameCard extends plugin {
         )
       else await this.reply(`切换账号失败, 请检查索引是否正确`)
     }
-    let data = await gameCardData.get(this.e, 'gameCardPns', this.e.user_id)
-    if (!data) return false
+    let data = await gameCardData.get(this.e, 'gameCardPns')
+    if (!data) {
+      kuroLogger.warn('战双卡片数据获取失败')
+      await this.reply('卡片数据获取失败')
+      return false}
     let img = await this.cachePns(data)
     await this.reply(img)
   }
@@ -91,22 +94,25 @@ export class gameCard extends plugin {
         )
       else await this.reply(`切换账号失败, 请检查索引是否正确`)
     }
-    let data = await gameCardData.get(this.e, 'gameCardMc', this.e.user_id)
-    if (!data) return false
+    let data = await gameCardData.get(this.e, 'gameCardMc')
+    if (!data) {
+      kuroLogger.warn('战双卡片数据获取失败')
+      await this.reply('卡片数据获取失败')
+      return false}
     let img = await this.cacheMc(data)
     await this.reply(img)
   }
 
   async cacheMc(data) {
     let tmp = md5(JSON.stringify(data))
-    if (gameCard.mcCardData.md5 === tmp) {
-      return gameCard.mcCardData.img
+    if (this.mcCardData.md5 === tmp) {
+      return this.mcCardData.img
     }
 
-    gameCard.mcCardData.img = await puppeteer.screenshot('gameCardMc', data)
-    gameCard.mcCardData.md5 = tmp
+    this.mcCardData.img = await puppeteer.screenshot('gameCardMc', data)
+    this.mcCardData.md5 = tmp
 
-    return gameCard.mcCardData.img
+    return this.mcCardData.img
   }
 
   static mcCardData = {

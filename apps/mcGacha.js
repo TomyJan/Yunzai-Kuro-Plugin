@@ -1,5 +1,9 @@
 import mcGachaData from '../model/mcGachaData.js'
 import plugin from '../../../lib/plugins/plugin.js'
+import md5 from 'md5'
+import puppeteer from '../../../lib/puppeteer/puppeteer.js'
+import mcGachaCard from '../model/mcGachaCard.js'
+import kuroLogger from '../components/logger.js'
 
 export class mcGacha extends plugin {
   constructor() {
@@ -39,18 +43,83 @@ export class mcGacha extends plugin {
 
   async mcGachaDataShow(e) {
     let gacha = new mcGachaData(e)
-    await gacha.show()
-    return true
+    if(await gacha.check()){ // 通过检查, 可以生成抽卡分析
+      // 从消息中提取卡池类型
+      let msg = this.e.msg.replace(/#| /g, '').replace(/鸣潮|记录|唤取|分析|池/g, '')
+      let gachaType = 0
+      let cardPoolName = ''
+      switch (msg) {
+        case '抽卡':
+        case '角色':
+        case 'up':
+        case '抽奖':
+        case '角色活动':
+        case '角色up':
+          gachaType = 1
+          cardPoolName = '角色活动唤取'
+          break
+        case '武器':
+        case '武器活动':
+        case '武器up':
+          gachaType = 2
+          cardPoolName = '武器活动唤取'
+          break
+        case '常驻':
+        case '角色常驻':
+          gachaType = 3
+          cardPoolName = '角色常驻唤取'
+          break
+        case '武器常驻':
+          gachaType = 4
+          cardPoolName = '武器常驻唤取'
+          break
+        case '新手':
+          gachaType = 5
+          cardPoolName = '新手唤取'
+          break
+        case '新手自选':
+        case '自选':
+          gachaType = 6
+          cardPoolName = '新手自选唤取'
+          break
+        default:
+          gachaType = 1
+          cardPoolName = '角色活动唤取'
+      }
+      let data = await mcGachaCard.get(this.e, gachaType, cardPoolName) 
+      if (!data) {
+        kuroLogger.warn('抽卡记录卡片数据获取失败')
+        return false}
+      if (typeof data === 'string') {
+        await this.reply(data)
+        return false
+      }
+      let img = await this.cache(data)
+      await this.reply(img)
+    }
+    return false
+  }
+
+  async cache(data) {
+    let tmp = md5(JSON.stringify(data))
+    if (mcGacha.mcGachaCardData.md5 === tmp) {
+      return mcGacha.mcGachaCardData.img
+    }
+
+    mcGacha.mcGachaCardData.img = await puppeteer.screenshot('mcGachaRecord', data)
+    mcGacha.mcGachaCardData.md5 = tmp
+
+    return mcGacha.mcGachaCardData.img
+  }
+
+  static mcGachaCardData = {
+    md5: '',
+    img: '',
   }
 
   async mcGachaHelp(e) {
     e.reply(
-      `可通过以下两种方式获取抽卡记录: 
-      #鸣潮本地获取抽卡记录
-       - 在本地访问链接获取抽卡记录, 快速但是无法自动更新
-      #鸣潮上传抽卡记录链接
-       - 通过日志中的抽卡记录链接上传, 繁琐但是一次获取长期有效
-      请发送相应指令查看帮助` // 抽卡链接有效期
+      `可通过以下两种方式获取抽卡记录: \n#鸣潮本地获取抽卡记录 \n - 在本地访问链接获取抽卡记录, 快速但是无法自动更新 \n#鸣潮上传抽卡记录链接 \n - 通过日志中的抽卡记录链接上传, 繁琐但是一次获取长期有效 \n请发送相应指令查看帮助` // TODO: 抽卡链接有效期
     )
     return true
   }
@@ -83,7 +152,7 @@ export class mcGacha extends plugin {
     let gacha = new mcGachaData(e)
     let gachaRecord = await gacha.get(e.msg, e.user_id)
     if (typeof gachaRecord === 'string') {
-      e.reply(`抽卡记录更新失败: \n${gachaRecord}`)
+      e.reply(`抽卡记录更新失败: \n${gachaRecord} \n请检查链接是否正确 `)
       return true
     } else {
       let failedReason = await gacha.update(e.user_id, gachaRecord)

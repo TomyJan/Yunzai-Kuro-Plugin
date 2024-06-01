@@ -1,0 +1,89 @@
+@font-face {
+    font-family: "MiSans-Normal";
+    src: url("../../font/MiSans-Normal.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "HYWenHei-55W";
+    src: url("../../font/HYWenHei-55W.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    font-family: MiSans-Normal
+}
+
+body {
+    transform: scale(1);
+    width: 725px;
+    background: url(../../img/help/background/0.jpg) no-repeat;
+    background-size: cover;
+}
+
+.container {
+    width: 745px;
+    padding: 20px 15px 10px 15px;
+}
+
+.head-box {
+    margin: 60px 0 0 0;
+    padding-bottom: 0;
+}
+
+.head-box .title {
+    font-size: 50px;
+    font-family: HYWenHei-55W
+}
+
+.head-box .label {
+    font-family: HYWenHei-55W
+}
+
+.cont-box {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    position: relative;
+    font-size: 20px;
+    background: rgba(62, 62, 62, 0.3);
+
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+}
+
+.help-group {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px 15px 10px 20px;
+    display: inline-block;
+}
+
+div,
+body {
+    box-sizing: border-box;
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+span,
+div {
+    word-break: break-word;
+    vertical-align: middle
+        /*英文和中文竖直居中*/
+}
+
+.copyright {
+    text-align: center;
+    font-size: 14px;
+    color: white;
+    font-family: HYWenHei-55W
+}

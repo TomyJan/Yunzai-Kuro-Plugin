@@ -20,9 +20,10 @@ export default class mcGachaData {
     }
   }
 
-  async show() {
-    let msg = this.e.msg.replace(/#| /g, '').replace(/记录|唤取|分析|池/g, '')
-
+/** 检查是否可以生成抽卡记录
+ * @returns {boolean} 是否通过检查, 没通过检查就不生成了
+ */
+  async check() {
     const tokenData = await getToken(this.e.user_id)
     kuroLogger.debug(
       `QQ ${this.e.user_id} 的 tokenData: ${JSON.stringify(tokenData)}`
@@ -40,21 +41,21 @@ export default class mcGachaData {
 
     // 先检查本地是否既没有抽卡记录也没有抽卡链接, 如果没有就提示获取抽卡记录
     if (!(await this.exist(this.e.user_id, gameUid)) && !gachaLink) {
-      this.e.reply(
+      await this.e.reply(
         `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 暂未获取抽卡记录\n请发送 #鸣潮抽卡记录帮助 以获取记录`
       )
-      return
+      return false
     }
 
     // 然后检查是否是通过链接上传的信息, 如果是链接上传就更新再生成, 如果是本地上传就直接生成
     if (gachaLink) {
-      this.e.reply(
+      await this.e.reply(
         `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 本地存在抽卡链接, 尝试更新抽卡记录...`
       )
       let gachaRecord = await this.get(gachaLink, this.e.user_id)
       if (typeof gachaRecord === 'string') {
         // 如果记录更新失败, 进行提示; 如果更新成功, 不提示直接进入生成
-        this.e.reply(
+        await this.e.reply(
           `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 更新抽卡记录失败: \n${failedReason}\n将展示历史抽卡记录`
         )
       } else {
@@ -62,7 +63,7 @@ export default class mcGachaData {
         await this.update(this.e.user_id, gachaRecord)
       }
     } else {
-      this.e.reply(
+      await this.e.reply(
         `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 通过本地上传的抽卡记录, 将展示历史抽卡记录`
       )
     }
@@ -72,17 +73,12 @@ export default class mcGachaData {
     } else {
       // 没绑定当然也能获取 ,但是警告一下获取不到部分信息
       // TODO: 把这个放到绑定抽卡链接的提示吧
-      // this.e.reply(
+      // await this.e.reply(
       //   `QQ ${this.e.user_id} 暂未绑定 token, 将无法获取到部分额外信息, 建议发送 #库洛验证码登录 绑定 token`
       // )
     }
 
-    // 开始生成抽卡记录
-    this.generateAndReply()
-  }
-
-  async generateAndReply() {
-    // TODO
+    return true
   }
 
   /** 通过抽卡链接获取抽卡记录
@@ -159,7 +155,7 @@ export default class mcGachaData {
       kuroLogger.debug(
         `QQ ${qq} 的抽卡链接 ${link} 获取失败: ${rsp_mcGachaRecord}`
       )
-      return `QQ ${qq} 的抽卡链接 ${link} 获取失败: \n${rsp_mcGachaRecord}`
+      return `获取失败: ${rsp_mcGachaRecord}`
     }
 
     // 完成测试, 保存记录到本地
@@ -340,6 +336,32 @@ export default class mcGachaData {
         }
       }
       return null
+    }
+  }
+
+/** 以原格式输出抽卡记录
+ * @param {number} qq QQ
+ * @param {number} gameUid 游戏 uid, 如果传入 0 则输出第一个 uid
+ * @returns {object|string} 成功则返回原始 UIGF 格式的抽卡记录, 失败则返回 str 原因
+ */
+  async getUigfRecord(qq, gameUid) {
+    // gameUid 无效时获取第一个 uid
+    if (!gameUid) {
+      gameUid = this.exist(qq, 0)
+      if (!gameUid) {
+        return '未找到抽卡记录'
+      }
+    }
+    let path = `${mcGachaDataPath}/${qq}-${gameUid}.json`
+    if (!fs.existsSync(path)) {
+      return '未找到抽卡记录'
+    }
+    // 使用 try catch 捕获错误
+    try {
+      let data = fs.readFileSync(path)
+      return JSON.parse(data)
+    } catch (error) {
+      return '提取抽卡记录失败: ' + error.message
     }
   }
 }

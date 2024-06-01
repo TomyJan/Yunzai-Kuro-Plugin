@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="{{pluResPath}}/html/mcGachaRecord/index.css" />
+  <link rel="shortcut icon" href="#" />
+</head>
+
+<!-- TODO: 写卡片 -->
+<body>
+  <div class="container" id="container">
+    <div class="head-box">
+      <div class="title" style="color: white;">鸣潮抽卡记录 - {{cardPoolName}}</div>
+      <div class="label" style="color: white;">Handmade With ❤️ by TomyJan. | 当前页面正在绝赞监修中</div>
+    </div>
+
+
+    {{each goldCardRecord card}}
+    <div class="cont-box">
+      <div class="help-group" style="color: white;">
+        <!-- 从2024-05-24 03:22:18 格式的日期中提取出 05-24 显示 -->
+        {{card.time.split(' ')[0].split('-')[1]}}-{{card.time.split(' ')[0].split('-')[2]}}
+        <font color="#ffd700">{{ card.itemName == '?' ? '未出金' : card.itemName }}</font> 抽数: {{card.thisCardCost}}
+      </div>
+    </div>
+    {{/each}}
+    <!-- 无数据提示 -->
+    {{if goldCardRecord.length == 0}}
+    <div class="cont-box">
+      <div class="help-group" style="color: white;">
+        暂无数据
+      </div>
+    </div>
+    {{/if}}
+    <div class="copyright">Created By Yunzai-Bot & {{pluginName}} {{pluginVer}}</div>
+  </div>
+</body>
+
+</html>
