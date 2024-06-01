@@ -163,8 +163,8 @@ export default class mcGachaData {
     kuroLogger.debug(
       `QQ ${qq} 的抽卡链接 ${link} 获取成功, 保存链接及游戏 uid...`
     )
-    user.saveMcGachaDataLink(qq, playerId, link)
-    user.saveCurGameUid(qq, playerId, 0, 3)
+    await user.saveMcGachaDataLink(qq, playerId, link)
+    await user.saveCurGameUid(qq, playerId, 0, 3)
 
     // 接下来正式开始获取抽卡记录
     let gachaDataJson = {
