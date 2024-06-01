@@ -107,14 +107,14 @@ export class gameCard extends plugin {
 
   async cacheMc(data) {
     let tmp = md5(JSON.stringify(data))
-    if (this.mcCardData.md5 === tmp) {
-      return this.mcCardData.img
+    if (gameCard.mcCardData.md5 === tmp) {
+      return gameCard.mcCardData.img
     }
 
-    this.mcCardData.img = await puppeteer.screenshot('gameCardMc', data)
-    this.mcCardData.md5 = tmp
+    gameCard.mcCardData.img = await puppeteer.screenshot('gameCardMc', data)
+    gameCard.mcCardData.md5 = tmp
 
-    return this.mcCardData.img
+    return gameCard.mcCardData.img
   }
 
   static mcCardData = {
