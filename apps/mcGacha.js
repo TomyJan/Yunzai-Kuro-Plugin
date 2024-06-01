@@ -126,7 +126,7 @@ export class mcGacha extends plugin {
 
   async mcGachaHelp(e) {
     e.reply(
-      `可通过以下两种方式获取抽卡记录: \n#鸣潮本地获取抽卡记录 \n - 在本地访问链接获取抽卡记录, 快速但是无法自动更新 \n#鸣潮上传抽卡记录链接 \n - 通过日志中的抽卡记录链接上传, 繁琐但是一次获取长期有效 \n请发送相应指令查看帮助` // TODO: 抽卡链接有效期
+      `可通过以下两种方式获取抽卡记录: \n#鸣潮本地获取抽卡记录 \n - 在本地访问链接获取抽卡记录, 快速但是无法自动更新 \n#鸣潮链接上传抽卡记录 \n - 通过日志中的抽卡记录链接上传, 繁琐但是一次获取长期有效 \n请发送相应指令查看帮助` // TODO: 抽卡链接有效期
     )
     return true
   }
@@ -144,12 +144,7 @@ export class mcGacha extends plugin {
 
   async mcGachaHelpUrlGet(e) {
     e.reply(
-      `请在游戏内打开一次抽卡记录, 然后从以下目录打开日志文件: 
-      Win 设备: 游戏安装目录\\Client\\Saved\\Logs\\Client.log
-      Android 设备: 内部存储/Android/data/com.kurogame.mingchao/files/UE4Game/Client/Client/Saved/Logs/Client.log
-      在文件内搜索 record_id , 将找到的链接发送给我即可. 
-      注意删除多余字符, 你发送的链接应该是以下格式: 
-      https://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record?svr_id=TomyJan&player_id=101812955&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=cn&record_id=TomyJan&resources_id=TomyJan`
+      `请在游戏内打开一次抽卡记录, 然后从以下目录打开日志文件: \n \nWin 设备: \n游戏安装目录\\Client\\Saved\\Logs\\Client.log \n \nAndroid 设备: \n内部存储/Android/data/com.kurogame.mingchao/files/UE4Game/Client/Client/Saved/Logs/Client.log \n \n在文件内搜索 record_id , 将找到的链接发送给我即可. 注意删除多余字符, 你发送的链接应该是以下格式: \nhttps://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record?svr_id=TomyJan&player_id=101812955&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=cn&record_id=TomyJan&resources_id=TomyJan`
     )
     return true
   }
