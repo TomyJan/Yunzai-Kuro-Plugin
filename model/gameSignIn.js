@@ -18,7 +18,7 @@ export default class gameSignIn {
         `QQ ${uin} 绑定了 ${accNum} 个 token\n开始战双签到, 稍等一会儿哟...`
       )
       let startTime = Date.now()
-      let msg = ''
+      let msg = '[库洛插件] 游戏签到 - 战双\n\n'
       for (const kuro_uid in tokenData) {
         if (tokenData.hasOwnProperty(kuro_uid)) {
           msg += await doPnsSignIn(this.e.user_id, kuro_uid)
@@ -50,7 +50,7 @@ export default class gameSignIn {
         `QQ ${uin} 绑定了 ${accNum} 个 token\n开始鸣潮签到, 稍等一会儿哟...`
       )
       let startTime = Date.now()
-      let msg = ''
+      let msg = '[库洛插件] 游戏签到 - 鸣潮\n\n'
       for (const kuro_uid in tokenData) {
         if (tokenData.hasOwnProperty(kuro_uid)) {
           msg += await doMcSignIn(this.e.user_id, kuro_uid)
@@ -84,7 +84,7 @@ export async function doPnsSignIn(uin, kuro_uid) {
   // 获取昵称
   let rsp_mineV2 = await kuroapi.mineV2(kuro_uid)
   if (rsp_mineV2 == `token 失效`) return `账号 ${kuro_uid}: \ntoken 失效\n`
-  let doPnsSignInRet = '游戏签到 - 战双\n'
+  let doPnsSignInRet = ''
   doPnsSignInRet += `账号 ${
     rsp_mineV2.data.mine.userName || '未知昵称'
   }(${kuro_uid}): \n`
@@ -163,7 +163,7 @@ export async function doMcSignIn(uin, kuro_uid) {
   // 获取昵称
   let rsp_mineV2 = await kuroapi.mineV2(kuro_uid)
   if (rsp_mineV2 == `token 失效`) return `账号 ${kuro_uid}: \ntoken 失效\n`
-  let doMcSignInRet = '游戏签到 - 鸣潮\n'
+  let doMcSignInRet = ''
   doMcSignInRet += `账号 ${
     rsp_mineV2.data.mine.userName || '未知昵称'
   }(${kuro_uid}): \n`
