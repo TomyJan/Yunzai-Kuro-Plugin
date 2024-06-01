@@ -1,3 +1,19 @@
+# [0.2.0-dev](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.11-rel...v0.2.0-dev) (2024-06-01)
+
+
+### Features
+
+* 鸣潮卡片[WIP] ([9f19053](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/9f190530d861674e0fda80521a954a2c785ccd93))
+* 生成抽卡记录图片 ([aa7d536](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/aa7d536948985e161b2691b2bf43d6626649de24))
+* 通过抽卡链接更新抽卡数据 ([9c854d4](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/9c854d430b88098e58384e3c03f415e4b794371c))
+
+
+### Performance Improvements
+
+* 优化游戏签到提示文本 ([bdbde3f](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/bdbde3f6d29bd251d45fe8e9999019bce34c017d))
+
+
+
 ## [0.1.11-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.10-rel...v0.1.11-rel) (2024-05-24)
 
 

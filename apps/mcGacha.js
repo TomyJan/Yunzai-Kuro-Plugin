@@ -30,7 +30,7 @@ export class mcGacha extends plugin {
           fnc: 'mcGachaHelpLocalGet',
         },
         {
-          reg: '^#?鸣潮上传抽卡记录链接$',
+          reg: '^#?鸣潮链接上传抽卡记录$',
           fnc: 'mcGachaHelpUrlGet',
         },
         {
