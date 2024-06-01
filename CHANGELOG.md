@@ -1,3 +1,12 @@
+## [0.2.2-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.1-rel...v0.2.2-rel) (2024-06-01)
+
+
+### Bug Fixes
+
+* 更新帮助信息 ([5c487e9](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/5c487e98ba34bf26508bb21de740fa697359fb74))
+
+
+
 ## [0.2.1-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.0-rel...v0.2.1-rel) (2024-06-01)
 
 
