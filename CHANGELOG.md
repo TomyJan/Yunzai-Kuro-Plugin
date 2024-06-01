@@ -1,3 +1,12 @@
+## [0.2.1-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.0-rel...v0.2.1-rel) (2024-06-01)
+
+
+### Bug Fixes
+
+* 鸣潮卡片生成失败 ([ce547e9](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/ce547e923530f076a3f74144ac0974d3f0da9b80))
+
+
+
 # [0.2.0-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.1.11-rel...v0.2.0-rel) (2024-06-01)
 
 
