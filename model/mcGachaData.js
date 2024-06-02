@@ -56,11 +56,16 @@ export default class mcGachaData {
       if (typeof gachaRecord === 'string') {
         // 如果记录更新失败, 进行提示; 如果更新成功, 不提示直接进入生成
         await this.e.reply(
-          `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 更新抽卡记录失败: \n${failedReason}\n将展示历史抽卡记录`
+          `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 更新抽卡记录失败: \n${failedReason} \n将展示历史抽卡记录 `
         )
       } else {
         // 更新成功, 存入本地
-        await this.update(this.e.user_id, gachaRecord)
+        let gachaUpdateRet = await this.update(this.e.user_id, gachaRecord)
+        if (typeof gachaUpdateRet === 'string') {
+          await this.e.reply(
+            `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 抽卡更新记录成功但保存失败: \n${gachaUpdateRet} \n将展示历史抽卡记录 `
+          )
+        } // 更新且保存成功, 无需提示
       }
     } else {
       await this.e.reply(
@@ -225,7 +230,7 @@ export default class mcGachaData {
       kuroLogger.debug(
         `QQ ${qq} 的抽卡记录版本 ${gachaDataJson?.version} 不兼容: ${gachaDataJson.version}`
       )
-      return '抽卡记录版本不兼容'
+      return `抽卡记录版本 ${gachaDataJson?.version} 暂不兼容`
     }
     // 检查 gachaDataJson 是否有 1-6 键名
     for (let i = 1; i <= 6; i++) {
@@ -307,7 +312,43 @@ export default class mcGachaData {
     try {
       fs.writeFileSync(path, JSON.stringify(gachaDataInUniform, null, 2))
       kuroLogger.debug(`QQ ${qq} 的抽卡记录保存成功: ${path}`)
-      return null
+      // return null
+      // 统计每种卡池获取到的数量, 构造json返回, gachatype替换为可读的卡池类型
+      let gachaCount = {}
+      for (let i = 0; i < gachaDataInUniform.list.length; i++) {
+        let item = gachaDataInUniform.list[i]
+        let gachaName = ''
+        switch (item.gacha_type) {
+          case '1':
+            gachaName = '角色活动'
+            break
+          case '2':
+            gachaName = '武器活动'
+            break
+          case '3':
+            gachaName = '角色常驻'
+            break
+          case '4':
+            gachaName = '武器常驻'
+            break
+          case '5':
+            gachaName = '新手'
+            break
+          case '6':
+            gachaName = '新手自选'
+            break
+          default:
+            gachaName = '未知'
+        }
+        if (!gachaCount[gachaName]) {
+          gachaCount[gachaName] = 0
+        }
+        gachaCount[gachaName]++
+      }
+      if (Object.keys(gachaCount).length === 0) {
+        return '抽卡记录为空'
+      }
+      return gachaCount
     } catch (error) {
       kuroLogger.warn(`QQ ${qq} 的抽卡记录保存失败: ${error.message}`)
       return error.message

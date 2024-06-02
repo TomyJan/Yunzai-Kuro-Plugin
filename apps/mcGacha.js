@@ -126,7 +126,7 @@ export class mcGacha extends plugin {
 
   async mcGachaHelp(e) {
     e.reply(
-      `可通过以下两种方式获取抽卡记录: \n#鸣潮本地获取抽卡记录 \n - 在本地访问链接获取抽卡记录, 快速但是无法自动更新 \n#鸣潮链接上传抽卡记录 \n - 通过日志中的抽卡记录链接上传, 繁琐但是一次获取长期有效 \n请发送相应指令查看帮助` // TODO: 抽卡链接有效期
+      `可通过以下两种方式获取抽卡记录: \n\n#鸣潮本地获取抽卡记录 \n - 在本地访问链接获取抽卡记录, 快速但是无法自动更新 \n\n#鸣潮链接上传抽卡记录 \n - 通过日志中的抽卡记录链接上传, 较繁琐但是一次获取长期有效 \n\n发送相应指令即可查看帮助, 建议私聊使用~` // TODO: 抽卡链接有效期
     )
     return true
   }
@@ -144,7 +144,7 @@ export class mcGacha extends plugin {
 
   async mcGachaHelpUrlGet(e) {
     e.reply(
-      `请在游戏内打开一次抽卡记录, 然后从以下目录打开日志文件: \n \nWin 设备: \n游戏安装目录\\Client\\Saved\\Logs\\Client.log \n \nAndroid 设备: \n内部存储/Android/data/com.kurogame.mingchao/files/UE4Game/Client/Client/Saved/Logs/Client.log \n \n在文件内搜索 record_id , 将找到的链接发送给我即可. 注意删除多余字符, 你发送的链接应该是以下格式: \nhttps://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record?svr_id=TomyJan&player_id=101812955&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=cn&record_id=TomyJan&resources_id=TomyJan`
+      `请在游戏内打开一次抽卡记录, 然后从以下目录打开日志文件: \n \nWin 设备: \n游戏安装目录\\Client\\Saved\\Logs\\Client.log \n \nAndroid 设备: \n内部存储/Android/data/com.kurogame.mingchao/files/UE4Game/Client/Client/Saved/Logs/Client.log \n \n在文件内搜索 record_id , 将找到的链接发送给我即可. 注意删除多余字符, 你发送的链接应该是以下格式: \n\nhttps://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record?svr_id=TomyJan&player_id=101812955&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=cn&record_id=TomyJan&resources_id=TomyJan \n建议私聊发送哦~`
     )
     return true
   }
@@ -157,13 +157,20 @@ export class mcGacha extends plugin {
       e.reply(`抽卡记录更新失败: \n${gachaRecord} \n请检查链接是否正确 `)
       return true
     } else {
-      let failedReason = await gacha.update(e.user_id, gachaRecord)
-      if (failedReason) {
-        e.reply(`抽卡记录更新成功但保存失败: \n${failedReason}`)
+      let gachaUpdateRet = await gacha.update(e.user_id, gachaRecord)
+      if (typeof gachaUpdateRet === 'string') {
+        e.reply(`抽卡记录更新成功但保存失败: \n${gachaUpdateRet}`)
         return true
       } else {
         // TODO: 如果用户绑定的 token 里面没有绑定这个账号的提示, 以及抽卡总体数据的展示
-        e.reply(`抽卡记录更新成功, 获取到 x 条 xx 记录`)
+        let msg = '抽卡记录更新成功, 获取到'
+        // 遍历 gachaUpdateRet, 提取出每次抽卡的信息, 属性名是卡池名字, 值是数量
+        for (let key in gachaUpdateRet) {
+          msg += ` ${gachaUpdateRet[key]} 条${key}记录,`
+        }
+        // 去掉最后一个逗号
+        msg = msg.slice(0, -1)
+        e.reply(msg)
         return true
       }
     }
