@@ -111,6 +111,16 @@ export default class kuroApi {
   }
 
   /**
+   * 取游戏签到记录 V2
+   * @param {string} kuroUid 库洛 ID
+   * @param {object} data 传入 data.gameId 游戏 id data.serverId 服务器 id data.roleId 游戏 uid
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async queryGameSignInRecordV2(kuroUid, data) {
+    return this.getData('queryGameSignInRecordV2', kuroUid, data)
+  }
+
+  /**
    *  APP 端验证码登录
    * @param {object} data 传入 data.mobile 手机号 data.code 验证码
    * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息

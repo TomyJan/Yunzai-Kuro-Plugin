@@ -80,6 +80,11 @@ export default class kuroApiHandler {
         url: `${this.kuroApiUrl}/encourage/signIn/v2`,
         body: `gameId=${data.gameId}&serverId=${data.serverId}&roleId=${data.roleId}&userId=${kuroUid}&reqMonth=${data.reqMonth}`,
       },
+      queryGameSignInRecordV2: {
+        // 取游戏签到记录 V2
+        url: `${this.kuroApiUrl}/encourage/signIn/queryRecordV2`,
+        body: `gameId=${data.gameId}&serverId=${data.serverId}&roleId=${data.roleId}&userId=${kuroUid}`,
+      },
       sdkLogin: {
         // APP 端登录
         url: `${this.kuroApiUrl}/user/sdkLogin`,
@@ -215,6 +220,7 @@ export default class kuroApiHandler {
       [
         'initSignIn',
         'gameSignIn',
+        'queryGameSignInRecord',
         'getBindRoleInfo',
         'getActivityTaskList',
         'completeActivityTask',
