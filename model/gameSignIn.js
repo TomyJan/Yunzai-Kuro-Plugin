@@ -258,8 +258,50 @@ export async function doMcSignIn(uin, kuro_uid) {
       }
       doMcSignInRet += `      ${tmp}`
     }
+    // 签到获得的物品
+    let rsp_queryGameSignInRecordV2 = await kuroapi.queryGameSignInRecordV2(
+      kuro_uid,
+      {
+        gameId: 2,
+        serverId: data.serverId,
+        roleId: data.roleId,
+      }
+    )
+    kuroLogger.debug(
+      'rsp_queryGameSignInRecordV2:',
+      JSON.stringify(rsp_queryGameSignInRecordV2)
+    )
+    if (typeof rsp_queryGameSignInRecordV2 == 'string') {
+      // 不是 json, 即返回报错
+      doPnsSignInRet += `, ${rsp_queryGameSignInRecordV2}\n`
+    } else {
+      if (rsp_queryGameSignInRecordV2.data.length > 0) {
+        // 倒序 rsp_queryGameSignInRecordV2.data 让日签排在特殊的前面
+        rsp_queryGameSignInRecordV2.data.reverse()
+        for (const item of rsp_queryGameSignInRecordV2.data) {
+          let today = new Date()
+          let todayStr = `${today.getFullYear()}-${(
+            '0' +
+            (today.getMonth() + 1)
+          ).slice(-2)}-${('0' + today.getDate()).slice(-2)}`
+          if (item.sigInDate === todayStr) {
+            // 只输出今天获得的物品
+            if (item.type === 0) {
+              // 常规签到?
+              doPnsSignInRet += `, 获得${item.goodsName}x${item.goodsNum}`
+            } else if (item.type === 3) {
+              // 限时签到?
+              doPnsSignInRet += `, 限时签到获得${item.goodsName}x${item.goodsNum}`
+            } else {
+              doPnsSignInRet += `, 特殊签到${item.type}获得${item.goodsName}x${item.goodsNum}`
+            }
+          }
+        }
+        doPnsSignInRet += `\n`
+      }
+    }
     doMcSignInRet +=
-      `, 本月签${rsp_initSignIn.data.sigInNum}天` +
+      `      本月签${rsp_initSignIn.data.sigInNum}天` +
       (rsp_initSignIn.data.omissionNnm !== 0
         ? `, 漏${rsp_initSignIn.data.omissionNnm}天`
         : rsp_initSignIn.data.sigInNum === mGetDate()
