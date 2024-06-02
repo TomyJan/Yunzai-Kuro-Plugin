@@ -4,6 +4,7 @@ import md5 from 'md5'
 import puppeteer from '../../../lib/puppeteer/puppeteer.js'
 import mcGachaCard from '../model/mcGachaCard.js'
 import kuroLogger from '../components/logger.js'
+import userConfig from '../model/userConfig.js'
 
 export class mcGacha extends plugin {
   constructor() {
@@ -36,6 +37,10 @@ export class mcGacha extends plugin {
         {
           reg: '^#?https://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record(.*)$',
           fnc: 'mcGachaLinkUpload',
+        },
+        {
+          reg: '^#?鸣潮更新(抽卡|唤取)+(记录)?$',
+          fnc: 'mcGachaDataUpdate',
         },
       ],
     })
@@ -150,9 +155,28 @@ export class mcGacha extends plugin {
   }
 
   async mcGachaLinkUpload(e) {
-    e.reply(`抽卡记录链接上传成功, 尝试更新抽卡记录...`)
+    await e.reply(`抽卡记录链接上传成功, 尝试更新抽卡记录...`)
+    await this.updateGachaData(e, this.e.msg)
+  }
+
+  async mcGachaDataUpdate(e) {
+    let user = new userConfig()
+    let gameUid = (await user.getCurGameUidLocal(this.e.user_id, 3))?.gameUid
+    let gachaLink = await user.getMcGachaDataLink(this.e.user_id, gameUid)
+    if (!gachaLink) {
+      await e.reply('你暂未上传抽卡记录链接, 请先上传抽卡记录链接')
+      return true
+    }
+    await e.reply(`尝试更新 UID ${gameUid} 的抽卡记录...`)
+
+    await this.updateGachaData(e, gachaLink)
+
+  }
+
+  // 私有的通过抽卡记录链接更新抽卡数据的方法
+  async updateGachaData(e, gachaLink) {
     let gacha = new mcGachaData(e)
-    let gachaRecord = await gacha.get(e.msg, e.user_id)
+    let gachaRecord = await gacha.get(gachaLink, e.user_id)
     if (typeof gachaRecord === 'string') {
       e.reply(`抽卡记录更新失败: \n${gachaRecord} \n请检查链接是否正确 `)
       return true

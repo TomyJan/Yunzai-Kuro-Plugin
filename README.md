@@ -12,7 +12,8 @@
 
 ## 安装与维护
 
-安装前请先点一下右上角的 Star, 这对我非常重要, 谢谢喵~
+项目只在 GitHub 提供支持, Gitee仅作为镜像仓库
+安装前请先 [前往GitHub](https://github.com/TomyJan/Yunzai-Kuro-Plugin/) 点一下右上角的 Star, 这对我非常重要, 谢谢喵~
 
 ### 安装插件
 
@@ -57,7 +58,7 @@ git -C ./plugins/Yunzai-Kuro-Plugin/ pull
 
 ## 功能介绍
 
-插件帮助信息 `#库洛帮助` `kurohelp` 
+插件帮助信息 `#库洛帮助` `kurohelp` , 所有指令的 `#` 前缀均可省略
 
 ### 登录相关
 
@@ -83,7 +84,7 @@ git -C ./plugins/Yunzai-Kuro-Plugin/ pull
 ### 查询相关
 
 - [x] 库街区角色墙信息及 UID 切换 `#战双卡片` `#鸣潮卡片2` (鸣潮卡片样式仍在施工中)
-- [x] 鸣潮抽卡记录 `#鸣潮抽卡记录帮助` `鸣潮角色记录` `鸣潮常驻武器记录` (记录网页样式仍在施工中)
+- [x] 鸣潮抽卡记录 `#鸣潮抽卡帮助` `鸣潮角色记录` `鸣潮常驻武器记录` `#鸣潮更新抽卡` (记录网页样式仍在施工中)
 
 ### 小工具
 
@@ -145,7 +146,11 @@ git -C ./plugins/Yunzai-Kuro-Plugin/ pull
 
 ### 贡献/帮助
 
-[提交 issue](https://github.com/TomyJan/Yunzai-Kuro-Plugin/issues/new) | [提交 pr](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare) | 如果插件有帮到你, 欢迎 [给我打赏](https://donate.tomys.top) 
+有 bug? 要新功能? [提交 Issue](https://github.com/TomyJan/Yunzai-Kuro-Plugin/issues/new) 
+
+帮助我开发? [提交 PR](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare) 
+
+插件有帮到你? [给我打赏](https://donate.tomys.top) 
 
 ### 一起玩
 

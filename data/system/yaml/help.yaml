@@ -29,9 +29,12 @@
     - icon: mingchao
       title: "#鸣潮卡片"
       desc: 查询和切换鸣潮UID信息
-    - icon: pns
+    - icon: mingchao
       title: "#鸣潮角色记录"
       desc: 查看鸣潮的抽卡记录
-    - icon: pns
-      title: "#鸣潮抽卡记录帮助"
+    - icon: mingchao
+      title: "#鸣潮抽卡帮助"
       desc: 获取鸣潮抽卡记录的帮助信息
+    - icon: mingchao
+      title: "#鸣潮更新抽卡"
+      desc: 上传链接后更新鸣潮抽卡记录
