@@ -163,16 +163,18 @@ export async function doPnsSignIn(uin, kuro_uid) {
             '0' +
             (today.getMonth() + 1)
           ).slice(-2)}-${('0' + today.getDate()).slice(-2)}`
-          if (item.sigInDate === todayStr) { // 只输出今天获得的物品
-            if (item.type === 0) { // 常规签到?
+          if (item.sigInDate === todayStr) {
+            // 只输出今天获得的物品
+            if (item.type === 0) {
+              // 常规签到?
               doPnsSignInRet += `, 获得${item.goodsName}x${item.goodsNum}`
-            } else if (item.type === 3) { // 限时签到?
+            } else if (item.type === 3) {
+              // 限时签到?
               doPnsSignInRet += `, 限时签到获得${item.goodsName}x${item.goodsNum}`
             } else {
               doPnsSignInRet += `, 特殊签到${item.type}获得${item.goodsName}x${item.goodsNum}`
             }
           }
-          
         }
         doPnsSignInRet += `\n`
       }

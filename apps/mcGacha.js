@@ -170,7 +170,6 @@ export class mcGacha extends plugin {
     await e.reply(`尝试更新 UID ${gameUid} 的抽卡记录...`)
 
     await this.updateGachaData(e, gachaLink)
-
   }
 
   // 私有的通过抽卡记录链接更新抽卡数据的方法
