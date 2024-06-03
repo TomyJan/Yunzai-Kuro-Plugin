@@ -1,3 +1,14 @@
+## [0.2.5-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.4-rel...v0.2.5-rel) (2024-06-03)
+
+
+### Bug Fixes
+
+* 明朝抽卡记录增加更多判定词缀 ([3762e7c](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/3762e7cba5df2622b4dc77a408729179d68b7a2e))
+* 忘了写鸣潮签到获得的物品了 ([ee80c4c](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/ee80c4cca5818a7cbb5d5ff7445ac0257afbca07))
+* 修复鸣言误判 ([cd3ff73](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/cd3ff73765241d1a886515665c1f544856027300))
+
+
+
 ## [0.2.4-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.3-rel...v0.2.4-rel) (2024-06-02)
 
 
