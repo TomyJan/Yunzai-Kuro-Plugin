@@ -5,6 +5,7 @@ import {
   pluginVer,
   resPath,
   _ResPath,
+  mcGachaUpPools,
 } from '../data/system/pluginConstants.js'
 import mcGachaData from './mcGachaData.js'
 import userConfig from './userConfig.js'
@@ -71,6 +72,7 @@ export default class mcGachaCard {
           time: gachaRecord[i].time,
           totalGachaTimes: i + 1,
           thisCardCost: i - lastGoldIndex,
+          isUpItem: false,
         })
         lastGoldIndex = i
       }
@@ -88,7 +90,20 @@ export default class mcGachaCard {
           time: gachaRecord[i].time,
           totalGachaTimes: i + 1,
           thisCardCost: i - lastGoldIndex,
+          isUpItem: false,
         })
+      }
+    }
+
+    // 遍历所有五星, 判断是否为 up 物品
+    for (let i = 0; i < goldCardRecord.length; i++) {
+      if (goldCardRecord[i].itemId === '-1') continue
+      for (let j = 0; j < mcGachaUpPools.length; j++) {
+        if ( // 注意时间需要转换为时间戳
+          goldCardRecord[i].itemId === mcGachaUpPools[j].itemId && new Date(goldCardRecord[i].time).getTime() >= mcGachaUpPools[j].startTime * 1000 && new Date(goldCardRecord[i].time).getTime() <= mcGachaUpPools[j].endTime * 1000){
+          goldCardRecord[i].isUpItem = true
+          break
+        }
       }
     }
 
@@ -104,7 +119,7 @@ export default class mcGachaCard {
     if (goldCardRecord.length !== 0) {
         let hasNoGold = false
       for (let i = 0; i < goldCardRecord.length; i++) {
-        if (goldCardRecord[i].itemRank == -1) { // 排除未出金记录
+        if (goldCardRecord[i].itemId == -1) { // 排除未出金记录
             hasNoGold = true
             continue
         }

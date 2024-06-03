@@ -59,7 +59,7 @@
         <img src="{{pluResPath}}/img/common/bg/Alisa-Echo_0.jpg" alt="{{card.itemName}}" class="card-avatar">
         <div class="bar-container">
           <div class="bar" style="width: calc({{card.thisCardCost}}px * 3); background-color: {{card.itemName == '?' ? '#FFD700' : '#4CAF50'}};"></div>
-          <div class="bar-label">{{ card.itemName == '?' ? '未出金' : card.itemName }} 抽数: {{card.thisCardCost}}</div>
+          <div class="bar-label">{{ card.itemId == -1 ? '未出金' : card.itemName }}{{card.itemCount > 1 ? `x${card.itemCount}` : ""}} 抽数: {{card.thisCardCost}} {{card.isUpItem ? "UP" : ""}}</div>
         </div>
       </div>
     </div>
