@@ -1,9 +1,23 @@
+## [0.2.6-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.5-rel...v0.2.6-rel) (2024-06-03)
+
+### Bug Fixes
+
+* 完善鸣潮卡片, 修改资源路径 ([f3d84ee](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/f3d84ee3b6f74508f0423b3b7580b3734dec6959))
+
+
+### Features
+
+* 鸣潮抽卡分析展示是否up ([4cfefc6](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/4cfefc63a98eb8b783aaa6d2a8a1a1aa58f78851))
+* 优化鸣潮抽卡分析卡片[WIP] ([134877f](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/134877f7cdb2c9c248a98703b45a2d76d9d852f5))
+
+
+
 ## [0.2.5-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.4-rel...v0.2.5-rel) (2024-06-03)
 
 
 ### Bug Fixes
 
-* 明朝抽卡记录增加更多判定词缀 ([3762e7c](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/3762e7cba5df2622b4dc77a408729179d68b7a2e))
+* 鸣潮抽卡记录增加更多判定词缀 ([b6a57f5](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/b6a57f5293253f7db158be4605c4fa87190cffb9))
 * 忘了写鸣潮签到获得的物品了 ([ee80c4c](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/ee80c4cca5818a7cbb5d5ff7445ac0257afbca07))
 * 修复鸣言误判 ([cd3ff73](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/cd3ff73765241d1a886515665c1f544856027300))
 
