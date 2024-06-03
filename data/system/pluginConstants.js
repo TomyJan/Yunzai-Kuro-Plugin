@@ -37,14 +37,16 @@ export const pluginThemeColor = chalk.rgb(57, 197, 187)
 
 // 鸣潮历史 up 池时间和物品 id
 export const mcGachaUpPools = [
-  { // 1.0 上半
+  {
+    // 1.0 上半
     startTime: '1716429600', // 2024.05.23 10:00
     endTime: '1717639200', // 2024.06.06 10:00
     itemId: '1404',
     itemName: '忌炎',
     itemType: 1, // 1 为角色, 2 为武器
   },
-  { // 1.0 上半
+  {
+    // 1.0 上半
     startTime: '1716429600', // 2024.05.23 10:00
     endTime: '1717639200', // 2024.06.06 10:00
     itemId: '21010016',

@@ -142,9 +142,7 @@ export default class userConfig {
     )
     // 如果 kuro_uid 为 0, 则通过 api 遍历找出 uid
     if (kuro_uid === 0) {
-      kuroLogger.debug(
-        `库洛 uid 为 0, 尝试通过 api 遍历找出 uid...`
-      )
+      kuroLogger.debug(`库洛 uid 为 0, 尝试通过 api 遍历找出 uid...`)
       let tokenData = await getToken(qq)
       let kuroUidIndex = 0
       let kuroUidToFetch = Object.keys(tokenData)[kuroUidIndex]

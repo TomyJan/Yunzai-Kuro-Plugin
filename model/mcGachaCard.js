@@ -99,8 +99,14 @@ export default class mcGachaCard {
     for (let i = 0; i < goldCardRecord.length; i++) {
       if (goldCardRecord[i].itemId === '-1') continue
       for (let j = 0; j < mcGachaUpPools.length; j++) {
-        if ( // 注意时间需要转换为时间戳
-          goldCardRecord[i].itemId === mcGachaUpPools[j].itemId && new Date(goldCardRecord[i].time).getTime() >= mcGachaUpPools[j].startTime * 1000 && new Date(goldCardRecord[i].time).getTime() <= mcGachaUpPools[j].endTime * 1000){
+        if (
+          // 注意时间需要转换为时间戳
+          goldCardRecord[i].itemId === mcGachaUpPools[j].itemId &&
+          new Date(goldCardRecord[i].time).getTime() >=
+            mcGachaUpPools[j].startTime * 1000 &&
+          new Date(goldCardRecord[i].time).getTime() <=
+            mcGachaUpPools[j].endTime * 1000
+        ) {
           goldCardRecord[i].isUpItem = true
           break
         }
@@ -117,49 +123,53 @@ export default class mcGachaCard {
     let everyGoldCost = 0
     let goldCount = 0
     if (goldCardRecord.length !== 0) {
-        let hasNoGold = false
+      let hasNoGold = false
       for (let i = 0; i < goldCardRecord.length; i++) {
-        if (goldCardRecord[i].itemId == -1) { // 排除未出金记录
-            hasNoGold = true
-            continue
+        if (goldCardRecord[i].itemId == -1) {
+          // 排除未出金记录
+          hasNoGold = true
+          continue
         }
         goldCount++
         everyGoldCost += goldCardRecord[i].thisCardCost
       }
-      everyGoldCost = Math.floor(everyGoldCost / (goldCardRecord.length - (hasNoGold ? 1 : 0)) * 100) / 100
+      everyGoldCost =
+        Math.floor(
+          (everyGoldCost / (goldCardRecord.length - (hasNoGold ? 1 : 0))) * 100
+        ) / 100
     }
     // 通过 API 获取用户昵称和头像
     let gameName = '未获取'
-    let gameHeadUrl = 'https://prod-alicdn-community.kurobbs.com/game/mingchaoIcon.png'
+    let gameHeadUrl =
+      'https://prod-alicdn-community.kurobbs.com/game/mingchaoIcon.png'
     let kuroapi = new kuroApi(e.user_id)
     // 根据用户游戏 uid 获取库洛 id
-    let kuro_uid = (
-      await user.getCurGameUidLocal(e.user_id, 3)
-    )?.inKuroUid
+    let kuro_uid = (await user.getCurGameUidLocal(e.user_id, 3))?.inKuroUid
     kuroLogger.debug(`用户 ${e.user_id} 的库洛 id: ${kuro_uid}`)
-    if (kuro_uid !== 0 && (await kuroapi.mineV2(kuro_uid)) !== `token 失效`) { // 绑定了 token 且有效
-        let rsp_roleList = await kuroapi.roleList(kuro_uid, { gameId: 3 })
-        if (typeof rsp_roleList !== 'string' && rsp_roleList?.data?.length > 0) {
-            // 遍历 data 成员, 寻找 roleId 对应的 roleName
-            for (let i = 0; i < rsp_roleList.data.length; i++) {
-                if (rsp_roleList.data[i].roleId === OriginGachaRecord.info.uid) {
-                    gameName = rsp_roleList.data[i].roleName
-                    gameHeadUrl = rsp_roleList.data[i].gameHeadUrl
-                    break
-                }
-            }
+    if (kuro_uid !== 0 && (await kuroapi.mineV2(kuro_uid)) !== `token 失效`) {
+      // 绑定了 token 且有效
+      let rsp_roleList = await kuroapi.roleList(kuro_uid, { gameId: 3 })
+      if (typeof rsp_roleList !== 'string' && rsp_roleList?.data?.length > 0) {
+        // 遍历 data 成员, 寻找 roleId 对应的 roleName
+        for (let i = 0; i < rsp_roleList.data.length; i++) {
+          if (rsp_roleList.data[i].roleId === OriginGachaRecord.info.uid) {
+            gameName = rsp_roleList.data[i].roleName
+            gameHeadUrl = rsp_roleList.data[i].gameHeadUrl
+            break
+          }
         }
+      }
     }
     let userInfo = {
-        gameName,
-        gameUid: OriginGachaRecord.info.uid,
-        gameHeadUrl,
-        gacha: {
-            count: OriginGachaRecord.list.length,
-            goldCount,
-            everyGoldCost,
-            fourStarItemCount,
-        },
+      gameName,
+      gameUid: OriginGachaRecord.info.uid,
+      gameHeadUrl,
+      gacha: {
+        count: OriginGachaRecord.list.length,
+        goldCount,
+        everyGoldCost,
+        fourStarItemCount,
+      },
     }
 
     let ret = {
