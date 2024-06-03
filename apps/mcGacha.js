@@ -19,7 +19,7 @@ export class mcGacha extends plugin {
       priority: 1000,
       rule: [
         {
-          reg: '^#?鸣潮(抽卡|角色|up|抽奖|角色活动|角色up|武器|武器活动|武器up|常驻|角色常驻|武器常驻|新手|新手自选|自选)+池?(记录|唤取|分析)$',
+          reg: '^#?鸣潮(抽卡|角色|up|抽奖|角色活动|活动角色|角色限定|限定角色|角色up|up角色|武器|武器活动|活动武器|武器限定|限定武器|武器up|up武器|常驻|角色常驻|常驻角色|武器常驻|常驻武器|新手|新手自选|自选)+池?(记录|唤取|分析)$',
           fnc: 'mcGachaDataShow',
         },
         {
@@ -62,22 +62,32 @@ export class mcGacha extends plugin {
         case 'up':
         case '抽奖':
         case '角色活动':
+        case '活动角色':
+        case '角色限定':
+        case '限定角色':
         case '角色up':
+        case 'up角色':
           gachaType = 1
           cardPoolName = '角色活动唤取'
           break
         case '武器':
         case '武器活动':
+        case '活动武器':
+        case '武器限定':
+        case '限定武器':
         case '武器up':
+        case 'up武器':
           gachaType = 2
           cardPoolName = '武器活动唤取'
           break
         case '常驻':
         case '角色常驻':
+        case '常驻角色':
           gachaType = 3
           cardPoolName = '角色常驻唤取'
           break
         case '武器常驻':
+        case '常驻武器':
           gachaType = 4
           cardPoolName = '武器常驻唤取'
           break
