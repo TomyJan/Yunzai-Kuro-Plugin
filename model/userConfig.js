@@ -140,6 +140,31 @@ export default class userConfig {
     kuroLogger.debug(
       `保存用户 ${qq} 使用的游戏 ${gameId} 的 uid ${uid} 和所在库洛 uid ${kuro_uid}...`
     )
+    // 如果 kuro_uid 为 0, 则通过 api 遍历找出 uid
+    if (kuro_uid === 0) {
+      kuroLogger.debug(
+        `库洛 uid 为 0, 尝试通过 api 遍历找出 uid...`
+      )
+      let tokenData = await getToken(qq)
+      let kuroUidIndex = 0
+      let kuroUidToFetch = Object.keys(tokenData)[kuroUidIndex]
+      let kuroapi = new kuroApi(qq)
+      do {
+        let rsp_roleList = await kuroapi.roleList(kuroUidToFetch, { gameId })
+        if (typeof rsp_roleList !== 'string') {
+          if (rsp_roleList.data.length > 0) {
+            for (const role of rsp_roleList.data) {
+              if (role.roleId === uid) {
+                kuro_uid = kuroUidToFetch
+                kuroLogger.debug(`找到 uid: ${uid} 所在的库洛 uid: ${kuro_uid}`)
+                break
+              }
+            }
+          }
+        }
+        kuroUidToFetch = Object.keys(tokenData)[++kuroUidIndex]
+      } while (kuroUidIndex < Object.keys(tokenData).length)
+    }
     try {
       const qqData = { gameUid: uid, inKuroUid: kuro_uid }
       const filePath = dataPath + `/userSetting/${qq}.json`
