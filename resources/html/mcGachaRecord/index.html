@@ -11,24 +11,64 @@
 <body>
   <div class="container" id="container">
     <div class="head-box">
-      <div class="title" style="color: white;">鸣潮抽卡记录 - {{cardPoolName}}</div>
+      <div class="title" style="color: white;">鸣潮{{cardPoolName}}记录</div>
       <div class="label" style="color: white;">Handmade With ❤️ by TomyJan. | 当前页面正在绝赞监修中</div>
+      <div class="card">
+        <div class="avatar">
+            <img src="{{userInfo.gameHeadUrl}}" alt="Avatar">
+        </div>
+        <div class="info">
+            <div class="name">{{userInfo.gameName}}</div>
+            <div class="id">UID: {{userInfo.gameUid}}</div>
+        </div>
+        <div class="stats">
+            <div class="stat">
+                <!--这里对 >99999 抽卡数量使用 11.11w 这样的格式显示-->
+                <div class="number">{{userInfo.gacha.count > 99999 ? (userInfo.gacha.count / 10000).toFixed(2) + 'w': userInfo.gacha.count}}</div>
+                <div class="label">抽卡总数</div>
+            </div>
+            <div class="stat">
+                <div class="number">{{userInfo.gacha.goldCount}}</div>
+                <div class="label">金卡数</div>
+            </div>
+            <div class="stat">
+                <div class="number">// TODO</div>
+                <div class="label">歪 T.T</div>
+            </div>
+            <div class="stat">
+                <div class="number">{{userInfo.gacha.fourStarItemCount}}</div>
+                <div class="label">紫卡数</div>
+            </div>
+            <div class="stat">
+                <div class="number">{{userInfo.gacha.everyGoldCost || "暂无"}}</div>
+                <div class="label">平均出金</div>
+            </div>
+            <div class="stat">
+                <div class="number">// TODO</div>
+                <div class="label">UP 星声</div>
+            </div>
+        </div>
+    </div>
     </div>
 
-
+    <!-- TODO: 写卡片 -->
     {{each goldCardRecord card}}
     <div class="cont-box">
-      <div class="help-group" style="color: white;">
-        <!-- 从2024-05-24 03:22:18 格式的日期中提取出 05-24 显示 -->
-        {{card.time.split(' ')[0].split('-')[1]}}-{{card.time.split(' ')[0].split('-')[2]}}
-        <font color="#ffd700">{{ card.itemName == '?' ? '未出金' : card.itemName }}</font> 抽数: {{card.thisCardCost}}
+      <div class="help-group">
+        <div class="date">{{card.time.split(' ')[0].split('-')[1]}}-{{card.time.split(' ')[0].split('-')[2]}}</div>
+        <img src="{{pluResPath}}/img/common/bg/Alisa-Echo_0.jpg" alt="{{card.itemName}}" class="card-avatar">
+        <div class="bar-container">
+          <div class="bar" style="width: calc({{card.thisCardCost}}px * 3); background-color: {{card.itemName == '?' ? '#FFD700' : '#4CAF50'}};"></div>
+          <div class="bar-label">{{ card.itemId == -1 ? '未出金' : card.itemName }}{{card.itemCount > 1 ? `x${card.itemCount}` : ""}} 抽数: {{card.thisCardCost}} {{card.isUpItem ? "UP" : ""}}</div>
+        </div>
       </div>
     </div>
     {{/each}}
+
     <!-- 无数据提示 -->
     {{if goldCardRecord.length == 0}}
     <div class="cont-box">
-      <div class="help-group" style="color: white;">
+      <div class="help-group">
         暂无数据
       </div>
     </div>

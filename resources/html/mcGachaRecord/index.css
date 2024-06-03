@@ -23,8 +23,71 @@
 body {
     transform: scale(1);
     width: 725px;
-    background: url(../../img/help/background/0.jpg) no-repeat;
+    background: url(../../img/common/bg/Alisa-Echo_0.jpg) no-repeat center center fixed;
     background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    background-color: rgba(62, 62, 62, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 700px;
+    padding: 10px 20px 10px 20px;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.info {
+    display: flex;
+    flex-direction: column;
+    margin-right: 5px;
+}
+.info .name {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90px;
+    margin-bottom: 3px;
+}
+.info .id {
+    width: 90px;
+    font-size: 11px;
+    color: #bbb;
+}
+.stats {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.stat {
+    text-align: center;
+    flex: 1;
+}
+.stat:not(:last-child) {
+    border-right: 1px solid #ddd;
+}
+.stat .number {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+.stat .label {
+    font-size: 14px;
+    color: #bbb;
 }
 
 .container {
@@ -51,39 +114,52 @@ body {
     margin-bottom: 30px;
     overflow: hidden;
     position: relative;
-    font-size: 20px;
     background: rgba(62, 62, 62, 0.3);
-
-    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
-    border-radius: 30px;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .help-group {
-    font-size: 20px;
-    font-weight: bold;
-    padding: 15px 15px 10px 20px;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    color: white;
 }
 
-div,
-body {
-    box-sizing: border-box;
-    list-style: none;
-    margin: 0;
-    padding: 0
+.date {
+    font-size: 18px;
+    width: 80px;
+    text-align: center;
 }
 
-span,
-div {
-    word-break: break-word;
-    vertical-align: middle
-        /*英文和中文竖直居中*/
+.card-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.bar-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.bar {
+    height: 20px;
+    border-radius: 10px;
+}
+
+.bar-label {
+    margin-left: 10px;
+    font-size: 18px;
 }
 
 .copyright {
     text-align: center;
     font-size: 14px;
     color: white;
-    font-family: HYWenHei-55W
+    font-family: HYWenHei-55W;
+    margin-top: 20px;
 }
