@@ -26,16 +26,18 @@ export class toy extends plugin {
 
   async pluginTip(e) {
     await this.reply(
-      `库洛插件是这样的, 库洛插件只要执行代码就行了, 可是玩家就很辛苦了, 什么时候绑定, 什么时候清体力, 什么时候秀抽卡记录, 都是要经过深思熟虑的`
+      `库洛插件是这样的，库洛插件只要执行代码就行了，可是玩家就很辛苦了，什么时候绑定，什么时候清体力，什么时候秀抽卡记录，都是要经过深思熟虑的`
     )
   }
 
   async mcSentence(e) {
     // 沟槽的鸣言
+    // 包含逗号的不处理避免打断复读
+    if (e.msg.includes(',') || e.msg.includes('，')) return
     let message = e.msg.replace(/^#/, '').trim()
     let parts = message.match(/^(.*)是这样的(.*)$/)
 
-    if (parts?.length !== 3) {
+    if (parts?.length !== 3 || !parts[1] || !parts[2]) {
       await this.reply('是这样的 前后都需要有参数')
       return
     }
@@ -48,11 +50,11 @@ export class toy extends plugin {
       return
     }
 
-    let sentence = `${part1}是这样的, ${content[0]}只要${
+    let sentence = `${part1}是这样的，${content[0]}只要${
       content[1]
-    }就行了, 可是${content[2]}就很${content[3]}了, 什么时候${content
+    }就行了，可是${content[2]}就很${content[3]}了，什么时候${content
       .slice(4)
-      .join('，什么时候')}, 都是要经过深思熟虑的`
+      .join('，什么时候')}，都是要经过深思熟虑的`
 
     await this.reply(sentence)
   }
