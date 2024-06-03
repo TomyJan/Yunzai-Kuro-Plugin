@@ -23,7 +23,7 @@
 body {
     transform: scale(1);
     width: 725px;
-    background: url(../../img/help/background/0.jpg) no-repeat;
+    background: url(../../img/common/bg/Alisa-Echo_0.jpg) no-repeat;
     background-size: cover;
 }
 
@@ -135,7 +135,7 @@ div {
 .pns .game-box[data-v-08c4bfda] {
     width: 662px;
     height: 256px;
-    background: url(https://web-static.kurobbs.com/resource/prod/assets/game-box-pns-02781a5b.png);
+    background: url(../../img/common/bg/game-box-pns-02781a5b.png);
     background-size: 100% 100%
 }
 
