@@ -76,9 +76,9 @@ export async function getToken(uin) {
     return tokenData
   } catch (error) {
     if (error.code === 'ENOENT') {
-      console.log('Token file not found')
+      kuroLogger.info(`Token 文件不存在: ${filePath}`)
     } else {
-      console.error('Error reading token data from file:', error.message)
+      kuroLogger.warn(`读取 Token 文件时出错: ${error.message}`)
     }
     return null
   }

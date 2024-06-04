@@ -10,7 +10,7 @@ export default class bbsTask {
 
   async bbsDailyTask(uin) {
     const tokenData = await getToken(uin)
-    console.log(tokenData)
+    kuroLogger.debug('tokenData:', tokenData)
 
     if (tokenData && Object.keys(tokenData).length > 0) {
       const accNum = Object.keys(tokenData).length
