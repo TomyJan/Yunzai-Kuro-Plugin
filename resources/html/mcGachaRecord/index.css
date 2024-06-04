@@ -139,6 +139,13 @@ body {
     margin-right: 10px;
 }
 
+.avatar-count {
+    font-size: 18px;
+    width: 30px;
+    margin-left: 6px;
+    z-index: 1;
+}
+
 .card-avatar {
     width: 40px;
     height: 40px;
@@ -151,7 +158,7 @@ body {
     flex-grow: 1;
     display: flex;
     align-items: center;
-    margin-left: -3px;
+    margin-left: -50px;
 }
 
 .bar {
@@ -160,9 +167,13 @@ body {
     min-width: 80px; /* 设置最小宽度防止文字放不下 */
 }
 
-.bar-label {
-    margin-left: 10px;
+.avatar-isup {
     font-size: 18px;
+    color: #FFD381;
+    width: 30px;
+    align-items: right;
+    margin-left: -30px;
+    z-index: 1;
 }
 
 .copyright {

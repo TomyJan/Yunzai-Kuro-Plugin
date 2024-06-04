@@ -95,7 +95,8 @@ export default class mcGachaCard {
       }
     }
 
-    // 遍历所有五星, 判断是否为 up 物品
+    // 遍历所有五星, 判断是否为 up 物品, 并计算 up 花费的星声数量
+    let upItemTotalCost = 0
     for (let i = 0; i < goldCardRecord.length; i++) {
       if (goldCardRecord[i].itemId === '-1') continue
       for (let j = 0; j < mcGachaUpPools.length; j++) {
@@ -108,10 +109,12 @@ export default class mcGachaCard {
             mcGachaUpPools[j].endTime * 1000
         ) {
           goldCardRecord[i].isUpItem = true
+          upItemTotalCost += goldCardRecord[i].thisCardCost
           break
         }
       }
     }
+    upItemTotalCost *= 160
 
     // 再次倒序, 把新的记录放在最前面
     goldCardRecord.reverse()
@@ -138,6 +141,8 @@ export default class mcGachaCard {
           (everyGoldCost / (goldCardRecord.length - (hasNoGold ? 1 : 0))) * 100
         ) / 100
     }
+    // goldCount - up 数量=非 up 数量
+    let notUpGoldCount = goldCount - goldCardRecord.filter((item) => item.isUpItem).length
     // 通过 API 获取用户昵称和头像
     let gameName = '未获取'
     let gameHeadUrl =
@@ -169,6 +174,8 @@ export default class mcGachaCard {
         goldCount,
         everyGoldCost,
         fourStarItemCount,
+        notUpGoldCount,
+        upItemTotalCost,
       },
     }
 

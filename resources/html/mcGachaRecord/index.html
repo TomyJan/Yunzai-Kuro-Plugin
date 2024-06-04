@@ -12,7 +12,7 @@
   <div class="container" id="container">
     <div class="head-box">
       <div class="title" style="color: white;">鸣潮{{cardPoolName}}记录</div>
-      <div class="label" style="color: white;">Handmade With ❤️ by TomyJan. | 当前页面正在绝赞监修中</div>
+      <div class="label" style="color: white;">Handmade With ❤️ by TomyJan.</div>
       <div class="card">
         <div class="avatar">
             <img src="{{userInfo.gameHeadUrl}}" alt="Avatar">
@@ -32,7 +32,7 @@
                 <div class="label">金卡数</div>
             </div>
             <div class="stat">
-                <div class="number">// TODO</div>
+                <div class="number">{{userInfo.gacha.notUpGoldCount}}</div>
                 <div class="label">歪 T.T</div>
             </div>
             <div class="stat">
@@ -44,7 +44,7 @@
                 <div class="label">平均出金</div>
             </div>
             <div class="stat">
-                <div class="number">// TODO</div>
+                <div class="number">{{userInfo.gacha.upItemTotalCost > 99999 ? (userInfo.gacha.upItemTotalCost / 10000).toFixed(2) + 'w': userInfo.gacha.upItemTotalCost}}</div>
                 <div class="label">UP 星声</div>
             </div>
         </div>
@@ -56,11 +56,12 @@
     <div class="cont-box">
       <div class="help-group">
         <div class="date">{{card.time.split(' ')[0].split('-')[1]}}-{{card.time.split(' ')[0].split('-')[2]}}</div>
-        <div class="avatar-name">{{ card.itemId == -1 ? '未出金' : card.itemName }}</div>
+        <div class="avatar-name" style="color: {{card.isUpItem ? "#FFD381" : "white"}};">{{ card.itemId == -1 ? '未出金' : card.itemName }}{{card.itemCount > 1 ? `x${card.itemCount}` : ""}}</div>
         <img src="{{pluResPath}}/img/common/item/mc/{{card.itemId}}.png" alt="{{card.itemName}}" class="card-avatar">
+        <div class="avatar-count">{{card.thisCardCost}}</div>
         <div class="bar-container">
-          <div class="bar" style="width: calc({{card.thisCardCost * 5}}px); background-color: {{card.thisCardCost >= 60 ? '#9D3333' : card.thisCardCost >= 30 ? '#6A39B7' : '#158B2B'}};"></div>
-          <div class="bar-label">{{card.itemCount > 1 ? `x${card.itemCount}` : ""}} 抽数: {{card.thisCardCost}} {{card.isUpItem ? "UP" : ""}}</div>
+          <div class="bar" style="width: calc({{card.thisCardCost * 5 + 20}}px); background-color: {{card.thisCardCost >= 60 ? '#9D3333' : card.thisCardCost >= 30 ? '#6A39B7' : '#158B2B'}};"></div>
+          <div class="avatar-isup">{{card.isUpItem ? "UP" : ""}}</div>
         </div>
       </div>
     </div>
