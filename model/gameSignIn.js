@@ -15,7 +15,7 @@ export default class gameSignIn {
     if (tokenData && Object.keys(tokenData).length > 0) {
       const accNum = Object.keys(tokenData).length
       await this.e.reply(
-        `QQ ${uin} 绑定了 ${accNum} 个 token\n开始战双签到, 稍等一会儿哟...`
+        `QQ ${uin} 绑定了 ${accNum} 个 token\n开始战双签到, 预计需要 ${accNum*5}s~`
       )
       let startTime = Date.now()
       let msg = '[库洛插件] 游戏签到 - 战双\n\n'
@@ -47,7 +47,7 @@ export default class gameSignIn {
     if (tokenData && Object.keys(tokenData).length > 0) {
       const accNum = Object.keys(tokenData).length
       await this.e.reply(
-        `QQ ${uin} 绑定了 ${accNum} 个 token\n开始鸣潮签到, 稍等一会儿哟...`
+        `QQ ${uin} 绑定了 ${accNum} 个 token\n开始鸣潮签到, 预计需要 ${accNum*5}s~`
       )
       let startTime = Date.now()
       let msg = '[库洛插件] 游戏签到 - 鸣潮\n\n'
