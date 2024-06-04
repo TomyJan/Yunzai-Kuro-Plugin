@@ -105,6 +105,7 @@ git -C ./plugins/Yunzai-Kuro-Plugin/ pull
 - [ ] 鸣潮抽卡记录获取及分析
 
   - [x] 通过链接上传抽卡记录
+  - [x] 抽卡记录分析的展示
   - [ ] 从本地上传抽卡记录
   - [ ] [UIGF](https://uigf.org/) 格式的抽卡记录的导入与导出
 
