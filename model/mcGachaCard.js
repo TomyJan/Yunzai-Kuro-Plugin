@@ -42,14 +42,16 @@ export default class mcGachaCard {
       return `抽卡记录卡片数据获取失败: ${OriginGachaRecord}`
     }
 
-    // 提取符合 gachaType 的记录, 顺便记录紫卡数量
+    // 提取符合 gachaType 的记录, 顺便记录紫卡数量和当前卡池的抽卡总数
     let fourStarItemCount = 0
+    let count = 0
     let gachaRecord = []
     for (let i = 0; i < OriginGachaRecord.list.length; i++) {
       if (OriginGachaRecord.list[i].rank_type == '4') {
         fourStarItemCount++
       }
       if (OriginGachaRecord.list[i].gacha_type == gachaType.toString()) {
+        count++
         gachaRecord.push(OriginGachaRecord.list[i])
       }
     }
@@ -95,8 +97,7 @@ export default class mcGachaCard {
       }
     }
 
-    // 遍历所有五星, 判断是否为 up 物品, 并计算 up 花费的星声数量
-    let upItemTotalCost = 0
+    // 遍历所有五星, 判断是否为 up 物品
     for (let i = 0; i < goldCardRecord.length; i++) {
       if (goldCardRecord[i].itemId === '-1') continue
       for (let j = 0; j < mcGachaUpPools.length; j++) {
@@ -109,12 +110,10 @@ export default class mcGachaCard {
             mcGachaUpPools[j].endTime * 1000
         ) {
           goldCardRecord[i].isUpItem = true
-          upItemTotalCost += goldCardRecord[i].thisCardCost
           break
         }
       }
     }
-    upItemTotalCost *= 160
 
     // 再次倒序, 把新的记录放在最前面
     goldCardRecord.reverse()
@@ -171,12 +170,12 @@ export default class mcGachaCard {
       gameUid: OriginGachaRecord.info.uid,
       gameHeadUrl,
       gacha: {
-        count: OriginGachaRecord.list.length,
+        count,
         goldCount,
         everyGoldCost,
         fourStarItemCount,
         notUpGoldCount,
-        upItemTotalCost,
+        eachUpItemCost: Math.floor(everyGoldCost * goldCount * 160 / (goldCount - notUpGoldCount)),
       },
     }
 
