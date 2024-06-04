@@ -56,10 +56,11 @@
     <div class="cont-box">
       <div class="help-group">
         <div class="date">{{card.time.split(' ')[0].split('-')[1]}}-{{card.time.split(' ')[0].split('-')[2]}}</div>
-        <img src="{{pluResPath}}/img/common/bg/Alisa-Echo_0.jpg" alt="{{card.itemName}}" class="card-avatar">
+        <div class="avatar-name">{{ card.itemId == -1 ? '未出金' : card.itemName }}</div>
+        <img src="{{pluResPath}}/img/common/item/mc/{{card.itemId}}.png" alt="{{card.itemName}}" class="card-avatar">
         <div class="bar-container">
-          <div class="bar" style="width: calc({{card.thisCardCost}}px * 3); background-color: {{card.itemName == '?' ? '#FFD700' : '#4CAF50'}};"></div>
-          <div class="bar-label">{{ card.itemId == -1 ? '未出金' : card.itemName }}{{card.itemCount > 1 ? `x${card.itemCount}` : ""}} 抽数: {{card.thisCardCost}} {{card.isUpItem ? "UP" : ""}}</div>
+          <div class="bar" style="width: calc({{card.thisCardCost * 5}}px); background-color: {{card.thisCardCost >= 60 ? '#9D3333' : card.thisCardCost >= 30 ? '#6A39B7' : '#158B2B'}};"></div>
+          <div class="bar-label">{{card.itemCount > 1 ? `x${card.itemCount}` : ""}} 抽数: {{card.thisCardCost}} {{card.isUpItem ? "UP" : ""}}</div>
         </div>
       </div>
     </div>

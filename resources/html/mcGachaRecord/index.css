@@ -128,27 +128,36 @@ body {
 
 .date {
     font-size: 18px;
-    width: 80px;
+    width: 60px;
     text-align: center;
+}
+
+.avatar-name {
+    font-size: 18px;
+    width: 80px;
+    text-align: right;
+    margin-right: 10px;
 }
 
 .card-avatar {
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    margin-right: 15px;
+    border-radius: 20%;
+    background: #D48E48;
+    z-index: 1;/* 上调层级防止后面的 bar 遮挡 */
 }
 
 .bar-container {
     flex-grow: 1;
     display: flex;
     align-items: center;
-    margin-left: 10px;
+    margin-left: -3px;
 }
 
 .bar {
-    height: 20px;
-    border-radius: 10px;
+    height: 26px;
+    border-radius: 6px;
+    min-width: 80px; /* 设置最小宽度防止文字放不下 */
 }
 
 .bar-label {
