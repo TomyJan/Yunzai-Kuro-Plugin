@@ -44,6 +44,7 @@ export const mcGachaUpPools = [
     itemId: '1404',
     itemName: '忌炎',
     itemType: 1, // 1 为角色, 2 为武器
+    cardPoolName: '夜将寒色去',
   },
   {
     // 1.0 上半
@@ -52,5 +53,24 @@ export const mcGachaUpPools = [
     itemId: '21010016',
     itemName: '苍鳞千嶂',
     itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 1.0 下半
+    startTime: '1717639200', // 2024.06.06 10:00
+    endTime: '1719525600', // 2024.06.28 06:00
+    itemId: '1302',
+    itemName: '吟霖',
+    itemType: 1,
+    cardPoolName: '惊霆雨时节',
+  },
+  {
+    // 1.0 下半
+    startTime: '1717639200', // 2024.06.06 10:00
+    endTime: '1719525600', // 2024.06.28 06:00
+    itemId: '21050016',
+    itemName: '吟霖',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
   },
 ]
