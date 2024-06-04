@@ -35,7 +35,11 @@ export class toy extends plugin {
     // 包含逗号的不处理避免打断复读
     if (e.msg.includes(',') || e.msg.includes('，')) return
     // 防止复读自己
-    if (e.msg == '是这样的 前后都需要有参数' || e.msg == '是这样的 后面至少需要五个参数') return
+    if (
+      e.msg == '是这样的 前后都需要有参数' ||
+      e.msg == '是这样的 后面至少需要五个参数'
+    )
+      return
     // 合并消息中的多个连续空格
     e.msg = e.msg.replace(/\s+/g, ' ')
     let message = e.msg.replace(/^#/, '').trim()

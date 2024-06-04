@@ -15,7 +15,9 @@ export default class gameSignIn {
     if (tokenData && Object.keys(tokenData).length > 0) {
       const accNum = Object.keys(tokenData).length
       await this.e.reply(
-        `QQ ${uin} 绑定了 ${accNum} 个 token\n开始战双签到, 预计需要 ${accNum*5}s~`
+        `QQ ${uin} 绑定了 ${accNum} 个 token\n开始战双签到, 预计需要 ${
+          accNum * 5
+        }s~`
       )
       let startTime = Date.now()
       let msg = '[库洛插件] 游戏签到 - 战双\n\n'
@@ -47,7 +49,9 @@ export default class gameSignIn {
     if (tokenData && Object.keys(tokenData).length > 0) {
       const accNum = Object.keys(tokenData).length
       await this.e.reply(
-        `QQ ${uin} 绑定了 ${accNum} 个 token\n开始鸣潮签到, 预计需要 ${accNum*5}s~`
+        `QQ ${uin} 绑定了 ${accNum} 个 token\n开始鸣潮签到, 预计需要 ${
+          accNum * 5
+        }s~`
       )
       let startTime = Date.now()
       let msg = '[库洛插件] 游戏签到 - 鸣潮\n\n'
@@ -145,7 +149,7 @@ export async function doPnsSignIn(uin, kuro_uid) {
         ? ', 达成全勤!'
         : '') +
       `\n`
-    
+
     // 签到获得的物品
     let rsp_queryGameSignInRecordV2 = await kuroapi.queryGameSignInRecordV2(
       kuro_uid,
@@ -174,9 +178,11 @@ export async function doPnsSignIn(uin, kuro_uid) {
             (today.getMonth() + 1)
           ).slice(-2)}-${('0' + today.getDate()).slice(-2)}`
           // 鸣潮返回的日期是 2024-06-04 00:02:22 , 先格式化成 2024-06-04
-          if (item.sigInDate.includes(" ")) {
-            kuroLogger.debug(`item.sigInDate ${item.sigInDate} 包含时间, 进行截断`)
-            item.sigInDate = item.sigInDate.split(" ")[0];
+          if (item.sigInDate.includes(' ')) {
+            kuroLogger.debug(
+              `item.sigInDate ${item.sigInDate} 包含时间, 进行截断`
+            )
+            item.sigInDate = item.sigInDate.split(' ')[0]
             kuroLogger.debug(`item.sigInDate 截断后: ${item.sigInDate}`)
           }
           if (item.sigInDate === todayStr) {
@@ -271,7 +277,7 @@ export async function doMcSignIn(uin, kuro_uid) {
       }
       doMcSignInRet += `      ${tmp}`
     }
-    
+
     doMcSignInRet +=
       `, 本月签${rsp_initSignIn.data.sigInNum}天` +
       (rsp_initSignIn.data.omissionNnm !== 0
@@ -280,7 +286,7 @@ export async function doMcSignIn(uin, kuro_uid) {
         ? ', 达成全勤!'
         : '') +
       `\n`
-    
+
     // 签到获得的物品
     let rsp_queryGameSignInRecordV2 = await kuroapi.queryGameSignInRecordV2(
       kuro_uid,
@@ -309,9 +315,11 @@ export async function doMcSignIn(uin, kuro_uid) {
             (today.getMonth() + 1)
           ).slice(-2)}-${('0' + today.getDate()).slice(-2)}`
           // 鸣潮返回的日期是 2024-06-04 00:02:22 , 先格式化成 2024-06-04
-          if (item.sigInDate.includes(" ")) {
-            kuroLogger.debug(`item.sigInDate ${item.sigInDate} 包含时间, 进行截断`)
-            item.sigInDate = item.sigInDate.split(" ")[0];
+          if (item.sigInDate.includes(' ')) {
+            kuroLogger.debug(
+              `item.sigInDate ${item.sigInDate} 包含时间, 进行截断`
+            )
+            item.sigInDate = item.sigInDate.split(' ')[0]
             kuroLogger.debug(`item.sigInDate 截断后: ${item.sigInDate}`)
           }
           if (item.sigInDate === todayStr) {

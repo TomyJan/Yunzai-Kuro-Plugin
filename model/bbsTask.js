@@ -15,7 +15,9 @@ export default class bbsTask {
     if (tokenData && Object.keys(tokenData).length > 0) {
       const accNum = Object.keys(tokenData).length
       await this.e.reply(
-        `QQ ${uin} 绑定了 ${accNum} 个 token\n开始库街区每日, 预计需要 ${10 * accNum}s~`
+        `QQ ${uin} 绑定了 ${accNum} 个 token\n开始库街区每日, 预计需要 ${
+          10 * accNum
+        }s~`
       )
       let startTime = Date.now()
       let msg = '[库洛插件] 社区任务\n\n'

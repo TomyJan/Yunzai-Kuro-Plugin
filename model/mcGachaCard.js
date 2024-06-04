@@ -142,7 +142,8 @@ export default class mcGachaCard {
         ) / 100
     }
     // goldCount - up 数量=非 up 数量
-    let notUpGoldCount = goldCount - goldCardRecord.filter((item) => item.isUpItem).length
+    let notUpGoldCount =
+      goldCount - goldCardRecord.filter((item) => item.isUpItem).length
     // 通过 API 获取用户昵称和头像
     let gameName = '未获取'
     let gameHeadUrl =
