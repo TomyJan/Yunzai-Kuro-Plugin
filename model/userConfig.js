@@ -145,7 +145,7 @@ export default class userConfig {
       kuroLogger.debug(`库洛 uid 为 0, 尝试通过 api 遍历找出 uid...`)
       let tokenData = await getToken(qq)
       let kuroUidIndex = 0
-      if(tokenData){
+      if (tokenData) {
         let kuroUidToFetch = Object.keys(tokenData)[kuroUidIndex]
         let kuroapi = new kuroApi(qq)
         do {
@@ -155,7 +155,9 @@ export default class userConfig {
               for (const role of rsp_roleList.data) {
                 if (role.roleId === uid) {
                   kuro_uid = kuroUidToFetch
-                  kuroLogger.debug(`找到 uid: ${uid} 所在的库洛 uid: ${kuro_uid}`)
+                  kuroLogger.debug(
+                    `找到 uid: ${uid} 所在的库洛 uid: ${kuro_uid}`
+                  )
                   break
                 }
               }
@@ -166,7 +168,6 @@ export default class userConfig {
       } else {
         kuroLogger.info(`用户 ${qq} 没有绑定 token, 无法通过 api 遍历找出 uid`)
       }
-      
     }
     try {
       const qqData = { gameUid: uid, inKuroUid: kuro_uid }
