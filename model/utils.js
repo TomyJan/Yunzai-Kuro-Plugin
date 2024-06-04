@@ -7,7 +7,7 @@ import config from '../components/config.js'
  * @param {number} sleepms 延时时间
  * @returns {Promise<void>}
  */
-export async function sleepAsync(sleepms) {
+export function sleepAsync(sleepms) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve()
@@ -21,7 +21,7 @@ export async function sleepAsync(sleepms) {
  * @param {number} max 最大值
  * @returns {number} 随机整数
  */
-export async function getRandomInt(min, max) {
+export function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min
 }
 
