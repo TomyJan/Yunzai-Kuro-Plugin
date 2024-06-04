@@ -36,12 +36,12 @@ export default class kuroApi {
     let rsp = ''
 
     // 特殊 API 的调用处理
-    if (ApiName == 'sdkLogin') {
+    if (ApiName == 'sdkLogin' || ApiName == 'mcGachaRecord') {
       rsp = await this.kuroApiHandler.getApiRsp(ApiName, null, null, data)
     } else if (ApiName == 'checkToken_mineV2') {
       ApiName == 'mineV2'
       rsp = await this.kuroApiHandler.getApiRsp(
-        'mineV2',
+        ApiName,
         kuroUid,
         data.token,
         data

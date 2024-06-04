@@ -62,7 +62,7 @@ export async function saveToken(uin, kuro_uid, kuro_token, kuro_refreshToken) {
 /**
  * 从文件获取用户的 token 数据
  * @param {number} uin QQ 号
- * @returns {object} 多账号的原始 token 数据
+ * @returns {object|null} 多账号的原始 token 数据, 用户没有 token 时返回 null
  */
 export async function getToken(uin) {
   const filePath = dataPath + `/token/${uin}.json`
@@ -77,6 +77,7 @@ export async function getToken(uin) {
   } catch (error) {
     if (error.code === 'ENOENT') {
       kuroLogger.info(`Token 文件不存在: ${filePath}`)
+      return null
     } else {
       kuroLogger.warn(`读取 Token 文件时出错: ${error.message}`)
     }
