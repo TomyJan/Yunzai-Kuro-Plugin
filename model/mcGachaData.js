@@ -218,7 +218,7 @@ export default class mcGachaData {
   }
   /** 通过 get() 方法或者用户本地获取得到的抽卡记录保存到本地
    * @param {number} qq QQ
-   * @param {object} gachaDataJson 抽卡记录原始 json {"gachaData": {"1":{}, "2": {}}, "playerId": 101812955, "version": 1}
+   * @param {object} gachaDataJson 抽卡记录原始 json {"gachaData": {"1":{}, "2": {}}, "playerId": 101812955, "version": 1} , 1-6键值为六个卡池的原始数据
    * @returns {null|string} 保存成功返回 null, 失败返回 str 原因
    */
   async update(qq, gachaDataJson) {

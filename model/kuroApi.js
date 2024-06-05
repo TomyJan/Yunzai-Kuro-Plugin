@@ -39,7 +39,7 @@ export default class kuroApi {
     if (ApiName == 'sdkLogin' || ApiName == 'mcGachaRecord') {
       rsp = await this.kuroApiHandler.getApiRsp(ApiName, null, null, data)
     } else if (ApiName == 'checkToken_mineV2') {
-      ApiName == 'mineV2'
+      ApiName = 'mineV2'
       rsp = await this.kuroApiHandler.getApiRsp(
         ApiName,
         kuroUid,
