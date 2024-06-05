@@ -159,7 +159,7 @@ export class mcGacha extends plugin {
 
   async mcGachaHelpUrlGet(e) {
     e.reply(
-      `请在游戏内打开一次抽卡记录, 然后从以下目录打开日志文件: \n \nWin 设备: \n游戏安装目录\\Client\\Saved\\Logs\\Client.log \n \nAndroid 设备: \n内部存储/Android/data/com.kurogame.mingchao/files/UE4Game/Client/Client/Saved/Logs/Client.log \n \n在文件内搜索 record_id , 将找到的链接发送给我即可. 注意删除多余字符, 你发送的链接应该是以下格式: \n\nhttps://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record?svr_id=TomyJan&player_id=101812955&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=cn&record_id=TomyJan&resources_id=TomyJan \n建议私聊发送哦~`
+      `请在游戏内打开一次抽卡记录, 然后从以下目录打开日志文件: \n \nWin 设备: \n游戏安装目录\\Client\\Saved\\Logs\\Client.log \n \nAndroid 设备: \n内部存储/Android/data/com.kurogame.mingchao/files/UE4Game/Client/Client/Saved/Logs/Client.log \n \nAndroid 也可在抽卡界面断网后点击抽卡记录, 加载完成后长按-全选-复制 也可得到抽卡链接 \n \n在文件内搜索 record_id , 将找到的链接发送给我即可. 注意删除多余字符, 你发送的链接应该是以下格式: \n\nhttps://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record?svr_id=TomyJan&player_id=101812955&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=cn&record_id=TomyJan&resources_id=TomyJan \n建议私聊发送哦~`
     )
     return true
   }
