@@ -151,7 +151,9 @@ export class mcGacha extends plugin {
 
   async mcGachaHelpLocalGet(e) {
     // TODO: 该方法疑似失效
-    e.reply('该方法已失效~ \n(没错, 小丑开发者写了一下午, 都基本写完了, 才发现库洛把这玩意修了)')
+    e.reply(
+      '该方法已失效~ \n(没错, 小丑开发者写了一下午, 都基本写完了, 才发现库洛把这玩意修了)'
+    )
     return true
     let getGachaRecordUrl = 'https://www.vov.moe'
     e.reply(
