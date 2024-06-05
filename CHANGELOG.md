@@ -1,4 +1,24 @@
+## [0.2.9-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.8-rel...v0.2.9-rel) (2024-06-05)
+
+
+### Bug Fixes
+
+* 把验证码登录写炸了 ([192410e](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/192410eb67c2dc169bd7545a29d988f35c67759c))
+* 抽卡分析一些数据错误 ([9f3b2c5](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/9f3b2c5e56a7421ff50dd0a31a0ae433ac621128))
+
+
+### Performance Improvements
+
+* 更新说明 ([c80b80d](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/c80b80dd6d8585c448c73c886e3f0f1705c8a6c4))
+
+
+
 ## [0.2.8-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.7-rel...v0.2.8-rel) (2024-06-04)
+
+
+### Bug Fixes
+
+* 未绑定 token 的用户使用鸣潮抽卡分析报错 ([4cd56b7](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/4cd56b7675a2085aa65391ca57812a7aa484e4db))
 
 
 
