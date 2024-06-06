@@ -5,6 +5,7 @@ import kuroApi from './kuroApi.js'
 import userConfig from './userConfig.js'
 import {
   mcGachaDataPath,
+  _McGachaDataPath,
   pluginName,
   pluginVer,
 } from '../data/system/pluginConstants.js'
@@ -42,7 +43,7 @@ export default class mcGachaData {
     // 先检查本地是否既没有抽卡记录也没有抽卡链接, 如果没有就提示获取抽卡记录
     if (!(await this.exist(this.e.user_id, gameUid)) && !gachaLink) {
       await this.e.reply(
-        `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 暂未获取抽卡记录\n请发送 #鸣潮抽卡记录帮助 以获取记录`
+        `QQ ${this.e.user_id}${gameUid ?  ` 的游戏 uid ${gameUid}` : ''} 暂未获取过抽卡记录\n请发送 #鸣潮抽卡记录帮助 以获取帮助信息`
       )
       return false
     }
@@ -403,6 +404,47 @@ export default class mcGachaData {
       return JSON.parse(data)
     } catch (error) {
       return '提取抽卡记录失败: ' + error.message
+    }
+  }
+
+  /** 以 UIGF 格式发送抽卡记录
+   * @returns {null|string} 保存成功返回 null, 失败返回 str 原因
+   */
+  async export() {
+    // 检查用户是否有抽卡记录
+    let user = new userConfig()
+    let gameUid = (await user.getCurGameUidLocal(this.e.user_id, 3))?.gameUid
+    if (!gameUid) {
+      return `QQ ${this.e.user_id}${gameUid ?  ` 的游戏 uid ${gameUid}` : ''} 暂未获取过抽卡记录\n请发送 #鸣潮抽卡记录帮助 以获取帮助信息`
+    }
+    let path = `${mcGachaDataPath}/${this.e.user_id}-${gameUid}.json`
+    if (!fs.existsSync(path)) {
+      return `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 本地不存在抽卡记录\n请发送 #鸣潮更新抽卡 以获取`
+    }
+    // 复制一份抽卡记录到临时文件
+    let time = new Date().toISOString().replace(/[-:]/g, '').replace(/\..+/, '').replace('T', '')
+    let tempPath = `WW_${_McGachaDataPath}/${gameUid}-${time}.json`
+    try {
+      fs.copyFileSync(path, tempPath)
+      if (this.e.isGroup) {
+        let ret = await this.e.group.sendFile(tempPath)
+        fs.unlinkSync(tempPath)
+        if(ret !== null) {
+          return `文件发送失败, 可能是协议不支持`
+        }
+        return null;
+      } else if (this.e.isPrivate) {
+        let ret = await this.e.friend.sendFile(tempPath)
+        fs.unlinkSync(tempPath)
+        if(ret !== null) {
+          return `文件发送失败, 可能是协议不支持`
+        }
+        return null;
+      } else {
+        return `不支持的消息来源, 请尝试好友私聊或群聊使用`
+      }
+    } catch (error) {
+      return `抽卡记录文件复制失败: ${JSON.stringify(error)}`
     }
   }
 }

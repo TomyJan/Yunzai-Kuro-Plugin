@@ -5,6 +5,7 @@ import puppeteer from '../../../lib/puppeteer/puppeteer.js'
 import mcGachaCard from '../model/mcGachaCard.js'
 import kuroLogger from '../components/logger.js'
 import userConfig from '../model/userConfig.js'
+import fs from 'fs'
 
 export class mcGacha extends plugin {
   constructor() {
@@ -45,6 +46,10 @@ export class mcGacha extends plugin {
         {
           reg: '^#?鸣潮更新(抽卡|唤取)+(记录)?$',
           fnc: 'mcGachaDataUpdate',
+        },
+        {
+          reg: '^#?鸣潮导出(抽卡|唤取)+(记录)?$',
+          fnc: 'mcGachaDataExport',
         },
       ],
     })
@@ -154,7 +159,7 @@ export class mcGacha extends plugin {
   }
 
   async mcGachaHelpLocalGet(e) {
-    // TODO: 该方法疑似失效
+    // 该方法已经失效
     e.reply(
       '该方法已失效~ \n(没错, 小丑开发者写了一下午, 都基本写完了, 才发现库洛把这玩意修了)'
     )
@@ -235,6 +240,19 @@ export class mcGacha extends plugin {
         e.reply(msg)
         return true
       }
+    }
+  }
+
+  async mcGachaDataExport(e) {
+    let gacha = new mcGachaData(e)
+    let gachaExportRet = await gacha.export()
+    if (typeof gachaExportRet === 'string') {
+      await e.reply(`导出失败: \n${gachaExportRet}`)
+      return true
+    } else {
+      let msg = '以上是你的 UIGF 鸣潮抽卡记录, 你可以导入其他支持 UIGF 的工具中使用~'
+      await e.reply(msg)
+      return true
     }
   }
 }
