@@ -121,7 +121,7 @@ export default class mcGachaData {
     if (
       !link.startsWith(
         'https://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record?'
-      )
+      ) && !link.startsWith('https://aki-gm-resources-oversea.aki-game.net/aki/gacha/index.html#/record?')
     ) {
       kuroLogger.debug(`QQ ${qq} 的抽卡链接 ${link} 格式错误`)
       return '抽卡链接格式错误'

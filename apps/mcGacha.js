@@ -36,7 +36,7 @@ export class mcGacha extends plugin {
           fnc: 'mcGachaHelpUrlGet',
         },
         {
-          reg: '^#?https://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record(.*)$',
+          reg: '^#?(https://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record|https://aki-gm-resources-oversea.aki-game.net/aki/gacha/index.html#/record)(.*)$',
           fnc: 'mcGachaLinkUpload',
         },
         {
@@ -150,7 +150,7 @@ export class mcGacha extends plugin {
 
   async mcGachaHelp(e) {
     e.reply(
-      `请在游戏内打开一次抽卡记录, 然后从以下目录打开日志文件: \n \nWin 设备: \n游戏安装目录\\Client\\Saved\\Logs\\Client.log \n \nAndroid 设备: \n内部存储/Android/data/com.kurogame.mingchao/files/UE4Game/Client/Client/Saved/Logs/Client.log \n \n在文件内搜索 record_id , 将找到的链接发送给我即可 \n \nAndroid 也可在抽卡界面断网后点击抽卡记录, 加载完成后长按-全选-复制 也可得到抽卡链接 \n \niOS 设备: \n参照此教程抓包获取: https://blog.tomys.top/2023-07/kuro-token/#iOS \n \n注意删除多余字符, 你发送的链接应该是以下格式: \nhttps://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record?svr_id=TomyJan&player_id=101812955&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=cn&record_id=TomyJan&resources_id=TomyJan \n建议私聊发送哦~`
+      `请在游戏内打开一次抽卡记录, 然后从以下目录打开日志文件: \n \nWin 设备: \n游戏安装目录\\Client\\Saved\\Logs\\Client.log \n \nAndroid 设备: \n内部存储/Android/data/com.kurogame.mingchao或com.kurogame.wutheringwaves.global/files/UE4Game/Client/Client/Saved/Logs/Client.log \n \n在文件内搜索 record_id , 将找到的链接发送给我即可 \n \nAndroid 也可在抽卡界面断网后点击抽卡记录, 加载完成后长按-全选-复制 也可得到抽卡链接 \n \niOS 设备: \n参照此教程抓包获取: https://blog.tomys.top/2023-07/kuro-token/#iOS \n \n注意删除多余字符, 你发送的链接应该是以下格式: \nhttps://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record?svr_id=TomyJan&player_id=101812955&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=cn&record_id=TomyJan&resources_id=TomyJan \n国际服格式: \nhttps://aki-gm-resources-oversea.aki-game.net/aki/gacha/index.html#/record?svr_id=TomyJan&player_id=101812955&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=global&record_id=TomyJan&resources_id=TomyJan \niOS 格式: \n{ \n  "recordId": "TomyJan", \n  "playerId": "101812955", \n  "serverId": "TomyJan", \n  "cardPoolId": "TomyJan", \n  "cardPoolType": 1, \n  "languageCode": "zh-Hans" \n} \n建议私聊发送哦~`
     )
     // e.reply(
     //   `可通过以下两种方式获取抽卡记录: \n\n#鸣潮本地获取抽卡记录 \n - 在本地访问链接获取抽卡记录, 快速但是无法自动更新 \n\n#鸣潮链接上传抽卡记录 \n - 通过日志中的抽卡记录链接上传, 较繁琐但是一次获取长期有效 \n\n发送相应指令即可查看帮助, 建议私聊使用~` // TODO: 抽卡链接有效期
@@ -173,28 +173,33 @@ export class mcGacha extends plugin {
 
   async mcGachaHelpUrlGet(e) {
     e.reply(
-      `请在游戏内打开一次抽卡记录, 然后从以下目录打开日志文件: \n \nWin 设备: \n游戏安装目录\\Client\\Saved\\Logs\\Client.log \n \nAndroid 设备: \n内部存储/Android/data/com.kurogame.mingchao/files/UE4Game/Client/Client/Saved/Logs/Client.log \n \n在文件内搜索 record_id , 将找到的链接发送给我即可 \n \nAndroid 也可在抽卡界面断网后点击抽卡记录, 加载完成后长按-全选-复制 也可得到抽卡链接 \n \niOS 设备: \n参照此教程抓包获取: https://blog.tomys.top/2023-07/kuro-token/#iOS \n \n注意删除多余字符, 你发送的链接应该是以下格式: \nhttps://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record?svr_id=TomyJan&player_id=101812955&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=cn&record_id=TomyJan&resources_id=TomyJan \niOS 格式: \n{ \n  "recordId": "eaa639c7d3a5ba13d7ba692077b52b06", \n  "playerId": "102071322", \n  "serverId": "76402e5b20be2c39f095a152090afddc", \n  "cardPoolId": "5c13a63f85465e9fcc0f24d6efb15083", \n  "cardPoolType": 1, \n  "languageCode": "zh-Hans" \n} \n建议私聊发送哦~`
+      `请在游戏内打开一次抽卡记录, 然后从以下目录打开日志文件: \n \nWin 设备: \n游戏安装目录\\Client\\Saved\\Logs\\Client.log \n \nAndroid 设备: \n内部存储/Android/data/com.kurogame.mingchao或com.kurogame.wutheringwaves.global/files/UE4Game/Client/Client/Saved/Logs/Client.log \n \n在文件内搜索 record_id , 将找到的链接发送给我即可 \n \nAndroid 也可在抽卡界面断网后点击抽卡记录, 加载完成后长按-全选-复制 也可得到抽卡链接 \n \niOS 设备: \n参照此教程抓包获取: https://blog.tomys.top/2023-07/kuro-token/#iOS \n \n注意删除多余字符, 你发送的链接应该是以下格式: \nhttps://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record?svr_id=TomyJan&player_id=101812955&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=cn&record_id=TomyJan&resources_id=TomyJan \n国际服格式: \nhttps://aki-gm-resources-oversea.aki-game.net/aki/gacha/index.html#/record?svr_id=TomyJan&player_id=101812955&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=global&record_id=TomyJan&resources_id=TomyJan \niOS 格式: \n{ \n  "recordId": "TomyJan", \n  "playerId": "101812955", \n  "serverId": "TomyJan", \n  "cardPoolId": "TomyJan", \n  "cardPoolType": 1, \n  "languageCode": "zh-Hans" \n} \n建议私聊发送哦~`
     )
     return true
   }
 
   async mcGachaLinkUpload(e) {
-    let gachaLink = this.e.msg.replace(/#/g, '').replace(/\s/g, '')
-    if (!gachaLink.startsWith('https://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record')) {
+    let gachaLink = this.e.msg.replace(/#/g, '').replace(/\s/g, '').replace('index.html/record', 'index.html#/record')
+    if (!gachaLink.startsWith('https://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record') && !gachaLink.startsWith('https://aki-gm-resources-oversea.aki-game.net/aki/gacha/index.html#/record')) {
       // 上传了 json, 校验并转换为链接
       try {
         JSON.parse(gachaLink)
         // 检查字段是否缺失
-        if (!gachaLink.recordId || !gachaLink.playerId || !gachaLink.serverId || !gachaLink.cardPoolId) {
+        if (!gachaLink.recordId || !gachaLink.playerId || !gachaLink.serverId || !gachaLink.cardPoolId || !gachaLink.serverId) {
           await e.reply('抽卡记录 JSON 字段缺失, 请检查')
         }
-        if (!/^[a-zA-Z0-9]{32}$/.test(gachaLink.recordId) || !/^[1-9]\d{8}$/.test(gachaLink.playerId) || !/^[a-zA-Z0-9]{32}$/.test(gachaLink.serverId) || !/^[a-zA-Z0-9]{32}$/.test(gachaLink.cardPoolId)) {
+        if (!/^[a-zA-Z0-9]{32}$/.test(gachaLink.recordId) || !/^[1-9]\d{8}$/.test(gachaLink.playerId) || !/^[a-zA-Z0-9]{32}$/.test(gachaLink.serverId) || !/^[a-zA-Z0-9]{32}$/.test(gachaLink.cardPoolId) || !/^[a-zA-Z0-9]{32}$/.test(gachaLink.serverId)) {
           await e.reply('抽卡记录 JSON 字段格式错误, 请检查')
           return true
         }
         // 转换为链接
+        if (gachaLink.serverId === '76402e5b20be2c39f095a152090afddc') { // 国服
         gachaLink = `https://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record??svr_id=${gachaLink.serverId}&player_id=${gachaLink.playerId}&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=cn&record_id=${gachaLink.recordId}&resources_id=${gachaLink.cardPoolId}`
-      } catch (e) {
+        } else {
+          gachaLink = `https://aki-gm-resources-oversea.aki-game.net/aki/gacha/index.html#/record??svr_id=${gachaLink.serverId}&player_id=${gachaLink.playerId}&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=global&record_id=${gachaLink.recordId}&resources_id=${gachaLink.cardPoolId}`
+        }
+      } catch (err) {
+        kuroLogger.warn('抽卡记录 JSON 格式错误', JSON.stringify(err))
         await e.reply('抽卡记录 JSON 格式错误, 请检查')
         return true
       }

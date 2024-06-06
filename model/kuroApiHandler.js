@@ -5,6 +5,7 @@ export default class kuroApiHandler {
   constructor() {
     this.kuroApiUrl = 'https://api.kurobbs.com'
     this.mcGachaApiUrl = 'https://gmserver-api.aki-game2.com'
+    this.mcGachaApiUrlOS = 'https://gmserver-api.aki-game2.net'
   }
 
   /**
@@ -182,7 +183,7 @@ export default class kuroApiHandler {
       },
       mcGachaRecord: {
         // 鸣潮抽卡记录
-        url: `${this.mcGachaApiUrl}/gacha/record/query`,
+        url: `${data.serverId === '76402e5b20be2c39f095a152090afddc' ? this.mcGachaApiUrl : this.mcGachaApiUrlOS}/gacha/record/query`,
         // 这个的body是json
         body: JSON.stringify({
           cardPoolId: data.cardPoolId,
