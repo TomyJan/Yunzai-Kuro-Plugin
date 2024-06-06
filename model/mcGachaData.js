@@ -43,7 +43,9 @@ export default class mcGachaData {
     // 先检查本地是否既没有抽卡记录也没有抽卡链接, 如果没有就提示获取抽卡记录
     if (!(await this.exist(this.e.user_id, gameUid)) && !gachaLink) {
       await this.e.reply(
-        `QQ ${this.e.user_id}${gameUid ?  ` 的游戏 uid ${gameUid}` : ''} 暂未获取过抽卡记录\n请发送 #鸣潮抽卡记录帮助 以获取帮助信息`
+        `QQ ${this.e.user_id}${
+          gameUid ? ` 的游戏 uid ${gameUid}` : ''
+        } 暂未获取过抽卡记录\n请发送 #鸣潮抽卡记录帮助 以获取帮助信息`
       )
       return false
     }
@@ -121,7 +123,10 @@ export default class mcGachaData {
     if (
       !link.startsWith(
         'https://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record?'
-      ) && !link.startsWith('https://aki-gm-resources-oversea.aki-game.net/aki/gacha/index.html#/record?')
+      ) &&
+      !link.startsWith(
+        'https://aki-gm-resources-oversea.aki-game.net/aki/gacha/index.html#/record?'
+      )
     ) {
       kuroLogger.debug(`QQ ${qq} 的抽卡链接 ${link} 格式错误`)
       return '抽卡链接格式错误'
@@ -415,31 +420,37 @@ export default class mcGachaData {
     let user = new userConfig()
     let gameUid = (await user.getCurGameUidLocal(this.e.user_id, 3))?.gameUid
     if (!gameUid) {
-      return `QQ ${this.e.user_id}${gameUid ?  ` 的游戏 uid ${gameUid}` : ''} 暂未获取过抽卡记录\n请发送 #鸣潮抽卡记录帮助 以获取帮助信息`
+      return `QQ ${this.e.user_id}${
+        gameUid ? ` 的游戏 uid ${gameUid}` : ''
+      } 暂未获取过抽卡记录\n请发送 #鸣潮抽卡记录帮助 以获取帮助信息`
     }
     let path = `${mcGachaDataPath}/${this.e.user_id}-${gameUid}.json`
     if (!fs.existsSync(path)) {
       return `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 本地不存在抽卡记录\n请发送 #鸣潮更新抽卡 以获取`
     }
     // 复制一份抽卡记录到临时文件
-    let time = new Date().toISOString().replace(/[-:]/g, '').replace(/\..+/, '').replace('T', '')
+    let time = new Date()
+      .toISOString()
+      .replace(/[-:]/g, '')
+      .replace(/\..+/, '')
+      .replace('T', '')
     let tempPath = `WW_${_McGachaDataPath}/${gameUid}-${time}.json`
     try {
       fs.copyFileSync(path, tempPath)
       if (this.e.isGroup) {
         let ret = await this.e.group.sendFile(tempPath)
         fs.unlinkSync(tempPath)
-        if(ret !== null) {
+        if (ret !== null) {
           return `文件发送失败, 可能是协议不支持`
         }
-        return null;
+        return null
       } else if (this.e.isPrivate) {
         let ret = await this.e.friend.sendFile(tempPath)
         fs.unlinkSync(tempPath)
-        if(ret !== null) {
+        if (ret !== null) {
           return `文件发送失败, 可能是协议不支持`
         }
-        return null;
+        return null
       } else {
         return `不支持的消息来源, 请尝试好友私聊或群聊使用`
       }

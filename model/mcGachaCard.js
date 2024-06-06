@@ -175,9 +175,12 @@ export default class mcGachaCard {
         everyGoldCost,
         fourStarItemCount,
         notUpGoldCount,
-        eachUpItemCost: (goldCount - notUpGoldCount) === 0 ? '暂无' : Math.floor(
-            (everyGoldCost * goldCount * 160) / (goldCount - notUpGoldCount)
-        ),
+        eachUpItemCost:
+          goldCount - notUpGoldCount === 0
+            ? '暂无'
+            : Math.floor(
+                (everyGoldCost * goldCount * 160) / (goldCount - notUpGoldCount)
+              ),
       },
     }
 

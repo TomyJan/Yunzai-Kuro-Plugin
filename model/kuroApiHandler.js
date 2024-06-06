@@ -183,7 +183,11 @@ export default class kuroApiHandler {
       },
       mcGachaRecord: {
         // 鸣潮抽卡记录
-        url: `${data.serverId === '76402e5b20be2c39f095a152090afddc' ? this.mcGachaApiUrl : this.mcGachaApiUrlOS}/gacha/record/query`,
+        url: `${
+          data.serverId === '76402e5b20be2c39f095a152090afddc'
+            ? this.mcGachaApiUrl
+            : this.mcGachaApiUrlOS
+        }/gacha/record/query`,
         // 这个的body是json
         body: JSON.stringify({
           cardPoolId: data.cardPoolId,

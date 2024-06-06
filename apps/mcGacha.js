@@ -179,22 +179,45 @@ export class mcGacha extends plugin {
   }
 
   async mcGachaLinkUpload(e) {
-    let gachaLink = this.e.msg.replace(/#/g, '').replace(/\s/g, '').replace('index.html/record', 'index.html#/record')
-    if (!gachaLink.startsWith('https://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record') && !gachaLink.startsWith('https://aki-gm-resources-oversea.aki-game.net/aki/gacha/index.html#/record')) {
+    let gachaLink = this.e.msg
+      .replace(/#/g, '')
+      .replace(/\s/g, '')
+      .replace('index.html/record', 'index.html#/record')
+    if (
+      !gachaLink.startsWith(
+        'https://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record'
+      ) &&
+      !gachaLink.startsWith(
+        'https://aki-gm-resources-oversea.aki-game.net/aki/gacha/index.html#/record'
+      )
+    ) {
       // 上传了 json, 校验并转换为链接
       try {
         JSON.parse(gachaLink)
         // 检查字段是否缺失
-        if (!gachaLink.recordId || !gachaLink.playerId || !gachaLink.serverId || !gachaLink.cardPoolId || !gachaLink.serverId) {
+        if (
+          !gachaLink.recordId ||
+          !gachaLink.playerId ||
+          !gachaLink.serverId ||
+          !gachaLink.cardPoolId ||
+          !gachaLink.serverId
+        ) {
           await e.reply('抽卡记录 JSON 字段缺失, 请检查')
         }
-        if (!/^[a-zA-Z0-9]{32}$/.test(gachaLink.recordId) || !/^[1-9]\d{8}$/.test(gachaLink.playerId) || !/^[a-zA-Z0-9]{32}$/.test(gachaLink.serverId) || !/^[a-zA-Z0-9]{32}$/.test(gachaLink.cardPoolId) || !/^[a-zA-Z0-9]{32}$/.test(gachaLink.serverId)) {
+        if (
+          !/^[a-zA-Z0-9]{32}$/.test(gachaLink.recordId) ||
+          !/^[1-9]\d{8}$/.test(gachaLink.playerId) ||
+          !/^[a-zA-Z0-9]{32}$/.test(gachaLink.serverId) ||
+          !/^[a-zA-Z0-9]{32}$/.test(gachaLink.cardPoolId) ||
+          !/^[a-zA-Z0-9]{32}$/.test(gachaLink.serverId)
+        ) {
           await e.reply('抽卡记录 JSON 字段格式错误, 请检查')
           return true
         }
         // 转换为链接
-        if (gachaLink.serverId === '76402e5b20be2c39f095a152090afddc') { // 国服
-        gachaLink = `https://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record??svr_id=${gachaLink.serverId}&player_id=${gachaLink.playerId}&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=cn&record_id=${gachaLink.recordId}&resources_id=${gachaLink.cardPoolId}`
+        if (gachaLink.serverId === '76402e5b20be2c39f095a152090afddc') {
+          // 国服
+          gachaLink = `https://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record??svr_id=${gachaLink.serverId}&player_id=${gachaLink.playerId}&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=cn&record_id=${gachaLink.recordId}&resources_id=${gachaLink.cardPoolId}`
         } else {
           gachaLink = `https://aki-gm-resources-oversea.aki-game.net/aki/gacha/index.html#/record??svr_id=${gachaLink.serverId}&player_id=${gachaLink.playerId}&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=global&record_id=${gachaLink.recordId}&resources_id=${gachaLink.cardPoolId}`
         }
@@ -255,7 +278,8 @@ export class mcGacha extends plugin {
       await e.reply(`导出失败: \n${gachaExportRet}`)
       return true
     } else {
-      let msg = '以上是你的 UIGF 鸣潮抽卡记录, 你可以导入其他支持 UIGF 的工具中使用~'
+      let msg =
+        '以上是你的 UIGF 鸣潮抽卡记录, 你可以导入其他支持 UIGF 的工具中使用~'
       await e.reply(msg)
       return true
     }
