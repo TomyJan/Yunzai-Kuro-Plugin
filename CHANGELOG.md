@@ -1,3 +1,24 @@
+## [0.2.10-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.9-rel...v0.2.10-rel) (2024-06-06)
+
+
+### Bug Fixes
+
+* 鸣潮抽卡没出up时每up星声展示错误 ([364d0bd](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/364d0bd39a0d5ed06be3905e440a3d6cce9d1bbf))
+
+
+### Features
+
+* `UIGF`的抽卡数据的导出 ([de38519](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/de38519e12ed38507ec12dba5478694ed7d0cecc))
+* 鸣潮抽卡分析支持国际服 ( [#8](https://github.com/TomyJan/Yunzai-Kuro-Plugin/issues/8) ) ([934f8a6](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/934f8a6d332fdfdd28067459a281c1f19c9a8341))
+* 允许通过参数上传抽卡记录 ([3192bc3](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/3192bc329876a51af61162af1eef39c7405e555b))
+
+
+### Performance Improvements
+
+* 更改卡池时间 ([20eec84](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/20eec84023b6c3a494fd0976b6280a41fc57ba46))
+
+
+
 ## [0.2.9-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.8-rel...v0.2.9-rel) (2024-06-05)
 
 

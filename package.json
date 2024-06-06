@@ -1,6 +1,6 @@
 {
   "name": "Yunzai-Kuro-Plugin",
-  "version": "0.2.10-dev",
+  "version": "0.2.10-rel",
   "author": "TomyJan",
   "description": "Yunzai-Bot plugin for kuro games.",
   "type": "module",
