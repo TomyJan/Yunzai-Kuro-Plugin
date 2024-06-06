@@ -177,7 +177,7 @@ export default class mcGachaData {
       playerId,
       version: 1, // 版本控制, 防止不兼容
     }
-    // cardPoolType 1-6 获取数据存入 gachaDataJson
+    // cardPoolType 1-6 获取记录存入 gachaDataJson
     for (
       let curCardPoolToFetch = 1;
       curCardPoolToFetch <= 6;
@@ -218,7 +218,7 @@ export default class mcGachaData {
   }
   /** 通过 get() 方法或者用户本地获取得到的抽卡记录保存到本地
    * @param {number} qq QQ
-   * @param {object} gachaDataJson 抽卡记录原始 json {"gachaData": {"1":{}, "2": {}}, "playerId": 101812955, "version": 1} , 1-6键值为六个卡池的原始数据
+   * @param {object} gachaDataJson 抽卡记录原始 json {"gachaData": {"1":{}, "2": {}}, "playerId": 101812955, "version": 1} , 1-6键值为六个卡池的原始记录
    * @returns {null|string} 保存成功返回 null, 失败返回 str 原因
    */
   async update(qq, gachaDataJson) {
@@ -303,7 +303,7 @@ export default class mcGachaData {
       }
     }
 
-    // 保存到本地 TODO: 目前 API 返回的是完整数据, 后续分割数据后应该是增量更新
+    // 保存到本地 TODO: 目前 API 返回的是完整记录, 后续分割记录后应该是增量更新
     kuroLogger.debug(
       `QQ ${qq} 的 UIGF 抽卡记录转换完成: ${JSON.stringify(gachaDataInUniform)}`
     )

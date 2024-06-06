@@ -39,6 +39,10 @@ export class mcGacha extends plugin {
           fnc: 'mcGachaLinkUpload',
         },
         {
+          reg: '^#?{(.*)"recordId"(.*)}$',
+          fnc: 'mcGachaLinkUpload',
+        },
+        {
           reg: '^#?鸣潮更新(抽卡|唤取)+(记录)?$',
           fnc: 'mcGachaDataUpdate',
         },
@@ -164,14 +168,34 @@ export class mcGacha extends plugin {
 
   async mcGachaHelpUrlGet(e) {
     e.reply(
-      `请在游戏内打开一次抽卡记录, 然后从以下目录打开日志文件: \n \nWin 设备: \n游戏安装目录\\Client\\Saved\\Logs\\Client.log \n \nAndroid 设备: \n内部存储/Android/data/com.kurogame.mingchao/files/UE4Game/Client/Client/Saved/Logs/Client.log \n \n在文件内搜索 record_id , 将找到的链接发送给我即可 \n \nAndroid 也可在抽卡界面断网后点击抽卡记录, 加载完成后长按-全选-复制 也可得到抽卡链接 \n \niOS 设备: \n参照此教程抓包获取: https://blog.tomys.top/2023-07/kuro-token/#iOS \n \n注意删除多余字符, 你发送的链接应该是以下格式: \nhttps://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record?svr_id=TomyJan&player_id=101812955&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=cn&record_id=TomyJan&resources_id=TomyJan \n建议私聊发送哦~`
+      `请在游戏内打开一次抽卡记录, 然后从以下目录打开日志文件: \n \nWin 设备: \n游戏安装目录\\Client\\Saved\\Logs\\Client.log \n \nAndroid 设备: \n内部存储/Android/data/com.kurogame.mingchao/files/UE4Game/Client/Client/Saved/Logs/Client.log \n \n在文件内搜索 record_id , 将找到的链接发送给我即可 \n \nAndroid 也可在抽卡界面断网后点击抽卡记录, 加载完成后长按-全选-复制 也可得到抽卡链接 \n \niOS 设备: \n参照此教程抓包获取: https://blog.tomys.top/2023-07/kuro-token/#iOS \n \n注意删除多余字符, 你发送的链接应该是以下格式: \nhttps://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record?svr_id=TomyJan&player_id=101812955&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=cn&record_id=TomyJan&resources_id=TomyJan \niOS 格式: \n{ \n  "recordId": "eaa639c7d3a5ba13d7ba692077b52b06", \n  "playerId": "102071322", \n  "serverId": "76402e5b20be2c39f095a152090afddc", \n  "cardPoolId": "5c13a63f85465e9fcc0f24d6efb15083", \n  "cardPoolType": 1, \n  "languageCode": "zh-Hans" \n} \n建议私聊发送哦~`
     )
     return true
   }
 
   async mcGachaLinkUpload(e) {
+    let gachaLink = this.e.msg.replace(/#/g, '').replace(/\s/g, '')
+    if (!gachaLink.startsWith('https://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record')) {
+      // 上传了 json, 校验并转换为链接
+      try {
+        JSON.parse(gachaLink)
+        // 检查字段是否缺失
+        if (!gachaLink.recordId || !gachaLink.playerId || !gachaLink.serverId || !gachaLink.cardPoolId) {
+          await e.reply('抽卡记录 JSON 字段缺失, 请检查')
+        }
+        if (!/^[a-zA-Z0-9]{32}$/.test(gachaLink.recordId) || !/^[1-9]\d{8}$/.test(gachaLink.playerId) || !/^[a-zA-Z0-9]{32}$/.test(gachaLink.serverId) || !/^[a-zA-Z0-9]{32}$/.test(gachaLink.cardPoolId)) {
+          await e.reply('抽卡记录 JSON 字段格式错误, 请检查')
+          return true
+        }
+        // 转换为链接
+        gachaLink = `https://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record??svr_id=${gachaLink.serverId}&player_id=${gachaLink.playerId}&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=cn&record_id=${gachaLink.recordId}&resources_id=${gachaLink.cardPoolId}`
+      } catch (e) {
+        await e.reply('抽卡记录 JSON 格式错误, 请检查')
+        return true
+      }
+    }
     await e.reply(`抽卡记录链接上传成功, 尝试更新抽卡记录...`)
-    await this.updateGachaData(e, this.e.msg)
+    await this.updateGachaData(e, gachaLink)
   }
 
   async mcGachaDataUpdate(e) {
@@ -187,7 +211,7 @@ export class mcGacha extends plugin {
     await this.updateGachaData(e, gachaLink)
   }
 
-  // 私有的通过抽卡记录链接更新抽卡数据的方法
+  // 私有的通过抽卡记录链接更新抽卡记录的方法
   async updateGachaData(e, gachaLink) {
     let gacha = new mcGachaData(e)
     let gachaRecord = await gacha.get(gachaLink, e.user_id)
@@ -200,7 +224,7 @@ export class mcGacha extends plugin {
         e.reply(`抽卡记录更新成功但保存失败: \n${gachaUpdateRet}`)
         return true
       } else {
-        // TODO: 如果用户绑定的 token 里面没有绑定这个账号的提示, 以及抽卡总体数据的展示
+        // TODO: 如果用户绑定的 token 里面没有绑定这个账号的提示
         let msg = '抽卡记录更新成功, 获取到'
         // 遍历 gachaUpdateRet, 提取出每次抽卡的信息, 属性名是卡池名字, 值是数量
         for (let key in gachaUpdateRet) {
