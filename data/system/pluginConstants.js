@@ -38,38 +38,38 @@ export const pluginThemeColor = chalk.rgb(57, 197, 187)
 // 鸣潮历史 up 池时间和物品 id
 export const mcGachaUpPools = [
   {
-    // 1.0 上半
-    startTime: '1716429600', // 2024.05.23 10:00
-    endTime: '1717639200', // 2024.06.06 10:00
+    // 1.0 上半, 提前开服故时间提前
+    startTime: '1716393600', // 2024.05.23 00:00
+    endTime: '1718243940', // 2024.06.13 09:59
     itemId: '1404',
     itemName: '忌炎',
     itemType: 1, // 1 为角色, 2 为武器
     cardPoolName: '夜将寒色去',
   },
   {
-    // 1.0 上半
-    startTime: '1716429600', // 2024.05.23 10:00
-    endTime: '1717639200', // 2024.06.06 10:00
+    // 1.0 上半, 提前开服故时间提前
+    startTime: '1716393600', // 2024.05.23 00:00
+    endTime: '1718243940', // 2024.06.13 09:59
     itemId: '21010016',
     itemName: '苍鳞千嶂',
     itemType: 2,
     cardPoolName: '浮声沉兵',
   },
   {
-    // 1.0 下半
+    // 1.0 下半, 卡池提前
     startTime: '1717639200', // 2024.06.06 10:00
-    endTime: '1719525600', // 2024.06.28 06:00
+    endTime: '1719374340', // 2024.06.26 11:59
     itemId: '1302',
     itemName: '吟霖',
     itemType: 1,
     cardPoolName: '惊霆雨时节',
   },
   {
-    // 1.0 下半
+    // 1.0 下半, 卡池提前
     startTime: '1717639200', // 2024.06.06 10:00
-    endTime: '1719525600', // 2024.06.28 06:00
+    endTime: '1719374340', // 2024.06.26 11:59
     itemId: '21050016',
-    itemName: '吟霖',
+    itemName: '掣傀之手',
     itemType: 2,
     cardPoolName: '浮声沉兵',
   },
