@@ -52,7 +52,7 @@ export class toy extends plugin {
     let part1 = parts[1].trim()
     let content = parts[2].trim().split(' ')
 
-    if(content.length < 2) {
+    if (content.length < 2) {
       return
     }
 
