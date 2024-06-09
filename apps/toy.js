@@ -45,13 +45,16 @@ export class toy extends plugin {
     let message = e.msg.replace(/^#/, '').trim()
     let parts = message.match(/^(.*)是这样的(.*)$/)
 
-    if (parts?.length !== 3 || !parts[1] || !parts[2]) {
-      await this.reply('是这样的 前后都需要有参数')
+    if (parts?.length !== 3 || !parts[0] || !parts[2]) {
       return
     }
 
     let part1 = parts[1].trim()
     let content = parts[2].trim().split(' ')
+
+    if(content.length < 2) {
+      return
+    }
 
     if (content.length < 5) {
       await this.reply('是这样的 后面至少需要五个参数')
