@@ -433,10 +433,12 @@ export default class mcGachaData {
     }
     // 复制一份抽卡记录到临时文件
     let time = new Date()
-      .toISOString()
-      .replace(/[-:]/g, '')
-      .replace(/\..+/, '')
-      .replace('T', '')
+      .toLocaleString()
+      .replace(/ /g, '')
+      .replace(/\//g, '')
+      .replace(/:/g, '')
+      .replace(/,/g, '')
+      .replace(/-/g, '')
     let tempPath = `${_McGachaDataPath}/WW_Gacha_Export-${gameUid}-${time}.json`
     try {
       fs.copyFileSync(path, tempPath)
