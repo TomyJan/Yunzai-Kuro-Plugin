@@ -38,6 +38,18 @@ export const _McGachaDataPath = `${process // 绝对目录
 // 其它信息
 export const pluginThemeColor = chalk.rgb(57, 197, 187)
 
+// 鸣潮卡池类型 id 和对应名称
+export const mcGachaType = [
+  '未知',
+  '角色活动唤取',
+  '武器活动唤取',
+  '角色常驻唤取',
+  '武器常驻唤取',
+  '新手唤取',
+  '新手自选唤取',
+  '新手自选唤取（感恩定向唤取）',
+]
+
 // 鸣潮历史 up 池时间和物品 id
 export const mcGachaUpPools = [
   {

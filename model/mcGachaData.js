@@ -8,6 +8,7 @@ import {
   _McGachaDataPath,
   pluginName,
   pluginVer,
+  mcGachaType,
 } from '../data/system/pluginConstants.js'
 import fs from 'fs'
 
@@ -183,10 +184,10 @@ export default class mcGachaData {
       playerId,
       version: 1, // 版本控制, 防止不兼容
     }
-    // cardPoolType 1-6 获取记录存入 gachaDataJson
+    // cardPoolType 1-7 获取记录存入 gachaDataJson
     for (
       let curCardPoolToFetch = 1;
-      curCardPoolToFetch <= 6;
+      curCardPoolToFetch <= 7;
       curCardPoolToFetch++
     ) {
       let rsp_mcGachaRecord = await kuroapi.mcGachaRecord(0, {
@@ -222,9 +223,9 @@ export default class mcGachaData {
     )
     return gachaDataJson
   }
-  /** 通过 get() 方法或者用户本地获取得到的抽卡记录保存到本地
+  /** 将 通过 get() 方法获取得到的抽卡记录以 WWGF 保存到本地
    * @param {number} qq QQ
-   * @param {object} gachaDataJson 抽卡记录原始 json {"gachaData": {"1":{}, "2": {}}, "playerId": 101812955, "version": 1} , 1-6键值为六个卡池的原始记录
+   * @param {object} gachaDataJson 抽卡记录原始 json {"gachaData": {"1":{}, "2": {}}, "playerId": 101812955, "version": 1} , 1-7键值为七个卡池的原始记录
    * @returns {null|string} 保存成功返回 null, 失败返回 str 原因
    */
   async update(qq, gachaDataJson) {
@@ -238,35 +239,34 @@ export default class mcGachaData {
       )
       return `抽卡记录版本 ${gachaDataJson?.version} 暂不兼容`
     }
-    // 检查 gachaDataJson 是否有 1-6 键名
-    for (let i = 1; i <= 6; i++) {
+    // 检查 gachaDataJson 是否有 1-7 键名
+    for (let i = 1; i <= 7; i++) {
       if (!gachaDataJson?.gachaData[i]) {
         kuroLogger.debug(`QQ ${qq} 的抽卡记录不完整`)
         return '抽卡记录不完整'
       }
     }
 
-    // 开始以 UIGF 格式构造抽卡记录对象
+    // 开始以 WWGF 格式构造抽卡记录对象
     let gachaDataInUniform = {
       info: {
         uid: gachaDataJson.playerId.toString(),
         lang: 'zh-cn', // 暂时固定简中
         export_timestamp: Math.floor(new Date().getTime() / 1000),
-        export_time: new Date().toLocaleString().replace(/\//g, '-').toString(),
         export_app: pluginName.toString(),
         export_app_version: 'v' + pluginVer,
-        uigf_version: 'v3.0',
+        wwgf_version: 'v0.1b',
         region_time_zone: Number(8),
       },
       list: [],
     }
     kuroLogger.debug(
-      `准备转换 QQ ${qq} 的抽卡记录到 UIGF 格式: ${JSON.stringify(
+      `准备转换 QQ ${qq} 的抽卡记录到 WWGF 格式: ${JSON.stringify(
         gachaDataInUniform
       )}`
     )
 
-    for (let i = 1; i <= 6; i++) {
+    for (let i = 1; i <= 7; i++) {
       let gachaData = gachaDataJson.gachaData[i].data
       let timeCount = {}
       // 先统计每个 time 的物品数量
@@ -282,9 +282,9 @@ export default class mcGachaData {
         let data = gachaData[j]
 
         let id =
-          Date.parse(data.time) +
-          i.toString() +
-          (timeCount[data.time]--).toString().padStart(2, '0')
+        Math.floor(Date.parse(data.time) / 1000) +
+          i.toString().padStart(4, '0') +
+          (timeCount[data.time]--).toString().padStart(5, '0')
 
         kuroLogger.debug(
           `QQ ${qq} 的抽卡记录 ${i} 在时间 ${
@@ -295,8 +295,8 @@ export default class mcGachaData {
         )
 
         let item = {
-          uigf_gacha_type: i.toString(),
-          gacha_type: i.toString(),
+          gacha_id: i.toString().padStart(4, '0'),
+          gacha_type: mcGachaType[i].toString(),
           item_id: data.resourceId.toString(),
           count: data.count.toString(),
           time: data.time.toString(),
@@ -311,7 +311,7 @@ export default class mcGachaData {
 
     // 保存到本地 TODO: 目前 API 返回的是完整记录, 后续分割记录后应该是增量更新
     kuroLogger.debug(
-      `QQ ${qq} 的 UIGF 抽卡记录转换完成: ${JSON.stringify(gachaDataInUniform)}`
+      `QQ ${qq} 的 WWGF 抽卡记录转换完成: ${JSON.stringify(gachaDataInUniform)}`
     )
     let path = `${mcGachaDataPath}/${qq}-${gachaDataJson.playerId}.json`
     // 使用错误捕获
@@ -342,6 +342,9 @@ export default class mcGachaData {
             break
           case '6':
             gachaName = '新手自选'
+            break
+          case '7':
+            gachaName = '自选五星'
             break
           default:
             gachaName = '未知'
@@ -389,9 +392,9 @@ export default class mcGachaData {
   /** 以原格式输出抽卡记录
    * @param {number} qq QQ
    * @param {number} gameUid 游戏 uid, 如果传入 0 则输出第一个 uid
-   * @returns {object|string} 成功则返回原始 UIGF 格式的抽卡记录, 失败则返回 str 原因
+   * @returns {object|string} 成功则返回原始 WWGF 格式的抽卡记录, 失败则返回 str 原因
    */
-  async getUigfRecord(qq, gameUid) {
+  async getWwgfRecord(qq, gameUid) {
     // gameUid 无效时获取第一个 uid
     if (!gameUid) {
       gameUid = this.exist(qq, 0)
@@ -412,7 +415,7 @@ export default class mcGachaData {
     }
   }
 
-  /** 以 UIGF 格式发送抽卡记录
+  /** 以 WWGF 格式发送抽卡记录
    * @returns {null|string} 保存成功返回 null, 失败返回 str 原因
    */
   async export() {
@@ -434,7 +437,7 @@ export default class mcGachaData {
       .replace(/[-:]/g, '')
       .replace(/\..+/, '')
       .replace('T', '')
-    let tempPath = `WW_${_McGachaDataPath}/${gameUid}-${time}.json`
+    let tempPath = `${_McGachaDataPath}/WW_Gacha_Export-${gameUid}-${time}.json`
     try {
       fs.copyFileSync(path, tempPath)
       if (this.e.isGroup) {

@@ -5,6 +5,7 @@ import puppeteer from '../../../lib/puppeteer/puppeteer.js'
 import mcGachaCard from '../model/mcGachaCard.js'
 import kuroLogger from '../components/logger.js'
 import userConfig from '../model/userConfig.js'
+import { mcGachaType } from '../data/system/pluginConstants.js'
 import fs from 'fs'
 
 export class mcGacha extends plugin {
@@ -51,6 +52,10 @@ export class mcGacha extends plugin {
           reg: '^#?鸣潮导出(抽卡|唤取)+(记录)?$',
           fnc: 'mcGachaDataExport',
         },
+        {
+          reg: '^#?鸣潮导入(抽卡|唤取)+(记录)?$',
+          fnc: 'mcGachaDataImport',
+        },
       ],
     })
   }
@@ -63,8 +68,7 @@ export class mcGacha extends plugin {
       let msg = this.e.msg
         .replace(/#| /g, '')
         .replace(/鸣潮|记录|唤取|分析|池/g, '')
-      let gachaType = 0
-      let cardPoolName = ''
+      let gachaType = 1
       switch (msg) {
         case '抽卡':
         case '角色':
@@ -77,7 +81,6 @@ export class mcGacha extends plugin {
         case '角色up':
         case 'up角色':
           gachaType = 1
-          cardPoolName = '角色活动唤取'
           break
         case '武器':
         case '武器活动':
@@ -87,33 +90,27 @@ export class mcGacha extends plugin {
         case '武器up':
         case 'up武器':
           gachaType = 2
-          cardPoolName = '武器活动唤取'
           break
         case '常驻':
         case '角色常驻':
         case '常驻角色':
           gachaType = 3
-          cardPoolName = '角色常驻唤取'
           break
         case '武器常驻':
         case '常驻武器':
           gachaType = 4
-          cardPoolName = '武器常驻唤取'
           break
         case '新手':
           gachaType = 5
-          cardPoolName = '新手唤取'
           break
         case '新手自选':
         case '自选':
           gachaType = 6
-          cardPoolName = '新手自选唤取'
           break
         default:
           gachaType = 1
-          cardPoolName = '角色活动唤取'
       }
-      let data = await mcGachaCard.get(this.e, gachaType, cardPoolName)
+      let data = await mcGachaCard.get(this.e, gachaType, mcGachaType[gachaType])
       if (!data) {
         kuroLogger.warn('抽卡记录卡片数据获取失败')
         return false
@@ -279,9 +276,13 @@ export class mcGacha extends plugin {
       return true
     } else {
       let msg =
-        '以上是你的 UIGF 鸣潮抽卡记录, 你可以导入其他支持 UIGF 的工具中使用~'
+        '以上是你的 WWGF 鸣潮抽卡记录, 你可以导入其他支持 WWGF 的工具中使用~'
       await e.reply(msg)
       return true
     }
+  }
+
+  async mcGachaDataImport(e) {
+    e.reply('绝赞监修中~')
   }
 }

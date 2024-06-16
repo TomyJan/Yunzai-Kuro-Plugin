@@ -23,11 +23,11 @@ export default class mcGachaCard {
    * @returns {object|string} - 抽卡记录卡片数据 json, 失败返回错误信息 str
    */
   static async get(e, gachaType, cardPoolName) {
-    if (typeof gachaType !== 'number' || gachaType > 6 || gachaType < 1)
+    if (typeof gachaType !== 'number' || gachaType > 7 || gachaType < 1)
       return '抽卡类型错误'
     let gacha = new mcGachaData(e)
     let user = new userConfig()
-    let OriginGachaRecord = await gacha.getUigfRecord(
+    let OriginGachaRecord = await gacha.getWwgfRecord(
       e.user_id,
       (
         await user.getCurGameUidLocal(e.user_id, 3)
@@ -47,7 +47,7 @@ export default class mcGachaCard {
     let count = 0
     let gachaRecord = []
     for (let i = 0; i < OriginGachaRecord.list.length; i++) {
-      if (OriginGachaRecord.list[i].gacha_type == gachaType.toString()) {
+      if (OriginGachaRecord.list[i].gacha_id == gachaType.toString().padStart(4, '0')) {
         if (OriginGachaRecord.list[i].rank_type == '4') {
           fourStarItemCount++
         }
