@@ -1,3 +1,24 @@
+## [0.2.11-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.10-rel...v0.2.11-rel) (2024-06-16)
+
+
+### Bug Fixes
+
+* 尝试修复 Bot QQ 配置问题 ( [#11](https://github.com/TomyJan/Yunzai-Kuro-Plugin/issues/11) ) ([4c6bb4c](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/4c6bb4c9f05ef9f8ed9d5eb51b45f2b5ffb1a2f7))
+* 鸣潮抽卡分析紫卡数统计错误 ([7d09f0f](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/7d09f0fefa0336dccec9704c0da8aef614c5fa90))
+
+
+### Features
+
+* 适配 WWGF v0.1b ([0aa6fad](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/0aa6fad90f1cfc2fa7df24863a62417fc1db1722))
+
+
+### Performance Improvements
+
+* 鸣言太烦人了 ([3c4e64b](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/3c4e64bf1e7a76949e9f41978bd35f738494e612))
+* 优化导出的抽卡记录的文件名 ([a04f083](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/a04f083cce30e81f0f78e056da287f81db868a84))
+
+
+
 ## [0.2.10-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.9-rel...v0.2.10-rel) (2024-06-06)
 
 
