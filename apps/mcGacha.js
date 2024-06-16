@@ -110,7 +110,11 @@ export class mcGacha extends plugin {
         default:
           gachaType = 1
       }
-      let data = await mcGachaCard.get(this.e, gachaType, mcGachaType[gachaType])
+      let data = await mcGachaCard.get(
+        this.e,
+        gachaType,
+        mcGachaType[gachaType]
+      )
       if (!data) {
         kuroLogger.warn('抽卡记录卡片数据获取失败')
         return false

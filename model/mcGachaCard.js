@@ -47,7 +47,10 @@ export default class mcGachaCard {
     let count = 0
     let gachaRecord = []
     for (let i = 0; i < OriginGachaRecord.list.length; i++) {
-      if (OriginGachaRecord.list[i].gacha_id == gachaType.toString().padStart(4, '0')) {
+      if (
+        OriginGachaRecord.list[i].gacha_id ==
+        gachaType.toString().padStart(4, '0')
+      ) {
         if (OriginGachaRecord.list[i].rank_type == '4') {
           fourStarItemCount++
         }

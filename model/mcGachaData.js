@@ -282,7 +282,7 @@ export default class mcGachaData {
         let data = gachaData[j]
 
         let id =
-        Math.floor(Date.parse(data.time) / 1000) +
+          Math.floor(Date.parse(data.time) / 1000) +
           i.toString().padStart(4, '0') +
           (timeCount[data.time]--).toString().padStart(5, '0')
 
