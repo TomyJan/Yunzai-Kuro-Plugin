@@ -53,7 +53,12 @@ export async function sendMsgFriend(uin, msg) {
         friend?.nickname
       }](${uin})`
     )
-    return await Bot[config.getConfig().botQQ || Bot.uin]
+    // 如果 Bot 是 array 则使用配置的 Bot
+    let tmpBot = Bot
+    if (Array.isArray(Bot)) {
+      tmpBot = Bot[config.getConfig().botQQ || 0]
+    }
+    return await tmpBot
       .pickUser(uin)
       .sendMsg(msg)
       .catch((err) => {
