@@ -30,13 +30,17 @@ export class kuroBBSLogin extends plugin {
           reg: new RegExp('^#?库洛token(?!登录|绑定|登陆)(.*)$', 's'),
           fnc: 'tokenLoginResult',
         },
+        {
+          reg: '^#?库洛在线(登录|绑定|登陆)$',
+          fnc: 'onlineLogin',
+        },
       ],
     })
   }
 
   async captchaLoginHelp(e) {
     if (!e.isPrivate) {
-      this.reply(`请私聊使用`)
+      this.reply(`请私聊使用, 或使用 #库洛在线登录`)
       return false
     }
     let kuro = new kurologin(e)
@@ -46,7 +50,7 @@ export class kuroBBSLogin extends plugin {
 
   async captchaLoginResult(e) {
     if (!e.isPrivate) {
-      this.reply(`请私聊使用`)
+      this.reply(`请私聊使用, 或使用 #库洛在线登录`)
       return false
     }
     let kuro = new kurologin(e)
@@ -57,7 +61,7 @@ export class kuroBBSLogin extends plugin {
 
   async tokenLoginHelp(e) {
     if (!e.isPrivate) {
-      this.reply(`请私聊使用`)
+      this.reply(`请私聊使用, 或使用 #库洛在线登录`)
       return false
     }
     let kuro = new kurologin(e)
@@ -67,7 +71,7 @@ export class kuroBBSLogin extends plugin {
 
   async tokenLoginResult(e) {
     if (!e.isPrivate) {
-      this.reply(`请私聊使用`)
+      this.reply(`请私聊使用, 或使用 #库洛在线登录`)
       return false
     }
     let kuro = new kurologin(e)
@@ -95,5 +99,12 @@ export class kuroBBSLogin extends plugin {
     } else {
       e.reply('保存 token 失败: token 已失效!')
     }
+  }
+
+  async onlineLogin(e) {
+    let kuro = new kurologin(e)
+    let rsp = await kuro.onlineLogin()
+    if (rsp) await this.bindToken(e, rsp)
+    return true
   }
 }

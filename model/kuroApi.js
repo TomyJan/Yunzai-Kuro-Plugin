@@ -36,7 +36,7 @@ export default class kuroApi {
     let rsp = ''
 
     // 特殊 API 的调用处理
-    if (ApiName == 'sdkLogin' || ApiName == 'mcGachaRecord') {
+    if (ApiName == 'sdkLogin' || ApiName == 'mcGachaRecord' || ApiName == 'getPluginServerKuroBbsLoginAuth' || ApiName == 'getPluginServerKuroBbsLoginToken') {
       rsp = await this.kuroApiHandler.getApiRsp(ApiName, null, null, data)
     } else if (ApiName == 'checkToken_mineV2') {
       ApiName = 'mineV2'
@@ -63,7 +63,7 @@ export default class kuroApi {
       return rsp
     } else if (rsp.code === 220) {
       return 'token 失效'
-    } else if (ApiName == 'mcGachaRecord') {
+    } else if (ApiName == 'mcGachaRecord' || ApiName == 'getPluginServerKuroBbsLoginAuth' || ApiName == 'getPluginServerKuroBbsLoginToken') {
       if (rsp.code === 0) return rsp
       else return rsp?.message || rsp?.msg || '未知错误'
     } else return rsp?.msg || rsp?.message || '未知错误'
@@ -334,5 +334,24 @@ export default class kuroApi {
    */
   async mcGachaRecord(kuroUid, data) {
     return this.getData('mcGachaRecord', kuroUid, data)
+  }
+
+  /**
+   * 从插件服务器获取库街区登录通信 token
+   * @param {string} kuroUid 库洛 ID, 传 0 即可
+   * @returns {JSON|string} code=0 时接口返回的原始 json 或者报错信息
+   */
+  async getPluginServerKuroBbsLoginAuth(kuroUid) {
+    return this.getData('getPluginServerKuroBbsLoginAuth', kuroUid, {})
+  }
+
+  /**
+   * 从插件服务器获取库街区 token
+   * @param {string} kuroUid 库洛 ID, 传 0 即可
+   * @params {object} data 传入 data.token 通信 token
+   * @returns {JSON|string} code=0 时接口返回的原始 json 或者报错信息
+   */
+  async getPluginServerKuroBbsLoginToken(kuroUid, data) {
+    return this.getData('getPluginServerKuroBbsLoginToken', kuroUid, data)
   }
 }

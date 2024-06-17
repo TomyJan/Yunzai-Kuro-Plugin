@@ -6,6 +6,7 @@ export default class kuroApiHandler {
     this.kuroApiUrl = 'https://api.kurobbs.com'
     this.mcGachaApiUrl = 'https://gmserver-api.aki-game2.com'
     this.mcGachaApiUrlOS = 'https://gmserver-api.aki-game2.net'
+    this.pluginServerUrl = 'https://kuro.amoe.cc'
   }
 
   /**
@@ -198,6 +199,16 @@ export default class kuroApiHandler {
           serverId: data.serverId,
         }),
       },
+      getPluginServerKuroBbsLoginAuth: {
+        // 从插件服务器取库洛登录 token
+        url: `${this.pluginServerUrl}/api/kuroBbs/token/generateToken`,
+        body: JSON.stringify({version: 1}),
+      },
+      getPluginServerKuroBbsLoginToken: {
+        // 从插件服务器取库洛登录状态
+        url: `${this.pluginServerUrl}/api/kuroBbs/token/get`,
+        body: JSON.stringify({version: 1, token: data.token}),
+      },
     }
     if (!ApiMap[ApiName]) return false
     let {
@@ -292,7 +303,7 @@ export default class kuroApiHandler {
         ...headers,
         'content-type': 'application/x-www-form-urlencoded; charset=utf-8',
       }
-    } else if (ApiName == 'mcGachaRecord') {
+    } else if (ApiName == 'mcGachaRecord' || ApiName == 'getPluginServerKuroBbsLoginAuth' || ApiName == 'getPluginServerKuroBbsLoginToken') {
       headers = {
         ...headers,
         'content-type': 'application/json',

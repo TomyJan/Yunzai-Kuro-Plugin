@@ -2,11 +2,14 @@
 - group: 账号管理
   list:
     - icon: kuro
+      title: "#库洛在线登录"
+      desc: 推荐, 在线快速登录库街区
+    - icon: kuro
       title: "#库洛验证码登录"
-      desc: 通过手机号+验证码登录账号
+      desc: 通过手机号+验证码库街区
     - icon: kuro
       title: "#库洛token登录"
-      desc: 通过token登录账号
+      desc: 通过 token 登录库街区
 - group: 签到工具
   list:
     - icon: pns
