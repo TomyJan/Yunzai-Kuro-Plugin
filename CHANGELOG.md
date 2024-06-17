@@ -1,3 +1,12 @@
+## [0.2.12-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.11-rel...v0.2.12-rel) (2024-06-17)
+
+
+### Features
+
+* 库街区在线登录 ( [#10](https://github.com/TomyJan/Yunzai-Kuro-Plugin/issues/10) ) ([e77d6b9](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/e77d6b96e6ac1d6ecb0ea6fd9a05178527fa4bbf))
+
+
+
 ## [0.2.11-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.10-rel...v0.2.11-rel) (2024-06-16)
 
 

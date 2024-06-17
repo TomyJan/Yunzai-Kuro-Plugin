@@ -64,6 +64,7 @@ git -C ./plugins/Yunzai-Kuro-Plugin/ pull
 
 - [x] 提交验证码登录库街区 `#库洛验证码登录` 同一个验证码有效期内可以多次使用
 - [x] 提交 token 登录库街区 `#库洛token登录` [token 获取教程](https://blog.tomys.top/2023-07/kuro-token/)
+- [x] 在线获取 token 登录库街区 `#库洛在线登录`
 
 注意, 由于库街区 APP 和他的垃圾游戏一样只允许单设备登录, 新生成 token 后老 token 会失效, 所以如果使用验证码登录, 那么你的帐号的 APP 和 机器人 的登录会互顶
 
@@ -106,7 +107,6 @@ git -C ./plugins/Yunzai-Kuro-Plugin/ pull
 
   - [x] 通过链接上传抽卡记录
   - [x] 抽卡记录分析的展示
-  - [ ] ~~从本地上传抽卡记录~~库洛已加鉴权, 白写了
   - [x] [WWGF](https://uigf.org/) 格式的抽卡记录的导出
   - [ ] ~~[WWGF](https://uigf.org/) 格式的抽卡记录的导入~~我的协议不支持, 不会写
 
