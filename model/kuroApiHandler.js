@@ -202,12 +202,12 @@ export default class kuroApiHandler {
       getPluginServerKuroBbsLoginAuth: {
         // 从插件服务器取库洛登录 token
         url: `${this.pluginServerUrl}/api/kuroBbs/token/generateToken`,
-        body: JSON.stringify({version: 1}),
+        body: JSON.stringify({ version: 1 }),
       },
       getPluginServerKuroBbsLoginToken: {
         // 从插件服务器取库洛登录状态
         url: `${this.pluginServerUrl}/api/kuroBbs/token/get`,
-        body: JSON.stringify({version: 1, token: data.token}),
+        body: JSON.stringify({ version: 1, token: data.token }),
       },
     }
     if (!ApiMap[ApiName]) return false
@@ -303,7 +303,11 @@ export default class kuroApiHandler {
         ...headers,
         'content-type': 'application/x-www-form-urlencoded; charset=utf-8',
       }
-    } else if (ApiName == 'mcGachaRecord' || ApiName == 'getPluginServerKuroBbsLoginAuth' || ApiName == 'getPluginServerKuroBbsLoginToken') {
+    } else if (
+      ApiName == 'mcGachaRecord' ||
+      ApiName == 'getPluginServerKuroBbsLoginAuth' ||
+      ApiName == 'getPluginServerKuroBbsLoginToken'
+    ) {
       headers = {
         ...headers,
         'content-type': 'application/json',
