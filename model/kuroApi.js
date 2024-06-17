@@ -36,7 +36,12 @@ export default class kuroApi {
     let rsp = ''
 
     // 特殊 API 的调用处理
-    if (ApiName == 'sdkLogin' || ApiName == 'mcGachaRecord' || ApiName == 'getPluginServerKuroBbsLoginAuth' || ApiName == 'getPluginServerKuroBbsLoginToken') {
+    if (
+      ApiName == 'sdkLogin' ||
+      ApiName == 'mcGachaRecord' ||
+      ApiName == 'getPluginServerKuroBbsLoginAuth' ||
+      ApiName == 'getPluginServerKuroBbsLoginToken'
+    ) {
       rsp = await this.kuroApiHandler.getApiRsp(ApiName, null, null, data)
     } else if (ApiName == 'checkToken_mineV2') {
       ApiName = 'mineV2'
@@ -63,7 +68,11 @@ export default class kuroApi {
       return rsp
     } else if (rsp.code === 220) {
       return 'token 失效'
-    } else if (ApiName == 'mcGachaRecord' || ApiName == 'getPluginServerKuroBbsLoginAuth' || ApiName == 'getPluginServerKuroBbsLoginToken') {
+    } else if (
+      ApiName == 'mcGachaRecord' ||
+      ApiName == 'getPluginServerKuroBbsLoginAuth' ||
+      ApiName == 'getPluginServerKuroBbsLoginToken'
+    ) {
       if (rsp.code === 0) return rsp
       else return rsp?.message || rsp?.msg || '未知错误'
     } else return rsp?.msg || rsp?.message || '未知错误'

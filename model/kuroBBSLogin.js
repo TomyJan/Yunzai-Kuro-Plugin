@@ -99,25 +99,34 @@ export default class kuroBBSLogin {
   async onlineLogin() {
     await this.e.reply(this.onlineLoginTip)
     let kuroapi = new kuroApi(this.e.user_id)
-    let rsp_getPluginServerKuroBbsLoginAuth = await kuroapi.getPluginServerKuroBbsLoginAuth(0)
-    kuroLogger.debug('rsp_getPluginServerKuroBbsLoginAuth:', JSON.stringify(rsp_getPluginServerKuroBbsLoginAuth))
+    let rsp_getPluginServerKuroBbsLoginAuth =
+      await kuroapi.getPluginServerKuroBbsLoginAuth(0)
+    kuroLogger.debug(
+      'rsp_getPluginServerKuroBbsLoginAuth:',
+      JSON.stringify(rsp_getPluginServerKuroBbsLoginAuth)
+    )
     if (typeof rsp_getPluginServerKuroBbsLoginAuth == 'string') {
       // 不是 json, 即返回报错
-      this.e.reply(`生成通行证失败: ${rsp_getPluginServerKuroBbsLoginAuth} \n 请重试或尝试使用 #库洛验证码登录`)
+      this.e.reply(
+        `生成通行证失败: ${rsp_getPluginServerKuroBbsLoginAuth} \n 请重试或尝试使用 #库洛验证码登录`
+      )
       return false
     }
 
     if (rsp_getPluginServerKuroBbsLoginAuth.code === 0) {
       // kuroLogger.debug('登录成功!', JSON.stringify(rsp_onlineLogin))
       this.e.reply(
-        '请在三分钟内点击此链接完成登录: https://kuro.amoe.cc/page/kuroBbsLogin?token=' + rsp_getPluginServerKuroBbsLoginAuth.token
+        '请在三分钟内点击此链接完成登录: https://kuro.amoe.cc/page/kuroBbsLogin?token=' +
+          rsp_getPluginServerKuroBbsLoginAuth.token
       )
       // 五秒取一次登录状态, 三分钟后过期
       let i = 0
       let rsp_onlineLogin = ''
       while (i < 36) {
         await sleepAsync(5000)
-        rsp_onlineLogin = await kuroapi.getPluginServerKuroBbsLoginToken(0, { token: rsp_getPluginServerKuroBbsLoginAuth.token })
+        rsp_onlineLogin = await kuroapi.getPluginServerKuroBbsLoginToken(0, {
+          token: rsp_getPluginServerKuroBbsLoginAuth.token,
+        })
         kuroLogger.debug('rsp_onlineLogin:', JSON.stringify(rsp_onlineLogin))
         if (typeof rsp_onlineLogin == 'string') {
           // 不是 json, 即返回报错
@@ -128,7 +137,10 @@ export default class kuroBBSLogin {
           this.e.reply(`获取登录态失败: ${rsp_onlineLogin.msg}`)
           return false
         }
-        if (rsp_onlineLogin.data.hasOwnProperty('code') && rsp_onlineLogin.data.hasOwnProperty('data')) {
+        if (
+          rsp_onlineLogin.data.hasOwnProperty('code') &&
+          rsp_onlineLogin.data.hasOwnProperty('data')
+        ) {
           this.e.reply(
             '登录成功, 即将保存 token, 可在网页复制此次获取的 token, 关闭网页后将无法再次复制, 请勿泄露!'
           )
@@ -138,8 +150,13 @@ export default class kuroBBSLogin {
       }
       return rsp_onlineLogin
     } else {
-      kuroLogger.info('生成通行证失败:', JSON.stringify(rsp_getPluginServerKuroBbsLoginAuth))
-      this.e.reply(`生成通行证失败: ${rsp_getPluginServerKuroBbsLoginAuth.msg} \n 请重试或尝试使用 #库洛验证码登录`)
+      kuroLogger.info(
+        '生成通行证失败:',
+        JSON.stringify(rsp_getPluginServerKuroBbsLoginAuth)
+      )
+      this.e.reply(
+        `生成通行证失败: ${rsp_getPluginServerKuroBbsLoginAuth.msg} \n 请重试或尝试使用 #库洛验证码登录`
+      )
       return false
     }
   }
