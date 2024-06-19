@@ -148,7 +148,8 @@ export default class kuroBBSLogin {
         }
         i++
       }
-      return rsp_onlineLogin
+      await this.e.reply('登录超时, 请重试')
+      return false
     } else {
       kuroLogger.info(
         '生成通行证失败:',

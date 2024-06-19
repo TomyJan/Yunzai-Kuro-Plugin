@@ -304,9 +304,7 @@ export default class kuroApiHandler {
         'content-type': 'application/x-www-form-urlencoded; charset=utf-8',
       }
     } else if (
-      ApiName == 'mcGachaRecord' ||
-      ApiName == 'getPluginServerKuroBbsLoginAuth' ||
-      ApiName == 'getPluginServerKuroBbsLoginToken'
+      ['mcGachaRecord', 'getPluginServerKuroBbsLoginAuth', 'getPluginServerKuroBbsLoginToken'].includes(ApiName)
     ) {
       headers = {
         ...headers,
