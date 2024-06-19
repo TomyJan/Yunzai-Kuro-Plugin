@@ -37,7 +37,12 @@ export default class kuroApi {
 
     // 特殊 API 的调用处理
     if (
-      ['sdkLogin', 'mcGachaRecord', 'getPluginServerKuroBbsLoginAuth', 'getPluginServerKuroBbsLoginToken'].includes(ApiName)
+      [
+        'sdkLogin',
+        'mcGachaRecord',
+        'getPluginServerKuroBbsLoginAuth',
+        'getPluginServerKuroBbsLoginToken',
+      ].includes(ApiName)
     ) {
       rsp = await this.kuroApiHandler.getApiRsp(ApiName, null, null, data)
     } else if (ApiName == 'checkToken_mineV2') {
@@ -66,7 +71,11 @@ export default class kuroApi {
     } else if (rsp.code === 220) {
       return 'token 失效'
     } else if (
-      ['mcGachaRecord', 'getPluginServerKuroBbsLoginAuth', 'getPluginServerKuroBbsLoginToken'].includes(ApiName)
+      [
+        'mcGachaRecord',
+        'getPluginServerKuroBbsLoginAuth',
+        'getPluginServerKuroBbsLoginToken',
+      ].includes(ApiName)
     ) {
       if (rsp.code === 0) return rsp
       else return rsp?.message || rsp?.msg || '未知错误'
