@@ -1,3 +1,13 @@
+## [0.2.13-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.12-rel...v0.2.13-rel) (2024-06-19)
+
+
+### Bug Fixes
+
+* 在线登录超时提醒 ([b31cd06](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/b31cd0620feb80740366bdd431b9bf61ba11f122))
+* 在线登录多次获取失败才取消任务 ([9749969](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/9749969868cde52db864cb68f61a38a9b4ba1b2e))
+
+
+
 ## [0.2.12-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.11-rel...v0.2.12-rel) (2024-06-17)
 
 

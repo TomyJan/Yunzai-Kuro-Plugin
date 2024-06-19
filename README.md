@@ -12,7 +12,7 @@
 
 ## 安装与维护
 
-项目只在 GitHub 提供支持, Gitee仅作为镜像仓库
+项目只在 GitHub 提供支持, Gitee 仅作为镜像仓库
 安装前请先 [前往GitHub](https://github.com/TomyJan/Yunzai-Kuro-Plugin/) 点一下右上角的 Star, 这对我非常重要, 谢谢喵~
 
 ### 安装插件
