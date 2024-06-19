@@ -115,13 +115,14 @@ export default class kuroBBSLogin {
 
     if (rsp_getPluginServerKuroBbsLoginAuth.code === 0) {
       // kuroLogger.debug('登录成功!', JSON.stringify(rsp_onlineLogin))
-      this.e.reply(
-        '请在三分钟内点击此链接完成登录: https://kuro.amoe.cc/page/kuroBbsLogin?token=' +
-          rsp_getPluginServerKuroBbsLoginAuth.token
+      let loginMsg = await this.e.reply(
+        `请在三分钟内点击此链接完成登录: https://kuro.amoe.cc/page/kuroBbsLogin?token=${rsp_getPluginServerKuroBbsLoginAuth.token} \n这是专属链接, 请勿点击他人的链接~ `
       )
+      // TODO: 撤回消息(写不对)
       // 五秒取一次登录状态, 三分钟后过期
       let i = 0
       let rsp_onlineLogin = ''
+      let failedTimes = 0
       while (i < 36) {
         await sleepAsync(5000)
         rsp_onlineLogin = await kuroapi.getPluginServerKuroBbsLoginToken(0, {
@@ -129,13 +130,17 @@ export default class kuroBBSLogin {
         })
         kuroLogger.debug('rsp_onlineLogin:', JSON.stringify(rsp_onlineLogin))
         if (typeof rsp_onlineLogin == 'string') {
-          // 不是 json, 即返回报错
-          this.e.reply(`获取登录态失败: ${rsp_onlineLogin}`)
-          return false
+          // 不是 json
+          if (failedTimes++ > 6) {
+            this.e.reply(`多次获取登录态失败: ${rsp_onlineLogin}, 请重试`)
+            return false
+          }
         }
         if (rsp_onlineLogin.code !== 0) {
-          this.e.reply(`获取登录态失败: ${rsp_onlineLogin.msg}`)
-          return false
+          if (failedTimes++ > 6) {
+            this.e.reply(`多次获取登录态失败: ${rsp_onlineLogin.msg}, 请重试`)
+            return false
+          }
         }
         if (
           rsp_onlineLogin.data.hasOwnProperty('code') &&
