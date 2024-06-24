@@ -10,7 +10,7 @@ export default class bbsTask {
 
   async bbsDailyTask(uin) {
     const tokenData = await getToken(uin)
-    kuroLogger.debug('tokenData:', tokenData)
+    kuroLogger.debug('tokenData:', JSON.stringify(tokenData))
 
     if (tokenData && Object.keys(tokenData).length > 0) {
       const accNum = Object.keys(tokenData).length
@@ -73,17 +73,20 @@ export async function doBBSDailyTask(uin, kuro_uid) {
     kuroLogger.debug('rsp_getTotalGold:', JSON.stringify(rsp_getTotalGold))
     if (typeof rsp_getTotalGold == 'string' || rsp_getTotalGold.code !== 200)
       rsp_getTotalGold = await kuroapi.getTotalGold(kuro_uid)
+    // 获取连签天数
+    let rsp_forumSignInInfo = await kuroapi.forumSignInInfo(kuro_uid)
+    kuroLogger.debug('rsp_forumSignInInfo:', JSON.stringify(rsp_forumSignInInfo))
     if (typeof rsp_getTotalGold == 'string' || rsp_getTotalGold.code !== 200)
       return `账号 ${
         rsp_mineV2.data.mine.userName || '未知昵称'
-      }(${kuro_uid}): \n今日任务已完成, 获得 ${
+      }(${kuro_uid}): \n今日任务已完成, ${(typeof rsp_forumSignInInfo == 'string') ? `连签天数获取失败: ${rsp_forumSignInInfo}` : `已连签 ${rsp_forumSignInInfo.data.continueDays} 天`}\n获得 ${
         rsp_getTaskProcess.data.currentDailyGold
       } 库洛币, 库洛币总数获取失败: ${
         rsp_getTotalGold.msg || rsp_getTotalGold
       }\n`
     return `账号 ${
       rsp_mineV2.data.mine.userName || '未知昵称'
-    }(${kuro_uid}): \n今日任务已完成, 获得 ${
+    }(${kuro_uid}): \n今日任务已完成, ${(typeof rsp_forumSignInInfo == 'string') ? `连签天数获取失败: ${rsp_forumSignInInfo}` : `已连签 ${rsp_forumSignInInfo.data.continueDays} 天`}\n获得 ${
       rsp_getTaskProcess.data.currentDailyGold
     } 库洛币, 共 ${rsp_getTotalGold.data.goldNum} 库洛币\n`
   }
@@ -113,13 +116,19 @@ export async function doBBSDailyTask(uin, kuro_uid) {
     if (!tryAgain) {
       // 最后一次尝试了那就处理返回值吧
       if (typeof rsp_forumSignIn !== 'string' && rsp_forumSignIn.code === 200)
-        doBBSDailyTaskRet += '签到成功\n'
-      else if (rsp_forumSignIn === '您已签到') doBBSDailyTaskRet += '今日已签\n'
+        doBBSDailyTaskRet += '签到成功'
+      else if (rsp_forumSignIn === '您已签到') doBBSDailyTaskRet += '今日已签'
       else
-        doBBSDailyTaskRet += `失败: ${rsp_forumSignIn.msg || rsp_forumSignIn}\n`
+        doBBSDailyTaskRet += `失败: ${rsp_forumSignIn.msg || rsp_forumSignIn}`
       break
     } else await sleepAsync(getRandomInt(600, 1000))
   } while (tryAgain)
+  let rsp_forumSignInInfo = await kuroapi.forumSignInInfo(kuro_uid)
+  kuroLogger.debug('rsp_forumSignInInfo:', JSON.stringify(rsp_forumSignInInfo))
+  if (typeof rsp_forumSignInInfo == 'string')
+    doBBSDailyTaskRet += `, 连签天数获取失败: ${rsp_forumSignInInfo})\n`
+  else
+    doBBSDailyTaskRet += `, 连签 ${rsp_forumSignInInfo.data.continueDays} 天\n`
 
   await sleepAsync(getRandomInt(1000, 3000))
   doBBSDailyTaskRet += '帖子浏览: '

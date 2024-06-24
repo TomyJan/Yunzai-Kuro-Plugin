@@ -113,6 +113,11 @@ export default class kuroApiHandler {
         url: `${this.kuroApiUrl}/user/signIn`,
         body: `gameId=${data.gameId}`,
       },
+      forumSignInInfo: {
+        // 社区签到信息
+        url: `${this.kuroApiUrl}/user/signIn/info`,
+        body: `gameId=${data.gameId}`,
+      },
       forumList: {
         //取帖子列表
         url: `${this.kuroApiUrl}/forum/list`,

@@ -10,7 +10,7 @@ export default class gameSignIn {
 
   async pnsSignIn(uin) {
     const tokenData = await getToken(uin)
-    kuroLogger.debug('tokenData:', tokenData)
+    kuroLogger.debug('tokenData:', JSON.stringify(tokenData))
 
     if (tokenData && Object.keys(tokenData).length > 0) {
       const accNum = Object.keys(tokenData).length
@@ -42,7 +42,7 @@ export default class gameSignIn {
 
   async mcSignIn(uin) {
     const tokenData = await getToken(uin)
-    kuroLogger.debug('tokenData:', tokenData)
+    kuroLogger.debug('tokenData:', JSON.stringify(tokenData))
 
     if (tokenData && Object.keys(tokenData).length > 0) {
       const accNum = Object.keys(tokenData).length

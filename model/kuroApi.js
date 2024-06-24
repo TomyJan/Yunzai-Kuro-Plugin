@@ -197,6 +197,15 @@ export default class kuroApi {
   }
 
   /**
+   * 社区签到信息
+   * @param {string} kuroUid 库洛 ID
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async forumSignInInfo(kuroUid) {
+    return this.getData('forumSignInInfo', kuroUid, { gameId: 2 })
+  }
+
+  /**
    * 取帖子列表, 这里暂时写死了一些不常改变的参数
    * @param {string} kuroUid 库洛 ID
    * @param {object} data 传入 data.forumId 板块 id, data.gameId 游戏 id
