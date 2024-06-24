@@ -338,7 +338,7 @@ export default class mcGachaData {
             gachaName = '武器常驻'
             break
           case '5':
-            gachaName = '新手'
+            gachaName = '新手卡池'
             break
           case '6':
             gachaName = '新手自选'

@@ -263,21 +263,21 @@ export class mcGacha extends plugin {
         return true
       } else {
         // TODO: 如果用户绑定的 token 里面没有绑定这个账号的提示
-        let msg = '鸣潮抽卡记录更新成功, 获取到'
+        let msg = '鸣潮抽卡记录更新成功, 获取到: \n'
         // 遍历 gachaUpdateRet, 提取出每次抽卡的信息, 属性名是卡池名字, 值是数量
         for (let key in gachaUpdateRet) {
-          msg += ` ${gachaUpdateRet[key]} 条${key}记录,`
+          msg += `  ${key}记录: ${gachaUpdateRet[key]} 条\n`
         }
-        // 去掉最后一个逗号
+        // 去掉最后一个换行符
         msg = msg.slice(0, -1)
         let forWardMsg = await common.makeForwardMsg(
           e,
           [
             msg,
-            '获取抽卡记录可以使用 \n#鸣潮角色记录 \n#鸣潮武器记录 \n#鸣潮常驻角色记录',
+            '获取抽卡记录可以使用 \n  #鸣潮角色记录 \n  #鸣潮武器记录 \n  #鸣潮常驻角色记录',
             '后续每次获取记录都会自动更新, 无需手动更新哦~',
-            '当然, 你也可以手动更新, 使用 \n#鸣潮更新抽卡',
-            '导出抽卡记录使用 \n#鸣潮导出抽卡 \n导出的记录为 WWGF 格式, 可以导入其他支持 WWGF 的工具中使用~',
+            '当然, 你也可以手动更新, 使用 \n  #鸣潮更新抽卡',
+            '导出抽卡记录使用 \n  #鸣潮导出抽卡 \n导出的记录为 WWGF 格式, 可以导入其他支持 WWGF 的工具中使用~',
           ],
           '鸣潮抽卡记录更新结果'
         )
