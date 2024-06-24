@@ -52,7 +52,6 @@ export class gameCard extends plugin {
     let data = await gameCardData.get(this.e, 'gameCardPns')
     if (!data) {
       kuroLogger.warn('战双卡片数据获取失败')
-      await this.reply('卡片数据获取失败')
       return false
     }
     let img = await this.cachePns(data)
@@ -97,8 +96,7 @@ export class gameCard extends plugin {
     }
     let data = await gameCardData.get(this.e, 'gameCardMc')
     if (!data) {
-      kuroLogger.warn('战双卡片数据获取失败')
-      await this.reply('卡片数据获取失败')
+      kuroLogger.warn('鸣潮卡片数据获取失败')
       return false
     }
     let img = await this.cacheMc(data)
