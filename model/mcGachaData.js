@@ -324,7 +324,7 @@ export default class mcGachaData {
       for (let i = 0; i < gachaDataInUniform.list.length; i++) {
         let item = gachaDataInUniform.list[i]
         let gachaName = ''
-        switch (item.gacha_type) {
+        switch (item.gacha_id.replace(/^0+/, '')) {
           case '1':
             gachaName = '角色活动'
             break
@@ -347,7 +347,7 @@ export default class mcGachaData {
             gachaName = '自选五星'
             break
           default:
-            gachaName = '未知'
+            gachaName = `未知(${item.gacha_id.replace(/^0+/, '')})`
         }
         if (!gachaCount[gachaName]) {
           gachaCount[gachaName] = 0
