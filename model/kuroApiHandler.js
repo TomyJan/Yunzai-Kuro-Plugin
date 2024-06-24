@@ -40,13 +40,13 @@ export default class kuroApiHandler {
       response = await fetch(url, param)
     } catch (error) {
       kuroLogger.warn('请求出错:', error.message)
-      return `请求出错: ${error.message}\n`
+      return `请求出错: ${error.message}`
     }
     if (!response.ok) {
       kuroLogger.warn(
         `接口 ${ApiName}报错, 错误: ${response.status} ${response.statusText}`
       )
-      return `请求出错: ${response.status} ${response.statusText}\n`
+      return `请求出错: ${response.status} ${response.statusText}`
     }
 
     let rsp = await response.json()
@@ -339,7 +339,7 @@ export default class kuroApiHandler {
     ) {
       headers = {
         ...headers,
-        'content-type': 'application/json',
+        'Content-Type': 'application/json',
       }
     } else if (ApiName !== 'uploadForumImg') {
       // 普通请求为 application/x-www-form-urlencoded, uploadForumImg 为 multipart/form-data, 这里不用手动添加, 让那边的 form-data 自己处理

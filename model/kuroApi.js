@@ -44,7 +44,7 @@ export default class kuroApi {
         'getPluginServerKuroBbsLoginToken',
       ].includes(ApiName)
     ) {
-      rsp = await this.kuroApiHandler.getApiRsp(ApiName, null, null, data)
+      rsp = await this.kuroApiHandler.getApiRsp(ApiName, '1', null, data)
     } else if (ApiName == 'checkToken_mineV2') {
       ApiName = 'mineV2'
       rsp = await this.kuroApiHandler.getApiRsp(
