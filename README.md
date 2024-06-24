@@ -56,6 +56,10 @@ git -C ./plugins/Yunzai-Kuro-Plugin/ pull
 
 `./data` 为插件用户数据目录. 其中, `./data/system` 为插件系统数据, 不用备份
 
+### 插件配置
+
+建议通过 [锅巴插件](https://gitee.com/guoba-yunzai/guoba-plugin) 进行配置. 当然, 你也可以自己配置, 配置文件位置 `./config/config.json`, 配置项作用不在此详细说明
+
 ## 功能介绍
 
 插件帮助信息 `#库洛帮助` `kurohelp` , 所有指令的 `#` 前缀均可省略
