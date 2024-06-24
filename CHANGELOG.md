@@ -1,3 +1,13 @@
+## [0.2.15-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.14-rel...v0.2.15-rel) (2024-06-24)
+
+
+### Features
+
+* 社区签到获取连签天数 ([dc37717](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/dc37717f7046fbdee006c830b5f9ef90adfac1e6))
+* 为每个用户生成专属请求头 ([6f73bd3](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/6f73bd3f1ac4f0363d7f78bc081983f7de9ccf5a))
+
+
+
 ## [0.2.14-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.13-rel...v0.2.14-rel) (2024-06-24)
 
 
