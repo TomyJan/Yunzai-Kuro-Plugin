@@ -1,6 +1,6 @@
 {
   "name": "yunzai-kuro-plugin",
-  "version": "0.2.14-rel",
+  "version": "0.2.15-rel",
   "author": "TomyJan",
   "description": "Yunzai-Bot plugin for kuro games.",
   "type": "module",
@@ -24,6 +24,7 @@
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "dependencies": {
+    "crypto": "^1.0.1",
     "form-data": "^4.0.0"
   },
   "devDependencies": {

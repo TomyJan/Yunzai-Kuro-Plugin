@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import kuroLogger from '../components/logger.js'
 import config from '../components/config.js'
+import crypto from 'crypto'
 
 /**
  * 程序延时
@@ -35,6 +36,49 @@ export async function mGetDate() {
   var month = date.getMonth() + 1
   var d = new Date(year, month, 0)
   return d.getDate()
+}
+
+/**
+ * 根据输入字符串生成固定 UUID
+ * @param {*} inputString 输入字符串
+ * @returns {string} UUID
+ */
+export function generateUUID(inputString) {
+  const md5Hash = crypto.createHash('md5');
+  md5Hash.update(inputString);
+  const hash = md5Hash.digest('hex');
+
+  // Format the hash into UUID-like string
+  const uuid = hash.substring(0, 8) + '-' +
+    hash.substring(8, 12) + '-' +
+    '4' + hash.substring(13, 16) + '-' +
+    'a' + hash.substring(17, 20) + '-' +
+    hash.substring(20, 32);
+
+  kuroLogger.debug(`使用 ${inputString} 生成 UUID ${uuid}`);
+  return uuid;
+}
+
+/**
+ * 根据输入字符串生成固定字符串
+ * @param {*} inputString 输入字符串
+ * @param {number} length 字符串长度, 默认为40, 最长为64
+ * @returns {string} 固定字符串
+ */
+export function generateFixedString(inputString, length = 40) {
+  if (length > 64) {
+    length = 64;
+    kuroLogger.warn(`使用 ${inputString} 生成长度 ${length} 超过最大值, 已自动调整为64`);
+  }
+  const sha256Hash = crypto.createHash('sha256');
+  sha256Hash.update(inputString);
+  const hash = sha256Hash.digest('hex').toUpperCase();
+
+  // 截取前40个字符作为结果
+  const fixedString = hash.substring(0, length);
+
+  kuroLogger.debug(`使用 ${inputString} 生成长度为 ${length} 的固定字符串 ${fixedString}`);
+  return fixedString;
 }
 
 /**

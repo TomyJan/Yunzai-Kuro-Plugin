@@ -1,5 +1,6 @@
 import fetch from 'node-fetch'
 import kuroLogger from '../components/logger.js'
+import { generateFixedString, generateUUID } from './utils.js'
 
 export default class kuroApiHandler {
   constructor() {
@@ -218,7 +219,7 @@ export default class kuroApiHandler {
       method = 'POST',
     } = ApiMap[ApiName]
     if (query) url += `?${query}`
-    let headers = this.getHeaders(ApiName, token)
+    let headers = this.getHeaders(ApiName, token, kuroUid)
     return {
       url,
       headers,
@@ -229,9 +230,11 @@ export default class kuroApiHandler {
   /**
    * 取请求头
    * @param {string} ApiName 接口名称
+   * @param {string} token 库洛 ID 的 token
+   * @param {string} kuroUid 库洛 ID, 用于生成独有请求头
    * @returns {object} 返回参数
    */
-  getHeaders(ApiName, token) {
+  getHeaders(ApiName, token, kuroUid) {
     if (
       [
         'initSignIn',
@@ -248,38 +251,46 @@ export default class kuroApiHandler {
     ) {
       // 这些 API 请求头是浏览器的
       let headers = {
-        pragma: 'no-cache',
+        'pragma': 'no-cache',
         'cache-control': 'no-cache',
-        accept: 'application/json, text/plain, */*',
-        source: 'android',
+        'sec-ch-ua': `"Not)A;Brand";v="99", "Android WebView";v="12${kuroUid.substring(kuroUid.length - 1)}", "Chromium";v="12${kuroUid.substring(kuroUid.length - 1)}"`,
+        'source': 'android',
+        'sec-ch-ua-mobile': '?1',
         'user-agent':
-          'Mozilla/5.0 (Linux; Android 13; 2211133C Build/TKQ1.220905.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/114.0.5735.131 Mobile Safari/537.36 Kuro/1.0.9 KuroGameBox/1.0.9',
-        token: token,
+          `Mozilla/5.0 (Linux; Android 14; 23127PN0CC Build/UKQ1.230804.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/12${kuroUid.substring(kuroUid.length - 1)}.0.${kuroUid.substring(kuroUid.length - 4)}.${kuroUid.substring(kuroUid.length - 2)} Mobile Safari/537.36 Kuro/2.2.0 KuroGameBox/2.2.0`,
         'content-type': 'application/x-www-form-urlencoded',
-        origin: 'https://web-static.kurobbs.com',
-        'x-requested-with': 'com.kurogame.kjq',
+        'accept': 'application/json, text/plain, */*',
+        'devcode': `192.168.1.1${kuroUid.substring(kuroUid.length - 2)}, Mozilla/5.0 (Linux; Android 14; 23127PN0CC Build/UKQ1.230804.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/12${kuroUid.substring(kuroUid.length - 1)}.0.${kuroUid.substring(kuroUid.length - 4)}.${kuroUid.substring(kuroUid.length - 2)} Mobile Safari/537.36 Kuro/2.2.0 KuroGameBox/2.2.0`,
+        'token': token,
+        'sec-ch-ua-platform': '"Android"',
+        'origin': 'https://web-static.kurobbs.com',
         'sec-fetch-site': 'same-site',
         'sec-fetch-mode': 'cors',
         'sec-fetch-dest': 'empty',
-        'accept-encoding': 'gzip, deflate, br',
+        'accept-encoding': 'gzip, deflate, br, zstd',
         'accept-language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+        'priority': 'u=1, i',
       }
       return headers
     }
 
     let headers = {
       // 共同请求头
-      osversion: 'Android',
-      devcode: '2fba3859fe9bfe9099f2696b8648c2c6', // 注意 sdkLogin 请求体里有个一样的要一起更新
-      countrycode: 'CN',
-      ip: '10.0.2.233',
-      model: '2211133C',
-      source: 'android',
-      lang: 'zh-Hans',
-      version: '1.0.9',
-      versioncode: '1090',
+      'devCode': generateFixedString(kuroUid),
+      'ip': `192.168.1.1${kuroUid.substring(kuroUid.length - 2)}`,
+      'source': 'android',
+      'version': '2.2.0',
+      'versionCode': '2200',
+      'token': token,
+      'osVersion': 'Android',
+      'countryCode': 'CN',
+      'model': '23127PN0CC',
+      'lang': 'zh-Hans',
+      'channelId': '2',
+      'Content-Type': 'application/x-www-form-urlencoded',
       'accept-encoding': 'gzip',
-      'user-agent': 'okhttp/3.10.0',
+      'Cookie': `user_token=${token}`,
+      'User-Agent': 'okhttp/3.11.0',
     }
     if (ApiName !== 'sdkLogin') {
       // 除了 login 再都要 token
@@ -292,7 +303,7 @@ export default class kuroApiHandler {
       // 除了上面几个其他都有 distinct_id
       headers = {
         ...headers,
-        distinct_id: '765485e7-30ce-4496-9a9c-a2ac1c03c02c',
+        distinct_id: generateUUID(kuroUid),
       }
     }
 
