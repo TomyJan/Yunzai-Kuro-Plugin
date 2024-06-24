@@ -1,3 +1,12 @@
+## [0.2.16-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.15-rel...v0.2.16-rel) (2024-06-24)
+
+
+### Bug Fixes
+
+* 把一些接口写炸了 ([3e3dee6](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/3e3dee6de35ab953d9e5e6d63a40713cd47f13f4))
+
+
+
 ## [0.2.15-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.14-rel...v0.2.15-rel) (2024-06-24)
 
 
