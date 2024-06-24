@@ -75,20 +75,31 @@ export async function doBBSDailyTask(uin, kuro_uid) {
       rsp_getTotalGold = await kuroapi.getTotalGold(kuro_uid)
     // 获取连签天数
     let rsp_forumSignInInfo = await kuroapi.forumSignInInfo(kuro_uid)
-    kuroLogger.debug('rsp_forumSignInInfo:', JSON.stringify(rsp_forumSignInInfo))
+    kuroLogger.debug(
+      'rsp_forumSignInInfo:',
+      JSON.stringify(rsp_forumSignInInfo)
+    )
     if (typeof rsp_getTotalGold == 'string' || rsp_getTotalGold.code !== 200)
       return `账号 ${
         rsp_mineV2.data.mine.userName || '未知昵称'
-      }(${kuro_uid}): \n今日任务已完成, ${(typeof rsp_forumSignInInfo == 'string') ? `连签天数获取失败: ${rsp_forumSignInInfo}` : `已连签 ${rsp_forumSignInInfo.data.continueDays} 天`}\n获得 ${
+      }(${kuro_uid}): \n今日任务已完成, ${
+        typeof rsp_forumSignInInfo == 'string'
+          ? `连签天数获取失败: ${rsp_forumSignInInfo}`
+          : `已连签 ${rsp_forumSignInInfo.data.continueDays} 天`
+      }\n获得 ${
         rsp_getTaskProcess.data.currentDailyGold
       } 库洛币, 库洛币总数获取失败: ${
         rsp_getTotalGold.msg || rsp_getTotalGold
       }\n`
     return `账号 ${
       rsp_mineV2.data.mine.userName || '未知昵称'
-    }(${kuro_uid}): \n今日任务已完成, ${(typeof rsp_forumSignInInfo == 'string') ? `连签天数获取失败: ${rsp_forumSignInInfo}` : `已连签 ${rsp_forumSignInInfo.data.continueDays} 天`}\n获得 ${
-      rsp_getTaskProcess.data.currentDailyGold
-    } 库洛币, 共 ${rsp_getTotalGold.data.goldNum} 库洛币\n`
+    }(${kuro_uid}): \n今日任务已完成, ${
+      typeof rsp_forumSignInInfo == 'string'
+        ? `连签天数获取失败: ${rsp_forumSignInInfo}`
+        : `已连签 ${rsp_forumSignInInfo.data.continueDays} 天`
+    }\n获得 ${rsp_getTaskProcess.data.currentDailyGold} 库洛币, 共 ${
+      rsp_getTotalGold.data.goldNum
+    } 库洛币\n`
   }
 
   doBBSDailyTaskRet += `账号 ${

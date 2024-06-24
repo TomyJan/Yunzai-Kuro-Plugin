@@ -256,45 +256,56 @@ export default class kuroApiHandler {
     ) {
       // 这些 API 请求头是浏览器的
       let headers = {
-        'pragma': 'no-cache',
+        pragma: 'no-cache',
         'cache-control': 'no-cache',
-        'sec-ch-ua': `"Not)A;Brand";v="99", "Android WebView";v="12${kuroUid.substring(kuroUid.length - 1)}", "Chromium";v="12${kuroUid.substring(kuroUid.length - 1)}"`,
-        'source': 'android',
+        'sec-ch-ua': `"Not)A;Brand";v="99", "Android WebView";v="12${kuroUid.substring(
+          kuroUid.length - 1
+        )}", "Chromium";v="12${kuroUid.substring(kuroUid.length - 1)}"`,
+        source: 'android',
         'sec-ch-ua-mobile': '?1',
-        'user-agent':
-          `Mozilla/5.0 (Linux; Android 14; 23127PN0CC Build/UKQ1.230804.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/12${kuroUid.substring(kuroUid.length - 1)}.0.${kuroUid.substring(kuroUid.length - 4)}.${kuroUid.substring(kuroUid.length - 2)} Mobile Safari/537.36 Kuro/2.2.0 KuroGameBox/2.2.0`,
+        'user-agent': `Mozilla/5.0 (Linux; Android 14; 23127PN0CC Build/UKQ1.230804.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/12${kuroUid.substring(
+          kuroUid.length - 1
+        )}.0.${kuroUid.substring(kuroUid.length - 4)}.${kuroUid.substring(
+          kuroUid.length - 2
+        )} Mobile Safari/537.36 Kuro/2.2.0 KuroGameBox/2.2.0`,
         'content-type': 'application/x-www-form-urlencoded',
-        'accept': 'application/json, text/plain, */*',
-        'devcode': `192.168.1.1${kuroUid.substring(kuroUid.length - 2)}, Mozilla/5.0 (Linux; Android 14; 23127PN0CC Build/UKQ1.230804.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/12${kuroUid.substring(kuroUid.length - 1)}.0.${kuroUid.substring(kuroUid.length - 4)}.${kuroUid.substring(kuroUid.length - 2)} Mobile Safari/537.36 Kuro/2.2.0 KuroGameBox/2.2.0`,
-        'token': token,
+        accept: 'application/json, text/plain, */*',
+        devcode: `192.168.1.1${kuroUid.substring(
+          kuroUid.length - 2
+        )}, Mozilla/5.0 (Linux; Android 14; 23127PN0CC Build/UKQ1.230804.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/12${kuroUid.substring(
+          kuroUid.length - 1
+        )}.0.${kuroUid.substring(kuroUid.length - 4)}.${kuroUid.substring(
+          kuroUid.length - 2
+        )} Mobile Safari/537.36 Kuro/2.2.0 KuroGameBox/2.2.0`,
+        token: token,
         'sec-ch-ua-platform': '"Android"',
-        'origin': 'https://web-static.kurobbs.com',
+        origin: 'https://web-static.kurobbs.com',
         'sec-fetch-site': 'same-site',
         'sec-fetch-mode': 'cors',
         'sec-fetch-dest': 'empty',
         'accept-encoding': 'gzip, deflate, br, zstd',
         'accept-language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
-        'priority': 'u=1, i',
+        priority: 'u=1, i',
       }
       return headers
     }
 
     let headers = {
       // 共同请求头
-      'devCode': generateFixedString(kuroUid),
-      'ip': `192.168.1.1${kuroUid.substring(kuroUid.length - 2)}`,
-      'source': 'android',
-      'version': '2.2.0',
-      'versionCode': '2200',
-      'token': token,
-      'osVersion': 'Android',
-      'countryCode': 'CN',
-      'model': '23127PN0CC',
-      'lang': 'zh-Hans',
-      'channelId': '2',
+      devCode: generateFixedString(kuroUid),
+      ip: `192.168.1.1${kuroUid.substring(kuroUid.length - 2)}`,
+      source: 'android',
+      version: '2.2.0',
+      versionCode: '2200',
+      token: token,
+      osVersion: 'Android',
+      countryCode: 'CN',
+      model: '23127PN0CC',
+      lang: 'zh-Hans',
+      channelId: '2',
       'Content-Type': 'application/x-www-form-urlencoded',
       'accept-encoding': 'gzip',
-      'Cookie': `user_token=${token}`,
+      Cookie: `user_token=${token}`,
       'User-Agent': 'okhttp/3.11.0',
     }
     if (ApiName !== 'sdkLogin') {
