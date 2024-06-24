@@ -147,7 +147,7 @@ export default class mcGachaCard {
     let notUpGoldCount =
       goldCount - goldCardRecord.filter((item) => item.isUpItem).length
     // 通过 API 获取用户昵称和头像
-    let gameName = '未获取'
+    let gameName = '漂泊者'
     let gameHeadUrl =
       'https://prod-alicdn-community.kurobbs.com/game/mingchaoIcon.png'
     let kuroapi = new kuroApi(e.user_id)

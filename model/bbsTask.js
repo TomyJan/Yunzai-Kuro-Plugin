@@ -36,7 +36,7 @@ export default class bbsTask {
       return true
     } else {
       this.e.reply(
-        `QQ ${uin} 暂未绑定 token, 请发送 #库洛验证码登录 绑定 token `
+        `QQ ${uin} 暂未绑定 token, 请发送 #库洛在线登录 绑定 token `
       )
       return false
     }

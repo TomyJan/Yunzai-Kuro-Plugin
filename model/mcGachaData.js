@@ -83,7 +83,7 @@ export default class mcGachaData {
       // 没绑定当然也能获取 ,但是警告一下获取不到部分信息
       // TODO: 把这个放到绑定抽卡链接的提示吧
       // await this.e.reply(
-      //   `QQ ${this.e.user_id} 暂未绑定 token, 将无法获取到部分额外信息, 建议发送 #库洛验证码登录 绑定 token`
+      //   `QQ ${this.e.user_id} 暂未绑定 token, 将无法获取到部分额外信息, 建议发送 #库洛在线登录 绑定 token`
       // )
     }
 

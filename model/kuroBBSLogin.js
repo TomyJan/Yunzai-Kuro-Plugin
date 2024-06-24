@@ -118,13 +118,24 @@ export default class kuroBBSLogin {
       let loginMsg = await this.e.reply(
         `请在三分钟内点击此链接完成登录: https://kuro.amoe.cc/page/kuroBbsLogin?token=${rsp_getPluginServerKuroBbsLoginAuth.token} \n这是专属链接, 请勿点击他人的链接~ `
       )
-      // TODO: 撤回消息(写不对)
       // 五秒取一次登录状态, 三分钟后过期
       let i = 0
       let rsp_onlineLogin = ''
       let failedTimes = 0
       while (i < 36) {
         await sleepAsync(5000)
+        if (i == 12) {
+          // 一分钟后撤回消息
+          kuroLogger.debug('loginMsg:', JSON.stringify(loginMsg), '消息属性:', this.e.group ? '群聊' : '', this.e.friend ? '私聊' : '')
+          if (loginMsg) {
+            try {
+              if (this.e.group) this.e.group.recallMsg(loginMsg.message_id);
+              if (this.e.friend) this.e.friend.recallMsg(loginMsg.message_id);
+            } catch (err) {
+              kuroLogger.warn('撤回消息失败:', JSON.stringify(err))
+            }
+          }
+        }
         rsp_onlineLogin = await kuroapi.getPluginServerKuroBbsLoginToken(0, {
           token: rsp_getPluginServerKuroBbsLoginAuth.token,
         })

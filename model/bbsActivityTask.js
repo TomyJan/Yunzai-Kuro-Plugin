@@ -39,7 +39,7 @@ export default class bbsActivityTask {
       return true
     } else {
       this.e.reply(
-        `QQ ${this.e.user_id} 暂未绑定 token, 请发送 #库洛验证码登录 绑定 token `
+        `QQ ${this.e.user_id} 暂未绑定 token, 请发送 #库洛在线登录 绑定 token `
       )
       return false
     }
