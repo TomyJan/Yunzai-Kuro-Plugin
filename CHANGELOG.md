@@ -1,3 +1,21 @@
+## [0.2.14-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.13-rel...v0.2.14-rel) (2024-06-24)
+
+
+### Bug Fixes
+
+* 更新抽卡记录返回统计数据错误 ([69d377e](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/69d377e0a3f6440173971193c03cad736a8861cd))
+* 未绑定账号时游戏卡片多条提示 ([acedf2d](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/acedf2d1c1a72a7f44413a7369dea81793eb0a03))
+* 文件发送成功判断问题 ([c1e343a](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/c1e343aa0e9c6c5cef8c213ae54050b899579b91))
+
+
+### Performance Improvements
+
+* 优化帮助命令内容展示方式 ([6fcd4c3](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/6fcd4c3e239346b78a4239792db5009465f53270))
+* 优化部分提示内容 ([b8973b7](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/b8973b70cda4c48750296586de89d06c19817582))
+* 优化更新抽卡提示内容 ([3822327](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/38223272f146a00263ba80f839b6fab4db3c9c66))
+
+
+
 ## [0.2.13-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.12-rel...v0.2.13-rel) (2024-06-19)
 
 
