@@ -126,11 +126,17 @@ export default class kuroBBSLogin {
         await sleepAsync(5000)
         if (i == 12) {
           // 一分钟后撤回消息
-          kuroLogger.debug('loginMsg:', JSON.stringify(loginMsg), '消息属性:', this.e.group ? '群聊' : '', this.e.friend ? '私聊' : '')
+          kuroLogger.debug(
+            'loginMsg:',
+            JSON.stringify(loginMsg),
+            '消息属性:',
+            this.e.group ? '群聊' : '',
+            this.e.friend ? '私聊' : ''
+          )
           if (loginMsg) {
             try {
-              if (this.e.group) this.e.group.recallMsg(loginMsg.message_id);
-              if (this.e.friend) this.e.friend.recallMsg(loginMsg.message_id);
+              if (this.e.group) this.e.group.recallMsg(loginMsg.message_id)
+              if (this.e.friend) this.e.friend.recallMsg(loginMsg.message_id)
             } catch (err) {
               kuroLogger.warn('撤回消息失败:', JSON.stringify(err))
             }

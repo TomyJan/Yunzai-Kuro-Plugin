@@ -151,17 +151,21 @@ export class mcGacha extends plugin {
   }
 
   async mcGachaHelp(e) {
-    let mcGachaHelpMsg = await common.makeForwardMsg(e, [
-      '鸣潮抽卡记录获取帮助',
-      '继续获取并发送即表示您阅读并同意 Bot 保存你的抽卡记录信息用于后续自动更新',
-      '建议私聊发送哦~',
-      '======== Windows ========',
-      '1. 在游戏内打开一次抽卡记录 \n2. 打开文件资源管理器, 定位到 游戏安装目录\\Client\\Saved\\Logs\\, 打开Client.log \n3. 在文件内搜索 record_id , 将找到的链接发送给我, 注意删除多余的文字 \n\n你发送的链接格式格式应为: \nhttps://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record?svr_id=TomyJan&player_id=101812955&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=cn&record_id=TomyJan&resources_id=TomyJan \n国际服格式: \nhttps://aki-gm-resources-oversea.aki-game.net/aki/gacha/index.html#/record?svr_id=TomyJan&player_id=101812955&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=global&record_id=TomyJan&resources_id=TomyJan',
-      '======== Android ========',
-      '1. 在游戏内打开一次抽卡记录 \n2. 打开文件管理器, 定位到 内部存储/Android/data/, 国服进入 com.kurogame.mingchao, 国际服进入 com.kurogame.wutheringwaves.global, 并继续定位到 /files/UE4Game/Client/Client/Saved/Logs/, 打开 Client.log \n3. 在文件内搜索 record_id , 将找到的链接发送给我, 注意删除多余的文字 \n\n你发送的链接格式格式应为: \nhttps://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record?svr_id=TomyJan&player_id=101812955&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=cn&record_id=TomyJan&resources_id=TomyJan \n国际服格式: \nhttps://aki-gm-resources-oversea.aki-game.net/aki/gacha/index.html#/record?svr_id=TomyJan&player_id=101812955&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=global&record_id=TomyJan&resources_id=TomyJan',
-      '========== iOS ==========',
-      '参照此教程抓包获取并发给我即可: https://blog.tomys.top/2023-07/kuro-token/#iOS \n\n你发送的内容格式应为: \n{ \n  "recordId": "TomyJan", \n  "playerId": "101812955", \n  "serverId": "TomyJan", \n  "cardPoolId": "TomyJan", \n  "cardPoolType": 1, \n  "languageCode": "zh-Hans" \n}',
-    ],'鸣潮抽卡记录获取帮助')
+    let mcGachaHelpMsg = await common.makeForwardMsg(
+      e,
+      [
+        '鸣潮抽卡记录获取帮助',
+        '继续获取并发送即表示您阅读并同意 Bot 保存你的抽卡记录信息用于后续自动更新',
+        '建议私聊发送哦~',
+        '======== Windows ========',
+        '1. 在游戏内打开一次抽卡记录 \n2. 打开文件资源管理器, 定位到 游戏安装目录\\Client\\Saved\\Logs\\, 打开Client.log \n3. 在文件内搜索 record_id , 将找到的链接发送给我, 注意删除多余的文字 \n\n你发送的链接格式格式应为: \nhttps://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record?svr_id=TomyJan&player_id=101812955&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=cn&record_id=TomyJan&resources_id=TomyJan \n国际服格式: \nhttps://aki-gm-resources-oversea.aki-game.net/aki/gacha/index.html#/record?svr_id=TomyJan&player_id=101812955&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=global&record_id=TomyJan&resources_id=TomyJan',
+        '======== Android ========',
+        '1. 在游戏内打开一次抽卡记录 \n2. 打开文件管理器, 定位到 内部存储/Android/data/, 国服进入 com.kurogame.mingchao, 国际服进入 com.kurogame.wutheringwaves.global, 并继续定位到 /files/UE4Game/Client/Client/Saved/Logs/, 打开 Client.log \n3. 在文件内搜索 record_id , 将找到的链接发送给我, 注意删除多余的文字 \n\n你发送的链接格式格式应为: \nhttps://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record?svr_id=TomyJan&player_id=101812955&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=cn&record_id=TomyJan&resources_id=TomyJan \n国际服格式: \nhttps://aki-gm-resources-oversea.aki-game.net/aki/gacha/index.html#/record?svr_id=TomyJan&player_id=101812955&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=global&record_id=TomyJan&resources_id=TomyJan',
+        '========== iOS ==========',
+        '参照此教程抓包获取并发给我即可: https://blog.tomys.top/2023-07/kuro-token/#iOS \n\n你发送的内容格式应为: \n{ \n  "recordId": "TomyJan", \n  "playerId": "101812955", \n  "serverId": "TomyJan", \n  "cardPoolId": "TomyJan", \n  "cardPoolType": 1, \n  "languageCode": "zh-Hans" \n}',
+      ],
+      '鸣潮抽卡记录获取帮助'
+    )
     e.reply(mcGachaHelpMsg)
     return true
   }
@@ -266,13 +270,17 @@ export class mcGacha extends plugin {
         }
         // 去掉最后一个逗号
         msg = msg.slice(0, -1)
-        let forWardMsg = await common.makeForwardMsg(e, [
-          msg,
-          '获取抽卡记录可以使用 \n#鸣潮角色记录 \n#鸣潮武器记录 \n#鸣潮常驻角色记录',
-          '后续每次获取记录都会自动更新, 无需手动更新哦~',
-          '当然, 你也可以手动更新, 使用 \n#鸣潮更新抽卡',
-          '导出抽卡记录使用 \n#鸣潮导出抽卡 \n导出的记录为 WWGF 格式, 可以导入其他支持 WWGF 的工具中使用~',
-        ],'鸣潮抽卡记录更新结果')
+        let forWardMsg = await common.makeForwardMsg(
+          e,
+          [
+            msg,
+            '获取抽卡记录可以使用 \n#鸣潮角色记录 \n#鸣潮武器记录 \n#鸣潮常驻角色记录',
+            '后续每次获取记录都会自动更新, 无需手动更新哦~',
+            '当然, 你也可以手动更新, 使用 \n#鸣潮更新抽卡',
+            '导出抽卡记录使用 \n#鸣潮导出抽卡 \n导出的记录为 WWGF 格式, 可以导入其他支持 WWGF 的工具中使用~',
+          ],
+          '鸣潮抽卡记录更新结果'
+        )
         e.reply(forWardMsg)
         return true
       }

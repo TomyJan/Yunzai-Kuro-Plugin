@@ -444,19 +444,31 @@ export default class mcGachaData {
       fs.copyFileSync(path, tempPath)
       if (this.e.isGroup) {
         let ret = await this.e.group.sendFile(tempPath)
-        kuroLogger.debug(`QQ ${this.e.user_id} 的抽卡记录文件发送返回: ${JSON.stringify(ret)}`)
+        kuroLogger.debug(
+          `QQ ${this.e.user_id} 的抽卡记录文件发送返回: ${JSON.stringify(ret)}`
+        )
         fs.unlinkSync(tempPath)
         if (ret !== null && typeof ret !== 'object') {
-          kuroLogger.warn(`QQ ${this.e.user_id} 的抽卡记录文件发送失败: ${JSON.stringify(ret)}`)
+          kuroLogger.warn(
+            `QQ ${this.e.user_id} 的抽卡记录文件发送失败: ${JSON.stringify(
+              ret
+            )}`
+          )
           return `文件发送失败, 可能是协议不支持`
         }
         return null
       } else if (this.e.isPrivate) {
         let ret = await this.e.friend.sendFile(tempPath)
-        kuroLogger.debug(`QQ ${this.e.user_id} 的抽卡记录文件发送返回: ${JSON.stringify(ret)}`)
+        kuroLogger.debug(
+          `QQ ${this.e.user_id} 的抽卡记录文件发送返回: ${JSON.stringify(ret)}`
+        )
         fs.unlinkSync(tempPath)
         if (ret !== null && typeof ret !== 'object') {
-          kuroLogger.warn(`QQ ${this.e.user_id} 的抽卡记录文件发送失败: ${JSON.stringify(ret)}`)
+          kuroLogger.warn(
+            `QQ ${this.e.user_id} 的抽卡记录文件发送失败: ${JSON.stringify(
+              ret
+            )}`
+          )
           return `文件发送失败, 可能是协议不支持`
         }
         return null
