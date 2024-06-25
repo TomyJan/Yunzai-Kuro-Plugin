@@ -1,3 +1,15 @@
+## [0.2.17-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.16-rel...v0.2.17-rel) (2024-06-25)
+
+
+### Bug Fixes
+
+* 尝试输出风控提示 ([59aab11](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/59aab118caaad96daf1b4bd8c5c9dd95512f93e5))
+* 初始化循环依赖 ([3ca16ee](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/3ca16ee87b9b029443bc23ec3f622145674f3977))
+* 库洛在线登录超时逻辑错误 ([606b806](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/606b806370d0711b8df46b1442442ac919dfdc02))
+* 一些过期的请求头 ([ef878be](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/ef878be5820231ee994fabbd9544e1287417f86d))
+
+
+
 ## [0.2.16-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.15-rel...v0.2.16-rel) (2024-06-24)
 
 
