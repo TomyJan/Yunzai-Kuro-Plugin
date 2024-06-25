@@ -9,6 +9,11 @@
 * 一些过期的请求头 ([ef878be](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/ef878be5820231ee994fabbd9544e1287417f86d))
 
 
+### Performance Improvements
+
+* 优化部分提示消息 ([075d7c6](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/075d7c61fdc48dbfd303363d2ff7810c27d0dd22))
+
+
 
 ## [0.2.16-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.15-rel...v0.2.16-rel) (2024-06-24)
 
