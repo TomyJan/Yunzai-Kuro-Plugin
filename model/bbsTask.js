@@ -129,8 +129,7 @@ export async function doBBSDailyTask(uin, kuro_uid) {
       if (typeof rsp_forumSignIn !== 'string' && rsp_forumSignIn.code === 200)
         doBBSDailyTaskRet += '成功'
       else if (rsp_forumSignIn === '您已签到') doBBSDailyTaskRet += '已签'
-      else
-        doBBSDailyTaskRet += `${rsp_forumSignIn.msg || rsp_forumSignIn}`
+      else doBBSDailyTaskRet += `${rsp_forumSignIn.msg || rsp_forumSignIn}`
       break
     } else await sleepAsync(getRandomInt(600, 1000))
   } while (tryAgain)

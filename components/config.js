@@ -24,7 +24,9 @@ class ConfigReader {
       const configObject = JSON.parse(data)
       return configObject
     } catch (error) {
-      logger.error(chalk.red(`[库洛插件][WARN  ] 读取配置文件失败: ${error.message}`))
+      logger.error(
+        chalk.red(`[库洛插件][WARN  ] 读取配置文件失败: ${error.message}`)
+      )
       return {}
     }
   }

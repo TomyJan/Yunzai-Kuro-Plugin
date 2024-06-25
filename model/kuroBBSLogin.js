@@ -141,9 +141,12 @@ export default class kuroBBSLogin {
             }
           }
         }
-        let rsp_onlineLogin = await kuroapi.getPluginServerKuroBbsLoginToken(0, {
-          token: rsp_getPluginServerKuroBbsLoginAuth.token,
-        })
+        let rsp_onlineLogin = await kuroapi.getPluginServerKuroBbsLoginToken(
+          0,
+          {
+            token: rsp_getPluginServerKuroBbsLoginAuth.token,
+          }
+        )
         kuroLogger.debug('rsp_onlineLogin:', JSON.stringify(rsp_onlineLogin))
         if (typeof rsp_onlineLogin == 'string') {
           // 不是 json
