@@ -1,3 +1,4 @@
+import chalk from 'chalk'
 import fs from 'fs'
 import { _CfgPath, _DataPath } from '../data/system/pluginConstants.js'
 import kuroLogger from './logger.js'
@@ -23,7 +24,7 @@ class ConfigReader {
       const configObject = JSON.parse(data)
       return configObject
     } catch (error) {
-      kuroLogger.error('读取配置文件失败:', error.message)
+      logger.error(chalk.red(`[库洛插件][WARN  ] 读取配置文件失败: ${error.message}`))
       return {}
     }
   }

@@ -58,7 +58,23 @@ git -C ./plugins/Yunzai-Kuro-Plugin/ pull
 
 ### 插件配置
 
-建议通过 [锅巴插件](https://gitee.com/guoba-yunzai/guoba-plugin) 进行配置. 当然, 你也可以自己配置, 配置文件位置 `./config/config.json`, 配置项作用不在此详细说明
+建议通过 [锅巴插件](https://gitee.com/guoba-yunzai/guoba-plugin) 进行配置. 当然, 你也可以自己配置, 默认配置文件位置 `./data/system/default_config.json`, 配置文件位置 `./config/config.json`, 配置项作用: 
+
+```json
+// 此处的 json 可能忘记更新, 如果和实际的配置文件字段不同, qing'ji'sh
+{
+  "logger": { // 插件的日志器配置
+    "logLevel": "info", // 日志等级, 可选值: trace, debug, info, warn, error, fatal
+    "saveToFile": false // 是否保存日志到文件
+  },
+  "autoTask": { // 自动任务配置, 暂时只支持统一配置所有任务
+    "enabled": true, // 是否启用自动任务
+    "execTime": "0 2 0 * * ? " // 任务执行时间, cron 表达式, 默认每天 0 点 2 分 0 秒执行, 检查更新任务不受此配置影响
+  },
+  "attemptSendNonFriend": true, // 即使非好友也尝试推送消息
+  "botQQ": 0 // 机器人 QQ 号, 使用第三方适配器或者其他多账号框架时可能需要配置
+}
+```
 
 ## 功能介绍
 

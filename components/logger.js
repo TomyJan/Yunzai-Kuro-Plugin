@@ -132,6 +132,6 @@ logger.info(chalk.gray(`[库洛插件][LOGGER] Logger initialized!`))
 while (typeof kuroLogger === 'undefined' || !(kuroLogger instanceof Logger)) {
   // 类尚未初始化，可以加入适当的延时以避免阻塞主线程
   // 例如：使用 setTimeout 或其他方式
-  sleepAsync(100)
+  await sleepAsync(100)
 }
 export default kuroLogger
