@@ -103,7 +103,7 @@ export async function doPnsSignIn(uin, kuro_uid) {
   }
   for (const data of rsp_findRoleList.data) {
     doPnsSignInRet += `${data.serverName}-${data.roleName}(${data.roleId}): \n`
-    //执行签到查询后执行签到
+    // 执行签到查询后执行签到
 
     let rsp_initSignInV2 = await kuroapi.initSignInV2(kuro_uid, {
       gameId: 2,
@@ -117,7 +117,7 @@ export async function doPnsSignIn(uin, kuro_uid) {
       continue
     }
     if (rsp_initSignInV2.data.isSigIn) {
-      //如果今天已经签到
+      // 如果今天已经签到
       doPnsSignInRet += `      今日已签`
     } else {
       // 签到

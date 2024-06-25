@@ -127,10 +127,10 @@ export async function doBBSDailyTask(uin, kuro_uid) {
     if (!tryAgain) {
       // 最后一次尝试了那就处理返回值吧
       if (typeof rsp_forumSignIn !== 'string' && rsp_forumSignIn.code === 200)
-        doBBSDailyTaskRet += '签到成功'
-      else if (rsp_forumSignIn === '您已签到') doBBSDailyTaskRet += '今日已签'
+        doBBSDailyTaskRet += '成功'
+      else if (rsp_forumSignIn === '您已签到') doBBSDailyTaskRet += '已签'
       else
-        doBBSDailyTaskRet += `失败: ${rsp_forumSignIn.msg || rsp_forumSignIn}`
+        doBBSDailyTaskRet += `${rsp_forumSignIn.msg || rsp_forumSignIn}`
       break
     } else await sleepAsync(getRandomInt(600, 1000))
   } while (tryAgain)
