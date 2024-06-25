@@ -103,22 +103,22 @@ export default class kuroApi {
   }
 
   /**
-   *  取游戏签到信息
+   *  取游戏签到信息 V2
    * @param {string} kuroUid 库洛 ID
    * @param {object} data 传入 data.gameId 游戏 id data.serverId 服务器 id data.roleId 游戏 uid
    * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
    */
-  async initSignIn(kuroUid, data) {
+  async initSignInV2(kuroUid, data) {
     return this.getData('initSignInV2', kuroUid, data)
   }
 
   /**
-   *  游戏签到
+   *  游戏签到 V2
    * @param {string} kuroUid 库洛 ID
    * @param {object} data 传入 data.gameId 游戏 id data.serverId 服务器 id data.roleId 游戏 uid
    * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
    */
-  async gameSignIn(kuroUid, data) {
+  async gameSignInV2(kuroUid, data) {
     data.reqMonth = (new Date().getMonth() + 1).toString().padStart(2, '0')
     return this.getData('gameSignInV2', kuroUid, data)
   }

@@ -74,12 +74,12 @@ export default class kuroApiHandler {
         body: `gameId=${data.gameId}`,
       },
       initSignInV2: {
-        // 取签到配置信息
+        // 取签到配置信息 V2
         url: `${this.kuroApiUrl}/encourage/signIn/initSignInV2`,
         body: `gameId=${data.gameId}&serverId=${data.serverId}&roleId=${data.roleId}&userId=${kuroUid}`,
       },
       gameSignInV2: {
-        // 游戏签到
+        // 游戏签到 V2
         url: `${this.kuroApiUrl}/encourage/signIn/v2`,
         body: `gameId=${data.gameId}&serverId=${data.serverId}&roleId=${data.roleId}&userId=${kuroUid}&reqMonth=${data.reqMonth}`,
       },
@@ -242,9 +242,9 @@ export default class kuroApiHandler {
   getHeaders(ApiName, token, kuroUid) {
     if (
       [
-        'initSignIn',
-        'gameSignIn',
-        'queryGameSignInRecord',
+        'initSignInV2',
+        'gameSignInV2',
+        'queryGameSignInRecordV2',
         'getBindRoleInfo',
         'getActivityTaskList',
         'completeActivityTask',
@@ -323,12 +323,12 @@ export default class kuroApiHandler {
       }
     }
 
-    // 处理 content-type
+    // 处理 Content-Type
     if (['findRoleList', 'roleList'].includes(ApiName)) {
       // findRoleList roleList 多了个 utf8
       headers = {
         ...headers,
-        'content-type': 'application/x-www-form-urlencoded; charset=utf-8',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
       }
     } else if (
       [
@@ -345,7 +345,7 @@ export default class kuroApiHandler {
       // 普通请求为 application/x-www-form-urlencoded, uploadForumImg 为 multipart/form-data, 这里不用手动添加, 让那边的 form-data 自己处理
       headers = {
         ...headers,
-        'content-type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/x-www-form-urlencoded',
       }
     }
 

@@ -105,43 +105,43 @@ export async function doPnsSignIn(uin, kuro_uid) {
     doPnsSignInRet += `${data.serverName}-${data.roleName}(${data.roleId}): \n`
     //执行签到查询后执行签到
 
-    let rsp_initSignIn = await kuroapi.initSignIn(kuro_uid, {
+    let rsp_initSignInV2 = await kuroapi.initSignInV2(kuro_uid, {
       gameId: 2,
       serverId: data.serverId,
       roleId: data.roleId,
     })
-    kuroLogger.debug('rsp_initSignIn:', JSON.stringify(rsp_initSignIn))
-    if (typeof rsp_initSignIn == 'string') {
+    kuroLogger.debug('rsp_initSignInV2:', JSON.stringify(rsp_initSignInV2))
+    if (typeof rsp_initSignInV2 == 'string') {
       // 不是 json, 即返回报错
-      doPnsSignInRet += `      ${rsp_initSignIn}\n`
+      doPnsSignInRet += `      ${rsp_initSignInV2}\n`
       continue
     }
-    if (rsp_initSignIn.data.isSigIn) {
+    if (rsp_initSignInV2.data.isSigIn) {
       //如果今天已经签到
       doPnsSignInRet += `      今日已签`
     } else {
       // 签到
-      let rsp_gameSignIn = await kuroapi.gameSignIn(kuro_uid, {
+      let rsp_gameSignInV2 = await kuroapi.gameSignInV2(kuro_uid, {
         gameId: 2,
         serverId: data.serverId,
         roleId: data.roleId,
       })
-      kuroLogger.debug('rsp_gameSignIn:', JSON.stringify(rsp_gameSignIn))
+      kuroLogger.debug('rsp_gameSignInV2:', JSON.stringify(rsp_gameSignInV2))
       let tmp = ''
-      if (typeof rsp_gameSignIn !== 'string') {
+      if (typeof rsp_gameSignInV2 !== 'string') {
         // 是 json
         tmp = '签到成功'
-        rsp_initSignIn.data.sigInNum++
+        rsp_initSignInV2.data.sigInNum++
       } else {
-        tmp = rsp_gameSignIn
+        tmp = rsp_gameSignInV2
       }
       doPnsSignInRet += `      ${tmp}`
     }
     doPnsSignInRet +=
-      `, 本月签${rsp_initSignIn.data.sigInNum}天` +
-      (rsp_initSignIn.data.omissionNnm !== 0
-        ? `, 漏${rsp_initSignIn.data.omissionNnm}天`
-        : rsp_initSignIn.data.sigInNum === mGetDate()
+      `, 本月签${rsp_initSignInV2.data.sigInNum}天` +
+      (rsp_initSignInV2.data.omissionNnm !== 0
+        ? `, 漏${rsp_initSignInV2.data.omissionNnm}天`
+        : rsp_initSignInV2.data.sigInNum === mGetDate()
         ? ', 达成全勤!'
         : '') +
       `\n`
@@ -241,44 +241,44 @@ export async function doMcSignIn(uin, kuro_uid) {
     doMcSignInRet += `${data.serverName}-${data.roleName}(${data.roleId}): \n`
     //执行签到查询后执行签到
 
-    let rsp_initSignIn = await kuroapi.initSignIn(kuro_uid, {
+    let rsp_initSignInV2 = await kuroapi.initSignInV2(kuro_uid, {
       gameId: 3,
       serverId: data.serverId,
       roleId: data.roleId,
     })
-    kuroLogger.debug('rsp_initSignIn:', JSON.stringify(rsp_initSignIn))
-    if (typeof rsp_initSignIn == 'string') {
+    kuroLogger.debug('rsp_initSignInV2:', JSON.stringify(rsp_initSignInV2))
+    if (typeof rsp_initSignInV2 == 'string') {
       // 不是 json, 即返回报错
-      doMcSignInRet += `      ${rsp_initSignIn}\n`
+      doMcSignInRet += `      ${rsp_initSignInV2}\n`
       continue
     }
-    if (rsp_initSignIn.data.isSigIn) {
+    if (rsp_initSignInV2.data.isSigIn) {
       //如果今天已经签到
       doMcSignInRet += `      今日已签`
     } else {
       // 签到
-      let rsp_gameSignIn = await kuroapi.gameSignIn(kuro_uid, {
+      let rsp_gameSignInV2 = await kuroapi.gameSignInV2(kuro_uid, {
         gameId: 3,
         serverId: data.serverId,
         roleId: data.roleId,
       })
-      kuroLogger.debug('rsp_gameSignIn:', JSON.stringify(rsp_gameSignIn))
+      kuroLogger.debug('rsp_gameSignInV2:', JSON.stringify(rsp_gameSignInV2))
       let tmp = ''
-      if (typeof rsp_gameSignIn !== 'string') {
+      if (typeof rsp_gameSignInV2 !== 'string') {
         // 是 json
         tmp = '签到成功'
-        rsp_initSignIn.data.sigInNum++
+        rsp_initSignInV2.data.sigInNum++
       } else {
-        tmp = rsp_gameSignIn
+        tmp = rsp_gameSignInV2
       }
       doMcSignInRet += `      ${tmp}`
     }
 
     doMcSignInRet +=
-      `, 本月签${rsp_initSignIn.data.sigInNum}天` +
-      (rsp_initSignIn.data.omissionNnm !== 0
-        ? `, 漏${rsp_initSignIn.data.omissionNnm}天`
-        : rsp_initSignIn.data.sigInNum === mGetDate()
+      `, 本月签${rsp_initSignInV2.data.sigInNum}天` +
+      (rsp_initSignInV2.data.omissionNnm !== 0
+        ? `, 漏${rsp_initSignInV2.data.omissionNnm}天`
+        : rsp_initSignInV2.data.sigInNum === mGetDate()
         ? ', 达成全勤!'
         : '') +
       `\n`
