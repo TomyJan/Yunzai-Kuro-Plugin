@@ -154,7 +154,7 @@ export class mcGacha extends plugin {
     let mcGachaHelpMsg = await common.makeForwardMsg(
       e,
       [
-        '鸣潮抽卡记录获取帮助',
+        '[库洛插件] 鸣潮抽卡记录获取帮助',
         '继续获取并发送即表示您阅读并同意 Bot 保存你的抽卡记录信息用于后续自动更新',
         '建议私聊发送哦~',
         '======== Windows ========',
@@ -164,7 +164,7 @@ export class mcGacha extends plugin {
         '========== iOS ==========',
         '参照此教程抓包获取并发给我即可: https://blog.tomys.top/2023-07/kuro-token/#iOS \n\n你发送的内容格式应为: \n{ \n  "recordId": "TomyJan", \n  "playerId": "101812955", \n  "serverId": "TomyJan", \n  "cardPoolId": "TomyJan", \n  "cardPoolType": 1, \n  "languageCode": "zh-Hans" \n}',
       ],
-      '鸣潮抽卡记录获取帮助'
+      '[库洛插件] 鸣潮抽卡记录获取帮助'
     )
     e.reply(mcGachaHelpMsg)
     return true

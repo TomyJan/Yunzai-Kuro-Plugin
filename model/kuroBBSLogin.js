@@ -1,6 +1,7 @@
 import kuroLogger from '../components/logger.js'
 import kuroApi from './kuroApi.js'
 import { sleepAsync } from './utils.js'
+import common from '../../../lib/common/common.js'
 
 export default class kuroBBSLogin {
   constructor(e) {
@@ -14,10 +15,19 @@ export default class kuroBBSLogin {
   async init() {}
 
   async captchaLoginHelp() {
-    await this.e.reply(this.captchaLoginHelpTip)
-    this.e.reply(
-      `建议优先使用 #库洛在线登录 , 无法使用可使用此功能 \n \n请前往 https://wiki.kurobbs.com/pns/home 点击右上角头像或库街区 APP 登录页面, 输入手机号点击发送验证码后, 将手机号和验证码用逗号隔开私聊发送以完成绑定\n例: 库洛账号18888888888,验证码114514\n\n注意: 库街区 APP 同战双一样, 只能登录一个设备, 即机器人的登录和你自己手机 APP 的登录会互顶. 如果你需要用到库街区 APP, 请发送 #库洛token登录 查看抓包登录教程`
+    let captchaLoginHelpMsg = await common.makeForwardMsg(
+      this.e,
+      [
+        `[库洛插件] 库洛验证码登录帮助`,
+        `建议优先使用 #库洛在线登录 , 无法使用可使用此功能`,
+        this.captchaLoginHelpTip,
+        '======== 登录步骤 ========',
+        `1. 前往 https://wiki.kurobbs.com/pns/home 点击右上角头像, 或下载安装库街区 APP 进入登录页面 \n2. 输入手机号点击发送验证码 \n3. 与 Bot 私聊, 将手机号和验证码用逗号隔开发送以完成绑定 \n \n例: 库洛账号18888888888,验证码114514`,
+        `注意: 库街区 APP 同战双一样, 只能登录一个设备, 即机器人的登录和你自己手机 APP 的登录会互顶. 如果你需要用到库街区 APP, 请发送 #库洛token登录 查看抓包登录教程`,
+      ],
+      '[库洛插件] 库洛验证码登录帮助'
     )
+    await this.e.reply(captchaLoginHelpMsg)
   }
 
   async captchaLoginResult() {
@@ -69,10 +79,18 @@ export default class kuroBBSLogin {
   }
 
   async tokenLoginHelp() {
-    await this.e.reply(this.tokenLoginHelpTip)
-    this.e.reply(
-      `请私聊发送 #库洛token后面跟上你的token 完成登录\n抓包教程: https://blog.tomys.top/2023-07/kuro-token/`
+    let tokenLoginHelpMsg = await common.makeForwardMsg(
+      this.e,
+      [
+        `[库洛插件] 库洛 token 登录帮助`,
+        `此方法允许你的手机与 Bot 使用相同的 token 以实现共存 \n需要 iOS 设备, 或者 ROOT 的 Android 设备, 如果没有请放弃并使用 #库洛在线登录`,
+        this.tokenLoginHelpTip,
+        '======== 登录步骤 ========',
+        `1. 根据抓包教程文章安装抓包软件并完成抓包: https://blog.tomys.top/2023-07/kuro-token/ \n2. 与 Bot 私聊, 将抓包获取到的 token 以 #库洛token后面跟上你的token 发送给 Bot 即可完成登录`,
+      ],
+      '[库洛插件] 库洛 token 登录帮助'
     )
+    await this.e.reply(tokenLoginHelpMsg)
   }
 
   async tokenLoginResult() {
@@ -97,7 +115,6 @@ export default class kuroBBSLogin {
   }
 
   async onlineLogin() {
-    await this.e.reply(this.onlineLoginTip)
     let kuroapi = new kuroApi(this.e.user_id)
     let rsp_getPluginServerKuroBbsLoginAuth =
       await kuroapi.getPluginServerKuroBbsLoginAuth(0)
@@ -115,9 +132,16 @@ export default class kuroBBSLogin {
 
     if (rsp_getPluginServerKuroBbsLoginAuth.code === 0) {
       // kuroLogger.debug('登录成功!', JSON.stringify(rsp_onlineLogin))
-      let loginMsg = await this.e.reply(
-        `请在三分钟内点击此链接完成登录: https://kuro.amoe.cc/page/kuroBbsLogin?token=${rsp_getPluginServerKuroBbsLoginAuth.token} \n这是专属链接, 请勿点击他人的链接~ `
+      let loginMsgWithTip = await common.makeForwardMsg(
+        this.e,
+        [
+          `[库洛插件] 库洛在线登录`,
+          this.onlineLoginTip,
+          `请在三分钟内点击下方链接完成登录, Bot 会自己获取 token 完成登录 \n注意这是专属链接, 请勿点击他人的链接~ \nhttps://kuro.amoe.cc/page/kuroBbsLogin?token=${rsp_getPluginServerKuroBbsLoginAuth.token}`,
+        ],
+        '[库洛插件] 库洛在线登录'
       )
+      let loginMsg = await this.e.reply(loginMsgWithTip)
       // 五秒取一次登录状态, 三分钟后过期
       let i = 0
       let failedTimes = 0
@@ -169,9 +193,19 @@ export default class kuroBBSLogin {
           rsp_onlineLogin.data.hasOwnProperty('code') &&
           rsp_onlineLogin.data.hasOwnProperty('data')
         ) {
-          this.e.reply(
+          let tmpMsg = await this.e.reply(
             '登录成功, 即将保存 token, 可在网页复制此次获取的 token, 关闭网页后将无法再次复制, 请勿泄露!'
           )
+          setTimeout(() => {
+            if (tmpMsg) {
+              try {
+                if (this.e.group) this.e.group.recallMsg(tmpMsg.message_id)
+                if (this.e.friend) this.e.friend.recallMsg(tmpMsg.message_id)
+              } catch (err) {
+                kuroLogger.warn('撤回消息失败:', JSON.stringify(err))
+              }
+            }
+          }, 10000)
           return rsp_onlineLogin.data
         }
         i++
