@@ -120,7 +120,6 @@ export default class kuroBBSLogin {
       )
       // 五秒取一次登录状态, 三分钟后过期
       let i = 0
-      let rsp_onlineLogin = ''
       let failedTimes = 0
       while (i < 36) {
         await sleepAsync(5000)
@@ -142,7 +141,7 @@ export default class kuroBBSLogin {
             }
           }
         }
-        rsp_onlineLogin = await kuroapi.getPluginServerKuroBbsLoginToken(0, {
+        let rsp_onlineLogin = await kuroapi.getPluginServerKuroBbsLoginToken(0, {
           token: rsp_getPluginServerKuroBbsLoginAuth.token,
         })
         kuroLogger.debug('rsp_onlineLogin:', JSON.stringify(rsp_onlineLogin))
@@ -152,12 +151,16 @@ export default class kuroBBSLogin {
             this.e.reply(`多次获取登录态失败: ${rsp_onlineLogin}, 请重试`)
             return false
           }
+          i++
+          continue
         }
         if (rsp_onlineLogin.code !== 0) {
           if (failedTimes++ > 6) {
             this.e.reply(`多次获取登录态失败: ${rsp_onlineLogin.msg}, 请重试`)
             return false
           }
+          i++
+          continue
         }
         if (
           rsp_onlineLogin.data.hasOwnProperty('code') &&
