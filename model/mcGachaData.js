@@ -76,7 +76,8 @@ export default class mcGachaData {
           if (updateFailMsg) {
             try {
               if (this.e.group) this.e.group.recallMsg(updateFailMsg.message_id)
-              if (this.e.friend) this.e.friend.recallMsg(updateFailMsg.message_id)
+              if (this.e.friend)
+                this.e.friend.recallMsg(updateFailMsg.message_id)
             } catch (err) {
               kuroLogger.warn('撤回消息失败:', JSON.stringify(err))
             }
@@ -92,8 +93,10 @@ export default class mcGachaData {
           setTimeout(() => {
             if (saveFailedMsg) {
               try {
-                if (this.e.group) this.e.group.recallMsg(saveFailedMsg.message_id)
-                if (this.e.friend) this.e.friend.recallMsg(saveFailedMsg.message_id)
+                if (this.e.group)
+                  this.e.group.recallMsg(saveFailedMsg.message_id)
+                if (this.e.friend)
+                  this.e.friend.recallMsg(saveFailedMsg.message_id)
               } catch (err) {
                 kuroLogger.warn('撤回消息失败:', JSON.stringify(err))
               }
@@ -108,8 +111,10 @@ export default class mcGachaData {
       setTimeout(() => {
         if (localUploadedMsg) {
           try {
-            if (this.e.group) this.e.group.recallMsg(localUploadedMsg.message_id)
-            if (this.e.friend) this.e.friend.recallMsg(localUploadedMsg.message_id)
+            if (this.e.group)
+              this.e.group.recallMsg(localUploadedMsg.message_id)
+            if (this.e.friend)
+              this.e.friend.recallMsg(localUploadedMsg.message_id)
           } catch (err) {
             kuroLogger.warn('撤回消息失败:', JSON.stringify(err))
           }
