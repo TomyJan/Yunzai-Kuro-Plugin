@@ -105,15 +105,16 @@ export function updateCardBg() {
   let tmpCardBgPath = dataPath + '/system/cachedImg/cardBgTmp.jpg'
   let imgDownloadUrl = 'https://api.tomys.top/api/pnsWallPaper'
 
-  if (!config.getConfig().useRandomBgInCard) { // 没使用随机背景图片
+  if (!config.getConfig().useRandomBgInCard) {
+    // 没使用随机背景图片
     try {
       let cardBgExist = fs.existsSync(cardBgPath)
-      if (!cardBgExist || fs.statSync(cardBgPath).size !== fs.statSync(defaultCardBgPath).size) {
+      if (
+        !cardBgExist ||
+        fs.statSync(cardBgPath).size !== fs.statSync(defaultCardBgPath).size
+      ) {
         if (fs.existsSync(cardBgPath)) fs.unlinkSync(cardBgPath)
-        fs.copyFileSync(
-          defaultCardBgPath,
-          cardBgPath
-        )
+        fs.copyFileSync(defaultCardBgPath, cardBgPath)
       }
       return true
     } catch (err) {
@@ -123,32 +124,49 @@ export function updateCardBg() {
   }
 
   // 获取随机背景图片
-  fetch (imgDownloadUrl, {method: 'GET',timeout: 5000})
-    .then(rsp => {
-      if (rsp.status === 301 || rsp.status === 302 || rsp.status === 307 || rsp.status === 308) {
-        let location = rsp.headers.get('location');
-        kuroLogger.debug('更新卡片背景图片重定向:', rsp.status, rsp.statusText, 'url:', location)
-        return fetch(location, { method: 'GET', timeout: 5000 });
+  fetch(imgDownloadUrl, { method: 'GET', timeout: 5000 })
+    .then((rsp) => {
+      if (
+        rsp.status === 301 ||
+        rsp.status === 302 ||
+        rsp.status === 307 ||
+        rsp.status === 308
+      ) {
+        let location = rsp.headers.get('location')
+        kuroLogger.debug(
+          '更新卡片背景图片重定向:',
+          rsp.status,
+          rsp.statusText,
+          'url:',
+          location
+        )
+        return fetch(location, { method: 'GET', timeout: 5000 })
       }
-      return rsp;
+      return rsp
     })
-    .then(rsp => {
+    .then((rsp) => {
       if (rsp.ok) {
         kuroLogger.debug('更新卡片背景图片响应:', rsp.status, rsp.statusText)
-        return rsp.arrayBuffer();
+        return rsp.arrayBuffer()
       } else {
-          kuroLogger.warn('更新卡片背景图片错误:', rsp.status, rsp.statusText, rsp.url)
+        kuroLogger.warn(
+          '更新卡片背景图片错误:',
+          rsp.status,
+          rsp.statusText,
+          rsp.url
+        )
       }
     })
-    .then(buffer => {
-      fs.writeFileSync(tmpCardBgPath, Buffer.from(buffer));
+    .then((buffer) => {
+      fs.writeFileSync(tmpCardBgPath, Buffer.from(buffer))
       if (fs.existsSync(cardBgPath)) fs.unlinkSync(cardBgPath)
       fs.renameSync(tmpCardBgPath, cardBgPath)
       return true
     })
-    .catch(err => {
+    .catch((err) => {
       kuroLogger.warn('更新卡片背景图片错误:', err.message)
-      if (!fs.existsSync(cardBgPath)) fs.copyFileSync(defaultCardBgPath, cardBgPath)
+      if (!fs.existsSync(cardBgPath))
+        fs.copyFileSync(defaultCardBgPath, cardBgPath)
       return false
     })
 }
