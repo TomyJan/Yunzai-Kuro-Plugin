@@ -1,3 +1,17 @@
+## [0.2.18-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.17-rel...v0.2.18-rel) (2024-06-26)
+
+
+### Features
+
+* 卡片随机背景图 ([979c195](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/979c1956cde92ae5f94adf7908e2805e9fa99278))
+
+
+### Performance Improvements
+
+* 优化部分提示消息 ([cc081ed](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/cc081ed27ce427d0ebd4c9545bc8156ce2bb1130))
+
+
+
 ## [0.2.17-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.16-rel...v0.2.17-rel) (2024-06-25)
 
 
