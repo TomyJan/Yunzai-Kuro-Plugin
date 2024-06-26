@@ -15,9 +15,9 @@
 
 body {
   transform: scale(1);
-  width: 800px;
-  background: url(../../img/common/bg/Alisa-Echo_0.jpg) no-repeat;
-  background-size:cover;
+  width: auto;
+  background: url(../../../data/system/cachedImg/cardBg.jpg) no-repeat center center fixed;
+  background-size: cover;
 }
 
 .container {

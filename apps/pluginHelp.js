@@ -2,6 +2,7 @@ import plugin from '../../../lib/plugins/plugin.js'
 import puppeteer from '../../../lib/puppeteer/puppeteer.js'
 import pluginHelpData from '../model/pluginHelp.js'
 import md5 from 'md5'
+import { updateCardBg } from '../model/utils.js'
 
 export class pluginHelp extends plugin {
   constructor() {
@@ -39,6 +40,7 @@ export class pluginHelp extends plugin {
       return pluginHelp.helpData.img
     }
 
+    await updateCardBg()
     pluginHelp.helpData.img = await puppeteer.screenshot('help', data)
     pluginHelp.helpData.md5 = tmp
 

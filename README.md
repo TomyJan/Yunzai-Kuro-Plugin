@@ -71,6 +71,7 @@ git -C ./plugins/Yunzai-Kuro-Plugin/ pull
     "enabled": true, // 是否启用自动任务
     "execTime": "0 2 0 * * ? " // 任务执行时间, cron 表达式, 默认每天 0 点 2 分 0 秒执行, 检查更新任务不受此配置影响
   },
+  "useRandomBgInCard": true, // 卡片是否使用随机背景图
   "attemptSendNonFriend": true, // 即使非好友也尝试推送消息
   "botQQ": 0 // 机器人 QQ 号, 使用第三方适配器或者其他多账号框架时可能需要配置
 }

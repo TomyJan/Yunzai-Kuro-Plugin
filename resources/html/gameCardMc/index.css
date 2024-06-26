@@ -22,8 +22,8 @@
 
 body {
     transform: scale(1);
-    width: 725px;
-    background: url(../../img/common/bg/Alisa-Echo_0.jpg) no-repeat;
+    width: auto;
+    background: url(../../../data/system/cachedImg/cardBg.jpg) no-repeat center center fixed;
     background-size: cover;
 }
 

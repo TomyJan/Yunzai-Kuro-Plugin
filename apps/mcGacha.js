@@ -7,7 +7,7 @@ import kuroLogger from '../components/logger.js'
 import userConfig from '../model/userConfig.js'
 import { mcGachaType } from '../data/system/pluginConstants.js'
 import common from '../../../lib/common/common.js'
-import fs from 'fs'
+import { updateCardBg } from '../model/utils.js'
 
 export class mcGacha extends plugin {
   constructor() {
@@ -136,6 +136,7 @@ export class mcGacha extends plugin {
       return mcGacha.mcGachaCardData.img
     }
 
+    await updateCardBg()
     mcGacha.mcGachaCardData.img = await puppeteer.screenshot(
       'mcGachaRecord',
       data

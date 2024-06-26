@@ -101,6 +101,14 @@ export function supportGuoba() {
           label: '其他设置',
         },
         {
+          field: 'useRandomBgInCard',
+          label: '随机背景图',
+          helpMessage:
+            '卡片是否使用随机背景图',
+          bottomHelpMessage: '背景图 API: https://api.tomys.top/api/pnsWallPaper 均为战双官方壁纸, 获取失败会回退到最后一张图或者本地背景图, 本地默认背景图: /resources/img/common/bg/Alisa-Echo_0.jpg',
+          component: 'Switch',
+        },
+        {
           field: 'attemptSendNonFriend',
           label: '发送非好友',
           helpMessage: '是否尝试向非好友发送消息',

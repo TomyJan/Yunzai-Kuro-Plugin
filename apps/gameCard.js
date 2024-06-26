@@ -4,6 +4,7 @@ import gameCardData from '../model/gameCard.js'
 import md5 from 'md5'
 import userConfig from '../model/userConfig.js'
 import kuroLogger from '../components/logger.js'
+import { updateCardBg } from '../model/utils.js'
 
 export class gameCard extends plugin {
   constructor() {
@@ -64,6 +65,7 @@ export class gameCard extends plugin {
       return gameCard.pnsCardData.img
     }
 
+    await updateCardBg()
     gameCard.pnsCardData.img = await puppeteer.screenshot('gameCardPns', data)
     gameCard.pnsCardData.md5 = tmp
 
@@ -109,6 +111,7 @@ export class gameCard extends plugin {
       return gameCard.mcCardData.img
     }
 
+    await updateCardBg()
     gameCard.mcCardData.img = await puppeteer.screenshot('gameCardMc', data)
     gameCard.mcCardData.md5 = tmp
 

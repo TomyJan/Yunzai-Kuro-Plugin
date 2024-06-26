@@ -22,8 +22,8 @@
 
 body {
     transform: scale(1);
-    width: 725px;
-    background: url(../../img/common/bg/Alisa-Echo_0.jpg) no-repeat center center fixed;
+    width: auto;
+    background: url(../../../data/system/cachedImg/cardBg.jpg) no-repeat center center fixed;
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -91,7 +91,7 @@ body {
 }
 
 .container {
-    width: 745px;
+    width: 730px;
     padding: 20px 15px 10px 15px;
 }
 

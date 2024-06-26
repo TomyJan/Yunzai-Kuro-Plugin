@@ -2,6 +2,9 @@ import _ from 'lodash'
 import kuroLogger from '../components/logger.js'
 import config from '../components/config.js'
 import crypto from 'crypto'
+import { dataPath, resPath } from '../data/system/pluginConstants.js'
+import fs from 'fs'
+import fetch from 'node-fetch'
 
 /**
  * 程序延时
@@ -90,6 +93,64 @@ export function generateFixedString(inputString, length = 40) {
     `使用 ${inputString} 生成长度为 ${length} 的固定字符串 ${fixedString}`
   )
   return fixedString
+}
+
+/**
+ * 更新卡片要用的背景图片
+ * @returns {boolean} 是否成功更新背景图片
+ */
+export function updateCardBg() {
+  let defaultCardBgPath = resPath + '/img/common/bg/Alisa-Echo_0.jpg'
+  let cardBgPath = dataPath + '/system/cachedImg/cardBg.jpg'
+  let tmpCardBgPath = dataPath + '/system/cachedImg/cardBgTmp.jpg'
+  let imgDownloadUrl = 'https://api.tomys.top/api/pnsWallPaper'
+
+  if (!config.getConfig().useRandomBgInCard) { // 没使用随机背景图片
+    try {
+      let cardBgExist = fs.existsSync(cardBgPath)
+      if (!cardBgExist || fs.statSync(cardBgPath).size !== fs.statSync(defaultCardBgPath).size) {
+        if (fs.existsSync(cardBgPath)) fs.unlinkSync(cardBgPath)
+        fs.copyFileSync(
+          defaultCardBgPath,
+          cardBgPath
+        )
+      }
+      return true
+    } catch (err) {
+      kuroLogger.warn('复制卡片默认背景图片错误:', err.message)
+      return false
+    }
+  }
+
+  // 获取随机背景图片
+  fetch (imgDownloadUrl, {method: 'GET',timeout: 5000})
+    .then(rsp => {
+      if (rsp.status === 301 || rsp.status === 302 || rsp.status === 307 || rsp.status === 308) {
+        let location = rsp.headers.get('location');
+        kuroLogger.debug('更新卡片背景图片重定向:', rsp.status, rsp.statusText, 'url:', location)
+        return fetch(location, { method: 'GET', timeout: 5000 });
+      }
+      return rsp;
+    })
+    .then(rsp => {
+      if (rsp.ok) {
+        kuroLogger.debug('更新卡片背景图片响应:', rsp.status, rsp.statusText)
+        return rsp.arrayBuffer();
+      } else {
+          kuroLogger.warn('更新卡片背景图片错误:', rsp.status, rsp.statusText, rsp.url)
+      }
+    })
+    .then(buffer => {
+      fs.writeFileSync(tmpCardBgPath, Buffer.from(buffer));
+      if (fs.existsSync(cardBgPath)) fs.unlinkSync(cardBgPath)
+      fs.renameSync(tmpCardBgPath, cardBgPath)
+      return true
+    })
+    .catch(err => {
+      kuroLogger.warn('更新卡片背景图片错误:', err.message)
+      if (!fs.existsSync(cardBgPath)) fs.copyFileSync(defaultCardBgPath, cardBgPath)
+      return false
+    })
 }
 
 /**
