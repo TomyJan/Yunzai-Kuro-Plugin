@@ -61,7 +61,7 @@ git -C ./plugins/Yunzai-Kuro-Plugin/ pull
 建议通过 [锅巴插件](https://gitee.com/guoba-yunzai/guoba-plugin) 进行配置. 当然, 你也可以自己配置, 默认配置文件位置 `./data/system/default_config.json`, 配置文件位置 `./config/config.json`, 配置项作用: 
 
 ```json
-// 此处的 json 可能忘记更新, 如果和实际的配置文件字段不同, qing'ji'sh
+// 此处的 json 可能忘记更新, 如果和实际的配置文件字段不同, 请及时反馈
 {
   "logger": { // 插件的日志器配置
     "logLevel": "info", // 日志等级, 可选值: trace, debug, info, warn, error, fatal
@@ -149,7 +149,7 @@ git -C ./plugins/Yunzai-Kuro-Plugin/ pull
   - [ ] 鸣潮
   - [ ] 战双
 
-- [ ] 库街区战双游戏信息查询你
+- [ ] 库街区战双游戏信息查询
 
   - [ ] 角色信息
 

@@ -22,6 +22,7 @@ export default class kuroBBSLogin {
         `建议优先使用 #库洛在线登录 , 无法使用可使用此功能`,
         this.captchaLoginHelpTip,
         '======== 登录步骤 ========',
+        '注意, 同一个验证码可以多次使用, 所以请私聊发送!',
         `1. 前往 https://wiki.kurobbs.com/pns/home 点击右上角头像, 或下载安装库街区 APP 进入登录页面 \n2. 输入手机号点击发送验证码 \n3. 与 Bot 私聊, 将手机号和验证码用逗号隔开发送以完成绑定 \n \n例: 库洛账号18888888888,验证码114514`,
         `注意: 库街区 APP 同战双一样, 只能登录一个设备, 即机器人的登录和你自己手机 APP 的登录会互顶. 如果你需要用到库街区 APP, 请发送 #库洛token登录 查看抓包登录教程`,
       ],
@@ -86,6 +87,7 @@ export default class kuroBBSLogin {
         `此方法允许你的手机与 Bot 使用相同的 token 以实现共存 \n需要 iOS 设备, 或者 ROOT 的 Android 设备, 如果没有请放弃并使用 #库洛在线登录`,
         this.tokenLoginHelpTip,
         '======== 登录步骤 ========',
+        '高敏感登录方式, 请私聊使用!',
         `1. 根据抓包教程文章安装抓包软件并完成抓包: https://blog.tomys.top/2023-07/kuro-token/ \n2. 与 Bot 私聊, 将抓包获取到的 token 以 #库洛token后面跟上你的token 发送给 Bot 即可完成登录`,
       ],
       '[库洛插件] 库洛 token 登录帮助'

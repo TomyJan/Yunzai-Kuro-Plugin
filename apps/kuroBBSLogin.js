@@ -39,10 +39,6 @@ export class kuroBBSLogin extends plugin {
   }
 
   async captchaLoginHelp(e) {
-    if (!e.isPrivate) {
-      this.reply(`请私聊使用, 或使用 #库洛在线登录`)
-      return false
-    }
     let kuro = new kurologin(e)
     await kuro.captchaLoginHelp()
     return true
@@ -60,10 +56,6 @@ export class kuroBBSLogin extends plugin {
   }
 
   async tokenLoginHelp(e) {
-    if (!e.isPrivate) {
-      this.reply(`请私聊使用, 或使用 #库洛在线登录`)
-      return false
-    }
     let kuro = new kurologin(e)
     await kuro.tokenLoginHelp()
     return true

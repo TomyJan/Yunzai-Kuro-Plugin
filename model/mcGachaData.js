@@ -53,28 +53,68 @@ export default class mcGachaData {
 
     // 然后检查是否是通过链接上传的信息, 如果是链接上传就更新再生成, 如果是本地上传就直接生成
     if (gachaLink) {
-      await this.e.reply(
+      let willUpdateMsg = await this.e.reply(
         `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 本地存在抽卡链接, 尝试更新抽卡记录...`
       )
+      setTimeout(() => {
+        if (willUpdateMsg) {
+          try {
+            if (this.e.group) this.e.group.recallMsg(willUpdateMsg.message_id)
+            if (this.e.friend) this.e.friend.recallMsg(willUpdateMsg.message_id)
+          } catch (err) {
+            kuroLogger.warn('撤回消息失败:', JSON.stringify(err))
+          }
+        }
+      }, 6000)
       let gachaRecord = await this.get(gachaLink, this.e.user_id)
       if (typeof gachaRecord === 'string') {
         // 如果记录更新失败, 进行提示; 如果更新成功, 不提示直接进入生成
-        await this.e.reply(
+        let updateFailMsg = await this.e.reply(
           `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 更新抽卡记录失败: \n${failedReason} \n将展示历史抽卡记录 `
         )
+        setTimeout(() => {
+          if (updateFailMsg) {
+            try {
+              if (this.e.group) this.e.group.recallMsg(updateFailMsg.message_id)
+              if (this.e.friend) this.e.friend.recallMsg(updateFailMsg.message_id)
+            } catch (err) {
+              kuroLogger.warn('撤回消息失败:', JSON.stringify(err))
+            }
+          }
+        }, 6000)
       } else {
         // 更新成功, 存入本地
         let gachaUpdateRet = await this.update(this.e.user_id, gachaRecord)
         if (typeof gachaUpdateRet === 'string') {
-          await this.e.reply(
+          let saveFailedMsg = await this.e.reply(
             `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 抽卡更新记录成功但保存失败: \n${gachaUpdateRet} \n将展示历史抽卡记录 `
           )
+          setTimeout(() => {
+            if (saveFailedMsg) {
+              try {
+                if (this.e.group) this.e.group.recallMsg(saveFailedMsg.message_id)
+                if (this.e.friend) this.e.friend.recallMsg(saveFailedMsg.message_id)
+              } catch (err) {
+                kuroLogger.warn('撤回消息失败:', JSON.stringify(err))
+              }
+            }
+          }, 6000)
         } // 更新且保存成功, 无需提示
       }
     } else {
-      await this.e.reply(
+      let localUploadedMsg = await this.e.reply(
         `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 通过本地上传的抽卡记录, 将展示历史抽卡记录`
       )
+      setTimeout(() => {
+        if (localUploadedMsg) {
+          try {
+            if (this.e.group) this.e.group.recallMsg(localUploadedMsg.message_id)
+            if (this.e.friend) this.e.friend.recallMsg(localUploadedMsg.message_id)
+          } catch (err) {
+            kuroLogger.warn('撤回消息失败:', JSON.stringify(err))
+          }
+        }
+      }, 6000)
     }
 
     if (tokenData && Object.keys(tokenData).length > 0) {
