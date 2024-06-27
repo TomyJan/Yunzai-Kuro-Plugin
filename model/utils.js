@@ -5,8 +5,8 @@ import crypto from 'crypto'
 import { dataPath, resPath } from '../data/system/pluginConstants.js'
 import fs from 'fs'
 import fetch from 'node-fetch'
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
-import zhCN from "date-fns/locale/zh-CN";
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+import zhCN from 'date-fns/locale/zh-CN'
 
 /**
  * 程序延时

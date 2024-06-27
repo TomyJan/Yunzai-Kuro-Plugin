@@ -1,7 +1,11 @@
 import kuroLogger from '../components/logger.js'
 import { getToken } from './kuroBBSTokenHandler.js'
 import kuroApi from './kuroApi.js'
-import { sleepAsync, getRandomInt, formatTimestampInReadableFormat } from '../model/utils.js'
+import {
+  sleepAsync,
+  getRandomInt,
+  formatTimestampInReadableFormat,
+} from '../model/utils.js'
 
 export default class gameEnergy {
   constructor(e) {
@@ -117,20 +121,24 @@ export async function doPnsEnergy(uin, kuro_uid) {
       serverId: data.serverId,
       roleId: data.roleId,
     })
-    kuroLogger.debug('rsp_getPnsWidgetData:', JSON.stringify(rsp_getPnsWidgetData))
+    kuroLogger.debug(
+      'rsp_getPnsWidgetData:',
+      JSON.stringify(rsp_getPnsWidgetData)
+    )
     if (typeof rsp_getPnsWidgetData == 'string') {
       // 不是 json, 即返回报错
       doPnsSignInRet += `      ${rsp_getPnsWidgetData}\n`
       continue
     }
-    doPnsSignInRet += `      ${formatTimestampInReadableFormat(rsp_getPnsWidgetData.data.actionData.refreshTimeStamp)}回满 (${rsp_getPnsWidgetData.data.actionData.value})\n`
+    doPnsSignInRet += `      ${formatTimestampInReadableFormat(
+      rsp_getPnsWidgetData.data.actionData.refreshTimeStamp
+    )}回满 (${rsp_getPnsWidgetData.data.actionData.value})\n`
 
     await sleepAsync(getRandomInt(100, 600))
   }
 
   return doPnsSignInRet
 }
-
 
 /**
  * 执行单个库洛账号的鸣潮结晶波片查询, 可以不经构造调用
@@ -168,13 +176,18 @@ export async function doMcEnergy(uin, kuro_uid) {
       serverId: data.serverId,
       roleId: data.roleId,
     })
-    kuroLogger.debug('rsp_getMcWidgetData:', JSON.stringify(rsp_getMcWidgetData))
+    kuroLogger.debug(
+      'rsp_getMcWidgetData:',
+      JSON.stringify(rsp_getMcWidgetData)
+    )
     if (typeof rsp_getMcWidgetData == 'string') {
       // 不是 json, 即返回报错
       doMcSignInRet += `      ${rsp_getMcWidgetData}\n`
       continue
     }
-    doMcSignInRet += `      ${formatTimestampInReadableFormat(rsp_getMcWidgetData.data.actionData.refreshTimeStamp)}回满 (${rsp_getMcWidgetData.data.actionData.value})\n`
+    doMcSignInRet += `      ${formatTimestampInReadableFormat(
+      rsp_getMcWidgetData.data.actionData.refreshTimeStamp
+    )}回满 (${rsp_getMcWidgetData.data.actionData.value})\n`
 
     await sleepAsync(getRandomInt(100, 600))
   }
