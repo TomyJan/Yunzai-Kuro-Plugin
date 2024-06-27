@@ -1,7 +1,7 @@
 import gamesign from '../model/gameSignIn.js'
 import plugin from '../../../lib/plugins/plugin.js'
 
-export class kuroBBSLogin extends plugin {
+export class gameSignInApp extends plugin {
   constructor() {
     super({
       /** 功能名称 */

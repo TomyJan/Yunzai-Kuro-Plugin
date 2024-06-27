@@ -1,7 +1,7 @@
 import plugin from '../../../lib/plugins/plugin.js'
 import headUp from '../model/bbsHeadUpload.js'
 
-export class bbsHeadUpload extends plugin {
+export class bbsHeadUploadApp extends plugin {
   constructor() {
     super({
       /** 功能名称 */

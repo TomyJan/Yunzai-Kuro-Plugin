@@ -6,7 +6,7 @@ import userConfig from '../model/userConfig.js'
 import kuroLogger from '../components/logger.js'
 import { updateCardBg } from '../model/utils.js'
 
-export class gameCard extends plugin {
+export class gameCardApp extends plugin {
   constructor() {
     super({
       /** 功能名称 */

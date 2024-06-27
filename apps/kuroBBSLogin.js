@@ -2,7 +2,7 @@ import kurologin from '../model/kuroBBSLogin.js'
 import plugin from '../../../lib/plugins/plugin.js'
 import { checkTokenValidity, saveToken } from '../model/kuroBBSTokenHandler.js'
 
-export class kuroBBSLogin extends plugin {
+export class kuroBBSLoginApp extends plugin {
   constructor() {
     super({
       /** 功能名称 */

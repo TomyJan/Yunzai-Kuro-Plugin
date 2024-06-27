@@ -13,6 +13,11 @@
   font-family: 'HYWenHei-55W';
 }
 
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
   transform: scale(1);
   width: auto;

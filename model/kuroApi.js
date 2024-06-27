@@ -108,6 +108,31 @@ export default class kuroApi {
   }
 
   /**
+   * 取战双小组件数据
+   * @param {string} kuroUid 库洛 ID
+   * @param {object} data 传入 data.serverId 服务器 id data.roleId 游戏 uid
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async getPnsWidgetData(kuroUid, data) {
+    data.gameId = 2
+    data.type = 2
+    return this.getData('getPnsWidgetData', kuroUid, data)
+  }
+
+  /**
+   * 取鸣潮小组件数据
+   * @param {string} kuroUid 库洛 ID
+   * @param {object} data 传入 data.serverId 服务器 id data.roleId 游戏 uid
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async getMcWidgetData(kuroUid, data) {
+    data.gameId = 3
+    data.type = 2
+    data.sizeType = 1
+    return this.getData('getMcWidgetData', kuroUid, data)
+  }
+
+  /**
    *  取游戏签到信息 V2
    * @param {string} kuroUid 库洛 ID
    * @param {object} data 传入 data.gameId 游戏 id data.serverId 服务器 id data.roleId 游戏 uid

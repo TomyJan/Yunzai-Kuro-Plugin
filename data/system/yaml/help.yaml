@@ -32,6 +32,12 @@
     - icon: mingchao
       title: "#鸣潮卡片"
       desc: 查询和切换鸣潮UID信息
+    - icon: pns_action
+      title: "#血清"
+      desc: 查询战双血清恢复时间
+    - icon: mc_energy
+      title: "#结晶波片"
+      desc: 查询鸣潮结晶波片恢复时间
     - icon: mingchao
       title: "#鸣潮角色记录"
       desc: 查看鸣潮的抽卡记录

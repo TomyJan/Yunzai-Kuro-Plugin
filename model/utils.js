@@ -5,6 +5,8 @@ import crypto from 'crypto'
 import { dataPath, resPath } from '../data/system/pluginConstants.js'
 import fs from 'fs'
 import fetch from 'node-fetch'
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import zhCN from "date-fns/locale/zh-CN";
 
 /**
  * 程序延时
@@ -169,6 +171,22 @@ export function updateCardBg() {
         fs.copyFileSync(defaultCardBgPath, cardBgPath)
       return false
     })
+}
+
+/**
+ * 格式化时间戳为人类易读的时间
+ * @param {number} timestamp 时间戳
+ * @returns {string} 人类易读的时间
+ */
+export function formatTimestampInReadableFormat(timestamp) {
+  if (!timestamp) return '已经'
+  if (timestamp.toString().length === 10) {
+    timestamp = timestamp * 1000
+  }
+  return formatDistanceToNow(new Date(timestamp), {
+    locale: zhCN,
+    addSuffix: true,
+  })
 }
 
 /**

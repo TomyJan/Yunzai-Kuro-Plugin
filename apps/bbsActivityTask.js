@@ -1,7 +1,7 @@
 import bbsActivity from '../model/bbsActivityTask.js'
 import plugin from '../../../lib/plugins/plugin.js'
 
-export class bbsActivityTask extends plugin {
+export class bbsActivityTaskApp extends plugin {
   constructor() {
     super({
       /** 功能名称 */

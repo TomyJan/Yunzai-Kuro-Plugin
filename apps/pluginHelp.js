@@ -4,7 +4,7 @@ import pluginHelpData from '../model/pluginHelp.js'
 import md5 from 'md5'
 import { updateCardBg } from '../model/utils.js'
 
-export class pluginHelp extends plugin {
+export class pluginHelpApp extends plugin {
   constructor() {
     super({
       /** 功能名称 */

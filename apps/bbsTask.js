@@ -1,7 +1,7 @@
 import Task from '../model/bbsTask.js'
 import plugin from '../../../lib/plugins/plugin.js'
 
-export class bbsTask extends plugin {
+export class bbsTaskApp extends plugin {
   constructor() {
     super({
       /** 功能名称 */

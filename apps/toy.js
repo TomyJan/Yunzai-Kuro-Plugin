@@ -1,6 +1,6 @@
 import plugin from '../../../lib/plugins/plugin.js'
 
-export class toy extends plugin {
+export class toyApp extends plugin {
   constructor() {
     super({
       /** 功能名称 */
@@ -13,6 +13,10 @@ export class toy extends plugin {
       priority: 1000,
       rule: [
         {
+          reg: '^#?ping$',
+          fnc: 'ping',
+        },
+        {
           reg: '^#?库洛插件$',
           fnc: 'pluginTip',
         },
@@ -22,6 +26,10 @@ export class toy extends plugin {
         },
       ],
     })
+  }
+
+  async ping(e) {
+    await this.reply('pong')
   }
 
   async pluginTip(e) {

@@ -73,6 +73,16 @@ export default class kuroApiHandler {
         url: `${this.kuroApiUrl}/gamer/role/list`,
         body: `gameId=${data.gameId}`,
       },
+      getPnsWidgetData: {
+        // 取战双小组件数据
+        url: `${this.kuroApiUrl}/gamer/widget/game2/getData`,
+        body: `gameId=${data.gameId}&roleId=${data.roleId}&serverId=${data.serverId}&type=${data.type}`,
+      },
+      getMcWidgetData: {
+        // 取鸣潮小组件数据
+        url: `${this.kuroApiUrl}/gamer/widget/game3/getData`,
+        body: `gameId=${data.gameId}&roleId=${data.roleId}&serverId=${data.serverId}&type=${data.type}&sizeType=${data.sizeType}`,
+      },
       initSignInV2: {
         // 取签到配置信息 V2
         url: `${this.kuroApiUrl}/encourage/signIn/initSignInV2`,
@@ -242,6 +252,8 @@ export default class kuroApiHandler {
   getHeaders(ApiName, token, kuroUid) {
     if (
       [
+        'getPnsWidgetData',
+        'getMcWidgetData',
         'initSignInV2',
         'gameSignInV2',
         'queryGameSignInRecordV2',

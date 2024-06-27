@@ -9,7 +9,7 @@ import { mcGachaType } from '../data/system/pluginConstants.js'
 import common from '../../../lib/common/common.js'
 import { updateCardBg } from '../model/utils.js'
 
-export class mcGacha extends plugin {
+export class mcGachaApp extends plugin {
   constructor() {
     super({
       /** 功能名称 */
