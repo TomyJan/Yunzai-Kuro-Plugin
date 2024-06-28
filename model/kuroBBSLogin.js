@@ -56,16 +56,26 @@ export default class kuroBBSLogin {
     kuroLogger.debug('rsp_sdkLogin:', JSON.stringify(rsp_sdkLogin))
     if (typeof rsp_sdkLogin == 'string') {
       // 不是 json, 即返回报错
-      this.e.reply(rsp_sdkLogin)
+      this.e.reply(`登录失败: ${rsp_sdkLogin}`)
       return false
     }
 
     if (rsp_sdkLogin.code === 200) {
       // kuroLogger.debug('登录成功!', JSON.stringify(rsp_sdkLogin))
-      this.e.reply(
-        '登录成功, 即将保存 token, 下面是此次获取的 token, 请勿泄露!\n' +
+      let tokenMsg = await this.e.reply(
+        '登录成功, 即将保存 token, 下面是此次获取的 token, 可以复制用于其他自动化工具, 注意妥善保管请勿泄露! \n该消息 10s 后撤回~\n' +
           JSON.stringify(rsp_sdkLogin)
       )
+      setTimeout(() => {
+        if (tokenMsg) {
+          try {
+            if (this.e.group) this.e.group.recallMsg(tokenMsg.message_id)
+            if (this.e.friend) this.e.friend.recallMsg(tokenMsg.message_id)
+          } catch (err) {
+            kuroLogger.warn('撤回消息失败:', JSON.stringify(err))
+          }
+        }
+      }, 10000)
       return rsp_sdkLogin
     } else {
       kuroLogger.info('登录失败:', JSON.stringify(rsp_sdkLogin))

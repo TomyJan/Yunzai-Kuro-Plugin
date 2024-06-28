@@ -83,9 +83,9 @@ git -C ./plugins/Yunzai-Kuro-Plugin/ pull
 
 ### 登录相关
 
-- [x] 提交验证码登录库街区 `#库洛验证码登录` 同一个验证码有效期内可以多次使用
-- [x] 提交 token 登录库街区 `#库洛token登录` [token 获取教程](https://blog.tomys.top/2023-07/kuro-token/)
-- [x] 在线获取 token 登录库街区 `#库洛在线登录`
+- [x] 通过服务器在线获取 token 登录库街区 `#库洛在线登录`
+- [x] 提交验证码登录库街区 `#库洛验证码登录` **注意同一个验证码有效期内可以多次使用**
+- [x] 提交 token 登录库街区 `#库洛token登录` [token 获取教程](https://blog.tomys.top/2023-07/kuro-token/) 
 
 注意, 由于库街区 APP 和他的垃圾游戏一样只允许单设备登录, 新生成 token 后老 token 会失效, 所以如果使用验证码登录, 那么你的帐号的 APP 和 机器人 的登录会互顶
 

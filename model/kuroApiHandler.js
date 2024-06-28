@@ -309,7 +309,6 @@ export default class kuroApiHandler {
       source: 'android',
       version: '2.2.0',
       versionCode: '2200',
-      token: token,
       osVersion: 'Android',
       countryCode: 'CN',
       model: '23127PN0CC',
@@ -317,7 +316,6 @@ export default class kuroApiHandler {
       channelId: '2',
       'Content-Type': 'application/x-www-form-urlencoded',
       'accept-encoding': 'gzip',
-      Cookie: `user_token=${token}`,
       'User-Agent': 'okhttp/3.11.0',
     }
     if (ApiName !== 'sdkLogin') {
@@ -325,6 +323,7 @@ export default class kuroApiHandler {
       headers = {
         ...headers,
         token: token,
+        Cookie: `user_token=${token}`,
       }
     }
     if (!['forumList', 'findRoleList', 'roleList'].includes(ApiName)) {
