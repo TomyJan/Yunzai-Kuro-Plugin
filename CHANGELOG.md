@@ -1,3 +1,25 @@
+# [0.3.0-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.18-rel...v0.3.0-rel) (2024-06-28)
+
+
+### Bug Fixes
+
+* `库洛验证码登录` 失效 ([95a6dba](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/95a6dba10ebefe8c28f8ff287a5900586b528050))
+* 缺失目录 ([115fdb9](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/115fdb9a3d74e2255b0dd066786839337d9bcbd4))
+* WARNING myself ( [#13](https://github.com/TomyJan/Yunzai-Kuro-Plugin/issues/13) ) ([aeec03a](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/aeec03a52b2aad4bcb72b4a3d8edc7e3935115f8))
+
+
+### Features
+
+* 新增鸣潮 `1.1` 卡池/角色/武器 ([8bbbd60](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/8bbbd602058172ed9310ce1b4febdc428d18b914))
+* 游戏体力查询 ([81b4680](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/81b4680e4ead89bb068318b125a24de9020383d4))
+
+
+### Performance Improvements
+
+* 优化卡池文本匹配 ([4976fe8](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/4976fe8ba1e9b21ce765685df4a84e0ee9cae8e9))
+
+
+
 ## [0.2.18-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.17-rel...v0.2.18-rel) (2024-06-26)
 
 
