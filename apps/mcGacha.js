@@ -68,7 +68,7 @@ export class mcGachaApp extends plugin {
       // 从消息中提取卡池类型
       let msg = this.e.msg
         .replace(/#| /g, '')
-        .replace(/鸣潮|记录|唤取|分析|池/g, '')
+        .replace(/鸣潮|记录|抽卡|卡池|唤取|分析|池/g, '')
       let gachaType = 1
       switch (msg) {
         case '抽卡':
