@@ -98,7 +98,8 @@ export default class mcGachaData {
           if (willUpdateMsg) {
             try {
               if (this.e.group) this.e.group.recallMsg(willUpdateMsg.message_id)
-              if (this.e.friend) this.e.friend.recallMsg(willUpdateMsg.message_id)
+              if (this.e.friend)
+                this.e.friend.recallMsg(willUpdateMsg.message_id)
             } catch (err) {
               kuroLogger.warn('撤回消息失败:', JSON.stringify(err))
             }

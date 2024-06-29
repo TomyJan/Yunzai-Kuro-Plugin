@@ -283,7 +283,9 @@ export default class kuroApiHandler {
           kuroUid.length - 1
         )}.0.${kuroUid.substring(kuroUid.length - 4)}.${kuroUid.substring(
           kuroUid.length - 2
-        )} Mobile Safari/537.36 Kuro/${this.kuroBbsVersion} KuroGameBox/${this.kuroBbsVersion}`,
+        )} Mobile Safari/537.36 Kuro/${this.kuroBbsVersion} KuroGameBox/${
+          this.kuroBbsVersion
+        }`,
         'content-type': 'application/x-www-form-urlencoded',
         accept: 'application/json, text/plain, */*',
         devcode: `192.168.1.1${kuroUid.substring(
@@ -292,7 +294,9 @@ export default class kuroApiHandler {
           kuroUid.length - 1
         )}.0.${kuroUid.substring(kuroUid.length - 4)}.${kuroUid.substring(
           kuroUid.length - 2
-        )} Mobile Safari/537.36 Kuro/${this.kuroBbsVersion} KuroGameBox/${this.kuroBbsVersion}`,
+        )} Mobile Safari/537.36 Kuro/${this.kuroBbsVersion} KuroGameBox/${
+          this.kuroBbsVersion
+        }`,
         token: token,
         'sec-ch-ua-platform': '"Android"',
         origin: 'https://web-static.kurobbs.com',

@@ -187,7 +187,9 @@ export async function doMcEnergy(uin, kuro_uid) {
     }
     doMcSignInRet += `      ${formatTimestampInReadableFormat(
       rsp_getMcWidgetData.data.energyData.refreshTimeStamp
-    )}回满 (${rsp_getMcWidgetData.data.energyData.cur}/${rsp_getMcWidgetData.data.energyData.total})\n`
+    )}回满 (${rsp_getMcWidgetData.data.energyData.cur}/${
+      rsp_getMcWidgetData.data.energyData.total
+    })\n`
 
     await sleepAsync(getRandomInt(100, 600))
   }
