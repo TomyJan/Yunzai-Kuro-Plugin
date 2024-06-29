@@ -79,12 +79,12 @@ export default class kuroApiHandler {
       },
       getPnsWidgetData: {
         // 取战双小组件数据
-        url: `${this.kuroEvtApiUrl}/gamer/widget/game2/getData`,
+        url: `${this.kuroApiUrl}/gamer/widget/game2/getData`,
         body: `gameId=${data.gameId}&roleId=${data.roleId}&serverId=${data.serverId}&type=${data.type}`,
       },
       getMcWidgetData: {
         // 取鸣潮小组件数据
-        url: `${this.kuroEvtApiUrl}/gamer/widget/game3/getData`,
+        url: `${this.kuroApiUrl}/gamer/widget/game3/getData`,
         body: `gameId=${data.gameId}&roleId=${data.roleId}&serverId=${data.serverId}&type=${data.type}&sizeType=${data.sizeType}`,
       },
       initSignInV2: {
