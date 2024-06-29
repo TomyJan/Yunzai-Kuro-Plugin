@@ -26,6 +26,7 @@ html, body {
 }
 
 body {
+    position: relative;
     transform: scale(1);
     width: auto;
     background: url(../../../data/system/cachedImg/cardBg.jpg) no-repeat center center fixed;
@@ -33,6 +34,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 0;  /* 确保body在底层 */
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.42);  /* 调整透明度以改变暗度 */
+    pointer-events: none;  /* 防止遮罩层影响鼠标事件 */
+    z-index: -1;  /* 将遮罩层放在背景图之上，其他内容之下 */
 }
 
 .card {

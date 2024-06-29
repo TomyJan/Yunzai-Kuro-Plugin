@@ -69,6 +69,14 @@ export default class mcGachaData {
       let gachaRecord = await this.get(gachaLink, this.e.user_id)
       if (typeof gachaRecord === 'string') {
         // 如果记录更新失败, 进行提示; 如果更新成功, 不提示直接进入生成
+        if (willUpdateMsg) {
+          try {
+            if (this.e.group) this.e.group.recallMsg(willUpdateMsg.message_id)
+            if (this.e.friend) this.e.friend.recallMsg(willUpdateMsg.message_id)
+          } catch (err) {
+            kuroLogger.warn('撤回消息失败:', JSON.stringify(err))
+          }
+        }
         let updateFailMsg = await this.e.reply(
           `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 更新抽卡记录失败: \n${failedReason} \n将展示历史抽卡记录 `
         )
@@ -87,6 +95,14 @@ export default class mcGachaData {
         // 更新成功, 存入本地
         let gachaUpdateRet = await this.update(this.e.user_id, gachaRecord)
         if (typeof gachaUpdateRet === 'string') {
+          if (willUpdateMsg) {
+            try {
+              if (this.e.group) this.e.group.recallMsg(willUpdateMsg.message_id)
+              if (this.e.friend) this.e.friend.recallMsg(willUpdateMsg.message_id)
+            } catch (err) {
+              kuroLogger.warn('撤回消息失败:', JSON.stringify(err))
+            }
+          }
           let saveFailedMsg = await this.e.reply(
             `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 抽卡更新记录成功但保存失败: \n${gachaUpdateRet} \n将展示历史抽卡记录 `
           )
@@ -103,6 +119,14 @@ export default class mcGachaData {
             }
           }, 6000)
         } // 更新且保存成功, 无需提示
+        if (willUpdateMsg) {
+          try {
+            if (this.e.group) this.e.group.recallMsg(willUpdateMsg.message_id)
+            if (this.e.friend) this.e.friend.recallMsg(willUpdateMsg.message_id)
+          } catch (err) {
+            kuroLogger.warn('撤回消息失败:', JSON.stringify(err))
+          }
+        }
       }
     } else {
       let localUploadedMsg = await this.e.reply(

@@ -280,7 +280,7 @@ export class mcGachaApp extends plugin {
             '当然, 你也可以手动更新, 使用 \n  #鸣潮更新抽卡',
             '导出抽卡记录使用 \n  #鸣潮导出抽卡 \n导出的记录为 WWGF 格式, 可以导入其他支持 WWGF 的工具中使用~',
           ],
-          '鸣潮抽卡记录更新结果'
+          '[库洛插件] 鸣潮抽卡记录更新结果'
         )
         e.reply(forWardMsg)
         return true
