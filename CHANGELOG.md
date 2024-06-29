@@ -1,3 +1,21 @@
+## [0.3.1-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.0-rel...v0.3.1-rel) (2024-06-29)
+
+
+### Bug Fixes
+
+* 库洛在线登录消息的撤回 ([5af3215](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/5af3215dca31e1a5310521abc3db61543dbb2b16))
+* 类名改炸了 ( [#14](https://github.com/TomyJan/Yunzai-Kuro-Plugin/issues/14) ) ([e0d5735](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/e0d573530df5e096e9a06ba12d68f2adb9a94e2f))
+* 鸣潮体力写错了 ([85129ee](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/85129ee59adca428135c4a26d96f3408578da19e))
+* 傻逼库洛你在干什么 ([5bc2cfb](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/5bc2cfba0f48efb6253415c0b9c83ffa4237c3f0))
+
+
+### Performance Improvements
+
+* 库洛 API 更新&游戏签到物品类型识别 ([00cdd5c](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/00cdd5c3096fe29396fc3ebea0872f843e3ac2a9))
+* 优化提示消息&卡片背景压暗 ([22b4c90](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/22b4c90957d9a5da1bafaa7fc5ef17790f4e4435))
+
+
+
 # [0.3.0-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.18-rel...v0.3.0-rel) (2024-06-28)
 
 
