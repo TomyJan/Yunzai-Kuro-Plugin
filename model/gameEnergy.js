@@ -60,7 +60,7 @@ export default class gameEnergy {
       let msg = '[库洛插件] 鸣潮结晶波片查询\n\n'
       for (const kuro_uid in tokenData) {
         if (tokenData.hasOwnProperty(kuro_uid)) {
-          msg += await doPnsEnergy(this.e.user_id, kuro_uid)
+          msg += await doMcEnergy(this.e.user_id, kuro_uid)
           msg += `\n`
         } else {
           msg += `账号 ${kuro_uid}: \ntoken 格式错误\n\n`
