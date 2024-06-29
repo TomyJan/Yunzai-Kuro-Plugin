@@ -8,9 +8,9 @@ export default class kuroBBSLogin {
     this.e = e
     this.init()
     //消息提示以及风险警告
-    this.captchaLoginHelpTip = `免责声明:您将通过短信验证码获取库街区 token 登录库街区. \n本 Bot 不会保存您的账号和密码, 但会保存获取到的账号 token . \n我方仅提供库街区签到, 查询及其它相关游戏内容服务, 您的账号出现封禁, 被盗等处罚与我方无关. \n\n继续登录即为您阅读并同意以上条款! `
-    this.tokenLoginHelpTip = `免责声明:您将通过直接提交 token 登录库街区. \n本 Bot 不会保存您的账号和密码, 但会保存获取到的账号 token . \n我方仅提供库街区签到, 查询及其它相关游戏内容服务, 您的账号出现封禁, 被盗等处罚与我方无关. \n\n继续登录即为您阅读并同意以上条款! `
-    this.onlineLoginTip = `免责声明:您将通过插件服务器在线登录库街区. \n服务器及本 Bot 不会保存您的账号和密码, 但会保存获取到的账号 token . \n我方仅提供库街区签到, 查询及其它相关游戏内容服务, 您的账号出现封禁, 被盗等处罚与我方无关. \n\n继续登录即为您阅读并同意以上条款! `
+    this.captchaLoginHelpTip = `免责声明: \n您将通过短信验证码获取库街区 token 登录库街区 \n本 Bot 不会保存您的账号和密码, 但会保存获取到的账号 token \n我方仅提供库街区签到, 查询及其它相关游戏内容服务, 您的账号被封禁, 被盗等, 与我方无关 \n\n继续登录即为您阅读并同意以上条款! `
+    this.tokenLoginHelpTip = `免责声明: \n您将通过直接提交 token 登录库街区 \n本 Bot 不会保存您的账号和密码, 但会保存获取到的账号 token \n我方仅提供库街区签到, 查询及其它相关游戏内容服务, 您的账号被封禁, 被盗等, 与我方无关 \n\n继续登录即为您阅读并同意以上条款! `
+    this.onlineLoginTip = `免责声明: \n您将通过插件服务器在线登录库街区 \n服务器及本 Bot 不会保存您的账号和密码, 但会保存获取到的账号 token \n我方仅提供库街区签到, 查询及其它相关游戏内容服务, 您的账号被封禁, 被盗等, 与我方无关 \n\n继续登录即为您阅读并同意以上条款! `
   }
   async init() {}
 
@@ -154,29 +154,21 @@ export default class kuroBBSLogin {
         '[库洛插件] 库洛在线登录'
       )
       let loginMsg = await this.e.reply(loginMsgWithTip)
+      setTimeout(() => {
+        if (loginMsg) {
+          try {
+            if (this.e.group) this.e.group.recallMsg(loginMsg.message_id)
+            if (this.e.friend) this.e.friend.recallMsg(loginMsg.message_id)
+          } catch (err) {
+            kuroLogger.warn('撤回消息失败:', JSON.stringify(err))
+          }
+        }
+      }, 60000)
       // 五秒取一次登录状态, 三分钟后过期
       let i = 0
       let failedTimes = 0
       while (i < 36) {
         await sleepAsync(5000)
-        if (i == 12) {
-          // 一分钟后撤回消息
-          kuroLogger.debug(
-            'loginMsg:',
-            JSON.stringify(loginMsg),
-            '消息属性:',
-            this.e.group ? '群聊' : '',
-            this.e.friend ? '私聊' : ''
-          )
-          if (loginMsg) {
-            try {
-              if (this.e.group) this.e.group.recallMsg(loginMsg.message_id)
-              if (this.e.friend) this.e.friend.recallMsg(loginMsg.message_id)
-            } catch (err) {
-              kuroLogger.warn('撤回消息失败:', JSON.stringify(err))
-            }
-          }
-        }
         let rsp_onlineLogin = await kuroapi.getPluginServerKuroBbsLoginToken(
           0,
           {
@@ -205,6 +197,14 @@ export default class kuroBBSLogin {
           rsp_onlineLogin.data.hasOwnProperty('code') &&
           rsp_onlineLogin.data.hasOwnProperty('data')
         ) {
+          if (loginMsg) {
+            try {
+              if (this.e.group) this.e.group.recallMsg(loginMsg.message_id)
+              if (this.e.friend) this.e.friend.recallMsg(loginMsg.message_id)
+            } catch (err) {
+              kuroLogger.warn('撤回消息失败:', JSON.stringify(err))
+            }
+          }
           let tmpMsg = await this.e.reply(
             '登录成功, 即将保存 token, 可在网页复制此次获取的 token, 关闭网页后将无法再次复制, 请勿泄露!'
           )
