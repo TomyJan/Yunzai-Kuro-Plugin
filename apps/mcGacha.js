@@ -132,18 +132,18 @@ export class mcGachaApp extends plugin {
 
   async cache(data) {
     let tmp = md5(JSON.stringify(data))
-    if (mcGacha.mcGachaCardData.md5 === tmp) {
-      return mcGacha.mcGachaCardData.img
+    if (mcGachaApp.mcGachaCardData.md5 === tmp) {
+      return mcGachaApp.mcGachaCardData.img
     }
 
     await updateCardBg()
-    mcGacha.mcGachaCardData.img = await puppeteer.screenshot(
+    mcGachaApp.mcGachaCardData.img = await puppeteer.screenshot(
       'mcGachaRecord',
       data
     )
-    mcGacha.mcGachaCardData.md5 = tmp
+    mcGachaApp.mcGachaCardData.md5 = tmp
 
-    return mcGacha.mcGachaCardData.img
+    return mcGachaApp.mcGachaCardData.img
   }
 
   static mcGachaCardData = {

@@ -61,15 +61,15 @@ export class gameCardApp extends plugin {
 
   async cachePns(data) {
     let tmp = md5(JSON.stringify(data))
-    if (gameCard.pnsCardData.md5 === tmp) {
-      return gameCard.pnsCardData.img
+    if (gameCardApp.pnsCardData.md5 === tmp) {
+      return gameCardApp.pnsCardData.img
     }
 
     await updateCardBg()
-    gameCard.pnsCardData.img = await puppeteer.screenshot('gameCardPns', data)
-    gameCard.pnsCardData.md5 = tmp
+    gameCardApp.pnsCardData.img = await puppeteer.screenshot('gameCardPns', data)
+    gameCardApp.pnsCardData.md5 = tmp
 
-    return gameCard.pnsCardData.img
+    return gameCardApp.pnsCardData.img
   }
 
   static pnsCardData = {
@@ -107,15 +107,15 @@ export class gameCardApp extends plugin {
 
   async cacheMc(data) {
     let tmp = md5(JSON.stringify(data))
-    if (gameCard.mcCardData.md5 === tmp) {
-      return gameCard.mcCardData.img
+    if (gameCardApp.mcCardData.md5 === tmp) {
+      return gameCardApp.mcCardData.img
     }
 
     await updateCardBg()
-    gameCard.mcCardData.img = await puppeteer.screenshot('gameCardMc', data)
-    gameCard.mcCardData.md5 = tmp
+    gameCardApp.mcCardData.img = await puppeteer.screenshot('gameCardMc', data)
+    gameCardApp.mcCardData.md5 = tmp
 
-    return gameCard.mcCardData.img
+    return gameCardApp.mcCardData.img
   }
 
   static mcCardData = {

@@ -36,15 +36,15 @@ export class pluginHelpApp extends plugin {
 
   async cache(data) {
     let tmp = md5(JSON.stringify(data))
-    if (pluginHelp.helpData.md5 === tmp) {
-      return pluginHelp.helpData.img
+    if (pluginHelpApp.helpData.md5 === tmp) {
+      return pluginHelpApp.helpData.img
     }
 
     await updateCardBg()
-    pluginHelp.helpData.img = await puppeteer.screenshot('help', data)
-    pluginHelp.helpData.md5 = tmp
+    pluginHelpApp.helpData.img = await puppeteer.screenshot('help', data)
+    pluginHelpApp.helpData.md5 = tmp
 
-    return pluginHelp.helpData.img
+    return pluginHelpApp.helpData.img
   }
 
   static helpData = {

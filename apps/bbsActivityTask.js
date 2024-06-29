@@ -15,7 +15,7 @@ export class bbsActivityTaskApp extends plugin {
       rule: [
         {
           reg: '^#?(库街区|库洛|战双)一键活动(任务)?$',
-          fnc: 'bbsActivityTask',
+          fnc: 'bbsActivityTaskDo',
         },
         {
           reg: '^#?(库街区|库洛|战双)活动(.*)绑定(星火|信标)服(.*)$',
@@ -25,7 +25,7 @@ export class bbsActivityTaskApp extends plugin {
     })
   }
 
-  async bbsActivityTask(e) {
+  async bbsActivityTaskDo(e) {
     let bbsAct = new bbsActivity(e)
     await bbsAct.bbsActivityTask()
     return true
