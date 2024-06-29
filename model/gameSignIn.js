@@ -164,8 +164,8 @@ export async function doPnsSignIn(uin, kuro_uid) {
       doPnsSignInRet += `      获取签到奖励失败: ${rsp_queryGameSignInRecordV2}\n`
     } else {
       if (rsp_queryGameSignInRecordV2.data.length > 0) {
-        // 倒序 rsp_queryGameSignInRecordV2.data 让日签排在特殊的前面
-        rsp_queryGameSignInRecordV2.data.reverse()
+        // 按照 type 排序, 让日签排在特殊的前面
+        rsp_queryGameSignInRecordV2.data.sort((a, b) => a.type - b.type)
         let hasTodayGoods = false // 变量记录是否获取到了今天的物品
         for (const item of rsp_queryGameSignInRecordV2.data) {
           let today = new Date()
@@ -185,10 +185,10 @@ export async function doPnsSignIn(uin, kuro_uid) {
             // 只输出今天获得的物品
             hasTodayGoods = true
             if (item.type === 0) {
-              // 常规签到?
-              doPnsSignInRet += `      获得${item.goodsName}x${item.goodsNum}\n`
+              doPnsSignInRet += `      签到获得${item.goodsName}x${item.goodsNum}\n`
+            } else if (item.type === 2) {
+              doPnsSignInRet += `      新手签到获得${item.goodsName}x${item.goodsNum}\n`
             } else if (item.type === 3) {
-              // 限时签到?
               doPnsSignInRet += `      限时签到获得${item.goodsName}x${item.goodsNum}\n`
             } else {
               doPnsSignInRet += `      特殊签到${item.type}获得${item.goodsName}x${item.goodsNum}\n`
@@ -301,8 +301,8 @@ export async function doMcSignIn(uin, kuro_uid) {
       doMcSignInRet += `      获取签到奖励失败: ${rsp_queryGameSignInRecordV2}\n`
     } else {
       if (rsp_queryGameSignInRecordV2.data.length > 0) {
-        // 倒序 rsp_queryGameSignInRecordV2.data 让日签排在特殊的前面
-        rsp_queryGameSignInRecordV2.data.reverse()
+        // 按照 type 排序, 让日签排在特殊的前面
+        rsp_queryGameSignInRecordV2.data.sort((a, b) => a.type - b.type)
         let hasTodayGoods = false // 变量记录是否获取到了今天的物品
         for (const item of rsp_queryGameSignInRecordV2.data) {
           let today = new Date()
@@ -322,10 +322,10 @@ export async function doMcSignIn(uin, kuro_uid) {
             // 只输出今天获得的物品
             hasTodayGoods = true
             if (item.type === 0) {
-              // 常规签到?
-              doMcSignInRet += `      获得${item.goodsName}x${item.goodsNum}\n`
+              doMcSignInRet += `      签到获得${item.goodsName}x${item.goodsNum}\n`
+            } else if (item.type === 2) {
+              doMcSignInRet += `      新手签到获得${item.goodsName}x${item.goodsNum}\n`
             } else if (item.type === 3) {
-              // 限时签到?
               doMcSignInRet += `      限时签到获得${item.goodsName}x${item.goodsNum}\n`
             } else {
               doMcSignInRet += `      特殊签到${item.type}获得${item.goodsName}x${item.goodsNum}\n`

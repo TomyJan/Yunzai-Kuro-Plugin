@@ -5,9 +5,13 @@ import { generateFixedString, generateUUID } from './utils.js'
 export default class kuroApiHandler {
   constructor() {
     this.kuroApiUrl = 'https://api.kurobbs.com'
+    this.kuroEvtApiUrl = 'https://event.kurobbs.com'
     this.mcGachaApiUrl = 'https://gmserver-api.aki-game2.com'
     this.mcGachaApiUrlOS = 'https://gmserver-api.aki-game2.net'
     this.pluginServerUrl = 'https://kuro.amoe.cc'
+
+    this.kuroBbsVersion = '2.2.1'
+    this.kuroBbsVerCode = '2210'
   }
 
   /**
@@ -75,12 +79,12 @@ export default class kuroApiHandler {
       },
       getPnsWidgetData: {
         // 取战双小组件数据
-        url: `${this.kuroApiUrl}/gamer/widget/game2/getData`,
+        url: `${this.kuroEvtApiUrl}/gamer/widget/game2/getData`,
         body: `gameId=${data.gameId}&roleId=${data.roleId}&serverId=${data.serverId}&type=${data.type}`,
       },
       getMcWidgetData: {
         // 取鸣潮小组件数据
-        url: `${this.kuroApiUrl}/gamer/widget/game3/getData`,
+        url: `${this.kuroEvtApiUrl}/gamer/widget/game3/getData`,
         body: `gameId=${data.gameId}&roleId=${data.roleId}&serverId=${data.serverId}&type=${data.type}&sizeType=${data.sizeType}`,
       },
       initSignInV2: {
@@ -279,7 +283,7 @@ export default class kuroApiHandler {
           kuroUid.length - 1
         )}.0.${kuroUid.substring(kuroUid.length - 4)}.${kuroUid.substring(
           kuroUid.length - 2
-        )} Mobile Safari/537.36 Kuro/2.2.0 KuroGameBox/2.2.0`,
+        )} Mobile Safari/537.36 Kuro/${this.kuroBbsVersion} KuroGameBox/${this.kuroBbsVersion}`,
         'content-type': 'application/x-www-form-urlencoded',
         accept: 'application/json, text/plain, */*',
         devcode: `192.168.1.1${kuroUid.substring(
@@ -288,7 +292,7 @@ export default class kuroApiHandler {
           kuroUid.length - 1
         )}.0.${kuroUid.substring(kuroUid.length - 4)}.${kuroUid.substring(
           kuroUid.length - 2
-        )} Mobile Safari/537.36 Kuro/2.2.0 KuroGameBox/2.2.0`,
+        )} Mobile Safari/537.36 Kuro/${this.kuroBbsVersion} KuroGameBox/${this.kuroBbsVersion}`,
         token: token,
         'sec-ch-ua-platform': '"Android"',
         origin: 'https://web-static.kurobbs.com',
@@ -307,8 +311,8 @@ export default class kuroApiHandler {
       devCode: generateFixedString(kuroUid),
       ip: `192.168.1.1${kuroUid.substring(kuroUid.length - 2)}`,
       source: 'android',
-      version: '2.2.0',
-      versionCode: '2200',
+      version: this.kuroBbsVersion,
+      versionCode: this.kuroBbsVerCode,
       osVersion: 'Android',
       countryCode: 'CN',
       model: '23127PN0CC',
