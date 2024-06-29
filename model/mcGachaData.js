@@ -1,6 +1,5 @@
 import kuroLogger from '../components/logger.js'
 import { getToken } from './kuroBBSTokenHandler.js'
-import { getRandomInt, sleepAsync } from './utils.js'
 import kuroApi from './kuroApi.js'
 import userConfig from './userConfig.js'
 import {

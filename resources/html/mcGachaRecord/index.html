@@ -30,10 +30,12 @@
                 <div class="number">{{userInfo.gacha.goldCount}}</div>
                 <div class="label">金卡数</div>
             </div>
+            {{if userInfo.gacha.notUpGoldCount > 0}}
             <div class="stat">
                 <div class="number">{{userInfo.gacha.notUpGoldCount}}</div>
                 <div class="label">歪 T.T</div>
             </div>
+            {{/if}}
             <div class="stat">
                 <div class="number">{{userInfo.gacha.fourStarItemCount}}</div>
                 <div class="label">紫卡数</div>
