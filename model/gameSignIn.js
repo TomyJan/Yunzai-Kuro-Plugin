@@ -138,9 +138,13 @@ export async function doPnsSignIn(uin, kuro_uid) {
       doPnsSignInRet += `      ${tmp}`
     }
 
-    doPnsSignInRet +=  rsp_initSignInV2.data.sigInNum === (await mGetDate()) 
-    ? `, 本月全勤达成!\n`
-    : `, 本月签${rsp_initSignInV2.data.sigInNum}天` + (rsp_initSignInV2.data.omissionNnm !== 0 ? `, 漏${rsp_initSignInV2.data.omissionNnm}天\n` : `\n`)
+    doPnsSignInRet +=
+      rsp_initSignInV2.data.sigInNum === (await mGetDate())
+        ? `, 本月全勤达成!\n`
+        : `, 本月签${rsp_initSignInV2.data.sigInNum}天` +
+          (rsp_initSignInV2.data.omissionNnm !== 0
+            ? `, 漏${rsp_initSignInV2.data.omissionNnm}天\n`
+            : `\n`)
 
     // 签到获得的物品
     let rsp_queryGameSignInRecordV2 = await kuroapi.queryGameSignInRecordV2(
@@ -176,7 +180,9 @@ export async function doPnsSignIn(uin, kuro_uid) {
             // kuroLogger.debug(`item.sigInDate 截断后: ${item.sigInDate}`)
           }
           if (item.sigInDate === todayStr) {
-            kuroLogger.debug(`取到 ${data.roleId} 今日签到奖励: 类型: ${item.type} ${item.goodsName}x${item.goodsNum}`)
+            kuroLogger.debug(
+              `取到 ${data.roleId} 今日签到奖励: 类型: ${item.type} ${item.goodsName}x${item.goodsNum}`
+            )
             // 只输出今天获得的物品
             hasTodayGoods = true
             if (item.type === 0) {
@@ -269,9 +275,13 @@ export async function doMcSignIn(uin, kuro_uid) {
       doMcSignInRet += `      ${tmp}`
     }
 
-    doMcSignInRet += rsp_initSignInV2.data.sigInNum === (await mGetDate()) 
-    ? `, 本月全勤达成!\n`
-    : `, 本月签${rsp_initSignInV2.data.sigInNum}天` + (rsp_initSignInV2.data.omissionNnm !== 0 ? `, 漏${rsp_initSignInV2.data.omissionNnm}天\n` : `\n`)
+    doMcSignInRet +=
+      rsp_initSignInV2.data.sigInNum === (await mGetDate())
+        ? `, 本月全勤达成!\n`
+        : `, 本月签${rsp_initSignInV2.data.sigInNum}天` +
+          (rsp_initSignInV2.data.omissionNnm !== 0
+            ? `, 漏${rsp_initSignInV2.data.omissionNnm}天\n`
+            : `\n`)
 
     // 签到获得的物品
     let rsp_queryGameSignInRecordV2 = await kuroapi.queryGameSignInRecordV2(
@@ -307,7 +317,9 @@ export async function doMcSignIn(uin, kuro_uid) {
             // kuroLogger.debug(`item.sigInDate 截断后: ${item.sigInDate}`)
           }
           if (item.sigInDate === todayStr) {
-            kuroLogger.debug(`取到 ${data.roleId} 今日签到奖励: 类型: ${item.type} ${item.goodsName}x${item.goodsNum}`)
+            kuroLogger.debug(
+              `取到 ${data.roleId} 今日签到奖励: 类型: ${item.type} ${item.goodsName}x${item.goodsNum}`
+            )
             // 只输出今天获得的物品
             hasTodayGoods = true
             if (item.type === 0) {
