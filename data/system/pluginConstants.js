@@ -51,6 +51,7 @@ export const mcGachaType = [
 ]
 
 // 鸣潮历史 up 池时间和物品 id
+// 注意, 解包得到 IconRup 中的 id 自 1.1 版本开始并不与角色 id 对应, 需要在 roleinfo 中找到相应 id
 export const mcGachaUpPools = [
   {
     // 1.0 上半, 提前开服故时间提前
@@ -92,7 +93,7 @@ export const mcGachaUpPools = [
     // 1.1 上半
     startTime: '1719540000', // 2024.06.28 10:00
     endTime: '1721613540', // 2024.07.22 09:59
-    itemId: '1607',
+    itemId: '1304',
     itemName: '今汐',
     itemType: '1',
     cardPoolName: '寒尽觉春生',
@@ -110,7 +111,7 @@ export const mcGachaUpPools = [
     // 1.1 下半
     startTime: '1721613600', // 2024.07.22 10:00
     endTime: '1723687140', // 2024.08.15 09:59
-    itemId: '1608',
+    itemId: '1205',
     itemName: '长离',
     itemType: '1',
     cardPoolName: '炽羽策阵星',
