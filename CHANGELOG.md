@@ -1,3 +1,18 @@
+## [0.3.2-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.1-rel...v0.3.2-rel) (2024-06-30)
+
+
+### Bug Fixes
+
+* 新角色 id 错误 ([a0e8939](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/a0e8939ded41828f72742fe9ed5e7a2c80b7f950))
+* 游戏签到全勤提示 ([7440a08](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/7440a08d71999a69ce08f8210715d81ace7fe877))
+
+
+### Performance Improvements
+
+* 优化鸣潮抽卡记录样式 ([ba84473](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/ba844739d763c668cb2128b66542c4e194aa9e22))
+
+
+
 ## [0.3.1-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.0-rel...v0.3.1-rel) (2024-06-29)
 
 
