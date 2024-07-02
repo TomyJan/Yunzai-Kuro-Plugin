@@ -82,6 +82,7 @@ export function generateFixedString(inputString, length = 40) {
     kuroLogger.warn('生成固定字符串输入为空, 使用默认值 1')
     inputString = '1'
   }
+  inputString = inputString.toString()
   if (length > 64) {
     length = 64
     kuroLogger.warn(

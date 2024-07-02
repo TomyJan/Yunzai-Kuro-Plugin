@@ -44,7 +44,7 @@ export default class kuroApi {
         'getPluginServerKuroBbsLoginToken',
       ].includes(ApiName)
     ) {
-      rsp = await this.kuroApiHandler.getApiRsp(ApiName, '1', null, data)
+      rsp = await this.kuroApiHandler.getApiRsp(ApiName, '114514', null, data)
     } else if (ApiName == 'checkToken_mineV2') {
       ApiName = 'mineV2'
       rsp = await this.kuroApiHandler.getApiRsp(
@@ -169,7 +169,7 @@ export default class kuroApi {
    * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
    */
   async sdkLogin(data) {
-    return this.getData('sdkLogin', '1', data)
+    return this.getData('sdkLogin', '114514', data)
   }
 
   /**
@@ -384,7 +384,7 @@ export default class kuroApi {
    * @returns {JSON|string} code=0 时接口返回的原始 json 或者报错信息
    */
   async mcGachaRecord(data) {
-    return this.getData('mcGachaRecord', '1', data)
+    return this.getData('mcGachaRecord', '114514', data)
   }
 
   /**
@@ -392,7 +392,7 @@ export default class kuroApi {
    * @returns {JSON|string} code=0 时接口返回的原始 json 或者报错信息
    */
   async getPluginServerKuroBbsLoginAuth() {
-    return this.getData('getPluginServerKuroBbsLoginAuth', '1', {})
+    return this.getData('getPluginServerKuroBbsLoginAuth', '114514', {})
   }
 
   /**
@@ -401,6 +401,6 @@ export default class kuroApi {
    * @returns {JSON|string} code=0 时接口返回的原始 json 或者报错信息
    */
   async getPluginServerKuroBbsLoginToken(data) {
-    return this.getData('getPluginServerKuroBbsLoginToken', '1', data)
+    return this.getData('getPluginServerKuroBbsLoginToken', '114514', data)
   }
 }
