@@ -169,11 +169,9 @@ export default class kuroBBSLogin {
       let failedTimes = 0
       while (i < 36) {
         await sleepAsync(5000)
-        let rsp_onlineLogin = await kuroapi.getPluginServerKuroBbsLoginToken(
-          {
-            token: rsp_getPluginServerKuroBbsLoginAuth.token,
-          }
-        )
+        let rsp_onlineLogin = await kuroapi.getPluginServerKuroBbsLoginToken({
+          token: rsp_getPluginServerKuroBbsLoginAuth.token,
+        })
         kuroLogger.debug('rsp_onlineLogin:', JSON.stringify(rsp_onlineLogin))
         if (typeof rsp_onlineLogin == 'string') {
           // 不是 json
