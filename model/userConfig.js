@@ -150,7 +150,9 @@ export default class userConfig {
         let kuroapi = new kuroApi(qq)
         do {
           if (!kuroUidToFetch) {
-            kuroLogger.warn(`用户 ${qq} 没有绑定 token, 无法通过 api 遍历找出 uid`)
+            kuroLogger.warn(
+              `用户 ${qq} 没有绑定 token, 无法通过 api 遍历找出 uid`
+            )
             break
           }
           let rsp_roleList = await kuroapi.roleList(kuroUidToFetch, { gameId })
