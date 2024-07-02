@@ -18,7 +18,7 @@ export default class kuroApiHandler {
    * 取库洛接口返回
    * 调用其他接口前请先校验 token 有效性
    * @param {string} ApiName 接口名称
-   * @param {string|boolean} kuroUid 库洛 ID, sdkLogin 和 mcGachaRecord 传入 false
+   * @param {string|boolean} kuroUid 库洛 ID, 不需要的接口 传入 114514
    * @param {string} token 库洛 ID 的 token
    * @param {object} data 传入数据
    * @returns {JSON|string} 接口返回的 原始 json 或者报错信息

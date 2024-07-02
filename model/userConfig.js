@@ -149,6 +149,10 @@ export default class userConfig {
         let kuroUidToFetch = Object.keys(tokenData)[kuroUidIndex]
         let kuroapi = new kuroApi(qq)
         do {
+          if (!kuroUidToFetch) {
+            kuroLogger.warn(`用户 ${qq} 没有绑定 token, 无法通过 api 遍历找出 uid`)
+            break
+          }
           let rsp_roleList = await kuroapi.roleList(kuroUidToFetch, { gameId })
           if (typeof rsp_roleList !== 'string') {
             if (rsp_roleList.data.length > 0) {
@@ -224,6 +228,10 @@ export default class userConfig {
     let kuroUidToFetch = Object.keys(tokenData)[kuroUidIndex]
     let kuroapi = new kuroApi(qq)
     do {
+      if (!kuroUidToFetch) {
+        kuroLogger.warn(`用户 ${qq} 没有绑定 token, 无法通过 api 遍历找出 uid`)
+        break
+      }
       let rsp_roleList = await kuroapi.roleList(kuroUidToFetch, { gameId })
       if (typeof rsp_roleList !== 'string') {
         if (rsp_roleList.data.length > 0) {
