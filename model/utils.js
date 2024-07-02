@@ -78,6 +78,10 @@ export function generateUUID(inputString) {
  * @returns {string} 固定字符串
  */
 export function generateFixedString(inputString, length = 40) {
+  if (!inputString) {
+    kuroLogger.warn('生成固定字符串输入为空, 使用默认值 1')
+    inputString = '1'
+  }
   if (length > 64) {
     length = 64
     kuroLogger.warn(

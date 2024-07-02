@@ -225,7 +225,7 @@ export default class mcGachaData {
 
     // 发送请求
     let kuroapi = new kuroApi(qq)
-    let rsp_mcGachaRecord = await kuroapi.mcGachaRecord(0, {
+    let rsp_mcGachaRecord = await kuroapi.mcGachaRecord({
       cardPoolId,
       cardPoolType: 7,
       playerId,
@@ -259,7 +259,7 @@ export default class mcGachaData {
       curCardPoolToFetch <= 7;
       curCardPoolToFetch++
     ) {
-      let rsp_mcGachaRecord = await kuroapi.mcGachaRecord(0, {
+      let rsp_mcGachaRecord = await kuroapi.mcGachaRecord({
         cardPoolId,
         cardPoolType: curCardPoolToFetch,
         playerId,
@@ -268,7 +268,7 @@ export default class mcGachaData {
       })
       if (typeof rsp_mcGachaRecord === 'string')
         // 失败重试一次
-        rsp_mcGachaRecord = await kuroapi.mcGachaRecord(0, {
+        rsp_mcGachaRecord = await kuroapi.mcGachaRecord({
           cardPoolId,
           cardPoolType: curCardPoolToFetch,
           playerId,

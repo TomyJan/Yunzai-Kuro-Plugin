@@ -129,7 +129,7 @@ export default class kuroBBSLogin {
   async onlineLogin() {
     let kuroapi = new kuroApi(this.e.user_id)
     let rsp_getPluginServerKuroBbsLoginAuth =
-      await kuroapi.getPluginServerKuroBbsLoginAuth(0)
+      await kuroapi.getPluginServerKuroBbsLoginAuth()
     kuroLogger.debug(
       'rsp_getPluginServerKuroBbsLoginAuth:',
       JSON.stringify(rsp_getPluginServerKuroBbsLoginAuth)
@@ -170,7 +170,6 @@ export default class kuroBBSLogin {
       while (i < 36) {
         await sleepAsync(5000)
         let rsp_onlineLogin = await kuroapi.getPluginServerKuroBbsLoginToken(
-          0,
           {
             token: rsp_getPluginServerKuroBbsLoginAuth.token,
           }

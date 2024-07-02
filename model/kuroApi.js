@@ -169,7 +169,7 @@ export default class kuroApi {
    * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
    */
   async sdkLogin(data) {
-    return this.getData('sdkLogin', null, data)
+    return this.getData('sdkLogin', '1', data)
   }
 
   /**
@@ -380,30 +380,27 @@ export default class kuroApi {
 
   /**
    * 鸣潮抽卡记录
-   * @param {string} kuroUid 库洛 ID, 传 0 即可
    * @param {object} data 传入 data.cardPoolId 卡池 id data.cardPoolType 卡池类型 data.playerId 游戏 uid data.recordId 记录 id data.serverId 服务器 id
    * @returns {JSON|string} code=0 时接口返回的原始 json 或者报错信息
    */
-  async mcGachaRecord(kuroUid, data) {
-    return this.getData('mcGachaRecord', kuroUid, data)
+  async mcGachaRecord(data) {
+    return this.getData('mcGachaRecord', '1', data)
   }
 
   /**
    * 从插件服务器获取库街区登录通信 token
-   * @param {string} kuroUid 库洛 ID, 传 0 即可
    * @returns {JSON|string} code=0 时接口返回的原始 json 或者报错信息
    */
-  async getPluginServerKuroBbsLoginAuth(kuroUid) {
-    return this.getData('getPluginServerKuroBbsLoginAuth', kuroUid, {})
+  async getPluginServerKuroBbsLoginAuth() {
+    return this.getData('getPluginServerKuroBbsLoginAuth', '1', {})
   }
 
   /**
    * 从插件服务器获取库街区 token
-   * @param {string} kuroUid 库洛 ID, 传 0 即可
    * @params {object} data 传入 data.token 通信 token
    * @returns {JSON|string} code=0 时接口返回的原始 json 或者报错信息
    */
-  async getPluginServerKuroBbsLoginToken(kuroUid, data) {
-    return this.getData('getPluginServerKuroBbsLoginToken', kuroUid, data)
+  async getPluginServerKuroBbsLoginToken(data) {
+    return this.getData('getPluginServerKuroBbsLoginToken', '1', data)
   }
 }
