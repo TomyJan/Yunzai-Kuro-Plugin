@@ -5,7 +5,11 @@ import {
   pluginVer,
   pluginThemeColor,
 } from './data/system/pluginConstants.js'
-import { initAutoTask, checkUpdateTask, gameEnergyPushTask } from './model/autoTask.js'
+import {
+  initAutoTask,
+  checkUpdateTask,
+  gameEnergyPushTask,
+} from './model/autoTask.js'
 
 await kuroLogger.info(pluginThemeColor('============(≧∇≦)ﾉ============'))
 await kuroLogger.info(pluginThemeColor(`库洛插件 V${pluginVer} 开始载入~`))

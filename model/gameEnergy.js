@@ -136,11 +136,19 @@ export async function doPnsEnergy(uin, kuro_uid, isPushTask = false) {
     doPnsSignInRet += `      ${formatTimestampInReadableFormat(
       rsp_getPnsWidgetData.data.actionData.refreshTimeStamp
     )}回满 (${rsp_getPnsWidgetData.data.actionData.value})\n`
-    
+
     // 延迟到回满时间后执行推送, 如果回满时间在两小时内
-    if (isPushTask && rsp_getPnsWidgetData.data.actionData.refreshTimeStamp > 0 && rsp_getPnsWidgetData.data.actionData.refreshTimeStamp - rsp_getPnsWidgetData.data.serverTime < 7200) {
+    if (
+      isPushTask &&
+      rsp_getPnsWidgetData.data.actionData.refreshTimeStamp > 0 &&
+      rsp_getPnsWidgetData.data.actionData.refreshTimeStamp -
+        rsp_getPnsWidgetData.data.serverTime <
+        7200
+    ) {
       setTimeout(async () => {
-        kuroLogger.debug(`准备执行账号 ${kuro_uid} 的战双 UID ${data.roleId} 的体力推送任务`)
+        kuroLogger.debug(
+          `准备执行账号 ${kuro_uid} 的战双 UID ${data.roleId} 的体力推送任务`
+        )
         doEnergyPush(uin, kuro_uid, 2, data.roleId, data.serverId)
       }, rsp_getPnsWidgetData.data.actionData.refreshTimeStamp - rsp_getPnsWidgetData.data.serverTime)
     }
@@ -204,9 +212,17 @@ export async function doMcEnergy(uin, kuro_uid, isPushTask = false) {
     })\n`
 
     // 延迟到回满时间后执行推送, 如果还未回满且回满时间在两小时内
-    if (isPushTask && rsp_getMcWidgetData.data.energyData.refreshTimeStamp > 0 && rsp_getMcWidgetData.data.energyData.refreshTimeStamp - rsp_getMcWidgetData.data.serverTime < 7200) {
+    if (
+      isPushTask &&
+      rsp_getMcWidgetData.data.energyData.refreshTimeStamp > 0 &&
+      rsp_getMcWidgetData.data.energyData.refreshTimeStamp -
+        rsp_getMcWidgetData.data.serverTime <
+        7200
+    ) {
       setTimeout(async () => {
-        kuroLogger.debug(`准备执行账号 ${kuro_uid} 的鸣潮 UID ${data.roleId} 的体力推送任务`)
+        kuroLogger.debug(
+          `准备执行账号 ${kuro_uid} 的鸣潮 UID ${data.roleId} 的体力推送任务`
+        )
         doEnergyPush(uin, kuro_uid, 3, data.roleId, data.serverId)
       }, rsp_getMcWidgetData.data.energyData.refreshTimeStamp - rsp_getMcWidgetData.data.serverTime)
     }
@@ -217,7 +233,7 @@ export async function doMcEnergy(uin, kuro_uid, isPushTask = false) {
   return doMcSignInRet
 }
 
-/** 
+/**
  * 执行单个账号的游戏体力查询和推送
  * @param {number} uin 对方 QQ
  * @param {number} kuroUid 游戏 UID 所在库洛 ID
@@ -226,17 +242,27 @@ export async function doMcEnergy(uin, kuro_uid, isPushTask = false) {
  * @param {number} gameServerId 游戏服务器 ID
  * @returns {boolean} 是否成功
  */
-export async function doEnergyPush(uin, kuroUid, gameId, gameUid, gameServerId) {
+export async function doEnergyPush(
+  uin,
+  kuroUid,
+  gameId,
+  gameUid,
+  gameServerId
+) {
   if (gameId !== 2 && gameId !== 3) {
     kuroLogger.error(`未知的游戏 ID: ${gameId}`)
     return false
   }
-  kuroLogger.debug(`准备执行 QQ ${uin} 的账号 ${kuroUid} 的游戏 ${gameId} 在服务器 ${gameServerId} 的 UID ${gameUid} 的体力推送任务`)
+  kuroLogger.debug(
+    `准备执行 QQ ${uin} 的账号 ${kuroUid} 的游戏 ${gameId} 在服务器 ${gameServerId} 的 UID ${gameUid} 的体力推送任务`
+  )
   // 先判断推送时间是否是十分钟之内, 避免重复推送
   let user = new userConfig()
   let lastPushTime = await user.getEnergyLastPushTime(uin, gameId, gameUid)
   if (lastPushTime !== -1 && Date.now() - lastPushTime < 600000) {
-    kuroLogger.debug(`账号 ${kuroUid} 的游戏 ${gameId} 在服务器 ${gameServerId} 的 UID ${gameUid} 的体力推送任务已在十分钟之内执行过, 跳过`)
+    kuroLogger.debug(
+      `账号 ${kuroUid} 的游戏 ${gameId} 在服务器 ${gameServerId} 的 UID ${gameUid} 的体力推送任务已在十分钟之内执行过, 跳过`
+    )
     return false
   }
 
@@ -268,7 +294,9 @@ export async function doEnergyPush(uin, kuroUid, gameId, gameUid, gameServerId) 
     energy = rsp.data.energyData.cur
     energyMax = rsp.data.energyData.total
   }
-  kuroLogger.info(`准备执行 QQ ${uin} 的账号 ${kuroUid} 的游戏 ${gameId} 体力: ${energy}/${energyMax}`)
+  kuroLogger.info(
+    `准备执行 QQ ${uin} 的账号 ${kuroUid} 的游戏 ${gameId} 体力: ${energy}/${energyMax}`
+  )
   if (energy < energyMax) {
     kuroLogger.debug(`体力未满, 不推送`)
     return false
@@ -277,12 +305,16 @@ export async function doEnergyPush(uin, kuroUid, gameId, gameUid, gameServerId) 
   // 推送, 推送前再次判断是否十分钟之前, 防止重复
   lastPushTime = await user.getEnergyLastPushTime(uin, gameId, gameUid)
   if (lastPushTime !== -1 && Date.now() - lastPushTime < 600000) {
-    kuroLogger.debug(`账号 ${kuroUid} 的游戏 ${gameId} 在服务器 ${gameServerId} 的 UID ${gameUid} 的体力推送任务已在十分钟之内执行过, 跳过`)
+    kuroLogger.debug(
+      `账号 ${kuroUid} 的游戏 ${gameId} 在服务器 ${gameServerId} 的 UID ${gameUid} 的体力推送任务已在十分钟之内执行过, 跳过`
+    )
     return false
   }
   let pushMsg = `未知的游戏 ${gameId} UID ${gameUid} 的体力恢复啦 (${energy}/${energyMax}) ~`
-  if (gameId === 2) pushMsg = `你的战双 UID ${gameUid} 的血清恢复啦 (${energy}/${energyMax}) ~`
-  if (gameId === 3) pushMsg = `你的鸣潮 UID ${gameUid} 的结晶波片恢复啦 (${energy}/${energyMax}) ~`
+  if (gameId === 2)
+    pushMsg = `你的战双 UID ${gameUid} 的血清恢复啦 (${energy}/${energyMax}) ~`
+  if (gameId === 3)
+    pushMsg = `你的鸣潮 UID ${gameUid} 的结晶波片恢复啦 (${energy}/${energyMax}) ~`
 
   await sendMsgFriend(uin, pushMsg)
 
