@@ -91,7 +91,7 @@ export function supportGuoba() {
           field: 'autoTask.execTime',
           label: '任务执行时间',
           helpMessage:
-            '默认为每天 00:02:00 自动执行, 暂不可配置检查更新任务(默认每天 6/18 点检查)',
+            '默认为每天 00:02:00 自动执行, 暂不可配置检查更新任务(默认每天 6/18 点检查)和游戏体力推送任务(默认每小时刷新一次)',
           bottomHelpMessage:
             '任务执行时间, <a href="https://www.runoob.com/linux/linux-comm-crontab.html" target="_blank">corntab 表达式</a>, 请<a href="https://tool.lu/crontab/" target="_blank">检查</a>后再保存, 重启 Yunzai 生效',
           component: 'Input',

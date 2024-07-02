@@ -83,7 +83,7 @@ export class kuroBBSLoginApp extends plugin {
         )
       ) {
         e.reply(
-          '保存 token 成功!\n已为您开启自动签到, 请确保我们已经添加好友, 以便我能及时给你推送签到结果'
+          '保存 token 成功!\n已为您开启自动签到和游戏体力推送, 请确保我们已经添加好友, 以便我能及时给您推送签到结果~'
         )
       } else {
         e.reply('保存 token 出错!')

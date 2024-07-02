@@ -321,4 +321,90 @@ export default class userConfig {
       return false
     }
   }
+
+  /**
+   * 获取游戏账号体力的最后推送时间
+   * @param {number} qq QQ
+   * @param {number} gameId 游戏 id, 战双=2, 鸣潮=3
+   * @param {number} gameUid 游戏 uid
+   * @returns {number} 最后推送时间戳, 不存在数据则返回 0, 出错则返回 -1
+   */
+  async getEnergyLastPushTime(qq, gameId, gameUid) {
+    kuroLogger.debug(
+      `获取用户 ${qq} 的游戏 ${gameId} 的 uid ${gameUid} 的体力最后推送时间`
+    )
+    let qqData = {}
+    try {
+      // 如果文件不存在, 创建
+      if (!fs.existsSync(dataPath + `/userSetting/${qq}.json`)) {
+        kuroLogger.debug(`用户设置文件不存在, 创建并返回 0`)
+        await fs.promises.mkdir(dataPath + '/userSetting', { recursive: true })
+        await fs.promises.writeFile(dataPath + `/userSetting/${qq}.json`, '{}')
+        return 0
+      }
+      const fileData = await fs.promises.readFile(
+        dataPath + `/userSetting/${qq}.json`,
+        'utf-8'
+      )
+      qqData = JSON.parse(fileData)?.energy?.[gameId]?.lastPushTime || 0
+      kuroLogger.debug(
+        `获取体力最后推送时间: 用户设置文件已读取: ${JSON.stringify(qqData)}`
+      )
+      return qqData || 0
+    } catch (error) {
+      kuroLogger.error(`读取用户设置文件时出错: ${error.message}`)
+      return -1
+    }
+  }
+
+  /**
+   * 保存游戏账号体力的最后推送时间
+   * @param {number} qq QQ
+   * @param {number} gameId 游戏 id, 战双=2, 鸣潮=3
+   * @param {number} gameUid 游戏 uid
+   * @param {number} lastPushTime 最后推送时间戳
+   * @returns {boolean} 是否成功
+   */
+  async saveEnergyLastPushTime(qq, gameId, gameUid, lastPushTime) {
+    kuroLogger.debug(
+      `保存用户 ${qq} 的游戏 ${gameId} 的 uid ${gameUid} 的体力最后推送时间 ${lastPushTime}`
+    )
+    try {
+      const filePath = dataPath + `/userSetting/${qq}.json`
+
+      await fs.promises.mkdir(dataPath + '/userSetting', { recursive: true })
+
+      let existingData = {}
+      try {
+        const fileData = await fs.promises.readFile(filePath, 'utf-8')
+        existingData = JSON.parse(fileData)
+      } catch (error) {
+        kuroLogger.error(`读取用户设置文件时出错: ${error.message}`)
+        return false
+      }
+
+      // 确保 energy 对象存在
+      if (!existingData.energy) {
+        existingData.energy = {}
+      }
+
+      // 确保 energy.gameId 对象存在
+      if (!existingData.energy[gameId]) {
+        existingData.energy[gameId] = {}
+      }
+
+      // 将数据存入 energy.gameId.gameUid 对象
+      existingData.energy[gameId][gameUid] = { lastPushTime }
+      const newJsonData = JSON.stringify(existingData)
+
+      await fs.promises.writeFile(filePath, newJsonData)
+      kuroLogger.debug(
+        `保存用户 ${qq} 的游戏 ${gameId} 的 uid ${gameUid} 的体力最后推送时间 ${lastPushTime} 到文件: ${filePath}, 内容: ${newJsonData}`
+      )
+      return true
+    } catch (error) {
+      kuroLogger.warn(`保存用户设置时出错: ${error.message}`)
+      return false
+    }
+  }
 }

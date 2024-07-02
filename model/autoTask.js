@@ -5,6 +5,7 @@ import kuroLogger from '../components/logger.js'
 import { doBBSDailyTask } from './bbsTask.js'
 import { doBbsActivityTask } from './bbsActivityTask.js'
 import { doPnsSignIn, doMcSignIn } from './gameSignIn.js'
+import { doPnsEnergy, doMcEnergy } from './gameEnergy.js'
 import {
   dataPath,
   pluginVer,
@@ -33,6 +34,11 @@ export async function initAutoTask() {
   kuroLogger.info(pluginThemeColor(`载入定时任务 bbsDailyTask`))
   schedule.scheduleJob(autoTaskTime, function () {
     bbsDailyTask()
+  })
+
+  kuroLogger.info(pluginThemeColor(`载入定时任务 gameEnergyPushTask`))
+  schedule.scheduleJob('0 0 * * * ? ', function () {
+    gameEnergyPushTask()
   })
 
   kuroLogger.info(pluginThemeColor(`载入定时任务 bbsActivityTask`))
@@ -138,6 +144,30 @@ async function bbsDailyTask() {
     await sendMsgFriend(gameSignUin, msg.trimEnd())
   }
   kuroLogger.info(`自动社区任务: 任务完成`)
+  return true
+}
+
+export async function gameEnergyPushTask() {
+  kuroLogger.info(`游戏体力推送: 开始刷新数据...`)
+
+  const gameSignUins = fs
+    .readdirSync(dataPath + '/token')
+    .filter((file) => file.endsWith('.json'))
+
+  for (let i in gameSignUins) {
+    let gameSignUin = gameSignUins[i].replace('.json', '')
+    kuroLogger.info(`游戏体力推送: 开始为 ${gameSignUin} 刷新数据`)
+    const tokenData = await getToken(gameSignUin)
+    for (const kuro_uid in tokenData) {
+      if (tokenData.hasOwnProperty(kuro_uid)) {
+        await doMcEnergy(gameSignUin, kuro_uid, true)
+        await doPnsEnergy(gameSignUin, kuro_uid, true)
+      } else {
+        kuroLogger.error(`游戏体力推送: 账号 ${kuro_uid} token 格式错误`)
+      }
+    }
+  }
+  kuroLogger.info(`游戏体力推送: 数据刷新完成`)
   return true
 }
 

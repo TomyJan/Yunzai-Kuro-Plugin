@@ -5,7 +5,7 @@ import {
   pluginVer,
   pluginThemeColor,
 } from './data/system/pluginConstants.js'
-import { initAutoTask, checkUpdateTask } from './model/autoTask.js'
+import { initAutoTask, checkUpdateTask, gameEnergyPushTask } from './model/autoTask.js'
 
 await kuroLogger.info(pluginThemeColor('============(≧∇≦)ﾉ============'))
 await kuroLogger.info(pluginThemeColor(`库洛插件 V${pluginVer} 开始载入~`))
@@ -45,8 +45,9 @@ await kuroLogger.info(pluginThemeColor(`载入定时任务完成啦!`))
 await kuroLogger.info(pluginThemeColor('插件载入完成, 欢迎使用~'))
 await kuroLogger.info(pluginThemeColor('=============================='))
 
-// 起洞就检查一下更新
+// 起洞就检查一下更新, 推一下体力
 // 延迟5s再开始以防止第三方适配器没连接上
 setTimeout(() => {
   checkUpdateTask()
+  gameEnergyPushTask()
 }, 5000)
