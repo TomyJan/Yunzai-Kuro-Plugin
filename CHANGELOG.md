@@ -1,3 +1,17 @@
+## [0.3.3-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.2-rel...v0.3.3-rel) (2024-07-02)
+
+
+### Bug Fixes
+
+* 部分 API 随机种子处理异常 ([5aff457](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/5aff45755ef1913d0f39d6d0623ed592ea1710d1))
+
+
+### Features
+
+* 游戏体力恢复推送 ([985de48](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/985de484e64d28e33c442e89002b9c22dc8affc9))
+
+
+
 ## [0.3.2-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.1-rel...v0.3.2-rel) (2024-06-30)
 
 
