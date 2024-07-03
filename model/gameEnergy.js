@@ -138,6 +138,7 @@ export async function doPnsEnergy(uin, kuro_uid, isPushTask = false) {
     )}回满 (${rsp_getPnsWidgetData.data.actionData.value})\n`
 
     // 延迟到回满时间后执行推送, 如果回满时间在两小时内
+    kuroLogger.debug(`QQ ${uin} 的战双 UID ${data.roleId} 的体力推送任务, 刷新时间: ${rsp_getPnsWidgetData.data.actionData.refreshTimeStamp}, 服务器时间: ${rsp_getPnsWidgetData.data.serverTime}, 距离刷新时间: ${rsp_getPnsWidgetData.data.actionData.refreshTimeStamp - rsp_getPnsWidgetData.data.serverTime}`)
     if (
       isPushTask &&
       rsp_getPnsWidgetData.data.actionData.refreshTimeStamp > 0 &&
@@ -145,12 +146,18 @@ export async function doPnsEnergy(uin, kuro_uid, isPushTask = false) {
         rsp_getPnsWidgetData.data.serverTime <
         7200
     ) {
+      let delay = rsp_getPnsWidgetData.data.actionData.refreshTimeStamp - rsp_getPnsWidgetData.data.serverTime
+      if (delay < 0) {
+        kuroLogger.error(`QQ ${uin} 的战双 UID ${data.roleId} 的体力推送任务, 刷新时间小于当前时间, 跳过`)
+        continue
+      }
+      delay *= 1000
       setTimeout(async () => {
         kuroLogger.debug(
           `准备执行账号 ${kuro_uid} 的战双 UID ${data.roleId} 的体力推送任务`
         )
         doEnergyPush(uin, kuro_uid, 2, data.roleId, data.serverId)
-      }, rsp_getPnsWidgetData.data.actionData.refreshTimeStamp - rsp_getPnsWidgetData.data.serverTime)
+      }, delay)
     }
 
     await sleepAsync(getRandomInt(100, 600))
@@ -212,6 +219,7 @@ export async function doMcEnergy(uin, kuro_uid, isPushTask = false) {
     })\n`
 
     // 延迟到回满时间后执行推送, 如果还未回满且回满时间在两小时内
+    kuroLogger.debug(`QQ ${uin} 的鸣潮 UID ${data.roleId} 的体力推送任务, 刷新时间: ${rsp_getMcWidgetData.data.energyData.refreshTimeStamp}, 服务器时间: ${rsp_getMcWidgetData.data.serverTime}, 距离刷新时间: ${rsp_getMcWidgetData.data.energyData.refreshTimeStamp - rsp_getMcWidgetData.data.serverTime}`)
     if (
       isPushTask &&
       rsp_getMcWidgetData.data.energyData.refreshTimeStamp > 0 &&
@@ -219,12 +227,18 @@ export async function doMcEnergy(uin, kuro_uid, isPushTask = false) {
         rsp_getMcWidgetData.data.serverTime <
         7200
     ) {
+      let delay = rsp_getMcWidgetData.data.energyData.refreshTimeStamp - rsp_getMcWidgetData.data.serverTime
+      if (delay < 0) {
+        kuroLogger.error(`QQ ${uin} 的鸣潮 UID ${data.roleId} 的体力推送任务, 刷新时间小于当前时间, 跳过`)
+        continue
+      }
+      delay *= 1000
       setTimeout(async () => {
         kuroLogger.debug(
           `准备执行账号 ${kuro_uid} 的鸣潮 UID ${data.roleId} 的体力推送任务`
         )
         doEnergyPush(uin, kuro_uid, 3, data.roleId, data.serverId)
-      }, rsp_getMcWidgetData.data.energyData.refreshTimeStamp - rsp_getMcWidgetData.data.serverTime)
+      }, delay)
     }
 
     await sleepAsync(getRandomInt(100, 600))
