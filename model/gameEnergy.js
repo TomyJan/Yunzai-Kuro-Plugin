@@ -311,9 +311,10 @@ export async function doEnergyPush(
   kuroLogger.info(
     `准备执行 QQ ${uin} 的账号 ${kuroUid} 的游戏 ${gameId} 体力: ${energy}/${energyMax}`
   )
+
+  let apiDataIsFull = true
   if (energy < energyMax) {
-    kuroLogger.debug(`体力未满, 不推送`)
-    return false
+    apiDataIsFull = false
   }
 
   // 推送, 推送前再次判断是否十分钟之前, 防止重复
@@ -324,11 +325,17 @@ export async function doEnergyPush(
     )
     return false
   }
-  let pushMsg = `未知的游戏 ${gameId} UID ${gameUid} 的体力恢复啦 (${energy}/${energyMax}) ~`
+  let pushMsg = apiDataIsFull
+    ? `未知的游戏 ${gameId} UID ${gameUid} 的体力恢复啦 (${energy}/${energyMax}) ~`
+    : `未知的游戏 ${gameId} UID ${gameUid} 的体力此时应已恢复, 但可能由于缓存问题接口返回未恢复 (${energy}/${energyMax}) ~`
   if (gameId === 2)
-    pushMsg = `你的战双 UID ${gameUid} 的血清恢复啦 (${energy}/${energyMax}) ~`
+    pushMsg = apiDataIsFull
+      ? `你的战双 UID ${gameUid} 的血清恢复啦 (${energy}/${energyMax}) ~`
+      : `你的战双 UID ${gameUid} 的血清此时应已恢复, 但可能由于缓存问题接口返回未恢复 (${energy}/${energyMax}) ~`
   if (gameId === 3)
-    pushMsg = `你的鸣潮 UID ${gameUid} 的结晶波片恢复啦 (${energy}/${energyMax}) ~`
+    pushMsg = apiDataIsFull
+      ? `你的鸣潮 UID ${gameUid} 的结晶波片恢复啦 (${energy}/${energyMax}) ~`
+      : `你的鸣潮 UID ${gameUid} 的结晶波片此时应已恢复, 但可能由于缓存问题接口返回未恢复 (${energy}/${energyMax}) ~`
 
   await sendMsgFriend(uin, pushMsg)
 
