@@ -1,3 +1,19 @@
+## [0.3.4-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.3-rel...v0.3.4-rel) (2024-07-04)
+
+
+### Bug Fixes
+
+* 部分 API 随机种子处理异常 ([ee99d58](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/ee99d58c19dbebb3fdd186139b0608ad73890035))
+* 游戏体力推送任务延迟忘转成 ms 了 ([bf81105](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/bf811057d8ed2ce7abbed3777245c07d17a7f419))
+* 终于修复了未绑定用户鸣潮抽卡记录获取异常 ([5cc5f44](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/5cc5f448404c18e3d406920a3ed692254b05460e))
+
+
+### Performance Improvements
+
+* 到达恢复时间时能量未回满也推送 ([2d6c5e0](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/2d6c5e020b2cb242abd51f6541dca126acce14d5))
+
+
+
 ## [0.3.3-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.2-rel...v0.3.3-rel) (2024-07-02)
 
 
