@@ -347,6 +347,8 @@ export async function doEnergyPush(
     )
     return false
   }
+  user.saveEnergyLastPushTime(uin, gameId, gameUid, Date.now())
+
   let pushMsg = apiDataIsFull
     ? `未知的游戏 ${gameId} UID ${gameUid} 的体力恢复啦 (${energy}/${energyMax}) ~`
     : `未知的游戏 ${gameId} UID ${gameUid} 的体力此时应已恢复, 但可能由于缓存问题接口返回未恢复 (${energy}/${energyMax}) ~`
@@ -360,8 +362,6 @@ export async function doEnergyPush(
       : `你的鸣潮 UID ${gameUid} 的结晶波片此时应已恢复, 但可能由于缓存问题接口返回未恢复 (${energy}/${energyMax}) ~`
 
   await sendMsgFriend(uin, pushMsg)
-
-  await user.saveEnergyLastPushTime(uin, gameId, gameUid, Date.now())
 
   return true
 }
