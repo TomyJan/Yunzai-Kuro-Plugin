@@ -150,8 +150,8 @@ export async function doPnsEnergy(uin, kuro_uid, isPushTask = false) {
       isPushTask &&
       rsp_getPnsWidgetData.data.actionData.refreshTimeStamp > 0 &&
       rsp_getPnsWidgetData.data.actionData.refreshTimeStamp -
-        rsp_getPnsWidgetData.data.serverTime <
-        7200
+        rsp_getPnsWidgetData.data.serverTime <=
+        3600
     ) {
       let delay =
         rsp_getPnsWidgetData.data.actionData.refreshTimeStamp -
@@ -242,8 +242,8 @@ export async function doMcEnergy(uin, kuro_uid, isPushTask = false) {
       isPushTask &&
       rsp_getMcWidgetData.data.energyData.refreshTimeStamp > 0 &&
       rsp_getMcWidgetData.data.energyData.refreshTimeStamp -
-        rsp_getMcWidgetData.data.serverTime <
-        7200
+        rsp_getMcWidgetData.data.serverTime <=
+        3600
     ) {
       let delay =
         rsp_getMcWidgetData.data.energyData.refreshTimeStamp -
