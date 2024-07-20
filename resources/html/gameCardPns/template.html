@@ -1,10 +1,4 @@
 <!DOCTYPE html>
-<!--
-    战双游戏卡片模板
-    抓取自 https://www.kurobbs.com/person-center 并做适当修改
-    by TomyJan
-    2023.07.28
--->
 <html lang=zh-CN>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
@@ -75,12 +69,15 @@
     }
 
     .game-box-container[data-v-08c4bfda] {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 355px;
+        height: 152px;
         position: absolute;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-        width: 355px;
-        height: 152px
     }
 
     .pns .game-box[data-v-08c4bfda] {
@@ -123,7 +120,9 @@
     }
 
     .game-box-header .role-info .show[data-v-08c4bfda] {
-        margin-left: auto
+        margin-left: auto;
+        display: flex;
+        align-items: center;
     }
 
     .game-box-header .sub-info[data-v-08c4bfda] {
@@ -133,7 +132,6 @@
     }
 
     .game-box-footer[data-v-08c4bfda] {
-
         display: flex;
         justify-content: space-between
     }
@@ -206,14 +204,13 @@
     <div class="game-box-container pns" data-v-08c4bfda>
         <div class="game-box pd-16" data-v-08c4bfda>
             <div class="game-box-header flex mb-16" data-v-08c4bfda>
-                <img class="icon mr-12" src="https://prod-alicdn-community.kurobbs.com/game/1677047559950121506.jpg" alt
-                    data-v-08c4bfda>
-                <div class=role-info data-v-08c4bfda>
-                    <div class=flex-vertical-center data-v-08c4bfda>
+                <img class="icon mr-12" src="https://prod-alicdn-community.kurobbs.com/game/1677047559950121506.jpg" alt data-v-08c4bfda>
+                <div class="role-info" data-v-08c4bfda>
+                    <div class="flex-vertical-center" data-v-08c4bfda>
                         <div class="mr-4 text-14 name" data-v-08c4bfda>TomyJan</div>
-                        <div class=level data-v-08c4bfda>100级</div>
-                        <div class=show data-v-08c4bfda>
-                            <input name="checkbox" type="checkbox" class="better-checkbox " checked>展示
+                        <div class="level" data-v-08c4bfda>100级</div>
+                        <div class="show" data-v-08c4bfda>
+                            <input name="checkbox" type="checkbox" class="better-checkbox" checked>展示
                         </div>
                     </div>
                     <div class="sub-info text-12" data-v-08c4bfda>
@@ -222,17 +219,17 @@
                 </div>
             </div>
             <div class="game-box-footer flex" data-v-08c4bfda>
-                <div class=item data-v-08c4bfda>
-                    <span class=number data-v-08c4bfda>33945</span>
-                    <span class=title data-v-08c4bfda>角色总评分</span>
+                <div class="item" data-v-08c4bfda>
+                    <span class="number" data-v-08c4bfda>33945</span>
+                    <span class="title" data-v-08c4bfda>角色总评分</span>
                 </div>
-                <div class=item data-v-08c4bfda>
-                    <span class=number data-v-08c4bfda>21</span>
-                    <span class=title data-v-08c4bfda>角色数量</span>
+                <div class="item" data-v-08c4bfda>
+                    <span class="number" data-v-08c4bfda>21</span>
+                    <span class="title" data-v-08c4bfda>角色数量</span>
                 </div>
-                <div class=item data-v-08c4bfda>
-                    <span class=number data-v-08c4bfda>3.1%</span>
-                    <span class=title data-v-08c4bfda>涂装收集率</span>
+                <div class="item" data-v-08c4bfda>
+                    <span class="number" data-v-08c4bfda>3.1%</span>
+                    <span class="title" data-v-08c4bfda>涂装收集率</span>
                 </div>
             </div>
         </div>
