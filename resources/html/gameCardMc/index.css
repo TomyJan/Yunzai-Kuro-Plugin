@@ -17,18 +17,19 @@
     padding: 0;
     box-sizing: border-box;
     user-select: none;
-    font-family: MiSans-Normal
+    font-family: MiSans-Normal;
 }
 
 html, body {
     height: 100%;
+    width: 100%;
     overflow: hidden;
 }
 
 body {
     position: relative;
-    transform: scale(1);
-    width: auto;
+    width: 100%;
+    height: 100%;
     background: url(../../../data/system/cachedImg/cardBg.jpg) no-repeat center center fixed;
     background-size: cover;
     display: flex;
@@ -61,11 +62,13 @@ body::before {
 
 .head-box .title {
     font-size: 50px;
-    font-family: HYWenHei-55W
+    font-family: HYWenHei-55W;
+    color: white;
 }
 
 .head-box .label {
-    font-family: HYWenHei-55W
+    font-family: HYWenHei-55W;
+    color: white;
 }
 
 .cont-box {
@@ -75,75 +78,69 @@ body::before {
     position: relative;
     font-size: 20px;
     background: rgba(62, 62, 62, 0.3);
-
-    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border-radius: 30px;
+    padding: 15px;
 }
 
 .help-group {
     font-size: 20px;
     font-weight: bold;
-    padding: 15px 15px 10px 20px;
+    padding: 15px 20px 10px;
     display: inline-block;
+    color: white;
 }
 
 .list {
     display: flex;
-
     flex-wrap: wrap;
 }
 
-
-
 .mr-4 {
-    margin-right: 8px
+    margin-right: 4px;
 }
 
 .mr-12 {
-    margin-right: 24px;
+    margin-right: 12px;
 }
 
 .pd-16 {
-    padding: 32px
+    padding: 16px;
 }
 
 .mb-16 {
-    margin-bottom: 32px
+    margin-bottom: 16px;
 }
 
-div,
-body {
+div, body {
     box-sizing: border-box;
     list-style: none;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
-span,
-div {
+span, div {
     word-break: break-word;
-    vertical-align: middle
-        /*英文和中文竖直居中*/
+    vertical-align: middle;
 }
 
 .text-12 {
-    font-size: 24px;
-    line-height: 40px
+    font-size: 12px;
+    line-height: 20px;
 }
 
 .text-14 {
-    font-size: 28px;
-    line-height: 44px
+    font-size: 14px;
+    line-height: 22px;
 }
 
 .flex {
-    display: flex
+    display: flex;
 }
 
 .flex-vertical-center {
     display: flex;
-    align-items: center
+    align-items: center;
 }
 
 .game-box-container[data-v-08c4bfda] {
@@ -151,46 +148,46 @@ div {
     justify-content: center;
     align-items: center;
     width: 710px;
-    height: 304px
+    height: 304px;
 }
 
 .pns .game-box[data-v-08c4bfda] {
     width: 662px;
     height: 256px;
     background: url(../../img/common/bg/game-box-pns-02781a5b.png);
-    background-size: 100% 100%
+    background-size: 100% 100%;
 }
 
 .game-box[data-v-08c4bfda] {
     position: absolute;
-    font-size: 32px;
+    font-size: 16px;
     color: #fff;
-    flex: 1
+    flex: 1;
 }
 
 .game-box-header .icon[data-v-08c4bfda] {
-    width: 80px;
-    height: 80px;
-    border-radius: 8px
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
 }
 
 .game-box-header .role-info[data-v-08c4bfda] {
-    flex: 1
+    flex: 1;
 }
 
 .game-box-header .role-info .name[data-v-08c4bfda] {
-    font-weight: 700
+    font-weight: 700;
 }
 
 .game-box-header .role-info .level[data-v-08c4bfda] {
-    height: 32px;
-    font-size: 24px;
-    line-height: 24px;
-    padding: 4px 8px;
+    height: 16px;
+    font-size: 12px;
+    line-height: 12px;
+    padding: 2px 4px;
     color: #fff;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .32) 100%);
-    border: .8px solid rgba(255, 255, 255, .5);
-    border-radius: 4px
+    border: .4px solid rgba(255, 255, 255, .5);
+    border-radius: 2px;
 }
 
 .game-box-header .role-info .show[data-v-08c4bfda] {
@@ -202,80 +199,76 @@ div {
 .game-box-header .sub-info[data-v-08c4bfda] {
     color: #aeb6c2;
     font-weight: 400;
-    opacity: .5
+    opacity: .5;
 }
 
 .game-box-footer[data-v-08c4bfda] {
-
     display: flex;
-    justify-content: space-between
+    justify-content: space-between;
 }
 
 .game-box-footer .item[data-v-08c4bfda] {
     flex: 1;
-    font-size: 24px;
-    line-height: 40px;
+    font-size: 12px;
+    line-height: 20px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    color: #8c95a3
+    color: #8c95a3;
 }
 
 .game-box-footer .item .number[data-v-08c4bfda] {
     display: flex;
     align-items: center;
-    font-size: 32px;
-    line-height: 48px;
+    font-size: 16px;
+    line-height: 24px;
     font-weight: 700;
-    color: #fff
+    color: #fff;
 }
 
 .game-box-footer .item .title[data-v-08c4bfda] {
     width: 100%;
     color: #8c95a3;
     font-weight: 400;
-    text-align: center
-}
-
-.game-box-footer .item .icon[data-v-08c4bfda] {
-    cursor: pointer
+    text-align: center;
 }
 
 .better-checkbox:checked {
     border: none;
-    background: #1673ff
+    background: #1673ff;
 }
 
 .better-checkbox {
-    width: 32px;
-    height: 32px;
-    border: solid 3px #dddddd;
+    width: 16px;
+    height: 16px;
+    border: solid 1.5px #dddddd;
     border-radius: 50%;
     vertical-align: top;
-    margin-right: 8px;
+    margin-right: 4px;
     position: relative;
-    appearance: none
+    appearance: none;
 }
 
 .better-checkbox:checked::after {
     content: '';
-    top: 9px;
-    left: 8px;
+    top: 4px;
+    left: 3.5px;
     position: absolute;
     background: transparent;
-    border: #fff solid 3px;
+    border: #fff solid 2px;
     border-top: none;
     border-right: none;
-    height: 8px;
-    width: 14px;
-    transform: rotate(-45deg)
+    height: 4px;
+    width: 7px;
+    transform: rotate(-45deg);
 }
 
 .copyright {
     text-align: center;
     font-size: 14px;
     color: white;
-    font-family: HYWenHei-55W
+    font-family: HYWenHei-55W;
+    margin-top: 20px;
 }
