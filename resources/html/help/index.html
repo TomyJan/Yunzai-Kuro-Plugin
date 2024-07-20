@@ -17,11 +17,10 @@
       <div class="label" style="color: white;">Handmade With <font color=red>♥</font> by TomyJan.</div>
     </div>
 
-
     {{each helpData val}}
     <div class="cont-box">
       <div class="help-group" style="color: white;">
-        {{val.group}}{{val.disable ? ' (已禁用)' : ''}}
+        {{val.group}}
       </div>
       <div class="list">
         {{each val.list item}}
@@ -36,6 +35,7 @@
       </div>
     </div>
     {{/each}}
+
     <div class="copyright">Created By Yunzai-Bot & {{pluginName}} {{pluginVer}}</div>
   </div>
 </body>
