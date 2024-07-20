@@ -3,21 +3,20 @@
 
 <head>
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-  <link rel="stylesheet" type="text/css" href="{{pluResPath}}/html/gameCardPns/index.css" />
+  <link rel="stylesheet" type="text/css" href="{{pluResPath}}/html/gameCardMc/index.css" />
   <link rel="shortcut icon" href="#" />
 </head>
 
 <body>
   <div class="container" id="container">
     <div class="head-box">
-      <div class="title" style="color: white;">鸣潮卡片 - 库洛插件</div>
-      <div class="label" style="color: white;">Handmade With ❤️ by TomyJan. | 当前页面正在绝赞监修中</div>
+      <div class="title">鸣潮卡片 - 库洛插件</div>
+      <div class="label">Handmade With ❤️ by TomyJan. | 当前页面正在绝赞监修中</div>
     </div>
-
 
     {{each accArr acc}}
     <div class="cont-box">
-      <div class="help-group" style="color: white;">
+      <div class="help-group">
         {{acc.account}}{{acc.data ? '' : acc.msg}}
       </div>
       <div>
@@ -27,13 +26,13 @@
           <div class="game-box pd-16" data-v-08c4bfda>
             <div class="game-box-header flex mb-16" data-v-08c4bfda>
               <img class="icon mr-12" src="{{@item.gameHeadUrl}}" alt data-v-08c4bfda>
-              <div class=role-info data-v-08c4bfda>
-                <div class=flex-vertical-center data-v-08c4bfda>
+              <div class="role-info" data-v-08c4bfda>
+                <div class="flex-vertical-center" data-v-08c4bfda>
                   <div class="mr-4 text-14 name" data-v-08c4bfda>{{@item.roleName}}</div>
-                  <div class=level data-v-08c4bfda>{{@item.gameLevel}}级</div>
-                  <div class=show data-v-08c4bfda>
-                    <input name="checkbox" type="checkbox" class="better-checkbox " {{@++countIndex === curGameUidIndex ? 'checked' : ''
-                      }}> {{@countIndex === curGameUidIndex ? '&nbsp;当前' : 'No.' + countIndex}}
+                  <div class="level" data-v-08c4bfda>{{@item.gameLevel}}级</div>
+                  <div class="show" data-v-08c4bfda>
+                    <input name="checkbox" type="checkbox" class="better-checkbox" {{@++countIndex === curGameUidIndex ? 'checked' : ''}}> 
+                    {{@countIndex === curGameUidIndex ? '&nbsp;当前' : 'No.' + countIndex}}
                   </div>
                 </div>
                 <div class="sub-info text-12" data-v-08c4bfda>
@@ -42,17 +41,17 @@
               </div>
             </div>
             <div class="game-box-footer flex" data-v-08c4bfda>
-              <div class=item data-v-08c4bfda>
-                <span class=number data-v-08c4bfda>{{@item.achievementCount}}</span>
-                <span class=title data-v-08c4bfda>成就数量</span>
+              <div class="item" data-v-08c4bfda>
+                <span class="number" data-v-08c4bfda>{{@item.achievementCount}}</span>
+                <span class="title" data-v-08c4bfda>成就数量</span>
               </div>
-              <div class=item data-v-08c4bfda>
-                <span class=number data-v-08c4bfda>{{@item.roleNum}}</span>
-                <span class=title data-v-08c4bfda>角色数量</span>
+              <div class="item" data-v-08c4bfda>
+                <span class="number" data-v-08c4bfda>{{@item.roleNum}}</span>
+                <span class="title" data-v-08c4bfda>角色数量</span>
               </div>
-              <div class=item data-v-08c4bfda>
-                <span class=number data-v-08c4bfda>{{@item.phantomPercent*1000/10}}%</span>
-                <span class=title data-v-08c4bfda>声骸收集进度</span>
+              <div class="item" data-v-08c4bfda>
+                <span class="number" data-v-08c4bfda>{{@item.phantomPercent*1000/10}}%</span>
+                <span class="title" data-v-08c4bfda>声骸收集进度</span>
               </div>
             </div>
           </div>
