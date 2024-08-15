@@ -1,3 +1,12 @@
+## [0.3.6-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.5-rel...v0.3.6-rel) (2024-08-15)
+
+
+### Bug Fixes
+
+* 鸣潮更新抽卡失败的提示 ([f78d872](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/f78d8727389a3df2ce13cd573f8768fbb7c405bd))
+
+
+
 ## [0.3.5-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.4-rel...v0.3.5-rel) (2024-08-15)
 
 
