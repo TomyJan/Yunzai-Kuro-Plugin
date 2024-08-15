@@ -1,3 +1,18 @@
+## [0.3.5-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.4-rel...v0.3.5-rel) (2024-08-15)
+
+
+### Bug Fixes
+
+* 放弃修复重复推送体力 ([39cd8c7](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/39cd8c73df07cd4187b00d5e8ce02a8961a0fcca))
+
+
+### Features
+
+* 新增鸣潮 `1.2` 卡池/角色/武器 ([23f4ce6](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/23f4ce6ffa3c8544798e471203db7c1c14490726))
+* 再次尝试防止重复推送体力 ([8c30ad6](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/8c30ad6506a25ddcf6549520b1fe11a4699162ce))
+
+
+
 ## [0.3.4-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.3-rel...v0.3.4-rel) (2024-07-04)
 
 

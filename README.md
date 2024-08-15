@@ -6,7 +6,7 @@
 
 </div>
 
-[Yunzai-Kuro-Plugin (库洛插件)](https://github.com/TomyJan/Yunzai-Kuro-Plugin) 是 [Yunzai-Bot](https://github.com/yoimiya-kokomi/Miao-Yunzai) 的 一个插件, 主要提供 库洛游戏 相关功能, 具体介绍见 [功能介绍](#功能介绍) 
+[Yunzai-Kuro-Plugin (库洛插件)](https://github.com/TomyJan/Yunzai-Kuro-Plugin) 是 [Yunzai-Bot](https://github.com/yoimiya-kokomi/Miao-Yunzai) 的 一个插件, 主要提供 库洛游戏 相关功能, 具体介绍见 [功能介绍](#功能介绍)
 
 > 库洛插件是这样的, 库洛插件只要执行代码就行了, 可是玩家就很辛苦了, 什么时候绑定, 什么时候清体力, 什么时候秀抽卡记录, 都是要经过深思熟虑的
 
@@ -21,12 +21,12 @@
 
 #### 通过 Git 安装
 
-在 Yunzai 根目录运行命令拉取插件: 
+在 Yunzai 根目录运行命令拉取插件:
 ```shell
 git clone https://github.com/TomyJan/Yunzai-Kuro-Plugin.git ./plugins/Yunzai-Kuro-Plugin/
 ```
 
-也可使用 Gitee 镜像(可能会滞后): 
+也可使用 Gitee 镜像(可能会滞后):
 ```shell
 git clone https://gitee.com/TomyJan/Yunzai-Kuro-Plugin.git ./plugins/Yunzai-Kuro-Plugin/
 ```
@@ -60,7 +60,7 @@ git -C ./plugins/Yunzai-Kuro-Plugin/ pull
 
 ### 插件配置
 
-建议通过 [锅巴插件](https://gitee.com/guoba-yunzai/guoba-plugin) 进行配置. 当然, 你也可以自己配置, 默认配置文件位置 `./data/system/default_config.json`, 配置文件位置 `./config/config.json`, 配置项作用: 
+建议通过 [锅巴插件](https://gitee.com/guoba-yunzai/guoba-plugin) 进行配置. 当然, 你也可以自己配置, 默认配置文件位置 `./data/system/default_config.json`, 配置文件位置 `./config/config.json`, 配置项作用:
 
 ```json
 // 此处的 json 可能忘记更新, 如果和实际的配置文件字段不同, 请及时反馈
@@ -87,7 +87,7 @@ git -C ./plugins/Yunzai-Kuro-Plugin/ pull
 
 - [x] 通过服务器在线获取 token 登录库街区 `#库洛在线登录`
 - [x] 提交验证码登录库街区 `#库洛验证码登录` **注意同一个验证码有效期内可以多次使用**
-- [x] 提交 token 登录库街区 `#库洛token登录` [token 获取教程](https://blog.tomys.top/2023-07/kuro-token/) 
+- [x] 提交 token 登录库街区 `#库洛token登录` [token 获取教程](https://blog.tomys.top/2023-07/kuro-token/)
 
 注意, 由于库街区 APP 和他的垃圾游戏一样只允许单设备登录, 新生成 token 后老 token 会失效, 所以如果使用验证码登录, 那么你的帐号的 APP 和 机器人 的登录会互顶
 
@@ -175,15 +175,15 @@ git -C ./plugins/Yunzai-Kuro-Plugin/ pull
 
 ### 贡献/帮助
 
-有 bug? 要新功能? [提交 Issue](https://github.com/TomyJan/Yunzai-Kuro-Plugin/issues/new) 
+有 bug? 要新功能? [提交 Issue](https://github.com/TomyJan/Yunzai-Kuro-Plugin/issues/new)
 
-帮助我开发? [提交 PR](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare) 
+帮助我开发? [提交 PR](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare)
 
-插件有帮到你? [给我打赏](https://donate.tomys.top) 
+插件有帮到你? [给我打赏](https://donate.tomys.top)
 
 ### 一起玩
 
-[TG](https://t.me/TomyJan) | [Q 战双群](https://qun-pgr.tomys.top) | [Q 闲聊群](https://qun.tomys.top) 
+[TG](https://t.me/TomyJan) | [Q 战双群](https://qun-pgr.tomys.top) | [Q 闲聊群](https://qun.tomys.top)
 
 ### 链接
 
@@ -195,3 +195,5 @@ git -C ./plugins/Yunzai-Kuro-Plugin/ pull
 - [xiaoyao-cvs-plugin](https://github.com/ctrlcvs/xiaoyao-cvs-plugin) 插件部分代码来源
 - [yenai-plugin](https://github.com/yeyang52/yenai-plugin) 插件部分代码来源
 - [Kuro-API-Collection](https://github.com/TomyJan/Kuro-API-Collection) 库街区 API 文档
+- [WutheringWaves-UIResources](https://github.com/TomyJan/WutheringWaves-UIResources) 鸣潮 UI 资源解包
+- [Gktwo](https://github.com/Gktwo) 佬的帮助
