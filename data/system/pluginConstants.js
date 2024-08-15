@@ -47,7 +47,7 @@ export const mcGachaType = [
   '武器常驻唤取',
   '新手唤取',
   '新手自选唤取',
-  '新手自选唤取（感恩定向唤取）',
+  '新手自选唤取（感恩定向唤取）'
 ]
 
 // 鸣潮历史 up 池时间和物品 id
@@ -60,7 +60,7 @@ export const mcGachaUpPools = [
     itemId: '1404',
     itemName: '忌炎',
     itemType: 1, // 1 为角色, 2 为武器
-    cardPoolName: '夜将寒色去',
+    cardPoolName: '夜将寒色去'
   },
   {
     // 1.0 上半, 提前开服故时间提前
@@ -69,7 +69,7 @@ export const mcGachaUpPools = [
     itemId: '21010016',
     itemName: '苍鳞千嶂',
     itemType: 2,
-    cardPoolName: '浮声沉兵',
+    cardPoolName: '浮声沉兵'
   },
   {
     // 1.0 下半, 卡池提前
@@ -78,7 +78,7 @@ export const mcGachaUpPools = [
     itemId: '1302',
     itemName: '吟霖',
     itemType: 1,
-    cardPoolName: '惊霆雨时节',
+    cardPoolName: '惊霆雨时节'
   },
   {
     // 1.0 下半, 卡池提前
@@ -87,7 +87,7 @@ export const mcGachaUpPools = [
     itemId: '21050016',
     itemName: '掣傀之手',
     itemType: 2,
-    cardPoolName: '浮声沉兵',
+    cardPoolName: '浮声沉兵'
   },
   {
     // 1.1 上半
@@ -95,8 +95,8 @@ export const mcGachaUpPools = [
     endTime: '1721613540', // 2024.07.22 09:59
     itemId: '1304',
     itemName: '今汐',
-    itemType: '1',
-    cardPoolName: '寒尽觉春生',
+    itemType: 1,
+    cardPoolName: '寒尽觉春生'
   },
   {
     // 1.1 上半
@@ -105,7 +105,7 @@ export const mcGachaUpPools = [
     itemId: '21050016',
     itemName: '时和岁稔',
     itemType: 2,
-    cardPoolName: '浮声沉兵',
+    cardPoolName: '浮声沉兵'
   },
   {
     // 1.1 下半
@@ -113,8 +113,8 @@ export const mcGachaUpPools = [
     endTime: '1723687140', // 2024.08.15 09:59
     itemId: '1205',
     itemName: '长离',
-    itemType: '1',
-    cardPoolName: '炽羽策阵星',
+    itemType: 1,
+    cardPoolName: '炽羽策阵星'
   },
   {
     // 1.1 下半
@@ -123,6 +123,42 @@ export const mcGachaUpPools = [
     itemId: '21020016',
     itemName: '赫奕流明',
     itemType: 2,
-    cardPoolName: '浮声沉兵',
+    cardPoolName: '浮声沉兵'
   },
+  {
+    // 1.2 上半
+    startTime: '1723687200', // 2024.08.15 10:00
+    endTime: '1725674340', // 2024.09.07 09:59
+    itemId: '1105',
+    itemName: '折枝',
+    itemType: 1,
+    cardPoolName: '赋彩作长吟'
+  },
+  {
+    // 1.2 上半
+    startTime: '1723687200', // 2024.08.15 10:00
+    endTime: '1725674340', // 2024.09.07 09:59
+    itemId: '21050026',
+    itemName: '琼枝冰绡',
+    itemType: 2,
+    cardPoolName: '浮声沉兵'
+  },
+  {
+    // 1.2 下半
+    startTime: '1725674400', // 2024.09.07 10:00
+    endTime: '1727575140', // 2024.09.29 09:59
+    itemId: '1305',
+    itemName: '相里要',
+    itemType: 1,
+    cardPoolName: '千机逐星野'
+  },
+  {
+    // 1.2 下半
+    startTime: '1725674400', // 2024.09.07 10:00
+    endTime: '1727575140', // 2024.09.29 09:59
+    itemId: '21040016',
+    itemName: '诸方玄枢',
+    itemType: 2,
+    cardPoolName: '浮声沉兵'
+  }
 ]
