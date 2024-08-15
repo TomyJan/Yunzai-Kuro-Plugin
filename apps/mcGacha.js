@@ -158,6 +158,7 @@ export class mcGachaApp extends plugin {
         '[库洛插件] 鸣潮抽卡记录获取帮助',
         '继续获取并发送即表示您阅读并同意 Bot 保存你的抽卡记录信息用于后续自动更新',
         '建议私聊发送哦~',
+        '需要注意的是, 自1.2版本开始, 以往抽卡链接全部失效, 新的链接也只有很短的有效期了😔',
         '======== Windows ========',
         '1. 在游戏内打开一次抽卡记录 \n2. 打开文件资源管理器, 定位到 游戏安装目录\\Client\\Saved\\Logs\\, 打开Client.log \n3. 在文件内搜索 record_id , 将找到的链接发送给我, 注意删除多余的文字 \n\n你发送的链接格式格式应为: \nhttps://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record?svr_id=TomyJan&player_id=101812955&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=cn&record_id=TomyJan&resources_id=TomyJan \n国际服格式: \nhttps://aki-gm-resources-oversea.aki-game.net/aki/gacha/index.html#/record?svr_id=TomyJan&player_id=101812955&lang=zh-Hans&gacha_id=1&gacha_type=1&svr_area=global&record_id=TomyJan&resources_id=TomyJan',
         '======== Android ========',

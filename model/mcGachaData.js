@@ -77,7 +77,7 @@ export default class mcGachaData {
           }
         }
         let updateFailMsg = await this.e.reply(
-          `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 更新抽卡记录失败: \n${failedReason} \n将展示历史抽卡记录 `
+          `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 更新抽卡记录失败: \n${gachaRecord} \n将展示历史抽卡记录 `
         )
         setTimeout(() => {
           if (updateFailMsg) {
@@ -236,6 +236,7 @@ export default class mcGachaData {
       kuroLogger.debug(
         `QQ ${qq} 的抽卡链接 ${link} 获取失败: ${rsp_mcGachaRecord}`
       )
+      if (rsp_mcGachaRecord === '请求游戏获取日志异常!') return '抽卡链接已过期'
       return `获取失败: ${rsp_mcGachaRecord}`
     }
 
