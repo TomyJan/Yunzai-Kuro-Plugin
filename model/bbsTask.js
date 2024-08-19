@@ -119,7 +119,7 @@ export async function doBBSDailyTask(uin, kuro_uid) {
     if (
       tryTimes++ >= 3 ||
       typeof rsp_forumSignIn !== 'string' ||
-      rsp_forumSignIn === '您已签到' ||
+      rsp_forumSignIn === '请勿重复签到' ||
       rsp_forumSignIn === 'token 失效'
     )
       tryAgain = false
@@ -128,7 +128,7 @@ export async function doBBSDailyTask(uin, kuro_uid) {
       // 最后一次尝试了那就处理返回值吧
       if (typeof rsp_forumSignIn !== 'string' && rsp_forumSignIn.code === 200)
         doBBSDailyTaskRet += '成功'
-      else if (rsp_forumSignIn === '您已签到') doBBSDailyTaskRet += '已签'
+      else if (rsp_forumSignIn === '请勿重复签到') doBBSDailyTaskRet += '已签'
       else doBBSDailyTaskRet += `${rsp_forumSignIn.msg || rsp_forumSignIn}`
       break
     } else await sleepAsync(getRandomInt(600, 1000))
