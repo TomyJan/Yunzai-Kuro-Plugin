@@ -1,3 +1,12 @@
+## [0.3.7-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.6-rel...v0.3.7-rel) (2024-08-19)
+
+
+### Performance Improvements
+
+* 优化社区签到文本 ([d954572](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/d9545724f838f163a67063cbb810f98f3da2ce43))
+
+
+
 ## [0.3.6-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.5-rel...v0.3.6-rel) (2024-08-15)
 
 

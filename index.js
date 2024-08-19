@@ -53,5 +53,5 @@ await kuroLogger.info(pluginThemeColor('=============================='))
 // 延迟5s再开始以防止第三方适配器没连接上
 setTimeout(() => {
   checkUpdateTask()
-  gameEnergyPushTask()
+  gameEnergyPushTask() // TODO: 保存最后完成刷新的时间, 启动判断如果超过一小时再刷新
 }, 5000)
