@@ -105,7 +105,7 @@ export default class kuroApiHandler {
       sdkLogin: {
         // APP 端登录
         url: `${this.kuroApiUrl}/user/sdkLogin`,
-        body: `code=${data.code}&devCode=2fba3859fe9bfe9099f2696b8648c2c6&gameList=&mobile=${data.mobile}`,
+        body: `code=${data.code}&devCode=${generateFixedString(kuroUid)}&gameList=&mobile=${data.mobile}`,
       },
       mineV2: {
         // 取个人信息 V2
@@ -288,15 +288,7 @@ export default class kuroApiHandler {
         }`,
         'content-type': 'application/x-www-form-urlencoded',
         accept: 'application/json, text/plain, */*',
-        devcode: `192.168.1.1${kuroUid.substring(
-          kuroUid.length - 2
-        )}, Mozilla/5.0 (Linux; Android 14; 23127PN0CC Build/UKQ1.230804.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/12${kuroUid.substring(
-          kuroUid.length - 1
-        )}.0.${kuroUid.substring(kuroUid.length - 4)}.${kuroUid.substring(
-          kuroUid.length - 2
-        )} Mobile Safari/537.36 Kuro/${this.kuroBbsVersion} KuroGameBox/${
-          this.kuroBbsVersion
-        }`,
+        devcode: generateFixedString(kuroUid),
         token: token,
         'sec-ch-ua-platform': '"Android"',
         origin: 'https://web-static.kurobbs.com',
