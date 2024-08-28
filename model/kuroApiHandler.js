@@ -105,7 +105,9 @@ export default class kuroApiHandler {
       sdkLogin: {
         // APP 端登录
         url: `${this.kuroApiUrl}/user/sdkLogin`,
-        body: `code=${data.code}&devCode=${generateFixedString(kuroUid)}&gameList=&mobile=${data.mobile}`,
+        body: `code=${data.code}&devCode=${generateFixedString(
+          kuroUid
+        )}&gameList=&mobile=${data.mobile}`,
       },
       mineV2: {
         // 取个人信息 V2
