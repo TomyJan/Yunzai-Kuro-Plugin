@@ -146,7 +146,7 @@ export const mcGachaUpPools = [
   {
     // 1.2 下半
     startTime: '1725674400', // 2024.09.07 10:00
-    endTime: '1727575140', // 2024.09.29 09:59
+    endTime: '1727495940', // 2024.09.28 11:59
     itemId: '1305',
     itemName: '相里要',
     itemType: 1,
@@ -155,9 +155,45 @@ export const mcGachaUpPools = [
   {
     // 1.2 下半
     startTime: '1725674400', // 2024.09.07 10:00
-    endTime: '1727575140', // 2024.09.29 09:59
+    endTime: '1727495940', // 2024.09.28 11:59
     itemId: '21040016',
     itemName: '诸方玄枢',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 1.3 上半
+    startTime: '1727575200', // 2024.09.29 10:00
+    endTime: '1729735140', // 2024.10.24 09:59
+    itemId: '1505',
+    itemName: '守岸人',
+    itemType: 1,
+    cardPoolName: '直至海水褪色',
+  },
+  {
+    // 1.3 上半
+    startTime: '1727575200', // 2024.09.29 10:00
+    endTime: '1729735140', // 2024.10.24 09:59
+    itemId: '00000000',
+    itemName: '星序协响',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 1.3 下半
+    startTime: '1729735200', // 2024.10.24 10:00
+    endTime: '1731470340', // 2024.11.13 11:59
+    itemId: '1404',
+    itemName: '忌炎',
+    itemType: 1,
+    cardPoolName: '夜将寒色去',
+  },
+  {
+    // 1.3 下半
+    startTime: '1729735200', // 2024.10.24 10:00
+    endTime: '1731470340', // 2024.11.13 11:59
+    itemId: '21010016',
+    itemName: '苍鳞千嶂',
     itemType: 2,
     cardPoolName: '浮声沉兵',
   },
