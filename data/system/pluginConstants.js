@@ -52,6 +52,7 @@ export const mcGachaType = [
 
 // 鸣潮历史 up 池时间和物品 id
 // 注意, 解包得到 IconRup 中的 id 自 1.1 版本开始并不与角色 id 对应, 需要在 roleinfo 中找到相应 id
+// 注意, 解包得到 IconWeapon 中的部分 id (暂时观察的结果只有新的五星) 自 1.3 版本开始并不与武器 id 对应, 需要在 weaponconf 中找到相应 id
 export const mcGachaUpPools = [
   {
     // 1.0 上半, 提前开服故时间提前
@@ -174,7 +175,7 @@ export const mcGachaUpPools = [
     // 1.3 上半
     startTime: '1727575200', // 2024.09.29 10:00
     endTime: '1729735140', // 2024.10.24 09:59
-    itemId: '00000000',
+    itemId: '21050036',
     itemName: '星序协响',
     itemType: 2,
     cardPoolName: '浮声沉兵',
