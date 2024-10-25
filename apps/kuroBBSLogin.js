@@ -46,7 +46,7 @@ export class kuroBBSLoginApp extends plugin {
 
   async captchaLoginResult(e) {
     if (!e.isPrivate) {
-      this.reply(`请私聊使用, 或使用 #库洛在线登录`)
+      this.reply(`高敏感登录方式, 请私聊使用, 或使用 #库洛在线登录`)
       return false
     }
     let kuro = new kurologin(e)
@@ -63,7 +63,7 @@ export class kuroBBSLoginApp extends plugin {
 
   async tokenLoginResult(e) {
     if (!e.isPrivate) {
-      this.reply(`请私聊使用, 或使用 #库洛在线登录`)
+      this.reply(`高敏感登录方式, 请私聊使用, 或使用 #库洛在线登录`)
       return false
     }
     let kuro = new kurologin(e)
@@ -74,19 +74,18 @@ export class kuroBBSLoginApp extends plugin {
 
   async bindToken(e, res) {
     if (await checkTokenValidity(res.data.userId, res.data.token)) {
-      if (
-        await saveToken(
-          e.user_id,
-          res.data.userId,
-          res.data.token,
-          res.data.refreshToken
-        )
-      ) {
+      const saveTokenResult = await saveToken(
+        e.user_id,
+        res.data.userId,
+        res.data.token,
+        res.data.refreshToken
+      )
+      if (saveTokenResult === null) {
         e.reply(
-          '保存 token 成功!\n已为您开启自动签到和游戏体力推送, 请确保我们已经添加好友, 以便我能及时给您推送签到结果~'
+          `账号 ${res.data.userName}(${res.data.userId}), 保存 token 成功!\n已为您开启自动签到和游戏体力推送, 请确保我们已经添加好友, 以便我能及时给您推送签到结果~`
         )
       } else {
-        e.reply('保存 token 出错!')
+        e.reply(`保存 token 出错: \n${saveTokenResult.message}`)
       }
     } else {
       e.reply('保存 token 失败: token 已失效!')

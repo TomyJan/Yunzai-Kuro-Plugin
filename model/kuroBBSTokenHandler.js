@@ -52,10 +52,10 @@ export async function saveToken(uin, kuro_uid, kuro_token, kuro_refreshToken) {
 
     await fs.promises.writeFile(filePath, newJsonData)
     kuroLogger.debug(`token 已保存至文件: ${filePath}`)
-    return true
+    return null
   } catch (error) {
-    kuroLogger.debug(`保存 Token 时出错: ${error.message}`)
-    return false
+    kuroLogger.warn(`保存 Token 时出错: ${error.message}`)
+    return error
   }
 }
 

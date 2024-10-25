@@ -22,9 +22,9 @@ export default class kuroBBSLogin {
         `建议优先使用 #库洛在线登录 , 无法使用可使用此功能`,
         this.captchaLoginHelpTip,
         '======== 登录步骤 ========',
-        '注意, 同一个验证码可以多次使用, 所以请私聊发送!',
-        `1. 前往 https://wiki.kurobbs.com/pns/home 点击右上角头像, 或下载安装库街区 APP 进入登录页面 \n2. 输入手机号点击发送验证码 \n3. 与 Bot 私聊, 将手机号和验证码用逗号隔开发送以完成绑定 \n \n例: 库洛账号18888888888,验证码114514`,
-        `注意: 库街区 APP 同战双一样, 只能登录一个设备, 即机器人的登录和你自己手机 APP 的登录会互顶. 如果你需要用到库街区 APP, 请发送 #库洛token登录 查看抓包登录教程`,
+        '高敏感登录方式, 请私聊使用!',
+        `1. 前往 https://wiki.kurobbs.com/pns/home 点击右上角头像, 或下载安装库街区 APP , 进入登录页面 \n2. 输入手机号点击发送验证码并完成验证 \n3. 与 Bot 私聊, 将手机号和验证码用逗号隔开发送以完成绑定 \n \n例: 库洛账号18888888888,验证码114514`,
+        `注意: 库街区 APP 同战双一样, 只能登录一个设备, 即机器人的登录和你自己手机 APP 的登录会互顶. 如果你需要用到库街区 APP, 请发送 #库洛token登录 查看抓包登录教程. 另外, 登录态两个月后会过期, 届时需要重新登录~`,
       ],
       '[库洛插件] 库洛验证码登录帮助'
     )
@@ -56,14 +56,14 @@ export default class kuroBBSLogin {
     kuroLogger.debug('rsp_sdkLogin:', JSON.stringify(rsp_sdkLogin))
     if (typeof rsp_sdkLogin == 'string') {
       // 不是 json, 即返回报错
-      this.e.reply(`登录失败: ${rsp_sdkLogin}`)
+      this.e.reply(`登录失败, 库街区返回: \n${rsp_sdkLogin}`)
       return false
     }
 
     if (rsp_sdkLogin.code === 200) {
       // kuroLogger.debug('登录成功!', JSON.stringify(rsp_sdkLogin))
       let tokenMsg = await this.e.reply(
-        '登录成功, 即将保存 token, 下面是此次获取的 token, 可以复制用于其他自动化工具, 注意妥善保管请勿泄露! \n该消息 10s 后撤回~\n' +
+        '登录成功, 即将保存 token, 下面是此次获取的 token, 可以复制用于其他自动化工具, 注意妥善保管请勿泄露! \n该消息 10s 后撤回~\n\n' +
           JSON.stringify(rsp_sdkLogin)
       )
       setTimeout(() => {
@@ -98,7 +98,7 @@ export default class kuroBBSLogin {
         this.tokenLoginHelpTip,
         '======== 登录步骤 ========',
         '高敏感登录方式, 请私聊使用!',
-        `1. 根据抓包教程文章安装抓包软件并完成抓包: https://blog.tomys.top/2023-07/kuro-token/ \n2. 与 Bot 私聊, 将抓包获取到的 token 以 #库洛token后面跟上你的token 发送给 Bot 即可完成登录`,
+        `1. 根据抓包教程文章安装抓包软件并完成抓包: https://blog.tomys.top/2023-07/kuro-token/ \n2. 与 Bot 私聊, 将抓包获取到的 token 以 #库洛token后面跟上你的token 发送给 Bot 即可完成登录. 注意 token 两个月后会过期, 届时需要重新登录~`,
       ],
       '[库洛插件] 库洛 token 登录帮助'
     )
@@ -149,7 +149,7 @@ export default class kuroBBSLogin {
         [
           `[库洛插件] 库洛在线登录`,
           this.onlineLoginTip,
-          `请在三分钟内点击下方链接完成登录, Bot 会自己获取 token 完成登录 \n注意这是专属链接, 请勿点击他人的链接~ \nhttps://kuro.amoe.cc/page/kuroBbsLogin?token=${rsp_getPluginServerKuroBbsLoginAuth.token}`,
+          `请在三分钟内点击下方链接完成登录, Bot 会自己获取 token 完成登录 . \n登录态两个月后会过期, 届时需要重新登录~ \n注意这是专属链接, 请勿点击他人的链接~ \nhttps://kuro.amoe.cc/page/kuroBbsLogin?token=${rsp_getPluginServerKuroBbsLoginAuth.token}`,
         ],
         '[库洛插件] 库洛在线登录'
       )
