@@ -1,3 +1,23 @@
+## [0.3.9-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.8-rel...v0.3.9-rel) (2024-11-12)
+
+
+### Bug Fixes
+
+* 武器`星序协响` id 错误 ([31add80](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/31add80a946e6ce0ed3c8ce07f98996444c11247))
+
+
+### Features
+
+* 新增鸣潮 `1.4` 卡池/角色/武器 ([ceaca9f](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/ceaca9f57117d6790cab701e3d2b4a5fc8f09493))
+
+
+### Performance Improvements
+
+* 登录流程的一些提示 ([7ce15f7](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/7ce15f72d48f6991448568f8c649469c215d68b8))
+* 更新抽卡记录获取帮助 ([4b11b62](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/4b11b62b77e0793d094ffd5eab28e9e32963b011))
+
+
+
 ## [0.3.8-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.7-rel...v0.3.8-rel) (2024-09-27)
 
 
