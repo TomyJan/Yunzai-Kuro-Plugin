@@ -198,4 +198,40 @@ export const mcGachaUpPools = [
     itemType: 2,
     cardPoolName: '浮声沉兵',
   },
+  {
+    // 1.4 上半, 为给新年版本让时间版本时间延长
+    startTime: '1731549600', // 2024.11.14 10:00
+    endTime: '1733968740', // 2024.12.12 09:59
+    itemId: '1603',
+    itemName: '椿',
+    itemType: 1,
+    cardPoolName: '徘徊迷宫尽处',
+  },
+  {
+    // 1.4 上半, 为给新年版本让时间版本时间延长
+    startTime: '1731549600', // 2024.11.14 10:00
+    endTime: '1733968740', // 2024.12.12 09:59
+    itemId: '21020026',
+    itemName: '裁春',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 1.4 下半, 为给新年版本让时间版本时间延长
+    startTime: '1733968800', // 2024.12.12 10:00
+    endTime: '1735703940', // 2025.01.01 11:59
+    itemId: '1302',
+    itemName: '吟霖',
+    itemType: 1,
+    cardPoolName: '惊霆雨时节',
+  },
+  {
+    // 1.4 下半, 为给新年版本让时间版本时间延长
+    startTime: '1733968800', // 2024.12.12 10:00
+    endTime: '1735703940', // 2025.01.01 11:59
+    itemId: '21050016',
+    itemName: '掣傀之手',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
 ]
