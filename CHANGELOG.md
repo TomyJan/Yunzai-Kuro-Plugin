@@ -1,3 +1,12 @@
+## [0.3.10-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.9-rel...v0.3.10-rel) (2024-11-12)
+
+
+### Bug Fixes
+
+* 忘了里哥池子了 ([bcab999](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/bcab9990fcf9d71b11493d80c0635b67e7cf88e3))
+
+
+
 ## [0.3.9-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.8-rel...v0.3.9-rel) (2024-11-12)
 
 
