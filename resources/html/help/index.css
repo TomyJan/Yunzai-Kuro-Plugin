@@ -14,14 +14,13 @@
 }
 
 html, body {
-    height: 100%;
     overflow: hidden;
 }
 
 body {
     position: relative;
     transform: scale(1);
-    width: auto;
+    width: 830px;
     background: url(../../../data/system/cachedImg/cardBg.jpg) no-repeat center center fixed;
     background-size: cover;
     z-index: 0;  /* 确保body在底层 */
@@ -63,7 +62,7 @@ body::before {
     -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
     border-radius: 30px;
-    padding: 2px 0 6px 20px;   
+    padding: 2px 0 6px 20px;
 }
 
 .help-group {

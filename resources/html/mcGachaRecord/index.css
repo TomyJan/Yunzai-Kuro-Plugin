@@ -21,15 +21,14 @@
 }
 
 html, body {
-    height: 100%;
     overflow: hidden;
 }
 
 body {
     position: relative;
     transform: scale(1);
-    width: auto;
-    background: url(../../../data/system/cachedImg/cardBg.jpg) no-repeat center center fixed;
+    width: 710px;
+    background: url(../../../data/system/cachedImg/cardBg.jpg) no-repeat center center;
     background-size: cover;
     display: flex;
     justify-content: center;
