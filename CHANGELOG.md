@@ -1,3 +1,12 @@
+## [0.3.12-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.11-rel...v0.3.12-rel) (2024-11-14)
+
+
+### Performance Improvements
+
+* 卡片在 Linux 上显示不完全 ([9570296](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/9570296ef470cffae549711d69fa0bcd20397f1a))
+
+
+
 ## [0.3.11-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.10-rel...v0.3.11-rel) (2024-11-12)
 
 
