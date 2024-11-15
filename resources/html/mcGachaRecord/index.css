@@ -27,7 +27,7 @@ html, body {
 body {
     position: relative;
     transform: scale(1);
-    width: 710px;
+    width: 740px;
     background: url(../../../data/system/cachedImg/cardBg.jpg) no-repeat center center;
     background-size: cover;
     display: flex;
