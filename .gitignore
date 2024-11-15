@@ -8,6 +8,7 @@ config/
 
 data/gachaData/
 data/system/versionCache.json
+data/system/taskProcess.json
 data/token/
 data/userSetting/
 

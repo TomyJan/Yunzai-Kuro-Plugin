@@ -209,7 +209,7 @@ export async function gameEnergyPushTask(checkTimeInterval = 0) {
   taskProcess.lastGameEnergyPushTime = new Date().getTime() / 1000
   try {
     fs.writeFileSync(taskProcessFile, JSON.stringify(taskProcess))
-    kuroLogger.debug('写入 taskProcess:', taskProcess)
+    kuroLogger.debug('写入 taskProcess:', JSON.stringify(taskProcess))
   } catch (err) {
     kuroLogger.error('写入 taskProcess.json 时出现错误:', err.message)
   }
