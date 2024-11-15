@@ -174,7 +174,6 @@ export async function gameEnergyPushTask(checkTimeInterval = 0) {
           lastGameEnergyPushTime
         )}, 距离上次将查体力超过 ${checkTimeInterval}s, 开始本次检查`
       )
-      return false
     }
   }
   kuroLogger.info(`游戏体力推送: 开始刷新数据...`)
