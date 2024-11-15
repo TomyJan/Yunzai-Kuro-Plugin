@@ -1,3 +1,19 @@
+## [0.3.13-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.12-rel...v0.3.13-rel) (2024-11-15)
+
+
+### Bug Fixes
+
+* 日志输出 ([f2cbd3f](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/f2cbd3f62c7c152348d3715069fd84c3041a78d2))
+* 我是傻逼 ([39bdb50](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/39bdb5015bac632489959ec030b96a543f103b60))
+
+
+### Performance Improvements
+
+* 记录最后体力刷新时间以免一直刷新 ([649d8b6](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/649d8b633092267326320fd51aced669b749d662))
+* 优化网页样式 ([638f1a8](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/638f1a8f893992287a25f1fdb5dd2572ecec8a26))
+
+
+
 ## [0.3.12-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.11-rel...v0.3.12-rel) (2024-11-14)
 
 
