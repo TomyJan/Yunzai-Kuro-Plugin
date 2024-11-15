@@ -147,7 +147,32 @@ async function bbsDailyTask() {
   return true
 }
 
-export async function gameEnergyPushTask() {
+export async function gameEnergyPushTask (checkTimeInterval = 0) {
+  const taskProcessFile = _DataPath + '/system/taskProcess.json'
+  if (checkTimeInterval) {
+    const now = new Date().getTime() / 1000
+    let taskProcess = ''
+    try {
+      taskProcess = fs.readFileSync(taskProcessFile, 'utf8')
+      kuroLogger.debug('读取 taskProcess:', taskProcess)
+    } catch (err) {
+      kuroLogger.error('读取 taskProcess.json 时出现错误:', err.message)
+      taskProcess = '{}'
+    }
+    taskProcess = JSON.parse(taskProcess)
+    let lastGameEnergyPushTime = taskProcess?.lastGameEnergyPushTime || 0
+    if (now - lastGameEnergyPushTime < checkTimeInterval) {
+      kuroLogger.info(`游戏体力推送: 上次检查时间 ${new Date(
+        lastGameEnergyPushTime
+      )}, 距离上次将查体力不足 ${checkTimeInterval}s, 跳过本次检查`)
+      return false
+    } else {
+      kuroLogger.info(`游戏体力推送: 上次检查时间 ${new Date(
+        lastGameEnergyPushTime
+      )}, 距离上次将查体力超过 ${checkTimeInterval}s, 开始本次检查`)
+      return false
+    }
+  }
   kuroLogger.info(`游戏体力推送: 开始刷新数据...`)
 
   const gameSignUins = fs
@@ -168,6 +193,23 @@ export async function gameEnergyPushTask() {
     }
   }
   kuroLogger.info(`游戏体力推送: 数据刷新完成`)
+  // 读入并更新任务进度文件
+  let taskProcess = ''
+  try {
+    taskProcess = fs.readFileSync(taskProcessFile, 'utf8')
+    kuroLogger.debug('读取 taskProcess:', taskProcess)
+  } catch (err) {
+    kuroLogger.error('读取 taskProcess.json 时出现错误:', err.message)
+    taskProcess = '{}'
+  }
+  taskProcess = JSON.parse(taskProcess)
+  taskProcess.lastGameEnergyPushTime = new Date().getTime() / 1000
+  try {
+    fs.writeFileSync(taskProcessFile, JSON.stringify(taskProcess))
+    kuroLogger.debug('写入 taskProcess:', taskProcess)
+  } catch (err) {
+    kuroLogger.error('写入 taskProcess.json 时出现错误:', err.message)
+  }
   return true
 }
 
