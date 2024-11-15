@@ -147,7 +147,7 @@ async function bbsDailyTask() {
   return true
 }
 
-export async function gameEnergyPushTask (checkTimeInterval = 0) {
+export async function gameEnergyPushTask(checkTimeInterval = 0) {
   const taskProcessFile = _DataPath + '/system/taskProcess.json'
   if (checkTimeInterval) {
     const now = new Date().getTime() / 1000
@@ -162,14 +162,18 @@ export async function gameEnergyPushTask (checkTimeInterval = 0) {
     taskProcess = JSON.parse(taskProcess)
     let lastGameEnergyPushTime = taskProcess?.lastGameEnergyPushTime || 0
     if (now - lastGameEnergyPushTime < checkTimeInterval) {
-      kuroLogger.info(`游戏体力推送: 上次检查时间 ${new Date(
-        lastGameEnergyPushTime
-      )}, 距离上次将查体力不足 ${checkTimeInterval}s, 跳过本次检查`)
+      kuroLogger.info(
+        `游戏体力推送: 上次检查时间 ${new Date(
+          lastGameEnergyPushTime
+        )}, 距离上次将查体力不足 ${checkTimeInterval}s, 跳过本次检查`
+      )
       return false
     } else {
-      kuroLogger.info(`游戏体力推送: 上次检查时间 ${new Date(
-        lastGameEnergyPushTime
-      )}, 距离上次将查体力超过 ${checkTimeInterval}s, 开始本次检查`)
+      kuroLogger.info(
+        `游戏体力推送: 上次检查时间 ${new Date(
+          lastGameEnergyPushTime
+        )}, 距离上次将查体力超过 ${checkTimeInterval}s, 开始本次检查`
+      )
       return false
     }
   }
