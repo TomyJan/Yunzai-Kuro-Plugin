@@ -6,8 +6,7 @@ on:
     paths:
       - "**/*.js"
     branches:
-      - "master"
-      - "dev"
+      - "*"
 
 jobs:
   Format-Code:
@@ -22,7 +21,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 18
       - name: Install dependencies
         run: npm install
       - name: Extract branch name
