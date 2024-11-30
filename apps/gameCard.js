@@ -65,7 +65,7 @@ export class gameCardApp extends plugin {
       return gameCardApp.pnsCardData.img
     }
 
-    await updateCardBg()
+    updateCardBg()
     gameCardApp.pnsCardData.img = await puppeteer.screenshot(
       'gameCardPns',
       data
@@ -114,7 +114,7 @@ export class gameCardApp extends plugin {
       return gameCardApp.mcCardData.img
     }
 
-    await updateCardBg()
+    updateCardBg()
     gameCardApp.mcCardData.img = await puppeteer.screenshot('gameCardMc', data)
     gameCardApp.mcCardData.md5 = tmp
 

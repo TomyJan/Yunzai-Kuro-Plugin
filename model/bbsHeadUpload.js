@@ -1,8 +1,8 @@
 import fetch from 'node-fetch'
 import kuroLogger from '../components/logger.js'
 import { getToken } from './kuroBBSTokenHandler.js'
-import { sendForwardMsg } from './utils.js'
 import kuroApi from './kuroApi.js'
+import common from '../../../lib/common/common.js'
 
 export default class bbsHeadUpload {
   constructor(e) {
@@ -29,18 +29,22 @@ export default class bbsHeadUpload {
       tmp2 += `${kuro_uid}\n`
     }
 
-    let bbsHeadUploadHelpMsg = []
-    bbsHeadUploadHelpMsg.push(
-      this.bbsHeadUploadHelpTip,
-      '请将库洛账号 ID 和要上传的图片或者图片直链用逗号隔开发送以完成绑定',
-      '例1: \n#库洛头像上传账号10065669,头像https://public-cdn.tomys.top/head.png',
-      tmp,
-      '头像会居中截圆显示, 建议上传正方形图片',
-      '机器人会下载头像重新上传为库街区内图片后进行设置',
-      tmp2
+    let bbsHeadUploadHelpMsg = await common.makeForwardMsg(
+      this.e,
+      [
+        '[库洛插件] 库洛头像上传帮助',
+        this.bbsHeadUploadHelpTip,
+        '======== 头像上传帮助 ========',
+        '请将库洛账号 ID 和要上传的图片或者图片直链用逗号隔开发送以完成绑定',
+        '例1: \n#库洛头像上传账号10065669,头像https://public-cdn.tomys.top/head.png',
+        tmp,
+        '头像会居中截圆显示, 建议上传正方形图片',
+        '机器人会下载头像重新上传为库街区内图片后进行设置',
+        tmp2
+      ],
+      '[库洛插件] 库洛头像上传帮助'
     )
-
-    await sendForwardMsg(this.e, bbsHeadUploadHelpMsg)
+    await this.e.reply(bbsHeadUploadHelpMsg)
     return true
   }
 

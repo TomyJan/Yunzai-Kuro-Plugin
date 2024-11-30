@@ -136,7 +136,7 @@ export class mcGachaApp extends plugin {
       return mcGachaApp.mcGachaCardData.img
     }
 
-    await updateCardBg()
+    updateCardBg()
     mcGachaApp.mcGachaCardData.img = await puppeteer.screenshot(
       'mcGachaRecord',
       data

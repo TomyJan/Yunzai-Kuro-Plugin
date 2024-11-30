@@ -1,5 +1,4 @@
 import kuroLogger from '../components/logger.js'
-import { sendForwardMsg } from './utils.js'
 import kuroApi from './kuroApi.js'
 import common from '../../../lib/common/common.js'
 
@@ -27,7 +26,7 @@ export default class PnnTownActivity {
       ],
       '[库洛插件] 帕尼尼小镇活动任务帮助'
     )
-    await sendForwardMsg(this.e, pnnTownHelpMsg)
+    await this.e.reply(pnnTownHelpMsg)
     return true
   }
 

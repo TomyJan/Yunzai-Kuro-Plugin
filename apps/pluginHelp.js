@@ -40,7 +40,7 @@ export class pluginHelpApp extends plugin {
       return pluginHelpApp.helpData.img
     }
 
-    await updateCardBg()
+    updateCardBg()
     pluginHelpApp.helpData.img = await puppeteer.screenshot('help', data)
     pluginHelpApp.helpData.md5 = tmp
 
