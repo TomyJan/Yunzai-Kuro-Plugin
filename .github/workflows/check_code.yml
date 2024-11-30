@@ -30,7 +30,9 @@ jobs:
         run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
         id: extract_branch
       - name: Format code
-        run: npx prettier --write "**/*.js"
+        run: npm run format
+      - name: Lint code
+        run: npm run lint:fix
       - run: git config --global user.name "github-actions"
       - run: git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - run: git checkout -- package-lock.json
