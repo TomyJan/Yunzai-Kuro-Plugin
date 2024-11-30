@@ -319,7 +319,7 @@ export default class kuroApiHandler {
         'pnnTownActCollectEgg',
         'pnnTownActDraw',
         'pnnTownActShare',
-        'pnnTownActPrize'
+        'pnnTownActPrize',
       ].includes(ApiName)
     ) {
       // 这些 API 请求头是浏览器的

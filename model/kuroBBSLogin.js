@@ -112,7 +112,10 @@ export default class kuroBBSLogin {
       JSON.parse(rsp1)
       if (Object.prototype.hasOwnProperty.call(JSON.parse(rsp1), 'data')) {
         if (
-          Object.prototype.hasOwnProperty.call(JSON.parse(rsp1).data, 'userId') &&
+          Object.prototype.hasOwnProperty.call(
+            JSON.parse(rsp1).data,
+            'userId'
+          ) &&
           Object.prototype.hasOwnProperty.call(JSON.parse(rsp1).data, 'token')
         ) {
           return JSON.parse(rsp1)

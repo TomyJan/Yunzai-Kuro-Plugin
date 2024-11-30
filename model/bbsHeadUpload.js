@@ -40,7 +40,7 @@ export default class bbsHeadUpload {
         tmp,
         '头像会居中截圆显示, 建议上传正方形图片',
         '机器人会下载头像重新上传为库街区内图片后进行设置',
-        tmp2
+        tmp2,
       ],
       '[库洛插件] 库洛头像上传帮助'
     )

@@ -26,8 +26,8 @@ export class bbsHeadUploadApp extends plugin {
   }
 
   async bbsHeadUploadHelp() {
-  // async bbsHeadUploadHelp(e) {
-      this.reply(`功能已失效!`)
+    // async bbsHeadUploadHelp(e) {
+    this.reply(`功能已失效!`)
     return
     // let head = new headUp(e)
     // await head.bbsHeadUploadHelp()
@@ -35,8 +35,8 @@ export class bbsHeadUploadApp extends plugin {
   }
 
   async bbsHeadUploadResult() {
-  // async bbsHeadUploadResult(e) {
-      this.reply(`功能已失效!`)
+    // async bbsHeadUploadResult(e) {
+    this.reply(`功能已失效!`)
     return
     // let head = new headUp(e)
     // await head.bbsHeadUploadResult()

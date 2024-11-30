@@ -27,7 +27,7 @@ export default class kuroApi {
    * @param {object} data 传入数据, 具体业务需要的参数也不同
    * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
    */
-  async getData (ApiName, kuroUid, data) {
+  async getData(ApiName, kuroUid, data) {
     // 不需要从文件读 token 的 API
     if (!['sdkLogin', 'checkToken_mineV2'].includes(ApiName)) {
       await this.waitTokenData()
@@ -49,7 +49,7 @@ export default class kuroApi {
         'pnnTownActCollectEgg',
         'pnnTownActDraw',
         'pnnTownActShare',
-        'pnnTownActPrize'
+        'pnnTownActPrize',
       ].includes(ApiName)
     ) {
       rsp = await this.kuroApiHandler.getApiRsp(ApiName, '114514', null, data)
@@ -417,7 +417,7 @@ export default class kuroApi {
    * @param {string} mobile 手机号, 将传入 data.mobile
    * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
    */
-  async pnnTownActSendCode (mobile) {
+  async pnnTownActSendCode(mobile) {
     return this.getData('pnnTownActSendCode', '114514', { mobile })
   }
 
@@ -427,7 +427,7 @@ export default class kuroApi {
    * @param {object} code 验证码, 将传入 data.code
    * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
    */
-  async pnnTownActLogin (mobile, code) {
+  async pnnTownActLogin(mobile, code) {
     return this.getData('pnnTownActLogin', '114514', { mobile, code })
   }
 
@@ -436,7 +436,7 @@ export default class kuroApi {
    * @param {string} token 用户 token, 将传入 data.token
    * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
    */
-  async pnnTownActUserInfo (token) {
+  async pnnTownActUserInfo(token) {
     return this.getData('pnnTownActUserInfo', '114514', { token })
   }
 
@@ -446,7 +446,7 @@ export default class kuroApi {
    * @param {number} id 蛋 id, 1-18, 将传入 data.id
    * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
    */
-  async pnnTownActCollectEgg (token, id) {
+  async pnnTownActCollectEgg(token, id) {
     return this.getData('pnnTownActCollectEgg', '114514', { token, id })
   }
 
@@ -456,7 +456,7 @@ export default class kuroApi {
    * @param {number} type 抽奖类型, 1=单发, 2=十连, 将传入 data.type
    * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
    */
-  async pnnTownActDraw (token, type) {
+  async pnnTownActDraw(token, type) {
     return this.getData('pnnTownActDraw', '114514', { token, type })
   }
 
@@ -465,7 +465,7 @@ export default class kuroApi {
    * @param {string} token 用户 token, 将传入 data.token
    * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
    */
-  async pnnTownActShare (token) {
+  async pnnTownActShare(token) {
     return this.getData('pnnTownActShare', '114514', { token })
   }
 
@@ -474,7 +474,7 @@ export default class kuroApi {
    * @param {string} token 用户 token, 将传入 data.token
    * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
    */
-  async pnnTownActPrize (token) {
+  async pnnTownActPrize(token) {
     return this.getData('pnnTownActPrize', '114514', { token })
   }
 }
