@@ -1,3 +1,17 @@
+## [0.3.14-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.13-rel...v0.3.14-rel) (2024-11-30)
+
+
+### Features
+
+* 帕尼尼小镇一键活动 ([328cc84](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/328cc84827a7df17122730b6e3a3ae9259a5777a))
+
+
+### Performance Improvements
+
+* 删除冗余代码 ([8a5c32c](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/8a5c32ca97100ff562a5000049d18fce28901865))
+
+
+
 ## [0.3.13-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.12-rel...v0.3.13-rel) (2024-11-15)
 
 
