@@ -1,5 +1,6 @@
 import fs from 'fs'
 import chalk from 'chalk'
+import process from 'node:process'
 
 // 插件目录
 export const pluginPath = './plugins/Yunzai-Kuro-Plugin'

@@ -32,7 +32,6 @@ export default class pluginHelp {
       })
     }
 
-    const saveId = this.userId
     const tplFile = `${resPath}/html/${this.model}/index.html`
 
     return {

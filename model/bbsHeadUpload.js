@@ -17,13 +17,13 @@ export default class bbsHeadUpload {
     let tmp = []
     tmp.push(
       '例2: \n#库洛头像上传账号10065669,头像',
+      // eslint-disable-next-line no-undef
       segment.image(
         'http://gchat.qpic.cn/gchatpic_new/0/0-0-A61649D801BABCE4CACD685296461175/0'
       )
     )
 
     const tokenData = await getToken(this.e.user_id)
-    const accNum = Object.keys(tokenData).length
     let tmp2 = '下面是你账号绑定的库洛账号 ID 列表: \n'
     for (const kuro_uid in tokenData) {
       tmp2 += `${kuro_uid}\n`
@@ -82,7 +82,7 @@ export default class bbsHeadUpload {
     const tokensData = await getToken(this.e.user_id)
     if (
       !tokensData ||
-      !tokensData.hasOwnProperty(msg[0]) ||
+      !Object.prototype.hasOwnProperty.call(tokensData, msg[0]) ||
       !tokensData[msg[0]].token ||
       tokensData[msg[0]].token == ''
     ) {

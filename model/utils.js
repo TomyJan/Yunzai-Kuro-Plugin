@@ -7,6 +7,7 @@ import fs from 'fs'
 import fetch from 'node-fetch'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import zhCN from 'date-fns/locale/zh-CN'
+import { Buffer } from 'buffer'
 
 /**
  * 程序延时
@@ -14,7 +15,7 @@ import zhCN from 'date-fns/locale/zh-CN'
  * @returns {Promise<void>}
  */
 export function sleepAsync(sleepms) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve()
     }, sleepms)
@@ -203,16 +204,21 @@ export async function sendMsgFriend(uin, msg) {
   uin = Number(uin)
   // 延迟五秒
   // await sleepAsync(5000)
+  // eslint-disable-next-line no-undef
   let friend = Bot.fl.get(uin)
   if (friend || config.getConfig().attemptSendNonFriend) {
     kuroLogger.debug(
+      // eslint-disable-next-line no-undef
       `bot ${config.getConfig().botQQ || Bot.uin} 发送好友消息[${
         friend?.nickname
       }](${uin})`
     )
     // 如果 Bot 是 array 则使用配置的 Bot
+    // eslint-disable-next-line no-undef
     let tmpBot = Bot
+    // eslint-disable-next-line no-undef
     if (Array.isArray(Bot)) {
+      // eslint-disable-next-line no-undef
       tmpBot = Bot[config.getConfig().botQQ || 0]
     }
     return await tmpBot
@@ -244,7 +250,9 @@ export async function sendForwardMsg(
   let add = (msg) =>
     forwardMsg.push({
       message: msg,
+      // eslint-disable-next-line no-undef
       nickname: info?.nickname ?? (e.bot ?? Bot).nickname,
+      // eslint-disable-next-line no-undef
       user_id: info?.user_id ?? (e.bot ?? Bot).uin,
     })
   oneMsg ? add(message) : message.forEach((item) => add(item))
@@ -309,8 +317,10 @@ async function reply(
     }
 
     if (Array.isArray(msg)) {
+      // eslint-disable-next-line no-undef
       msg = [segment.at(at, text), ...msg]
     } else {
+      // eslint-disable-next-line no-undef
       msg = [segment.at(at, text), msg]
     }
   }

@@ -1,6 +1,5 @@
 import kuroLogger from '../components/logger.js'
 import {
-  mcGachaDataPath,
   pluginName,
   pluginVer,
   resPath,
@@ -12,7 +11,7 @@ import userConfig from './userConfig.js'
 import kuroApi from './kuroApi.js'
 
 export default class mcGachaCard {
-  constructor(e, gachaType) {
+  constructor(e) {
     this.e = e
   }
 

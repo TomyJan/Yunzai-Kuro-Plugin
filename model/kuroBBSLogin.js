@@ -110,18 +110,18 @@ export default class kuroBBSLogin {
 
     try {
       JSON.parse(rsp1)
-      if (JSON.parse(rsp1).hasOwnProperty('data')) {
+      if (Object.prototype.hasOwnProperty.call(JSON.parse(rsp1), 'data')) {
         if (
-          JSON.parse(rsp1).data.hasOwnProperty('userId') &&
-          JSON.parse(rsp1).data.hasOwnProperty('token')
+          Object.prototype.hasOwnProperty.call(JSON.parse(rsp1).data, 'userId') &&
+          Object.prototype.hasOwnProperty.call(JSON.parse(rsp1).data, 'token')
         ) {
           return JSON.parse(rsp1)
         }
       }
       this.e.reply('token 格式错误!')
       return false
-    } catch (e) {
-      this.e.reply('token 格式错误!')
+    } catch (err) {
+      this.e.reply('token 格式错误!\n' + err)
       return false
     }
   }
@@ -191,8 +191,8 @@ export default class kuroBBSLogin {
           continue
         }
         if (
-          rsp_onlineLogin.data.hasOwnProperty('code') &&
-          rsp_onlineLogin.data.hasOwnProperty('data')
+          Object.prototype.hasOwnProperty.call(rsp_onlineLogin.data, 'code') &&
+          Object.prototype.hasOwnProperty.call(rsp_onlineLogin.data, 'data')
         ) {
           if (loginMsg) {
             try {

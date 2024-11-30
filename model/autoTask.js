@@ -1,4 +1,3 @@
-import chalk from 'chalk'
 import fs from 'node:fs'
 import schedule from 'node-schedule'
 import kuroLogger from '../components/logger.js'
@@ -69,10 +68,9 @@ async function gameSignTask(gameName) {
       kuroLogger.info(`自动游戏签到: 开始为 ${gameSignUin} 鸣潮签到`)
       let startTime = Date.now()
       const tokenData = await getToken(gameSignUin)
-      const accNum = Object.keys(tokenData).length
       let msg = '[库洛插件] 自动游戏签到 - 鸣潮\n\n'
       for (const kuro_uid in tokenData) {
-        if (tokenData.hasOwnProperty(kuro_uid)) {
+        if (Object.prototype.hasOwnProperty.call(tokenData, kuro_uid)) {
           msg += await doMcSignIn(gameSignUin, kuro_uid)
           msg += '\n'
         } else {
@@ -98,10 +96,9 @@ async function gameSignTask(gameName) {
       kuroLogger.info(`自动游戏签到: 开始为 ${gameSignUin} 战双签到`)
       let startTime = Date.now()
       const tokenData = await getToken(gameSignUin)
-      const accNum = Object.keys(tokenData).length
       let msg = '[库洛插件] 自动游戏签到 - 战双\n\n'
       for (const kuro_uid in tokenData) {
-        if (tokenData.hasOwnProperty(kuro_uid)) {
+        if (Object.prototype.hasOwnProperty.call(tokenData, kuro_uid)) {
           msg += await doPnsSignIn(gameSignUin, kuro_uid)
           msg += '\n'
         } else {
@@ -129,10 +126,9 @@ async function bbsDailyTask() {
     kuroLogger.info(`自动社区任务: 开始为 ${gameSignUin} 执行`)
     let startTime = Date.now()
     const tokenData = await getToken(gameSignUin)
-    const accNum = Object.keys(tokenData).length
     let msg = '[库洛插件] 自动社区任务\n\n'
     for (const kuro_uid in tokenData) {
-      if (tokenData.hasOwnProperty(kuro_uid)) {
+      if (Object.prototype.hasOwnProperty.call(tokenData, kuro_uid)) {
         msg += await doBBSDailyTask(gameSignUin, kuro_uid)
         msg += '\n'
       } else {
@@ -187,7 +183,7 @@ export async function gameEnergyPushTask(checkTimeInterval = 0) {
     kuroLogger.info(`游戏体力推送: 开始为 ${gameSignUin} 刷新数据`)
     const tokenData = await getToken(gameSignUin)
     for (const kuro_uid in tokenData) {
-      if (tokenData.hasOwnProperty(kuro_uid)) {
+      if (Object.prototype.hasOwnProperty.call(tokenData, kuro_uid)) {
         await doMcEnergy(gameSignUin, kuro_uid, true)
         await doPnsEnergy(gameSignUin, kuro_uid, true)
       } else {
@@ -228,10 +224,9 @@ async function bbsActivityTask() {
     kuroLogger.info(`自动活动任务: 开始为 ${gameSignUin} 执行`)
     let startTime = Date.now()
     const tokenData = await getToken(gameSignUin)
-    const accNum = Object.keys(tokenData).length
     let msg = '[库洛插件] 自动活动任务\n\n'
     for (const kuro_uid in tokenData) {
-      if (tokenData.hasOwnProperty(kuro_uid)) {
+      if (Object.prototype.hasOwnProperty.call(tokenData, kuro_uid)) {
         msg += await doBbsActivityTask(gameSignUin, kuro_uid)
         if (/活动已结束/.test(msg)) return false
         msg += '\n'

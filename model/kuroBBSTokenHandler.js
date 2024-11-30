@@ -33,7 +33,6 @@ export async function saveToken(uin, kuro_uid, kuro_token, kuro_refreshToken) {
       },
     }
     const filePath = dataPath + `/token/${uin}.json`
-    const jsonData = JSON.stringify(tokenData)
 
     await fs.promises.mkdir(dataPath + '/token', { recursive: true })
 

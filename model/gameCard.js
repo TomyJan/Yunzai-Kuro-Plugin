@@ -10,7 +10,7 @@ import kuroApi from './kuroApi.js'
 import userConfig from './userConfig.js'
 
 export default class gameCard {
-  constructor(e, model) {
+  constructor(e) {
     this.e = e
   }
 
@@ -23,7 +23,7 @@ export default class gameCard {
       if (model === 'gameCardMc') gameId = 3
 
       for (const kuro_uid in tokenData) {
-        if (tokenData.hasOwnProperty(kuro_uid)) {
+        if (Object.prototype.hasOwnProperty.call(tokenData, kuro_uid)) {
           let kuroapi = new kuroApi(e.user_id)
           // 获取昵称
           let rsp_mineV2 = await kuroapi.mineV2(kuro_uid)

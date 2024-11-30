@@ -79,7 +79,7 @@ export default class kuroApi {
     } else if (rsp.code === 220) {
       if (
         ['forumSignIn', 'gameSignInV2'].includes(ApiName) &&
-        rsp.hasOwnProperty('success')
+        Object.prototype.hasOwnProperty.call(rsp, 'success')
       )
         return '签到失败风控'
       return 'token 失效'

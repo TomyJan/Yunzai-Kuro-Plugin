@@ -26,9 +26,13 @@ class Logger {
     const baseLogContent = `[${logType} ] ${message}`
     const logToConsole = `[库洛插件]${baseLogContent}`
 
+    // eslint-disable-next-line no-undef
     if (logType === 'INFO ') logger.info(chalk.white(logToConsole))
+    // eslint-disable-next-line no-undef
     if (logType === 'DEBUG') logger.info(chalk.gray(logToConsole))
+    // eslint-disable-next-line no-undef
     if (logType === 'WARN ') logger.warn(chalk.yellow(logToConsole))
+    // eslint-disable-next-line no-undef
     if (logType === 'ERROR') logger.error(chalk.red(logToConsole))
 
     // 保存日志到文件
@@ -48,6 +52,7 @@ class Logger {
 
       fs.appendFile(currentLogFilePath, logToFile + '\n', (err) => {
         if (err) {
+          // eslint-disable-next-line no-undef
           logger.info(
             chalk.yellow(
               `[库洛插件][WARN  ] 写入日志文件时发生错误：${err.message}`
@@ -127,6 +132,7 @@ class Logger {
 
 // 初始化全局日志记录器实例
 const kuroLogger = new Logger(config.getConfig()?.logger?.logLevel || 'info')
+// eslint-disable-next-line no-undef
 logger.info(chalk.gray(`[库洛插件][LOGGER] Logger initialized!`))
 
 while (typeof kuroLogger === 'undefined' || !(kuroLogger instanceof Logger)) {

@@ -24,7 +24,7 @@ export class pluginHelpApp extends plugin {
     })
   }
 
-  async pluginHelpIndex(e) {
+  async pluginHelpIndex() {
     let data = await pluginHelpData.get(this.e)
     if (!data) {
       await this.reply('帮助信息获取失败')

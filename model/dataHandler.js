@@ -1,5 +1,4 @@
 import fs from 'node:fs'
-import _ from 'lodash'
 import YAML from 'yaml'
 import chokidar from 'chokidar'
 import kuroLogger from '../components/logger.js'
@@ -41,7 +40,7 @@ class dataHandler {
   watch(file, name) {
     const watcher = chokidar.watch(file)
 
-    watcher.on('change', (path) => {
+    watcher.on('change', () => {
       delete kuroLogger.info(`修改配置文件 ${name} , 已重载`)
     })
   }

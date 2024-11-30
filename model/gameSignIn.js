@@ -22,7 +22,7 @@ export default class gameSignIn {
       let startTime = Date.now()
       let msg = '[库洛插件] 游戏签到 - 战双\n\n'
       for (const kuro_uid in tokenData) {
-        if (tokenData.hasOwnProperty(kuro_uid)) {
+        if (Object.prototype.hasOwnProperty.call(tokenData, kuro_uid)) {
           msg += await doPnsSignIn(this.e.user_id, kuro_uid)
           msg += `\n`
         } else {
@@ -54,7 +54,7 @@ export default class gameSignIn {
       let startTime = Date.now()
       let msg = '[库洛插件] 游戏签到 - 鸣潮\n\n'
       for (const kuro_uid in tokenData) {
-        if (tokenData.hasOwnProperty(kuro_uid)) {
+        if (Object.prototype.hasOwnProperty.call(tokenData, kuro_uid)) {
           msg += await doMcSignIn(this.e.user_id, kuro_uid)
           msg += `\n`
         } else {

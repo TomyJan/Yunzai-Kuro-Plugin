@@ -24,7 +24,7 @@ export default class bbsActivityTask {
       let startTime = Date.now()
       let msg = ''
       for (const kuro_uid in tokenData) {
-        if (tokenData.hasOwnProperty(kuro_uid)) {
+        if (Object.prototype.hasOwnProperty.call(tokenData, kuro_uid)) {
           msg += await doBbsActivityTask(this.e.user_id, kuro_uid)
           if (/活动已结束/.test(msg)) return await this.e.reply('活动已结束')
           msg += `\n`
@@ -64,7 +64,7 @@ export default class bbsActivityTask {
     const tokensData = await getToken(this.e.user_id)
     if (
       !tokensData ||
-      !tokensData.hasOwnProperty(msg[0]) ||
+      !Object.prototype.hasOwnProperty.call(tokensData, msg[0]) ||
       !tokensData[msg[0]].token ||
       tokensData[msg[0]].token == ''
     ) {

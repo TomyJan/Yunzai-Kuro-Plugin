@@ -22,7 +22,7 @@ export default class bbsTask {
       let startTime = Date.now()
       let msg = '[库洛插件] 社区任务\n\n'
       for (const kuro_uid in tokenData) {
-        if (tokenData.hasOwnProperty(kuro_uid)) {
+        if (Object.prototype.hasOwnProperty.call(tokenData, kuro_uid)) {
           msg += await doBBSDailyTask(this.e.user_id, kuro_uid)
           msg += `\n`
         } else {
@@ -249,11 +249,6 @@ export async function doBBSDailyTask(uin, kuro_uid) {
             rsp_getTaskProcess.data.currentDailyGold
           } 库洛币, `
         : '今日任务已完成, ')
-  if (
-    rsp_getTaskProcess.data.currentDailyGold ==
-    rsp_getTaskProcess.data.maxDailyGold
-  ) {
-  }
   // 获取库洛币总数
   let rsp_getTotalGold = await kuroapi.getTotalGold(kuro_uid)
   if (typeof rsp_getTotalGold == 'string' || rsp_getTotalGold.code !== 200)
