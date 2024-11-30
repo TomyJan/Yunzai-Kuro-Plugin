@@ -24,6 +24,9 @@
     # - icon: pns
     #   title: "#库街区一键活动"
     #   desc: 一键完成库街区活动任务
+    - icon: pns
+      title: "#帕尼尼小镇"
+      desc: 一键完成帕尼尼小镇并领取兑换码
 - group: 游戏查询
   list:
     - icon: pns

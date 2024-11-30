@@ -3,13 +3,12 @@ import kuroLogger from './components/logger.js'
 import {
   appsPath,
   pluginVer,
-  pluginThemeColor,
-  _DataPath,
+  pluginThemeColor
 } from './data/system/pluginConstants.js'
 import {
   initAutoTask,
   checkUpdateTask,
-  gameEnergyPushTask,
+  gameEnergyPushTask
 } from './model/autoTask.js'
 
 await kuroLogger.info(pluginThemeColor('============(≧∇≦)ﾉ============'))

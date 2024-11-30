@@ -9,6 +9,7 @@ export default class kuroApiHandler {
     this.mcGachaApiUrl = 'https://gmserver-api.aki-game2.com'
     this.mcGachaApiUrlOS = 'https://gmserver-api.aki-game2.net'
     this.pluginServerUrl = 'https://kuro.amoe.cc'
+    this.pnnTownActUrl = 'https://paninitown-api.kurogames-global.com'
 
     this.kuroBbsVersion = '2.2.1'
     this.kuroBbsVerCode = '2210'
@@ -231,16 +232,58 @@ export default class kuroApiHandler {
         url: `${this.pluginServerUrl}/api/kuroBbs/token/get`,
         body: JSON.stringify({ version: 1, token: data.token }),
       },
+      pnnTownActSendCode: {
+        // 帕尼尼小镇发送验证码
+        url: `${this.pnnTownActUrl}/mobile/send`,
+        body: `mobile=${data.mobile}`,
+      },
+      pnnTownActLogin: {
+        // 帕尼尼小镇登录
+        url: `${this.pnnTownActUrl}/mobile/login`,
+        body: `mobile=${data.mobile}&code=${data.code}`,
+      },
+      pnnTownActUserInfo: {
+        // 帕尼尼小镇取用户信息
+        url: `${this.pnnTownActUrl}/user/getInfo`,
+        body: ``,
+        header: { token: data.token },
+      },
+      pnnTownActCollectEgg: {
+        // 帕尼尼小镇收集蛋
+        url: `${this.pnnTownActUrl}/egg/collect`,
+        body: `egg_id=${data.id}`,
+        header: { token: data.token },
+      },
+      pnnTownActDraw: {
+        // 帕尼尼小镇抽奖
+        url: `${this.pnnTownActUrl}/draw/get`,
+        query: `type=${data.type}`,
+        header: { token: data.token },
+      },
+      pnnTownActShare: {
+        // 帕尼尼小镇分享任务
+        url: `${this.pnnTownActUrl}/egg/share`,
+        body: ``,
+        header: { token: data.token },
+      },
+      pnnTownActPrize: {
+        // 帕尼尼小镇取奖品
+        url: `${this.pnnTownActUrl}/draw/prize`,
+        body: ``,
+        header: { token: data.token },
+      },
     }
     if (!ApiMap[ApiName]) return false
     let {
       url,
+      header = {},
       query = '', // GET 请求参数
       body = '',
       method = 'POST',
     } = ApiMap[ApiName]
     if (query) url += `?${query}`
     let headers = this.getHeaders(ApiName, token, kuroUid)
+    if (header) headers = { ...headers, ...header }
     return {
       url,
       headers,
@@ -270,6 +313,13 @@ export default class kuroApiHandler {
         'activityBindRole',
         'getActivityLotteryRemain',
         'doActivityLottery',
+        'pnnTownActSendCode',
+        'pnnTownActLogin',
+        'pnnTownActUserInfo',
+        'pnnTownActCollectEgg',
+        'pnnTownActDraw',
+        'pnnTownActShare',
+        'pnnTownActPrize'
       ].includes(ApiName)
     ) {
       // 这些 API 请求头是浏览器的

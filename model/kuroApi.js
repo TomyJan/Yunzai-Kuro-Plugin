@@ -27,10 +27,11 @@ export default class kuroApi {
    * @param {object} data 传入数据, 具体业务需要的参数也不同
    * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
    */
-  async getData(ApiName, kuroUid, data) {
+  async getData (ApiName, kuroUid, data) {
     // 不需要从文件读 token 的 API
-    if (!['sdkLogin', 'checkToken_mineV2'].includes(ApiName))
+    if (!['sdkLogin', 'checkToken_mineV2'].includes(ApiName)) {
       await this.waitTokenData()
+    }
 
     this.kuroApiHandler = new kuroApiHandler()
     let rsp = ''
@@ -42,6 +43,13 @@ export default class kuroApi {
         'mcGachaRecord',
         'getPluginServerKuroBbsLoginAuth',
         'getPluginServerKuroBbsLoginToken',
+        'pnnTownActSendCode',
+        'pnnTownActLogin',
+        'pnnTownActUserInfo',
+        'pnnTownActCollectEgg',
+        'pnnTownActDraw',
+        'pnnTownActShare',
+        'pnnTownActPrize'
       ].includes(ApiName)
     ) {
       rsp = await this.kuroApiHandler.getApiRsp(ApiName, '114514', null, data)
@@ -397,10 +405,76 @@ export default class kuroApi {
 
   /**
    * 从插件服务器获取库街区 token
-   * @params {object} data 传入 data.token 通信 token
+   * @param {object} data 传入 data.token 通信 token
    * @returns {JSON|string} code=0 时接口返回的原始 json 或者报错信息
    */
   async getPluginServerKuroBbsLoginToken(data) {
     return this.getData('getPluginServerKuroBbsLoginToken', '114514', data)
+  }
+
+  /**
+   * 帕尼尼小镇活动发送验证码
+   * @param {string} mobile 手机号, 将传入 data.mobile
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async pnnTownActSendCode (mobile) {
+    return this.getData('pnnTownActSendCode', '114514', { mobile })
+  }
+
+  /**
+   * 帕尼尼小镇活动登录
+   * @param {object} mobile 手机号, 将传入 data.mobile
+   * @param {object} code 验证码, 将传入 data.code
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async pnnTownActLogin (mobile, code) {
+    return this.getData('pnnTownActLogin', '114514', { mobile, code })
+  }
+
+  /**
+   * 帕尼尼小镇活动用户信息
+   * @param {string} token 用户 token, 将传入 data.token
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async pnnTownActUserInfo (token) {
+    return this.getData('pnnTownActUserInfo', '114514', { token })
+  }
+
+  /**
+   * 帕尼尼小镇活动任务
+   * @param {string} token 用户 token, 将传入 data.token
+   * @param {number} id 蛋 id, 1-18, 将传入 data.id
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async pnnTownActCollectEgg (token, id) {
+    return this.getData('pnnTownActCollectEgg', '114514', { token, id })
+  }
+
+  /**
+   * 帕尼尼小镇活动抽奖
+   * @param {string} token 用户 token, 将传入 data.token
+   * @param {number} type 抽奖类型, 1=单发, 2=十连, 将传入 data.type
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async pnnTownActDraw (token, type) {
+    return this.getData('pnnTownActDraw', '114514', { token, type })
+  }
+
+  /**
+   * 帕尼尼小镇活动任务分享任务
+   * @param {string} token 用户 token, 将传入 data.token
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async pnnTownActShare (token) {
+    return this.getData('pnnTownActShare', '114514', { token })
+  }
+
+  /**
+   * 帕尼尼小镇活动查询奖品
+   * @param {string} token 用户 token, 将传入 data.token
+   * @returns {JSON|string} code=200 时接口返回的原始 json 或者报错信息
+   */
+  async pnnTownActPrize (token) {
+    return this.getData('pnnTownActPrize', '114514', { token })
   }
 }
