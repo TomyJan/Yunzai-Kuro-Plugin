@@ -161,7 +161,9 @@ export default class PnnTownActivity {
               )}, 重试失败, 跳过这个蛋`
             )
             this.e.reply(
-              `收集第 ${i} 个蛋出错, 将跳过这个蛋. 活动页返回: \n ${JSON.stringify(rsp)}`
+              `收集第 ${i} 个蛋出错, 将跳过这个蛋. 活动页返回: \n ${JSON.stringify(
+                rsp
+              )}`
             )
           }
         }
