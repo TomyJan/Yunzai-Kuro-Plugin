@@ -1,3 +1,12 @@
+## [0.3.15-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.14-rel...v0.3.15-rel) (2024-12-01)
+
+
+### Performance Improvements
+
+* 优化帕尼尼小镇提示文案 ([7e861e8](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/7e861e8be7b129ac8045b88166e06377011c6bd5))
+
+
+
 ## [0.3.14-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.13-rel...v0.3.14-rel) (2024-11-30)
 
 
