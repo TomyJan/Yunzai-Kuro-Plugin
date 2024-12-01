@@ -95,7 +95,7 @@ export default class PnnTownActivity {
       return false
     }
     const token = rspPnsTownLogin.data.token
-    this.e.reply('登录成功, 准备自动完成活动任务')
+    this.e.reply('登录成功, 开始查询任务进度')
     // 先查询一次任务进度
     let rspPnsTownUserInfo = await pnnAct.pnnTownActUserInfo(token)
     kuroLogger.debug('rspPnsTownUserInfo:', JSON.stringify(rspPnsTownUserInfo))
@@ -123,9 +123,9 @@ export default class PnnTownActivity {
       `查询任务进度成功, 当前${
         taskNum > 0
           ? taskNum == 20
-            ? '已完成所有任务, 跳过任务'
-            : `已完成 ${taskNum} 个任务`
-          : '未完成任何任务'
+            ? '已完成所有任务, 跳过自动任务'
+            : `已完成 ${taskNum} 个任务, 开始继续自动任务`
+          : '未完成任何任务, 开始自动任务'
       }`
     )
     let continueTask = true
@@ -161,7 +161,7 @@ export default class PnnTownActivity {
               )}, 重试失败, 跳过这个蛋`
             )
             this.e.reply(
-              `任务 ${i} 出错, 活动页返回: \n ${JSON.stringify(rsp)}`
+              `收集第 ${i} 个蛋出错, 将跳过这个蛋. 活动页返回: \n ${JSON.stringify(rsp)}`
             )
           }
         }
@@ -191,10 +191,10 @@ export default class PnnTownActivity {
               rspShare
             )}, 重试失败, 跳过这个任务`
           )
-          this.e.reply('分享任务出错, 活动页返回: \n' + rspShare)
+          this.e.reply('分享任务出错, 跳过此任务. 活动页返回: \n' + rspShare)
         }
       }
-      this.e.reply('任务已完成, 准备抽奖')
+      this.e.reply('任务已完成, 开始抽奖')
     }
 
     // 抽奖前再次获取用户信息
@@ -213,7 +213,7 @@ export default class PnnTownActivity {
         `当前${
           continueTask
             ? `剩余 ${chanceRemain} 次抽奖机会, 开始抽奖`
-            : '抽奖机会已用完, 跳过抽奖, 准备查询奖品'
+            : '抽奖机会已用完, 跳过抽奖, 开始查询奖品'
         }`
       )
     }
@@ -241,7 +241,7 @@ export default class PnnTownActivity {
           setTimeout(resolve, Math.floor(Math.random() * 100 + 100))
         )
       }
-      this.e.reply('抽奖已完成, 准备查询奖品')
+      this.e.reply('抽奖已完成, 开始查询奖品')
     }
     // 查询奖品并发送
     let rspPrize = await pnnAct.pnnTownActPrize(token)
@@ -278,7 +278,7 @@ export default class PnnTownActivity {
     let priceMsgs = ['[库洛插件] 帕尼尼小镇 奖品信息']
     if (otherList.length > 0) {
       priceMsgs.push(
-        '这就是首席的实力! 你居然抽到了蚊子腿以外的东西! 快看看有什么吧~'
+        `这就是首席的实力! 你居然抽到了 ${otherList.length} 个蚊子腿以外的东西! 快看看有什么吧~`
       )
       for (let i = 0; i < otherList.length; i++) {
         priceMsgs.push(`${otherList[i].name}`)
@@ -286,7 +286,7 @@ export default class PnnTownActivity {
       priceMsgs.push('别忘了填收货地址喔~')
     }
     if (cdKeyList.length > 0) {
-      priceMsgs.push('平淡的一天, 蚊子腿也是肉~')
+      priceMsgs.push(`平淡的一天, ${cdKeyList.length} 个蚊子腿也是肉~`)
       for (let i = 0; i < cdKeyList.length; i++) {
         priceMsgs.push(`${cdKeyList[i].code}`)
       }
