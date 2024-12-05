@@ -296,7 +296,7 @@ export default class mcGachaData {
   /** 将 通过 get() 方法获取得到的抽卡记录以 WWGF 保存到本地
    * @param {number} qq QQ
    * @param {object} gachaDataJson 抽卡记录原始 json {"gachaData": {"1":{}, "2": {}}, "playerId": 101812955, "version": 1} , 1-7键值为七个卡池的原始记录
-   * @returns {null|string} 保存成功返回 null, 失败返回 str 原因
+   * @returns {null|string} 保存成功返回 null, 失败返回 str 原因, 其中 ERROR_NO_NEWER_RECORD 表示没有新增记录
    */
   async update(qq, gachaDataJson) {
     kuroLogger.debug(
@@ -317,6 +317,14 @@ export default class mcGachaData {
       }
     }
 
+    let path = `${mcGachaDataPath}/${qq}-${gachaDataJson.playerId}.json`
+    let oldGachaDataInUniform = {}
+    try {
+      oldGachaDataInUniform = JSON.parse(fs.readFileSync(path, 'utf8'))
+    } catch (error) {
+      kuroLogger.debug(`不存在旧记录或读取失败，将创建新文件: ${error.message}`)
+    }
+
     // 开始以 WWGF 格式构造抽卡记录对象
     let gachaDataInUniform = {
       info: {
@@ -328,8 +336,11 @@ export default class mcGachaData {
         wwgf_version: 'v0.1b',
         region_time_zone: Number(8),
       },
-      list: [],
+      list: oldGachaDataInUniform.list || [],
     }
+
+    let existingIds = new Set(gachaDataInUniform.list.map(item => item.id))
+
     kuroLogger.debug(
       `准备转换 QQ ${qq} 的抽卡记录到 WWGF 格式: ${JSON.stringify(
         gachaDataInUniform
@@ -356,76 +367,75 @@ export default class mcGachaData {
           i.toString().padStart(4, '0') +
           (timeCount[data.time]--).toString().padStart(5, '0')
 
-        kuroLogger.debug(
-          `QQ ${qq} 的抽卡记录 ${i} 在时间 ${
-            data.time
-          } 下的物品 ${JSON.stringify(data)} 是第 ${
-            timeCount[data.time] + 1
-          } 个, 其 id 为 ${id}`
-        )
-
-        let item = {
-          gacha_id: i.toString().padStart(4, '0'),
-          gacha_type: mcGachaType[i].toString(),
-          item_id: data.resourceId.toString(),
-          count: data.count.toString(),
-          time: data.time.toString(),
-          name: data.name.toString(),
-          item_type: data.resourceType.toString(),
-          rank_type: data.qualityLevel.toString(),
-          id,
+        if (!existingIds.has(id)) {
+          let item = {
+            gacha_id: i.toString().padStart(4, '0'),
+            gacha_type: mcGachaType[i].toString(),
+            item_id: data.resourceId.toString(),
+            count: data.count.toString(),
+            time: data.time.toString(),
+            name: data.name.toString(),
+            item_type: data.resourceType.toString(),
+            rank_type: data.qualityLevel.toString(),
+            id,
+          }
+          gachaDataInUniform.list.push(item)
         }
-        gachaDataInUniform.list.push(item)
       }
     }
 
-    // 保存到本地 TODO: 目前 API 返回的是完整记录, 后续分割记录后应该是增量更新
-    kuroLogger.debug(
-      `QQ ${qq} 的 WWGF 抽卡记录转换完成: ${JSON.stringify(gachaDataInUniform)}`
-    )
-    let path = `${mcGachaDataPath}/${qq}-${gachaDataJson.playerId}.json`
-    // 使用错误捕获
+    // 在保存到本地之前，对合并后的记录进行排序, 按照 gacha_id 从小到大, id 从大到小排序
+    gachaDataInUniform.list.sort((a, b) => {
+      if (a.gacha_id !== b.gacha_id) {
+        return parseInt(a.gacha_id) - parseInt(b.gacha_id);
+      } else {
+        return parseInt(b.id) - parseInt(a.id);
+      }
+    });
+
+    // 保存到本地
     try {
       fs.writeFileSync(path, JSON.stringify(gachaDataInUniform, null, 2))
       kuroLogger.debug(`QQ ${qq} 的抽卡记录保存成功: ${path}`)
-      // return null
-      // 统计每种卡池获取到的数量, 构造json返回, gachatype替换为可读的卡池类型
+      // 统计每种卡池获取到的新增数量
       let gachaCount = {}
       for (let i = 0; i < gachaDataInUniform.list.length; i++) {
         let item = gachaDataInUniform.list[i]
-        let gachaName = ''
-        switch (item.gacha_id.replace(/^0+/, '')) {
-          case '1':
-            gachaName = '角色活动'
-            break
-          case '2':
-            gachaName = '武器活动'
-            break
-          case '3':
-            gachaName = '角色常驻'
-            break
-          case '4':
-            gachaName = '武器常驻'
-            break
-          case '5':
-            gachaName = '新手卡池'
-            break
-          case '6':
-            gachaName = '新手自选'
-            break
-          case '7':
-            gachaName = '自选五星'
-            break
-          default:
-            gachaName = `未知(${item.gacha_id.replace(/^0+/, '')})`
+        if (!existingIds.has(item.id)) {
+          let gachaName = ''
+          switch (item.gacha_id.replace(/^0+/, '')) {
+            case '1':
+              gachaName = '角色活动'
+              break
+            case '2':
+              gachaName = '武器活动'
+              break
+            case '3':
+              gachaName = '角色常驻'
+              break
+            case '4':
+              gachaName = '武器常驻'
+              break
+            case '5':
+              gachaName = '新手卡池'
+              break
+            case '6':
+              gachaName = '新手自选'
+              break
+            case '7':
+              gachaName = '自选五星'
+              break
+            default:
+              gachaName = `未知(${item.gacha_id.replace(/^0+/, '')})`
+          }
+          if (!gachaCount[gachaName]) {
+            gachaCount[gachaName] = 0
+          }
+          gachaCount[gachaName]++
         }
-        if (!gachaCount[gachaName]) {
-          gachaCount[gachaName] = 0
-        }
-        gachaCount[gachaName]++
       }
       if (Object.keys(gachaCount).length === 0) {
-        return '抽卡记录为空'
+        return 'ERROR_NO_NEWER_RECORD'
       }
       return gachaCount
     } catch (error) {
