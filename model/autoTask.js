@@ -152,7 +152,7 @@ export async function gameEnergyPushTask(checkTimeInterval = 0) {
       kuroLogger.debug('创建 taskProcess.json')
     }
     taskProcess = fs.readFileSync(taskProcessFile, 'utf8')
-    kuroLogger.debug('读取 taskProcess:', taskProcess)
+    kuroLogger.debug('读取 taskProcess:', taskProcess.trim())
   } catch (err) {
     kuroLogger.error('读取 taskProcess.json 时出现错误:', err.message)
     taskProcess = '{}'
@@ -163,7 +163,7 @@ export async function gameEnergyPushTask(checkTimeInterval = 0) {
 
   if (checkTimeInterval) {
     const now = new Date().getTime() / 1000
-    let lastGameEnergyPushTime = taskProcess?.lastGameEnergyPushTime || 0
+    let lastGameEnergyPushTime = taskProcess?.gameEnergy?.lastPushTime || 0
     if (now - lastGameEnergyPushTime < checkTimeInterval) {
       kuroLogger.info(
         `游戏体力推送: 上次检查时间 ${new Date(
@@ -190,7 +190,7 @@ export async function gameEnergyPushTask(checkTimeInterval = 0) {
         kuroLogger.info(`游戏体力推送: 推送检查完成`)
         taskProcess.gameEnergy.waitingPushList = []
         // 更新任务进度文件
-        taskProcess.lastGameEnergyPushTime = new Date().getTime() / 1000
+        taskProcess.gameEnergy.lastPushTime = new Date().getTime() / 1000
         try {
           fs.writeFileSync(taskProcessFile, JSON.stringify(taskProcess))
           kuroLogger.debug('写入 taskProcess:', JSON.stringify(taskProcess))
@@ -242,7 +242,7 @@ export async function gameEnergyPushTask(checkTimeInterval = 0) {
   }
   kuroLogger.info(`游戏体力推送: 数据刷新完成`)
   // 更新任务进度文件
-  taskProcess.lastGameEnergyPushTime = new Date().getTime() / 1000
+  taskProcess.gameEnergy.lastPushTime = new Date().getTime() / 1000
   try {
     fs.writeFileSync(taskProcessFile, JSON.stringify(taskProcess))
     kuroLogger.debug('写入 taskProcess:', JSON.stringify(taskProcess))

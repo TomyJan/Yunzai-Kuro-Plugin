@@ -100,8 +100,8 @@ export async function doPnsEnergy(uin, kuro_uid, isPushTask = false, pushTaskNee
   // 获取昵称
   let rsp_mineV2 = await kuroapi.mineV2(kuro_uid)
   if (rsp_mineV2 == `token 失效`) return `账号 ${kuro_uid}: \ntoken 失效\n`
-  let doPnsSignInRet = ''
-  doPnsSignInRet += `账号 ${
+  let doPnsEnergyRet = ''
+  doPnsEnergyRet += `账号 ${
     rsp_mineV2.data.mine.userName || '未知昵称'
   }(${kuro_uid}): \n`
   // 获取绑定的游戏 id 列表有俩接口, emmm 迷惑
@@ -109,16 +109,16 @@ export async function doPnsEnergy(uin, kuro_uid, isPushTask = false, pushTaskNee
   kuroLogger.debug('rsp_findRoleList:', JSON.stringify(rsp_findRoleList))
   if (typeof rsp_findRoleList == 'string') {
     // 不是 json, 即返回报错
-    doPnsSignInRet += `${rsp_findRoleList}\n`
-    return doPnsSignInRet
+    doPnsEnergyRet += `${rsp_findRoleList}\n`
+    return doPnsEnergyRet
   }
   if (rsp_findRoleList.data.length === 0) {
     // 没绑定游戏账号
-    doPnsSignInRet += '未绑定游戏账号\n'
-    return doPnsSignInRet
+    doPnsEnergyRet += '未绑定游戏账号\n'
+    return doPnsEnergyRet
   }
   for (const data of rsp_findRoleList.data) {
-    doPnsSignInRet += `${data.serverName}-${data.roleName}(${data.roleId}): \n`
+    doPnsEnergyRet += `${data.serverName}-${data.roleName}(${data.roleId}): \n`
     // 执行签到查询后执行签到
 
     let rsp_getPnsWidgetData = await kuroapi.getPnsWidgetData(kuro_uid, {
@@ -131,10 +131,10 @@ export async function doPnsEnergy(uin, kuro_uid, isPushTask = false, pushTaskNee
     )
     if (typeof rsp_getPnsWidgetData == 'string') {
       // 不是 json, 即返回报错
-      doPnsSignInRet += `      ${rsp_getPnsWidgetData}\n`
+      doPnsEnergyRet += `      ${rsp_getPnsWidgetData}\n`
       continue
     }
-    doPnsSignInRet += `      ${formatTimestampInReadableFormat(
+    doPnsEnergyRet += `      ${formatTimestampInReadableFormat(
       rsp_getPnsWidgetData.data.actionData.refreshTimeStamp
     )}回满 (${rsp_getPnsWidgetData.data.actionData.value})\n`
 
@@ -179,7 +179,7 @@ export async function doPnsEnergy(uin, kuro_uid, isPushTask = false, pushTaskNee
     await sleepAsync(getRandomInt(100, 600))
   }
 
-  return doPnsSignInRet
+  return doPnsEnergyRet
 }
 
 /**
@@ -195,8 +195,8 @@ export async function doMcEnergy(uin, kuro_uid, isPushTask = false, pushTaskNeed
   // 获取昵称
   let rsp_mineV2 = await kuroapi.mineV2(kuro_uid)
   if (rsp_mineV2 == `token 失效`) return `账号 ${kuro_uid}: \ntoken 失效\n`
-  let doMcSignInRet = ''
-  doMcSignInRet += `账号 ${
+  let doMcEnergyRet = ''
+  doMcEnergyRet += `账号 ${
     rsp_mineV2.data.mine.userName || '未知昵称'
   }(${kuro_uid}): \n`
   // 获取绑定的游戏 id 列表有俩接口, emmm 迷惑
@@ -204,16 +204,16 @@ export async function doMcEnergy(uin, kuro_uid, isPushTask = false, pushTaskNeed
   kuroLogger.debug('rsp_findRoleList:', JSON.stringify(rsp_findRoleList))
   if (typeof rsp_findRoleList == 'string') {
     // 不是 json, 即返回报错
-    doMcSignInRet += `${rsp_findRoleList}\n`
-    return doMcSignInRet
+    doMcEnergyRet += `${rsp_findRoleList}\n`
+    return doMcEnergyRet
   }
   if (rsp_findRoleList.data.length === 0) {
     // 没绑定游戏账号
-    doMcSignInRet += '未绑定游戏账号\n'
-    return doMcSignInRet
+    doMcEnergyRet += '未绑定游戏账号\n'
+    return doMcEnergyRet
   }
   for (const data of rsp_findRoleList.data) {
-    doMcSignInRet += `${data.serverName}-${data.roleName}(${data.roleId}): \n`
+    doMcEnergyRet += `${data.serverName}-${data.roleName}(${data.roleId}): \n`
     // 执行签到查询后执行签到
 
     let rsp_getMcWidgetData = await kuroapi.getMcWidgetData(kuro_uid, {
@@ -226,10 +226,10 @@ export async function doMcEnergy(uin, kuro_uid, isPushTask = false, pushTaskNeed
     )
     if (typeof rsp_getMcWidgetData == 'string') {
       // 不是 json, 即返回报错
-      doMcSignInRet += `      ${rsp_getMcWidgetData}\n`
+      doMcEnergyRet += `      ${rsp_getMcWidgetData}\n`
       continue
     }
-    doMcSignInRet += `      ${formatTimestampInReadableFormat(
+    doMcEnergyRet += `      ${formatTimestampInReadableFormat(
       rsp_getMcWidgetData.data.energyData.refreshTimeStamp
     )}回满 (${rsp_getMcWidgetData.data.energyData.cur}/${
       rsp_getMcWidgetData.data.energyData.total
@@ -276,7 +276,7 @@ export async function doMcEnergy(uin, kuro_uid, isPushTask = false, pushTaskNeed
     await sleepAsync(getRandomInt(100, 600))
   }
 
-  return doMcSignInRet
+  return doMcEnergyRet
 }
 
 /**
