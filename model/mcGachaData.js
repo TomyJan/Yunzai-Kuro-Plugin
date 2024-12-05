@@ -339,7 +339,7 @@ export default class mcGachaData {
       list: oldGachaDataInUniform.list || [],
     }
 
-    let existingIds = new Set(gachaDataInUniform.list.map(item => item.id))
+    let existingIds = new Set(gachaDataInUniform.list.map((item) => item.id))
 
     kuroLogger.debug(
       `准备转换 QQ ${qq} 的抽卡记录到 WWGF 格式: ${JSON.stringify(
@@ -387,11 +387,11 @@ export default class mcGachaData {
     // 在保存到本地之前，对合并后的记录进行排序, 按照 gacha_id 从小到大, id 从大到小排序
     gachaDataInUniform.list.sort((a, b) => {
       if (a.gacha_id !== b.gacha_id) {
-        return parseInt(a.gacha_id) - parseInt(b.gacha_id);
+        return parseInt(a.gacha_id) - parseInt(b.gacha_id)
       } else {
-        return parseInt(b.id) - parseInt(a.id);
+        return parseInt(b.id) - parseInt(a.id)
       }
-    });
+    })
 
     // 保存到本地
     try {

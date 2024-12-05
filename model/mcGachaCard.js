@@ -154,7 +154,9 @@ export default class mcGachaCard {
       }
       eachUpGoldCost =
         Math.floor(
-          (eachUpGoldCost / (goldCardRecord.filter((item) => item.isUpItem).length)) * 100
+          (eachUpGoldCost /
+            goldCardRecord.filter((item) => item.isUpItem).length) *
+            100
         ) / 100
     }
     // goldCount - up 数量=非 up 数量
