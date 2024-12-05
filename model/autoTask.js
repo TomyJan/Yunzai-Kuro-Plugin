@@ -158,8 +158,9 @@ export async function gameEnergyPushTask(checkTimeInterval = 0) {
     taskProcess = '{}'
   }
   taskProcess = JSON.parse(taskProcess)
-  taskProcess.gameEnergy = taskProcess.gameEnergy || {};
-  taskProcess.gameEnergy.waitingPushList = taskProcess.gameEnergy.waitingPushList || [];
+  taskProcess.gameEnergy = taskProcess.gameEnergy || {}
+  taskProcess.gameEnergy.waitingPushList =
+    taskProcess.gameEnergy.waitingPushList || []
 
   if (checkTimeInterval) {
     const now = new Date().getTime() / 1000
@@ -176,7 +177,9 @@ export async function gameEnergyPushTask(checkTimeInterval = 0) {
         kuroLogger.info(
           `游戏体力推送: 上次检查时间 ${new Date(
             lastGameEnergyPushTime
-          )}, 距离上次将查体力不足 ${checkTimeInterval}s, 但有 ${waitingPushList.length} 个账号需要推送体力, 开始推送体力`
+          )}, 距离上次将查体力不足 ${checkTimeInterval}s, 但有 ${
+            waitingPushList.length
+          } 个账号需要推送体力, 开始推送体力`
         )
         for (let i in waitingPushList) {
           let { gameSignUin, kuro_uid } = waitingPushList[i]
@@ -185,7 +188,9 @@ export async function gameEnergyPushTask(checkTimeInterval = 0) {
           )
           let mcRet = await doMcEnergy(gameSignUin, kuro_uid, true)
           let pnsRet = await doPnsEnergy(gameSignUin, kuro_uid, true)
-          kuroLogger.info(`游戏体力推送 ${gameSignUin} : 推送检查完成, 鸣潮: ${mcRet.trim()}, 战双: ${pnsRet.trim()}`)
+          kuroLogger.info(
+            `游戏体力推送 ${gameSignUin} : 推送检查完成, 鸣潮: ${mcRet.trim()}, 战双: ${pnsRet.trim()}`
+          )
         }
         kuroLogger.info(`游戏体力推送: 推送检查完成`)
         taskProcess.gameEnergy.waitingPushList = []

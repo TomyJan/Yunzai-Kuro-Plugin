@@ -95,7 +95,12 @@ export default class gameEnergy {
  * @param {boolean} pushTaskNeedPush 是否需要推送, 自动任务保存需要推送的账号队列用, 默认 false
  * @returns {string} 可以直接发送的查询结果
  */
-export async function doPnsEnergy(uin, kuro_uid, isPushTask = false, pushTaskNeedPush = false) {
+export async function doPnsEnergy(
+  uin,
+  kuro_uid,
+  isPushTask = false,
+  pushTaskNeedPush = false
+) {
   let kuroapi = new kuroApi(uin)
   // 获取昵称
   let rsp_mineV2 = await kuroapi.mineV2(kuro_uid)
@@ -190,7 +195,12 @@ export async function doPnsEnergy(uin, kuro_uid, isPushTask = false, pushTaskNee
  * @param {boolean} pushTaskNeedPush 是否需要推送, 自动任务保存需要推送的账号队列用, 默认 false
  * @returns {string} 可以直接发送的查询结果
  */
-export async function doMcEnergy(uin, kuro_uid, isPushTask = false, pushTaskNeedPush = false) {
+export async function doMcEnergy(
+  uin,
+  kuro_uid,
+  isPushTask = false,
+  pushTaskNeedPush = false
+) {
   let kuroapi = new kuroApi(uin)
   // 获取昵称
   let rsp_mineV2 = await kuroapi.mineV2(kuro_uid)
