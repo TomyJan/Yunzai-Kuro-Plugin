@@ -1,3 +1,17 @@
+## [0.3.18-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.17-rel...v0.3.18-rel) (2024-12-05)
+
+
+### Features
+
+* 增量更新鸣潮抽卡记录 ([a4bec7c](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/a4bec7cb43e80b60ac3dca1cc000b1c68a7e8916))
+
+
+### Performance Improvements
+
+* 鸣潮抽卡记录展示 `每UP星声` => `每UP抽数` ([47717ec](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/47717ec819c9ef31e89fbb405bb0d47ff4e21725))
+
+
+
 ## [0.3.17-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.16-rel...v0.3.17-rel) (2024-12-05)
 
 
