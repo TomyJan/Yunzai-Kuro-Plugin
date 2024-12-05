@@ -1,3 +1,18 @@
+## [0.3.17-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.16-rel...v0.3.17-rel) (2024-12-05)
+
+
+### Bug Fixes
+
+* 补全和修复体力推送逻辑, 启动时主动检查之前未完成的推送任务 ([4683c11](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/4683c117ec452c6062208e9eea123a29e4885958))
+* taskProcess 文件不存在 ( [#18](https://github.com/TomyJan/Yunzai-Kuro-Plugin/issues/18) ) ([7e1f8d7](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/7e1f8d73d88f3a6d0a28d265b03d452226ebba8e))
+
+
+### Performance Improvements
+
+* 优化变量名 ([156d918](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/156d918acd3d85431c8e19d3a61fb965a3f82dd6))
+
+
+
 ## [0.3.16-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.15-rel...v0.3.16-rel) (2024-12-05)
 
 

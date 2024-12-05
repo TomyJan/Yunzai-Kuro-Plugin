@@ -1,7 +1,7 @@
 {
   "!!!WARNING!!!": "这里的字段用于解析 pluginConstants 和生成 changelog, 不要轻易改动",
   "name": "Yunzai-Kuro-Plugin",
-  "version": "0.3.16-rel",
+  "version": "0.3.17-rel",
   "author": "TomyJan",
   "description": "Yunzai-Bot plugin for kuro games.",
   "type": "module",
