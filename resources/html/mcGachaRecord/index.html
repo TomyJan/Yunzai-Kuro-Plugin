@@ -41,12 +41,12 @@
                 <div class="label">紫卡数</div>
             </div>
             <div class="stat">
-                <div class="number">{{userInfo.gacha.everyGoldCost || "暂无"}}</div>
-                <div class="label">平均出金</div>
+                <div class="number">{{userInfo.gacha.eachGoldCost || "暂无"}}</div>
+                <div class="label">每金抽数</div>
             </div>
             <div class="stat">
-                <div class="number">{{userInfo.gacha.eachUpItemCost > 99999 ? (userInfo.gacha.eachUpItemCost / 10000).toFixed(2) + 'w': userInfo.gacha.eachUpItemCost}}</div>
-                <div class="label">每UP星声</div>
+                <div class="number">{{userInfo.gacha.eachUpGoldCost || "暂无"}}</div>
+                <div class="label">每UP抽数</div>
             </div>
         </div>
       </div>

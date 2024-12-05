@@ -124,7 +124,8 @@ export default class mcGachaCard {
 
     // 生成用户基本信息
     // 计算每张金卡平均抽数
-    let everyGoldCost = 0
+    let eachGoldCost = 0
+    let eachUpGoldCost = 0
     let goldCount = 0
     if (goldCardRecord.length !== 0) {
       let hasNoGold = false
@@ -135,11 +136,25 @@ export default class mcGachaCard {
           continue
         }
         goldCount++
-        everyGoldCost += goldCardRecord[i].thisCardCost
+        eachGoldCost += goldCardRecord[i].thisCardCost
       }
-      everyGoldCost =
+      eachGoldCost =
         Math.floor(
-          (everyGoldCost / (goldCardRecord.length - (hasNoGold ? 1 : 0))) * 100
+          (eachGoldCost / (goldCardRecord.length - (hasNoGold ? 1 : 0))) * 100
+        ) / 100
+      // 计算每张 up 金平均抽数
+      hasNoGold = false
+      for (let i = 0; i < goldCardRecord.length; i++) {
+        if (goldCardRecord[i].itemId == -1) {
+          // 排除未出金记录
+          hasNoGold = true
+          continue
+        }
+        eachUpGoldCost += goldCardRecord[i].thisCardCost
+      }
+      eachUpGoldCost =
+        Math.floor(
+          (eachUpGoldCost / (goldCardRecord.filter((item) => item.isUpItem).length)) * 100
         ) / 100
     }
     // goldCount - up 数量=非 up 数量
@@ -174,15 +189,10 @@ export default class mcGachaCard {
       gacha: {
         count,
         goldCount,
-        everyGoldCost,
+        eachGoldCost,
         fourStarItemCount,
         notUpGoldCount,
-        eachUpItemCost:
-          goldCount - notUpGoldCount === 0
-            ? '暂无'
-            : Math.floor(
-                (everyGoldCost * goldCount * 160) / (goldCount - notUpGoldCount)
-              ),
+        eachUpGoldCost,
       },
     }
 
