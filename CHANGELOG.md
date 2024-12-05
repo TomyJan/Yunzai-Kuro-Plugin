@@ -1,3 +1,12 @@
+## [0.3.16-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.15-rel...v0.3.16-rel) (2024-12-05)
+
+
+### Bug Fixes
+
+* 库洛帮助卡片样式 ([bfbcb8b](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/bfbcb8be91e3bc5e2b09e0cc96a0aebb8e4a799d))
+
+
+
 ## [0.3.15-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.14-rel...v0.3.15-rel) (2024-12-01)
 
 
