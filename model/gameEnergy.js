@@ -92,9 +92,10 @@ export default class gameEnergy {
  * @param {number} uin QQ
  * @param {number} kuro_uid 库洛 ID
  * @param {boolean} isPushTask 是否是体力推送任务, 自动任务推送用, 默认 false
+ * @param {boolean} pushTaskNeedPush 是否需要推送, 自动任务保存需要推送的账号队列用, 默认 false
  * @returns {string} 可以直接发送的查询结果
  */
-export async function doPnsEnergy(uin, kuro_uid, isPushTask = false) {
+export async function doPnsEnergy(uin, kuro_uid, isPushTask = false, pushTaskNeedPush = false) {
   let kuroapi = new kuroApi(uin)
   // 获取昵称
   let rsp_mineV2 = await kuroapi.mineV2(kuro_uid)
@@ -163,6 +164,10 @@ export async function doPnsEnergy(uin, kuro_uid, isPushTask = false) {
         continue
       }
       delay *= 1000
+      pushTaskNeedPush = true
+      kuroLogger.debug(
+        `QQ ${uin} 的战双 UID ${data.roleId} 的体力推送任务, 延迟 ${delay} 毫秒后执行, pushTaskNeedPush=${pushTaskNeedPush}`
+      )
       setTimeout(async () => {
         kuroLogger.debug(
           `准备执行账号 ${kuro_uid} 的战双 UID ${data.roleId} 的体力推送任务`
@@ -182,9 +187,10 @@ export async function doPnsEnergy(uin, kuro_uid, isPushTask = false) {
  * @param {number} uin QQ
  * @param {number} kuro_uid 库洛 ID
  * @param {boolean} isPushTask 是否是体力推送任务, 自动任务推送用, 默认 false
+ * @param {boolean} pushTaskNeedPush 是否需要推送, 自动任务保存需要推送的账号队列用, 默认 false
  * @returns {string} 可以直接发送的查询结果
  */
-export async function doMcEnergy(uin, kuro_uid, isPushTask = false) {
+export async function doMcEnergy(uin, kuro_uid, isPushTask = false, pushTaskNeedPush = false) {
   let kuroapi = new kuroApi(uin)
   // 获取昵称
   let rsp_mineV2 = await kuroapi.mineV2(kuro_uid)
@@ -255,6 +261,10 @@ export async function doMcEnergy(uin, kuro_uid, isPushTask = false) {
         continue
       }
       delay *= 1000
+      pushTaskNeedPush = true
+      kuroLogger.debug(
+        `QQ ${uin} 的鸣潮 UID ${data.roleId} 的体力推送任务, 延迟 ${delay} 毫秒后执行, pushTaskNeedPush=${pushTaskNeedPush}`
+      )
       setTimeout(async () => {
         kuroLogger.debug(
           `准备执行账号 ${kuro_uid} 的鸣潮 UID ${data.roleId} 的体力推送任务`

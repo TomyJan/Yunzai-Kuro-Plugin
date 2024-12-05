@@ -145,21 +145,24 @@ async function bbsDailyTask() {
 
 export async function gameEnergyPushTask(checkTimeInterval = 0) {
   const taskProcessFile = _DataPath + '/system/taskProcess.json'
+  let taskProcess = ''
+  try {
+    if (!fs.existsSync(taskProcessFile)) {
+      fs.writeFileSync(taskProcessFile, '{}')
+      kuroLogger.debug('创建 taskProcess.json')
+    }
+    taskProcess = fs.readFileSync(taskProcessFile, 'utf8')
+    kuroLogger.debug('读取 taskProcess:', taskProcess)
+  } catch (err) {
+    kuroLogger.error('读取 taskProcess.json 时出现错误:', err.message)
+    taskProcess = '{}'
+  }
+  taskProcess = JSON.parse(taskProcess)
+  taskProcess.gameEnergy = taskProcess.gameEnergy || {};
+  taskProcess.gameEnergy.waitingPushList = taskProcess.gameEnergy.waitingPushList || [];
+
   if (checkTimeInterval) {
     const now = new Date().getTime() / 1000
-    let taskProcess = ''
-    try {
-      if (!fs.existsSync(taskProcessFile)) {
-        fs.writeFileSync(taskProcessFile, '{}')
-        kuroLogger.debug('创建 taskProcess.json')
-      }
-      taskProcess = fs.readFileSync(taskProcessFile, 'utf8')
-      kuroLogger.debug('读取 taskProcess:', taskProcess)
-    } catch (err) {
-      kuroLogger.error('读取 taskProcess.json 时出现错误:', err.message)
-      taskProcess = '{}'
-    }
-    taskProcess = JSON.parse(taskProcess)
     let lastGameEnergyPushTime = taskProcess?.lastGameEnergyPushTime || 0
     if (now - lastGameEnergyPushTime < checkTimeInterval) {
       kuroLogger.info(
@@ -167,6 +170,40 @@ export async function gameEnergyPushTask(checkTimeInterval = 0) {
           lastGameEnergyPushTime
         )}, 距离上次将查体力不足 ${checkTimeInterval}s, 跳过本次检查`
       )
+      // 取出 taskProcess.gameEnergy.waitingPushList , 用这些账号调 doMcEnergy 和 doPnsEnergy
+      let waitingPushList = taskProcess.gameEnergy.waitingPushList || []
+      if (waitingPushList.length) {
+        kuroLogger.info(
+          `游戏体力推送: 上次检查时间 ${new Date(
+            lastGameEnergyPushTime
+          )}, 距离上次将查体力不足 ${checkTimeInterval}s, 但有 ${waitingPushList.length} 个账号需要推送体力, 开始推送体力`
+        )
+        for (let i in waitingPushList) {
+          let { gameSignUin, kuro_uid } = waitingPushList[i]
+          kuroLogger.info(
+            `游戏体力推送: 开始为 ${gameSignUin} 的库洛账号 ${kuro_uid} 推送体力`
+          )
+          let mcRet = await doMcEnergy(gameSignUin, kuro_uid, true)
+          let pnsRet = await doPnsEnergy(gameSignUin, kuro_uid, true)
+          kuroLogger.info(`游戏体力推送 ${gameSignUin} : 推送检查完成, 鸣潮: ${mcRet.trim()}, 战双: ${pnsRet.trim()}`)
+        }
+        kuroLogger.info(`游戏体力推送: 推送检查完成`)
+        taskProcess.gameEnergy.waitingPushList = []
+        // 更新任务进度文件
+        taskProcess.lastGameEnergyPushTime = new Date().getTime() / 1000
+        try {
+          fs.writeFileSync(taskProcessFile, JSON.stringify(taskProcess))
+          kuroLogger.debug('写入 taskProcess:', JSON.stringify(taskProcess))
+        } catch (err) {
+          kuroLogger.error('写入 taskProcess.json 时出现错误:', err.message)
+        }
+      } else {
+        kuroLogger.info(
+          `游戏体力推送: 上次检查时间 ${new Date(
+            lastGameEnergyPushTime
+          )}, 距离上次将查体力不足 ${checkTimeInterval}s, 且没有账号需要推送体力, 跳过本次检查`
+        )
+      }
       return false
     } else {
       kuroLogger.info(
@@ -177,6 +214,8 @@ export async function gameEnergyPushTask(checkTimeInterval = 0) {
     }
   }
   kuroLogger.info(`游戏体力推送: 开始刷新数据...`)
+  // 先强制清空 taskProcess.gameEnergy.waitingPushList
+  taskProcess.gameEnergy.waitingPushList = []
 
   const gameSignUins = fs
     .readdirSync(dataPath + '/token')
@@ -188,24 +227,21 @@ export async function gameEnergyPushTask(checkTimeInterval = 0) {
     const tokenData = await getToken(gameSignUin)
     for (const kuro_uid in tokenData) {
       if (Object.prototype.hasOwnProperty.call(tokenData, kuro_uid)) {
-        await doMcEnergy(gameSignUin, kuro_uid, true)
-        await doPnsEnergy(gameSignUin, kuro_uid, true)
+        let mcNeedPush = false
+        let pnsNeedPush = false
+        await doMcEnergy(gameSignUin, kuro_uid, true, mcNeedPush)
+        await doPnsEnergy(gameSignUin, kuro_uid, true, pnsNeedPush)
+        // 如果有任何一个是需要推送的, 则把 {gameSignUin, kuro_uid} 存入 taskProcess.gameEnergy.waitingPushList
+        if (mcNeedPush || pnsNeedPush) {
+          taskProcess.gameEnergy.waitingPushList.push({ gameSignUin, kuro_uid })
+        }
       } else {
         kuroLogger.error(`游戏体力推送: 账号 ${kuro_uid} token 格式错误`)
       }
     }
   }
   kuroLogger.info(`游戏体力推送: 数据刷新完成`)
-  // 读入并更新任务进度文件
-  let taskProcess = ''
-  try {
-    taskProcess = fs.readFileSync(taskProcessFile, 'utf8')
-    kuroLogger.debug('读取 taskProcess:', taskProcess)
-  } catch (err) {
-    kuroLogger.error('读取 taskProcess.json 时出现错误:', err.message)
-    taskProcess = '{}'
-  }
-  taskProcess = JSON.parse(taskProcess)
+  // 更新任务进度文件
   taskProcess.lastGameEnergyPushTime = new Date().getTime() / 1000
   try {
     fs.writeFileSync(taskProcessFile, JSON.stringify(taskProcess))
