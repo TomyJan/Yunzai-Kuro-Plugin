@@ -149,6 +149,10 @@ export async function gameEnergyPushTask(checkTimeInterval = 0) {
     const now = new Date().getTime() / 1000
     let taskProcess = ''
     try {
+      if (!fs.existsSync(taskProcessFile)) {
+        fs.writeFileSync(taskProcessFile, '{}')
+        kuroLogger.debug('创建 taskProcess.json')
+      }
       taskProcess = fs.readFileSync(taskProcessFile, 'utf8')
       kuroLogger.debug('读取 taskProcess:', taskProcess)
     } catch (err) {
