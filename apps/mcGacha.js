@@ -257,15 +257,15 @@ export class mcGachaApp extends plugin {
     let gacha = new mcGachaData(e)
     let gachaRecord = await gacha.get(gachaLink, e.user_id)
     if (typeof gachaRecord === 'string') {
-      if (gachaRecord == 'ERROR_NO_NEWER_RECORD') {
-        e.reply(`未获取到更新的抽卡记录, 晚点再来试试吧~`)
-        return true
-      }
       e.reply(`抽卡记录更新失败: \n${gachaRecord} \n请检查链接是否正确 `)
       return true
     } else {
       let gachaUpdateRet = await gacha.update(e.user_id, gachaRecord)
       if (typeof gachaUpdateRet === 'string') {
+        if (gachaUpdateRet == 'ERROR_NO_NEWER_RECORD') {
+          e.reply(`没有更新的抽卡记录啦, 晚点再来试试吧~`)
+          return true
+        }
         e.reply(`抽卡记录更新成功但保存失败: \n${gachaUpdateRet}`)
         return true
       } else {
