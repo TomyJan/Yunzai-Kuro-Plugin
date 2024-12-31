@@ -1,3 +1,17 @@
+## [0.3.19-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.18-rel...v0.3.19-rel) (2024-12-31)
+
+
+### Bug Fixes
+
+* 鸣潮抽卡记录无更新判断错误 ([a0b44eb](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/a0b44eba7d4539af18b9adf5f3caa11b0ff8e12b))
+
+
+### Features
+
+* 新增鸣潮 `2.0` 卡池/角色/武器 ([e9c8235](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/e9c82356c1718c2ba62fd7a634fe9c37a8ad9520))
+
+
+
 ## [0.3.18-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.17-rel...v0.3.18-rel) (2024-12-05)
 
 
