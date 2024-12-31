@@ -253,4 +253,76 @@ export const mcGachaUpPools = [
     itemType: 2,
     cardPoolName: '浮声沉兵',
   },
+  {
+    // 2.0 上半
+    startTime: '1735783200', // 2025.01.02 10:00
+    endTime: '1737597540', // 2025.01.23 09:59
+    itemId: '1107',
+    itemName: '珂莱塔',
+    itemType: 1,
+    cardPoolName: '另一种喧嚣',
+  },
+  {
+    // 2.0 上半
+    startTime: '1735783200', // 2025.01.02 10:00
+    endTime: '1737597540', // 2025.01.23 09:59
+    itemId: '1105',
+    itemName: '折枝',
+    itemType: 1,
+    cardPoolName: '赋彩作长吟',
+  },
+  {
+    // 2.0 上半
+    startTime: '1735783200', // 2025.01.02 10:00
+    endTime: '1737597540', // 2025.01.23 09:59
+    itemId: '21030016',
+    itemName: '死与舞',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 2.0 上半
+    startTime: '1735783200', // 2025.01.02 10:00
+    endTime: '1737597540', // 2025.01.23 09:59
+    itemId: '21050026',
+    itemName: '琼枝冰绡',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 2.0 下半
+    startTime: '1737597600', // 2025.01.23 10:00
+    endTime: '1739332740', // 2025.02.12 11:59
+    itemId: '1606',
+    itemName: '洛可可',
+    itemType: 1,
+    cardPoolName: '箱中舞台',
+  },
+  {
+    // 2.0 下半
+    startTime: '1737597600', // 2025.01.23 10:00
+    endTime: '1739332740', // 2025.02.12 11:59
+    itemId: '1304',
+    itemName: '今汐',
+    itemType: 1,
+    cardPoolName: '寒尽觉春生',
+  },
+  {
+    // 2.0 下半
+    startTime: '1737597600', // 2025.01.23 10:00
+    endTime: '1739332740', // 2025.02.12 11:59
+    itemId: '21040026',
+    itemName: '悲喜剧',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 2.0 下半
+    startTime: '1737597600', // 2025.01.23 10:00
+    endTime: '1739332740', // 2025.02.12 11:59
+    itemId: '21050016',
+    itemName: '时和岁稔',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
 ]
