@@ -1,3 +1,12 @@
+## [0.3.20-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.19-rel...v0.3.20-rel) (2025-01-02)
+
+
+### Bug Fixes
+
+* 鸣潮抽卡记录无更新判断错误 ([aa1411e](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/aa1411e3ff5f9dcf0437c87bb1816fd66641dd62))
+
+
+
 ## [0.3.19-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.18-rel...v0.3.19-rel) (2024-12-31)
 
 
