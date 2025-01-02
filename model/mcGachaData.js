@@ -105,7 +105,9 @@ export default class mcGachaData {
           }
           let saveFailedMsg
           if (gachaUpdateRet == 'ERROR_NO_NEWER_RECORD') {
-            saveFailedMsg = await this.e.reply(`QQ ${this.e.user_id} 的游戏 uid ${gameUid} 没有更新的抽卡记录啦, 晚点再来试试吧~`)
+            saveFailedMsg = await this.e.reply(
+              `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 没有更新的抽卡记录啦, 晚点再来试试吧~`
+            )
           } else {
             saveFailedMsg = await this.e.reply(
               `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 抽卡更新记录成功但保存失败: \n${gachaUpdateRet} \n将展示历史抽卡记录 `
