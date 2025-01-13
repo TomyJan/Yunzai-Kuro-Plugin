@@ -266,7 +266,7 @@ export async function doMcEnergy(
       rsp_getMcWidgetData.data.energyData.total
     })\n`
 
-    // 延迟到回满时间后执行推送, 如果还未回满且回满时间在两小时内
+    // 延迟到回满时间后执行推送, 如果还未回满且回满时间在一小时内
     kuroLogger.debug(
       `QQ ${uin} 的鸣潮 UID ${data.roleId} 的体力推送任务, 刷新时间: ${
         rsp_getMcWidgetData.data.energyData.refreshTimeStamp
@@ -376,8 +376,13 @@ export async function doEnergyPush(
   )
 
   let apiDataIsFull = true
+  // 因为库洛接口有缓存, 观察发现缓存时间一般不超过 2 体力, 所以这里判断体力是否恢复
+  let apiDataWillFull = false
   if (energy < energyMax) {
     apiDataIsFull = false
+    if (energyMax - energy <= 2) {
+      apiDataWillFull = true
+    }
   }
 
   // 推送, 推送前再次判断是否十分钟之前, 防止重复
@@ -392,17 +397,27 @@ export async function doEnergyPush(
 
   let pushMsg = apiDataIsFull
     ? `未知的游戏 ${gameId} UID ${gameUid} 的体力恢复啦 (${energy}/${energyMax}) ~`
-    : `未知的游戏 ${gameId} UID ${gameUid} 的体力此时应已恢复, 但可能由于缓存问题接口返回未恢复 (${energy}/${energyMax}) ~`
+    : apiDataWillFull
+      ? `未知的游戏 ${gameId} UID ${gameUid} 的体力此时应已恢复 (${energy}/${energyMax}) ~`
+      : ``
   if (gameId === 2)
     pushMsg = apiDataIsFull
       ? `你的战双 UID ${gameUid} 的血清恢复啦 (${energy}/${energyMax}) ~`
-      : `你的战双 UID ${gameUid} 的血清此时应已恢复, 但可能由于缓存问题接口返回未恢复 (${energy}/${energyMax}) ~`
+      : apiDataWillFull
+        ? `你的战双 UID ${gameUid} 的血清此时应已恢复 (${energy}/${energyMax}) ~`
+        : ``
   if (gameId === 3)
     pushMsg = apiDataIsFull
       ? `你的鸣潮 UID ${gameUid} 的结晶波片恢复啦 (${energy}/${energyMax}) ~`
-      : `你的鸣潮 UID ${gameUid} 的结晶波片此时应已恢复, 但可能由于缓存问题接口返回未恢复 (${energy}/${energyMax}) ~`
+      : apiDataWillFull
+        ? `你的鸣潮 UID ${gameUid} 的结晶波片此时应已恢复 (${energy}/${energyMax}) ~`
+        : ``
 
-  await sendMsgFriend(uin, pushMsg)
+  if (pushMsg) {
+    await sendMsgFriend(uin, pushMsg)
+  } else {
+    kuroLogger.warn(`QQ ${uin} 的 UID ${gameUid} 推送消息为空, 体力未恢复, 取消推送`)
+  }
 
   return true
 }
