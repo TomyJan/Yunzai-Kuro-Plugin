@@ -146,8 +146,11 @@ export async function doPnsEnergy(
     // 如果时间差大于 10 分钟, 则认为服务器时间不准确, 使用本地时间纠正服务器时间
     if (diff >= 600 || diff <= -600) {
       rsp_getPnsWidgetData.data.serverTime = localTimeStamp
-      rsp_getPnsWidgetData.data.actionData.refreshTimeStamp = rsp_getPnsWidgetData.data.actionData.refreshTimeStamp + diff
-      kuroLogger.debug(`服务器时间误差过大, 纠正后: ${JSON.stringify(rsp_getPnsWidgetData)}`)
+      rsp_getPnsWidgetData.data.actionData.refreshTimeStamp =
+        rsp_getPnsWidgetData.data.actionData.refreshTimeStamp + diff
+      kuroLogger.debug(
+        `服务器时间误差过大, 纠正后: ${JSON.stringify(rsp_getPnsWidgetData)}`
+      )
     }
     doPnsEnergyRet += `      ${formatTimestampInReadableFormat(
       rsp_getPnsWidgetData.data.actionData.refreshTimeStamp
@@ -256,8 +259,11 @@ export async function doMcEnergy(
     // 如果时间差大于 10 分钟, 则认为服务器时间不准确, 使用本地时间纠正服务器时间
     if (diff >= 600 || diff <= -600) {
       rsp_getMcWidgetData.data.serverTime = localTimeStamp
-      rsp_getMcWidgetData.data.energyData.refreshTimeStamp = rsp_getMcWidgetData.data.energyData.refreshTimeStamp + diff
-      kuroLogger.debug(`服务器时间误差过大, 纠正后: ${JSON.stringify(rsp_getMcWidgetData)}`)
+      rsp_getMcWidgetData.data.energyData.refreshTimeStamp =
+        rsp_getMcWidgetData.data.energyData.refreshTimeStamp + diff
+      kuroLogger.debug(
+        `服务器时间误差过大, 纠正后: ${JSON.stringify(rsp_getMcWidgetData)}`
+      )
     }
 
     doMcEnergyRet += `      ${formatTimestampInReadableFormat(
@@ -398,25 +404,27 @@ export async function doEnergyPush(
   let pushMsg = apiDataIsFull
     ? `未知的游戏 ${gameId} UID ${gameUid} 的体力恢复啦 (${energy}/${energyMax}) ~`
     : apiDataWillFull
-      ? `未知的游戏 ${gameId} UID ${gameUid} 的体力此时应已恢复 (${energy}/${energyMax}) ~`
-      : ``
+    ? `未知的游戏 ${gameId} UID ${gameUid} 的体力此时应已恢复 (${energy}/${energyMax}) ~`
+    : ``
   if (gameId === 2)
     pushMsg = apiDataIsFull
       ? `你的战双 UID ${gameUid} 的血清恢复啦 (${energy}/${energyMax}) ~`
       : apiDataWillFull
-        ? `你的战双 UID ${gameUid} 的血清此时应已恢复 (${energy}/${energyMax}) ~`
-        : ``
+      ? `你的战双 UID ${gameUid} 的血清此时应已恢复 (${energy}/${energyMax}) ~`
+      : ``
   if (gameId === 3)
     pushMsg = apiDataIsFull
       ? `你的鸣潮 UID ${gameUid} 的结晶波片恢复啦 (${energy}/${energyMax}) ~`
       : apiDataWillFull
-        ? `你的鸣潮 UID ${gameUid} 的结晶波片此时应已恢复 (${energy}/${energyMax}) ~`
-        : ``
+      ? `你的鸣潮 UID ${gameUid} 的结晶波片此时应已恢复 (${energy}/${energyMax}) ~`
+      : ``
 
   if (pushMsg) {
     await sendMsgFriend(uin, pushMsg)
   } else {
-    kuroLogger.warn(`QQ ${uin} 的 UID ${gameUid} 推送消息为空, 体力未恢复, 取消推送`)
+    kuroLogger.warn(
+      `QQ ${uin} 的 UID ${gameUid} 推送消息为空, 体力未恢复, 取消推送`
+    )
   }
 
   return true

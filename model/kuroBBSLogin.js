@@ -187,7 +187,8 @@ export default class kuroBBSLogin {
         }
         if (rsp_onlineLogin.code !== 0) {
           if (failedTimes++ > 6) {
-            if (rsp_onlineLogin.code === -1) { // token 已过期
+            if (rsp_onlineLogin.code === -1) {
+              // token 已过期
               this.e.reply(`Token 已过期, 任务取消, 请重新获取`)
               return false
             }
