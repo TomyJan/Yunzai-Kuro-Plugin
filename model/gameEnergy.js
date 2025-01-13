@@ -139,6 +139,16 @@ export async function doPnsEnergy(
       doPnsEnergyRet += `      ${rsp_getPnsWidgetData}\n`
       continue
     }
+    // 傻逼库洛服务器时间有时候不对, 需要检查并纠正一下
+    let localTimeStamp = Math.floor(Date.now() / 1000)
+    let diff = localTimeStamp - rsp_getPnsWidgetData.data.serverTime
+    kuroLogger.debug(`服务器与本地时间差: ${diff}`)
+    // 如果时间差大于 10 分钟, 则认为服务器时间不准确, 使用本地时间纠正服务器时间
+    if (diff >= 600 || diff <= -600) {
+      rsp_getPnsWidgetData.data.serverTime = localTimeStamp
+      rsp_getPnsWidgetData.data.actionData.refreshTimeStamp = rsp_getPnsWidgetData.data.actionData.refreshTimeStamp + diff
+      kuroLogger.debug(`服务器时间误差过大, 纠正后: ${JSON.stringify(rsp_getPnsWidgetData)}`)
+    }
     doPnsEnergyRet += `      ${formatTimestampInReadableFormat(
       rsp_getPnsWidgetData.data.actionData.refreshTimeStamp
     )}回满 (${rsp_getPnsWidgetData.data.actionData.value})\n`
@@ -239,6 +249,17 @@ export async function doMcEnergy(
       doMcEnergyRet += `      ${rsp_getMcWidgetData}\n`
       continue
     }
+    // 傻逼库洛服务器时间有时候不对, 需要检查并纠正一下
+    let localTimeStamp = Math.floor(Date.now() / 1000)
+    let diff = localTimeStamp - rsp_getMcWidgetData.data.serverTime
+    kuroLogger.debug(`服务器与本地时间差: ${diff}`)
+    // 如果时间差大于 10 分钟, 则认为服务器时间不准确, 使用本地时间纠正服务器时间
+    if (diff >= 600 || diff <= -600) {
+      rsp_getMcWidgetData.data.serverTime = localTimeStamp
+      rsp_getMcWidgetData.data.energyData.refreshTimeStamp = rsp_getMcWidgetData.data.energyData.refreshTimeStamp + diff
+      kuroLogger.debug(`服务器时间误差过大, 纠正后: ${JSON.stringify(rsp_getMcWidgetData)}`)
+    }
+
     doMcEnergyRet += `      ${formatTimestampInReadableFormat(
       rsp_getMcWidgetData.data.energyData.refreshTimeStamp
     )}回满 (${rsp_getMcWidgetData.data.energyData.cur}/${
