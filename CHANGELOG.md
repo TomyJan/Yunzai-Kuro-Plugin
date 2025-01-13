@@ -1,3 +1,18 @@
+## [0.3.21-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.20-rel...v0.3.21-rel) (2025-01-13)
+
+
+### Bug Fixes
+
+* 适配傻逼库洛服务器错误的服务器时间 ([1e496e2](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/1e496e29d5b3f532a3e939949632fe54eb09c85a))
+
+
+### Performance Improvements
+
+* 优化接口缓存时体力恢复的推送逻辑和文案 ([f209922](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/f209922e1f80cb4e68e482ce972a885edfead3a1))
+* 优化库洛在线登录 token 过期后的提示 ([953be0c](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/953be0cfb901db43c204cf77ec7f47ba9315fb2c))
+
+
+
 ## [0.3.20-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.19-rel...v0.3.20-rel) (2025-01-02)
 
 
