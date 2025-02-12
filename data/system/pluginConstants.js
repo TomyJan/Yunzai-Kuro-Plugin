@@ -53,7 +53,7 @@ export const mcGachaType = [
 
 // 鸣潮历史 up 池时间和物品 id
 // 注意, 解包得到 IconRup 中的 id 自 1.1 版本开始并不与角色 id 对应, 需要在 roleinfo 中找到相应 id
-// 注意, 解包得到 IconWeapon 中的部分 id (暂时观察的结果只有新的五星) 自 1.3 版本开始并不与武器 id 对应, 需要在 weaponconf 中找到相应 id
+// 注意, 解包得到 IconWeapon 中的新五星武器 id 自 1.3 版本开始并不与武器 id 对应, 新四星武器 id 自 ~2.1 版本开始不对应, 需要在 weaponconf 中找到相应 id
 export const mcGachaUpPools = [
   {
     // 1.0 上半, 提前开服故时间提前
@@ -322,6 +322,60 @@ export const mcGachaUpPools = [
     endTime: '1739332740', // 2025.02.12 11:59
     itemId: '21050016',
     itemName: '时和岁稔',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 2.1 上半
+    startTime: '1739412000', // 2025.02.13 10:00
+    endTime: '1741226340', // 2025.03.06 09:59
+    itemId: '1506',
+    itemName: '菲比',
+    itemType: 1,
+    cardPoolName: '于静谧呢喃',
+  },
+  {
+    // 2.1 上半
+    startTime: '1739412000', // 2025.02.13 10:00
+    endTime: '1741226340', // 2025.03.06 09:59
+    itemId: '21050046',
+    itemName: '和光回唱',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 2.1 下半
+    startTime: '1741226400', // 2025.03.06 10:00
+    endTime: '1742961540', // 2025.03.26 11:59
+    itemId: '1206',
+    itemName: '布兰特',
+    itemType: 1,
+    cardPoolName: '燃焰于海',
+  },
+  {
+    // 2.1 下半
+    startTime: '1741226400', // 2025.03.06 10:00
+    endTime: '1742961540', // 2025.03.26 11:59
+    itemId: '1205',
+    itemName: '长离',
+    itemType: 1,
+    cardPoolName: '炽羽策阵星',
+  },
+  {
+    // 2.1 下半
+    startTime: '1741226400', // 2025.03.06 10:00
+    endTime: '1742961540', // 2025.03.26 11:59
+    itemId: '21020036',
+    itemName: '不灭航路',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 2.1 下半
+    startTime: '1741226400', // 2025.03.06 10:00
+    endTime: '1742961540', // 2025.03.26 11:59
+    itemId: '21020016',
+    itemName: '赫奕流明',
     itemType: 2,
     cardPoolName: '浮声沉兵',
   },
