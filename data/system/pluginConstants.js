@@ -379,4 +379,58 @@ export const mcGachaUpPools = [
     itemType: 2,
     cardPoolName: '浮声沉兵',
   },
+  {
+    // 2.2 上半
+    startTime: '1743040800', // 2025.03.27 10:00
+    endTime: '1744855140', // 2025.04.17 09:59
+    itemId: '1607',
+    itemName: '坎特蕾拉',
+    itemType: 1,
+    cardPoolName: '映海之梦',
+  },
+  {
+    // 2.2 上半
+    startTime: '1743040800', // 2025.03.27 10:00
+    endTime: '1744855140', // 2025.04.17 09:59
+    itemId: '1603',
+    itemName: '椿',
+    itemType: 1,
+    cardPoolName: '徘徊迷宫尽处',
+  },
+  {
+    // 2.2 上半
+    startTime: '1743040800', // 2025.03.27 10:00
+    endTime: '1744855140', // 2025.04.17 09:59
+    itemId: '21050056',
+    itemName: '海的呢喃',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 2.2 上半
+    startTime: '1743040800', // 2025.03.27 10:00
+    endTime: '1744855140', // 2025.04.17 09:59
+    itemId: '21020026',
+    itemName: '裁春',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 2.2 下半, 追赶周年庆时间卡池缩短
+    startTime: '1744855200', // 2025.04.17 10:00
+    endTime: '1745812740', // 2025.04.28 11:59
+    itemId: '1505',
+    itemName: '守岸人',
+    itemType: 1,
+    cardPoolName: '直至海水褪色',
+  },
+  {
+    // 2.2 下半, 追赶周年庆时间卡池缩短
+    startTime: '1744855200', // 2025.04.17 10:00
+    endTime: '1745812740', // 2025.04.28 11:59
+    itemId: '21050036',
+    itemName: '星序协响',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
 ]
