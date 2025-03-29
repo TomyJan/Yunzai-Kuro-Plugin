@@ -104,7 +104,7 @@ export const mcGachaUpPools = [
     // 1.1 上半
     startTime: '1719540000', // 2024.06.28 10:00
     endTime: '1721613540', // 2024.07.22 09:59
-    itemId: '21050016',
+    itemId: '21010026',
     itemName: '时和岁稔',
     itemType: 2,
     cardPoolName: '浮声沉兵',
@@ -320,7 +320,7 @@ export const mcGachaUpPools = [
     // 2.0 下半
     startTime: '1737597600', // 2025.01.23 10:00
     endTime: '1739332740', // 2025.02.12 11:59
-    itemId: '21050016',
+    itemId: '21010026',
     itemName: '时和岁稔',
     itemType: 2,
     cardPoolName: '浮声沉兵',
