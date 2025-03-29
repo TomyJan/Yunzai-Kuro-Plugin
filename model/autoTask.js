@@ -358,7 +358,7 @@ export async function checkUpdateTask() {
     kuroLogger.debug(`尝试从 ${type} 检查更新...`)
     let checkUrl =
       'https://raw.githubusercontent.com/TomyJan/Yunzai-Kuro-Plugin/master/CHANGELOG.md'
-    if (type == 'GHProxy') checkUrl = 'https://mirror.ghproxy.com/' + checkUrl
+    if (type == 'GHProxy') checkUrl = 'https://ghfast.top//' + checkUrl
     if (type == 'TomyJan')
       checkUrl =
         'https://proxy.vov.moe/https/raw.githubusercontent.com/TomyJan/Yunzai-Kuro-Plugin/master/CHANGELOG.md'
