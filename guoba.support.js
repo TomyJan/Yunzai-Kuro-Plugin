@@ -70,8 +70,7 @@ export function supportGuoba() {
         {
           field: 'logger.saveToFile',
           label: '保存日志',
-          helpMessage:
-            '独立保存库洛插件的日志到 插件根目录/data/logs/',
+          helpMessage: '独立保存库洛插件的日志到 插件根目录/data/logs/',
           bottomHelpMessage: '更改即时生效, 通常不建议启用',
           component: 'Switch',
         },
@@ -103,7 +102,8 @@ export function supportGuoba() {
         {
           field: 'useRandomBgInCard',
           label: '随机背景图',
-          helpMessage: '卡片是否使用随机背景图, 获取失败会回退到最后一张图或者本地背景图, 本地默认背景图: 插件根目录/resources/img/common/bg/Alisa-Echo_0.jpg',
+          helpMessage:
+            '卡片是否使用随机背景图, 获取失败会回退到最后一张图或者本地背景图, 本地默认背景图: 插件根目录/resources/img/common/bg/Alisa-Echo_0.jpg',
           bottomHelpMessage:
             '更改即时生效, 背景图 API: https://api.tomys.top/api/pnsWallPaper 均为战双官方壁纸',
           component: 'Switch',
@@ -118,10 +118,8 @@ export function supportGuoba() {
         {
           field: 'botQQ',
           label: '机器人QQ',
-          helpMessage:
-            '留空则为自动获取',
-          bottomHelpMessage:
-            '更改即时生效, 使用某些第三方适配器可能需要设置',
+          helpMessage: '留空则为自动获取',
+          bottomHelpMessage: '更改即时生效, 使用某些第三方适配器可能需要设置',
           component: 'Input',
         },
       ],
