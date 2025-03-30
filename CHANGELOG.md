@@ -1,3 +1,20 @@
+## [0.3.24-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.23-rel...v0.3.24-rel) (2025-03-30)
+
+
+### Bug Fixes
+
+* 更换检查更新的 GHProxy 地址 ([a4ae98a](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/a4ae98af5fe6e4deea3a8174610fbc06677d85c6))
+* 更换检查更新的 GHProxy 地址 ([02ca8dd](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/02ca8ddd1121a7189c8044001b40fb7905daa44c))
+* 时和岁稔 ID 错误 ([040cf6c](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/040cf6c05dd0d427868b23d7b9b42f485d9852ed))
+
+
+### Performance Improvements
+
+* **autoTask:** 删除 versionCache.json ([29c2274](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/29c22748c599ab4d9c9250f6f688d30770035ca1))
+* **guoba:** 锅巴适配的帮助文案 ([4f49b69](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/4f49b690197e3700e0ab2e684dbce6226f5bd74f))
+
+
+
 ## [0.3.23-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.22-rel...v0.3.23-rel) (2025-03-26)
 
 
