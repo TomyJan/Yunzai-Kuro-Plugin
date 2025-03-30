@@ -293,7 +293,10 @@ export async function checkUpdateTask() {
 
   if (!remoteVersion) {
     kuroLogger.warn(`检查更新任务失败`)
-    await sendMsgFriend(cfg.masterQQ[0], `[库洛插件] 自动检查更新失败\n请检查网络或前往项目地址检查版本信息\nhttps://github.com/TomyJan/Yunzai-Kuro-Plugin`)
+    await sendMsgFriend(
+      cfg.masterQQ[0],
+      `[库洛插件] 自动检查更新失败\n请检查网络或前往项目地址检查版本信息\nhttps://github.com/TomyJan/Yunzai-Kuro-Plugin`
+    )
     return false
   }
 
@@ -360,20 +363,20 @@ export async function checkUpdateTask() {
     const updateSources = [
       {
         name: 'KuroPluginServer',
-        url: 'https://kuro.amoe.cc/repo/raw/TomyJan/Yunzai-Kuro-Plugin/master/CHANGELOG.md'
+        url: 'https://kuro.amoe.cc/repo/raw/TomyJan/Yunzai-Kuro-Plugin/master/CHANGELOG.md',
       },
       {
         name: 'GitHub',
-        url: 'https://raw.githubusercontent.com/TomyJan/Yunzai-Kuro-Plugin/master/CHANGELOG.md'
+        url: 'https://raw.githubusercontent.com/TomyJan/Yunzai-Kuro-Plugin/master/CHANGELOG.md',
       },
       {
         name: 'VovProxy',
-        url: 'https://proxy.vov.moe/https/raw.githubusercontent.com/TomyJan/Yunzai-Kuro-Plugin/master/CHANGELOG.md'
+        url: 'https://proxy.vov.moe/https/raw.githubusercontent.com/TomyJan/Yunzai-Kuro-Plugin/master/CHANGELOG.md',
       },
       {
         name: 'GHProxy',
-        url: 'https://ghfast.top/https://raw.githubusercontent.com/TomyJan/Yunzai-Kuro-Plugin/master/CHANGELOG.md'
-      }
+        url: 'https://ghfast.top/https://raw.githubusercontent.com/TomyJan/Yunzai-Kuro-Plugin/master/CHANGELOG.md',
+      },
     ]
 
     for (const source of updateSources) {
