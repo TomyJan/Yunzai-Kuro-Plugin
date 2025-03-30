@@ -41,7 +41,7 @@ export function supportGuoba() {
       // 图标颜色，例：#FF0000 或 rgb(255, 0, 0)
       iconColor: pluginThemeColor,
       // 如果想要显示成图片，也可以填写图标路径（绝对路径）
-      iconPath: _ResPath + '/img/common/icon/pns.png',
+      iconPath: _ResPath + '/img/common/icon/kuro.png',
     },
     // 配置项信息
     configInfo: {
@@ -54,8 +54,8 @@ export function supportGuoba() {
         {
           field: 'logger.logLevel',
           label: '日志等级',
-          helpMessage: '库洛插件的日志等级, 与 Yunzai 的独立',
-          bottomHelpMessage: '请选择日志等级, 通常应选择 info',
+          helpMessage: '库洛插件内置的日志记录器的日志等级, 与 Yunzai 的独立',
+          bottomHelpMessage: '更改即时生效, 通常应选择 info',
           component: 'Select',
           componentProps: {
             options: [
@@ -64,15 +64,15 @@ export function supportGuoba() {
               { label: 'warn', value: 'warn' },
               { label: 'error', value: 'error' },
             ],
-            placeholder: '读取失败',
+            placeholder: '配置项异常',
           },
         },
         {
           field: 'logger.saveToFile',
           label: '保存日志',
           helpMessage:
-            '独立保存库洛插件的日志, 保存目录位于插件根目录 ./data/logs/',
-          bottomHelpMessage: '是否将日志保存到文件',
+            '独立保存库洛插件的日志到 插件根目录/data/logs/',
+          bottomHelpMessage: '更改即时生效, 通常不建议启用',
           component: 'Switch',
         },
         {
@@ -84,7 +84,7 @@ export function supportGuoba() {
           label: '启用自动任务',
           helpMessage:
             '若关闭, 将一同关闭插件的检查更新任务, 但是插件每次被载入仍会检查更新',
-          bottomHelpMessage: '是否启用自动任务, 重启 Yunzai 生效',
+          bottomHelpMessage: '更改重启生效, 插件的游戏和社区自动签到任务',
           component: 'Switch',
         },
         {
@@ -93,7 +93,7 @@ export function supportGuoba() {
           helpMessage:
             '默认为每天 00:02:00 自动执行, 暂不可配置检查更新任务(默认每天 6/18 点检查)和游戏体力推送任务(默认每小时刷新一次)',
           bottomHelpMessage:
-            '任务执行时间, <a href="https://www.runoob.com/linux/linux-comm-crontab.html" target="_blank">corntab 表达式</a>, 请<a href="https://tool.lu/crontab/" target="_blank">检查</a>后再保存, 重启 Yunzai 生效',
+            '更改重启生效, 自动任务执行时间, 参考 https://www.runoob.com/linux/linux-comm-crontab.html',
           component: 'Input',
         },
         {
@@ -103,25 +103,25 @@ export function supportGuoba() {
         {
           field: 'useRandomBgInCard',
           label: '随机背景图',
-          helpMessage: '卡片是否使用随机背景图',
+          helpMessage: '卡片是否使用随机背景图, 获取失败会回退到最后一张图或者本地背景图, 本地默认背景图: 插件根目录/resources/img/common/bg/Alisa-Echo_0.jpg',
           bottomHelpMessage:
-            '背景图 API: https://api.tomys.top/api/pnsWallPaper 均为战双官方壁纸, 获取失败会回退到最后一张图或者本地背景图, 本地默认背景图: /resources/img/common/bg/Alisa-Echo_0.jpg',
+            '更改即时生效, 背景图 API: https://api.tomys.top/api/pnsWallPaper 均为战双官方壁纸',
           component: 'Switch',
         },
         {
           field: 'attemptSendNonFriend',
           label: '发送非好友',
-          helpMessage: '是否尝试向非好友发送消息',
-          bottomHelpMessage: '是否尝试向非好友发送消息',
+          helpMessage: '自动任务推送等场景用到',
+          bottomHelpMessage: '更改即时生效, 是否尝试向非好友发送消息',
           component: 'Switch',
         },
         {
           field: 'botQQ',
           label: '机器人QQ',
           helpMessage:
-            '如果使用第三方适配器, 请设置, 否则 bot 的自动任务消息将无法推送, 留空则为自动获取',
+            '留空则为自动获取',
           bottomHelpMessage:
-            '如果使用第三方适配器, 请设置, 否则 bot 的自动任务消息将无法推送, 留空则为自动获取',
+            '更改即时生效, 使用某些第三方适配器可能需要设置',
           component: 'Input',
         },
       ],
