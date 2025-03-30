@@ -289,19 +289,16 @@ async function bbsActivityTask() {
 
 export async function checkUpdateTask() {
   kuroLogger.info(`检查更新任务开始...`)
-  let remoteVersion = await getRemoteVersion('GitHub')
+  let remoteVersion = await getRemoteVersion()
+
   if (!remoteVersion) {
-    remoteVersion = await getRemoteVersion('GHProxy')
-    if (!remoteVersion) {
-      remoteVersion = await getRemoteVersion('TomyJan')
-      if (!remoteVersion) {
-        kuroLogger.warn(`检查更新任务失败`)
-        await sendMsgFriend(cfg.masterQQ[0], `[库洛插件] 自动检查更新失败!`)
-        return false
-      }
-    }
+    kuroLogger.warn(`检查更新任务失败`)
+    await sendMsgFriend(cfg.masterQQ[0], `[库洛插件] 自动检查更新失败\n请检查网络或前往项目地址检查版本信息\nhttps://github.com/TomyJan/Yunzai-Kuro-Plugin`)
+    return false
   }
-  remoteVersion = remoteVersion.match(/\[(.*?)\]\(.*?\)/)[1] || false
+
+  const versionMatch = remoteVersion.match(/\[(.*?)\]\(.*?\)/)
+  remoteVersion = versionMatch?.[1] || false
 
   if (!remoteVersion) {
     kuroLogger.info(`检查更新任务: 解析版本信息失败`)
@@ -318,21 +315,26 @@ export async function checkUpdateTask() {
   if (remoteVersion != pluginVer) {
     // 推送并缓存
     const cacheFilePath = _DataPath + '/system/versionCache.json'
-    let versionCache = ''
+    let versionCache = {}
 
     try {
       versionCache = fs.readFileSync(cacheFilePath, 'utf8')
+      try {
+        versionCache = JSON.parse(versionCache)
+      } catch (err) {
+        kuroLogger.error('解析 versionCache.json 失败:', err.message)
+      }
       kuroLogger.debug(
         '读取 versionCache:',
         versionCache,
         ', 解析到缓存的版本:',
-        JSON.parse(versionCache)?.remoteVersion
+        versionCache?.remoteVersion
       )
     } catch (err) {
       kuroLogger.error('读取 versionCache.json 时出现错误:', err.message)
     }
 
-    if (JSON.parse(versionCache)?.remoteVersion == remoteVersion) {
+    if (versionCache?.remoteVersion == remoteVersion) {
       kuroLogger.warn('该新版本已经推送过, 不再重复推送, 请及时更新!')
       return false
     }
@@ -349,32 +351,48 @@ export async function checkUpdateTask() {
 
     await sendMsgFriend(
       cfg.masterQQ[0],
-      `[库洛插件] 自动检查更新\n发现新版: ${remoteVersion}\n本地版本: ${pluginVer}\n更新日志: https://github.com/TomyJan/Yunzai-Kuro-Plugin/blob/master/CHANGELOG.md\n建议尽快更新~` +
+      `[库洛插件] 自动检查更新\n发现新版: ${remoteVersion}\n本地版本: ${pluginVer}\n更新日志: https://kuro.amoe.cc/repo/raw/TomyJan/Yunzai-Kuro-Plugin/master/CHANGELOG.md?type=preview\n建议尽快更新~` +
         (isCacheSucceed ? '' : '\n缓存新版本信息失败, 该信息可能会重复推送')
     )
   }
 
-  async function getRemoteVersion(type) {
-    kuroLogger.debug(`尝试从 ${type} 检查更新...`)
-    let checkUrl =
-      'https://raw.githubusercontent.com/TomyJan/Yunzai-Kuro-Plugin/master/CHANGELOG.md'
-    if (type == 'GHProxy') checkUrl = 'https://ghfast.top/' + checkUrl
-    if (type == 'TomyJan')
-      checkUrl =
-        'https://proxy.vov.moe/https/raw.githubusercontent.com/TomyJan/Yunzai-Kuro-Plugin/master/CHANGELOG.md'
-    try {
-      let rsp = await fetch(checkUrl)
-      if (!rsp.ok) {
-        kuroLogger.warn(
-          `从 ${type} 获取更新信息失败: ${rsp.status} ${rsp.statusText}`
-        )
-        return false
+  async function getRemoteVersion() {
+    const updateSources = [
+      {
+        name: 'KuroPluginServer',
+        url: 'https://kuro.amoe.cc/repo/raw/TomyJan/Yunzai-Kuro-Plugin/master/CHANGELOG.md'
+      },
+      {
+        name: 'GitHub',
+        url: 'https://raw.githubusercontent.com/TomyJan/Yunzai-Kuro-Plugin/master/CHANGELOG.md'
+      },
+      {
+        name: 'VovProxy',
+        url: 'https://proxy.vov.moe/https/raw.githubusercontent.com/TomyJan/Yunzai-Kuro-Plugin/master/CHANGELOG.md'
+      },
+      {
+        name: 'GHProxy',
+        url: 'https://ghfast.top/https://raw.githubusercontent.com/TomyJan/Yunzai-Kuro-Plugin/master/CHANGELOG.md'
       }
-      kuroLogger.info(`从 ${type} 获取更新信息成功, 尝试解析信息...`)
-      return await rsp.text()
-    } catch (error) {
-      kuroLogger.warn(`从 ${type} 获取更新信息失败: ${error.message}`)
-      return false
+    ]
+
+    for (const source of updateSources) {
+      kuroLogger.debug(`尝试从 ${source.name} 检查更新...`)
+      try {
+        let rsp = await fetch(source.url)
+        if (!rsp.ok) {
+          kuroLogger.warn(
+            `从 ${source.name} 获取更新信息失败: ${rsp.status} ${rsp.statusText}`
+          )
+          continue
+        }
+        kuroLogger.info(`从 ${source.name} 获取更新信息成功, 尝试解析信息...`)
+        return await rsp.text()
+      } catch (error) {
+        kuroLogger.warn(`从 ${source.name} 获取更新信息失败: ${error.message}`)
+        continue
+      }
     }
+    return null
   }
 }
