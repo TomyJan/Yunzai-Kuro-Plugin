@@ -1,0 +1,65 @@
+name: 报告一个错误
+description: 使用插件过程中遇到了错误
+title: '[BUG?]: '
+labels: [ "bug" ]
+
+body:
+  - type: markdown
+    attributes:
+      value: 请简明扼要的总结您遇到的问题
+
+  - type: markdown
+    attributes:
+      value: 注意, issue 内容公开可见, 请自行删除敏感信息
+
+  - type: checkboxes
+    attributes:
+      label: 感谢您填写此表单. 请先确定以下事项
+      description: 您必须勾选以下所有内容, 否则您的 issue 将被视作无效而关闭
+      options:
+        - label: 我已经按照 README 完成了插件/依赖的安装和功能的配置
+        - label: 我确定插件已经更新到了 master 分支的最新版本
+        - label: 我确定在已存在的 issue 中没有找到相同的问题
+        - label: 我确定这是个比较容易复现的问题
+        - label: 我确定我已将插件的日志等级调整为 `debug` 后复现了此问题并保留了日志
+
+  - type: input
+    id: version
+    attributes:
+      label: 版本
+      description: 在 `Yunzai` 根目录运行 `git -C ./plugins/Yunzai-TomyJan-Plugin rev-parse --short HEAD` 输出的结果粘贴至此
+      placeholder: abcd123
+    validations:
+      required: true
+
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: 问题描述
+      description: 请详细描述您的操作和遇到的问题, 最好附上截图
+    validations:
+      required: true
+
+  - type: textarea
+    id: config
+    attributes:
+      label: 配置
+      description: 请提供插件配置文件**完整**内容或截图
+    validations:
+      required: true
+
+  - type: textarea
+    id: operation-procedure
+    attributes:
+      label: 操作步骤
+      description: 大意为聊天记录截图
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 日志
+      description: 请复制粘贴插件的 `debug` 级的触发问题前后的完整日志
+    validations:
+      required: true

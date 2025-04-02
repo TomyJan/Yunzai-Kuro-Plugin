@@ -1,0 +1,41 @@
+name: 提议新的功能
+description: 希望拥有新的功能
+title: '[FEAT]: '
+labels: ["enhancement"]
+
+body:
+  - type: markdown
+    attributes:
+      value: 请简明扼要的总结您对新功能的描述
+
+  - type: markdown
+    attributes:
+      value: 注意, issue 内容公开可见, 请自行删除敏感信息
+
+  - type: checkboxes
+    attributes:
+      label: 感谢您填写此表单. 请先确定以下事项
+      description: 您必须勾选以下所有内容, 否则您的 issue 将被视作无效而关闭
+      options:
+        - label: 我确定没有重复的issue或讨论
+        - label: 我确定这个功能没有实现
+        - label: 我相信这是一个合理和普遍的要求
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: 需求描述
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested-solution
+    attributes:
+      label: 实现思路
+      description: 实现此需求的思路, 最好有相似的实现作为参考
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: 附件
+      description: 相关的任何其他上下文或截图, 或者你觉得有帮助的信息
