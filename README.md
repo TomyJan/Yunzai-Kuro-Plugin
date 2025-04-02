@@ -13,6 +13,7 @@
 ## 安装与维护
 
 项目只在 GitHub 提供支持, Gitee 仅作为镜像仓库
+
 安装前请先 [前往GitHub](https://github.com/TomyJan/Yunzai-Kuro-Plugin/) 点一下右上角的 Star, 这对我非常重要, 谢谢喵~
 
 ### 安装插件
@@ -62,7 +63,7 @@ git -C ./plugins/Yunzai-Kuro-Plugin/ pull
 
 ### 插件配置
 
-建议通过 [锅巴插件](https://gitee.com/guoba-yunzai/guoba-plugin) 进行配置. 当然, 你也可以自己配置, 默认配置文件位置 `./data/system/default_config.json`, 配置文件位置 `./config/config.json`, 配置项作用:
+建议通过 [锅巴插件](https://gitee.com/guoba-yunzai/guoba-plugin) 进行配置. 当然, 你也可以自己配置, 默认配置文件位置 `./data/system/default_config.json`, 配置文件位置 `./config/config.json`, 配置项默认值及其作用:
 
 ```json
 // 此处的 json 可能忘记更新, 如果和实际的配置文件字段不同, 请及时反馈
@@ -179,7 +180,7 @@ git -C ./plugins/Yunzai-Kuro-Plugin/ pull
 
 ### 贡献/帮助
 
-有 bug? 要新功能? [提交 Issue](https://github.com/TomyJan/Yunzai-Kuro-Plugin/issues/new)
+有 bug? 要新功能? [提交 Issue](https://github.com/TomyJan/Yunzai-Kuro-Plugin/issues/new/choose)
 
 帮助我开发? [提交 PR](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare)
 
