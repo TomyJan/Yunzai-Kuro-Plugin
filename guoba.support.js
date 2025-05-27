@@ -213,9 +213,11 @@ export function supportGuoba() {
           // 还不是最后一个键，继续进入下一层对象
           if (!currentObject[currentKey]) {
             // 如果下一个值是数组（通过看key是否为数字判断），则初始化为数组，否则为对象
-            const nextKey = keys[i + 1];
-            const isNextKeyNumeric = !isNaN(parseInt(nextKey, 10)) && nextKey.toString() === parseInt(nextKey, 10).toString();
-            currentObject[currentKey] = isNextKeyNumeric ? [] : {};
+            const nextKey = keys[i + 1]
+            const isNextKeyNumeric =
+              !isNaN(parseInt(nextKey, 10)) &&
+              nextKey.toString() === parseInt(nextKey, 10).toString()
+            currentObject[currentKey] = isNextKeyNumeric ? [] : {}
           }
           currentObject = currentObject[currentKey]
         }
