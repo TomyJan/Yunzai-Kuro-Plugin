@@ -205,15 +205,18 @@ export function supportGuoba() {
 
       for (let i = 0; i < keys.length; i++) {
         const currentKey = keys[i]
-        if (!currentObject[currentKey]) {
-          currentObject[currentKey] = {}
-        }
 
         if (i === keys.length - 1) {
           // 最后一个键，赋予值
           currentObject[currentKey] = inputJson[key]
         } else {
           // 还不是最后一个键，继续进入下一层对象
+          if (!currentObject[currentKey]) {
+            // 如果下一个值是数组（通过看key是否为数字判断），则初始化为数组，否则为对象
+            const nextKey = keys[i + 1];
+            const isNextKeyNumeric = !isNaN(parseInt(nextKey, 10)) && nextKey.toString() === parseInt(nextKey, 10).toString();
+            currentObject[currentKey] = isNextKeyNumeric ? [] : {};
+          }
           currentObject = currentObject[currentKey]
         }
       }
@@ -230,13 +233,31 @@ export function supportGuoba() {
    */
   function mergeObjects(newObj, oldObj) {
     let mergedObj = { ...oldObj }
+
+    // 如果是数组，直接返回旧数组或新数组
+    if (Array.isArray(newObj)) {
+      return Array.isArray(oldObj) ? oldObj : newObj
+    }
+
     for (const key in newObj) {
-      if (typeof newObj[key] === 'object') {
+      // 处理数组的情况
+      if (Array.isArray(newObj[key])) {
+        // 如果旧对象中不存在该键或者旧对象中该键不是数组，则使用新对象中的数组
+        if (!(key in mergedObj) || !Array.isArray(mergedObj[key])) {
+          mergedObj[key] = [...newObj[key]]
+        }
+        // 如果都是数组，保留旧数组
+      }
+      // 处理对象的情况
+      else if (typeof newObj[key] === 'object' && newObj[key] !== null) {
         if (!(key in mergedObj)) {
           mergedObj[key] = {}
         }
+        // 递归合并子对象
         mergedObj[key] = mergeObjects(newObj[key], mergedObj[key])
-      } else if (!(key in mergedObj)) {
+      }
+      // 处理基本类型
+      else if (!(key in mergedObj)) {
         mergedObj[key] = newObj[key]
       }
     }
