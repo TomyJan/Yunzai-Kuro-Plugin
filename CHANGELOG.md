@@ -1,3 +1,17 @@
+## [0.3.26-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.25-rel...v0.3.26-rel) (2025-06-14)
+
+
+### Bug Fixes
+
+* 更新配置文件无法正确处理数组 ([92e5a75](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/92e5a75f82d6c567528423e1afa69c8009d182cb))
+
+
+### Features
+
+* 新增鸣潮 `2.4` 卡池/角色/武器 ([73e3904](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/73e390402c99a938aa75c8eb82f965ab5a94ce0d))
+
+
+
 ## [0.3.25-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.24-rel...v0.3.25-rel) (2025-04-27)
 
 
