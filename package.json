@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.16.0",
-    "conventional-changelog": "^3.1.25",
+    "conventional-changelog": "^7.1.0",
     "conventional-changelog-cli": "^5.0.0",
     "conventional-changelog-custom-config": "^0.3.1",
     "eslint": "^9.16.0",
