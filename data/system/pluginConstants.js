@@ -649,4 +649,40 @@ export const mcGachaUpPools = [
     itemType: 2,
     cardPoolName: '浮声沉兵',
   },
+  {
+    // 2.4 上半
+    startTime: '1749780000', // 2025.06.13 10:00
+    endTime: '1751507940', // 2025.07.03 09:59
+    itemId: '1409',
+    itemName: '卡提希娅',
+    itemType: 1,
+    cardPoolName: '却也在风潮后轻舞',
+  },
+  {
+    // 2.4 上半
+    startTime: '1749780000', // 2025.06.13 10:00
+    endTime: '1751507940', // 2025.07.03 09:59
+    itemId: '21020056',
+    itemName: '不屈命定之冠',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 2.4 下半
+    startTime: '1751508000', // 2025.07.03 10:00
+    endTime: '1753243140', // 2025.07.23 11:59
+    itemId: '1207',
+    itemName: '露帕',
+    itemType: 1,
+    cardPoolName: '胜利为我喝彩',
+  },
+  {
+    // 2.4 下半
+    startTime: '1751508000', // 2025.07.03 10:00
+    endTime: '1753243140', // 2025.07.23 11:59
+    itemId: '21010036',
+    itemName: '焰痕',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
 ]
