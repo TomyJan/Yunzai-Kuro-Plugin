@@ -49,7 +49,7 @@ export default class kuroApiHandler {
     }
     if (!response.ok) {
       kuroLogger.warn(
-        `接口 ${ApiName}报错, 错误: ${response.status} ${response.statusText}`
+        `接口 ${ApiName}报错, 错误: ${response.status} ${response.statusText}`,
       )
       return `请求出错: ${response.status} ${response.statusText}`
     }
@@ -107,7 +107,7 @@ export default class kuroApiHandler {
         // APP 端登录
         url: `${this.kuroApiUrl}/user/sdkLogin`,
         body: `code=${data.code}&devCode=${generateFixedString(
-          kuroUid
+          kuroUid,
         )}&gameList=&mobile=${data.mobile}`,
       },
       mineV2: {
@@ -327,14 +327,14 @@ export default class kuroApiHandler {
         pragma: 'no-cache',
         'cache-control': 'no-cache',
         'sec-ch-ua': `"Not)A;Brand";v="99", "Android WebView";v="12${kuroUid.substring(
-          kuroUid.length - 1
+          kuroUid.length - 1,
         )}", "Chromium";v="12${kuroUid.substring(kuroUid.length - 1)}"`,
         source: 'android',
         'sec-ch-ua-mobile': '?1',
         'user-agent': `Mozilla/5.0 (Linux; Android 14; 23127PN0CC Build/UKQ1.230804.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/12${kuroUid.substring(
-          kuroUid.length - 1
+          kuroUid.length - 1,
         )}.0.${kuroUid.substring(kuroUid.length - 4)}.${kuroUid.substring(
-          kuroUid.length - 2
+          kuroUid.length - 2,
         )} Mobile Safari/537.36 Kuro/${this.kuroBbsVersion} KuroGameBox/${
           this.kuroBbsVersion
         }`,

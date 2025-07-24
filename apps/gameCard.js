@@ -43,10 +43,8 @@ export class gameCardApp extends plugin {
       if (await user.saveCurGameUidByIndex(this.e.user_id, index - 1, 2))
         await this.reply(
           `已切换至第 ${index} 个账号, UID: ${
-            (
-              await user.getCurGameUidLocal(this.e.user_id, 2)
-            )?.gameUid
-          }`
+            (await user.getCurGameUidLocal(this.e.user_id, 2))?.gameUid
+          }`,
         )
       else await this.reply(`切换账号失败, 请检查索引是否正确`)
     }
@@ -68,7 +66,7 @@ export class gameCardApp extends plugin {
     updateCardBg()
     gameCardApp.pnsCardData.img = await puppeteer.screenshot(
       'gameCardPns',
-      data
+      data,
     )
     gameCardApp.pnsCardData.md5 = tmp
 
@@ -94,8 +92,8 @@ export class gameCardApp extends plugin {
         await this.reply(
           `已切换至第 ${index} 个账号, UID: ${await user.getCurGameUidLocal(
             this.e.user_id,
-            3
-          )?.gameUid}`
+            3,
+          )?.gameUid}`,
         )
       else await this.reply(`切换账号失败, 请检查索引是否正确`)
     }

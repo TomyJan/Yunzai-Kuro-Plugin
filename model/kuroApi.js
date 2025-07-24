@@ -59,14 +59,14 @@ export default class kuroApi {
         ApiName,
         kuroUid,
         data.token,
-        data
+        data,
       )
     } else {
       rsp = await this.kuroApiHandler.getApiRsp(
         ApiName,
         kuroUid,
         this.tokenData[kuroUid]?.token,
-        data
+        data,
       )
     }
 

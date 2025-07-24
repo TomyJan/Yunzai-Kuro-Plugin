@@ -21,7 +21,7 @@ export default class gameEnergy {
     if (tokenData && Object.keys(tokenData).length > 0) {
       const accNum = Object.keys(tokenData).length
       let startQueryMsg = await this.e.reply(
-        `QQ ${uin} 绑定了 ${accNum} 个 token, 开始查询战双血清~`
+        `QQ ${uin} 绑定了 ${accNum} 个 token, 开始查询战双血清~`,
       )
       let msg = '[库洛插件] 战双血清查询\n\n'
       for (const kuro_uid in tokenData) {
@@ -57,7 +57,7 @@ export default class gameEnergy {
     if (tokenData && Object.keys(tokenData).length > 0) {
       const accNum = Object.keys(tokenData).length
       let startQueryMsg = await this.e.reply(
-        `QQ ${uin} 绑定了 ${accNum} 个 token, 开始查询鸣潮结晶波片~`
+        `QQ ${uin} 绑定了 ${accNum} 个 token, 开始查询鸣潮结晶波片~`,
       )
       let msg = '[库洛插件] 鸣潮结晶波片查询\n\n'
       for (const kuro_uid in tokenData) {
@@ -99,7 +99,7 @@ export async function doPnsEnergy(
   uin,
   kuro_uid,
   isPushTask = false,
-  pushTaskNeedPush = false
+  pushTaskNeedPush = false,
 ) {
   let kuroapi = new kuroApi(uin)
   // 获取昵称
@@ -132,7 +132,7 @@ export async function doPnsEnergy(
     })
     kuroLogger.debug(
       'rsp_getPnsWidgetData:',
-      JSON.stringify(rsp_getPnsWidgetData)
+      JSON.stringify(rsp_getPnsWidgetData),
     )
     if (typeof rsp_getPnsWidgetData == 'string') {
       // 不是 json, 即返回报错
@@ -149,11 +149,11 @@ export async function doPnsEnergy(
       rsp_getPnsWidgetData.data.actionData.refreshTimeStamp =
         rsp_getPnsWidgetData.data.actionData.refreshTimeStamp + diff
       kuroLogger.debug(
-        `服务器时间误差过大, 纠正后: ${JSON.stringify(rsp_getPnsWidgetData)}`
+        `服务器时间误差过大, 纠正后: ${JSON.stringify(rsp_getPnsWidgetData)}`,
       )
     }
     doPnsEnergyRet += `      ${formatTimestampInReadableFormat(
-      rsp_getPnsWidgetData.data.actionData.refreshTimeStamp
+      rsp_getPnsWidgetData.data.actionData.refreshTimeStamp,
     )}回满 (${rsp_getPnsWidgetData.data.actionData.value})\n`
 
     // 延迟到回满时间后执行推送, 如果回满时间在两小时内
@@ -163,7 +163,7 @@ export async function doPnsEnergy(
       }, 服务器时间: ${rsp_getPnsWidgetData.data.serverTime}, 距离刷新时间: ${
         rsp_getPnsWidgetData.data.actionData.refreshTimeStamp -
         rsp_getPnsWidgetData.data.serverTime
-      }`
+      }`,
     )
     if (
       isPushTask &&
@@ -177,18 +177,18 @@ export async function doPnsEnergy(
         rsp_getPnsWidgetData.data.serverTime
       if (delay < 0) {
         kuroLogger.error(
-          `QQ ${uin} 的战双 UID ${data.roleId} 的体力推送任务, 刷新时间小于当前时间, 跳过`
+          `QQ ${uin} 的战双 UID ${data.roleId} 的体力推送任务, 刷新时间小于当前时间, 跳过`,
         )
         continue
       }
       delay *= 1000
       pushTaskNeedPush = true
       kuroLogger.debug(
-        `QQ ${uin} 的战双 UID ${data.roleId} 的体力推送任务, 延迟 ${delay} 毫秒后执行, pushTaskNeedPush=${pushTaskNeedPush}`
+        `QQ ${uin} 的战双 UID ${data.roleId} 的体力推送任务, 延迟 ${delay} 毫秒后执行, pushTaskNeedPush=${pushTaskNeedPush}`,
       )
       setTimeout(async () => {
         kuroLogger.debug(
-          `准备执行账号 ${kuro_uid} 的战双 UID ${data.roleId} 的体力推送任务`
+          `准备执行账号 ${kuro_uid} 的战双 UID ${data.roleId} 的体力推送任务`,
         )
         doEnergyPush(uin, kuro_uid, 2, data.roleId, data.serverId)
       }, delay)
@@ -212,7 +212,7 @@ export async function doMcEnergy(
   uin,
   kuro_uid,
   isPushTask = false,
-  pushTaskNeedPush = false
+  pushTaskNeedPush = false,
 ) {
   let kuroapi = new kuroApi(uin)
   // 获取昵称
@@ -245,7 +245,7 @@ export async function doMcEnergy(
     })
     kuroLogger.debug(
       'rsp_getMcWidgetData:',
-      JSON.stringify(rsp_getMcWidgetData)
+      JSON.stringify(rsp_getMcWidgetData),
     )
     if (typeof rsp_getMcWidgetData == 'string') {
       // 不是 json, 即返回报错
@@ -262,12 +262,12 @@ export async function doMcEnergy(
       rsp_getMcWidgetData.data.energyData.refreshTimeStamp =
         rsp_getMcWidgetData.data.energyData.refreshTimeStamp + diff
       kuroLogger.debug(
-        `服务器时间误差过大, 纠正后: ${JSON.stringify(rsp_getMcWidgetData)}`
+        `服务器时间误差过大, 纠正后: ${JSON.stringify(rsp_getMcWidgetData)}`,
       )
     }
 
     doMcEnergyRet += `      ${formatTimestampInReadableFormat(
-      rsp_getMcWidgetData.data.energyData.refreshTimeStamp
+      rsp_getMcWidgetData.data.energyData.refreshTimeStamp,
     )}回满 (${rsp_getMcWidgetData.data.energyData.cur}/${
       rsp_getMcWidgetData.data.energyData.total
     })\n`
@@ -279,7 +279,7 @@ export async function doMcEnergy(
       }, 服务器时间: ${rsp_getMcWidgetData.data.serverTime}, 距离刷新时间: ${
         rsp_getMcWidgetData.data.energyData.refreshTimeStamp -
         rsp_getMcWidgetData.data.serverTime
-      }`
+      }`,
     )
     if (
       isPushTask &&
@@ -293,18 +293,18 @@ export async function doMcEnergy(
         rsp_getMcWidgetData.data.serverTime
       if (delay < 0) {
         kuroLogger.error(
-          `QQ ${uin} 的鸣潮 UID ${data.roleId} 的体力推送任务, 刷新时间小于当前时间, 跳过`
+          `QQ ${uin} 的鸣潮 UID ${data.roleId} 的体力推送任务, 刷新时间小于当前时间, 跳过`,
         )
         continue
       }
       delay *= 1000
       pushTaskNeedPush = true
       kuroLogger.debug(
-        `QQ ${uin} 的鸣潮 UID ${data.roleId} 的体力推送任务, 延迟 ${delay} 毫秒后执行, pushTaskNeedPush=${pushTaskNeedPush}`
+        `QQ ${uin} 的鸣潮 UID ${data.roleId} 的体力推送任务, 延迟 ${delay} 毫秒后执行, pushTaskNeedPush=${pushTaskNeedPush}`,
       )
       setTimeout(async () => {
         kuroLogger.debug(
-          `准备执行账号 ${kuro_uid} 的鸣潮 UID ${data.roleId} 的体力推送任务`
+          `准备执行账号 ${kuro_uid} 的鸣潮 UID ${data.roleId} 的体力推送任务`,
         )
         doEnergyPush(uin, kuro_uid, 3, data.roleId, data.serverId)
       }, delay)
@@ -330,21 +330,21 @@ export async function doEnergyPush(
   kuroUid,
   gameId,
   gameUid,
-  gameServerId
+  gameServerId,
 ) {
   if (gameId !== 2 && gameId !== 3) {
     kuroLogger.error(`未知的游戏 ID: ${gameId}`)
     return false
   }
   kuroLogger.debug(
-    `准备执行 QQ ${uin} 的账号 ${kuroUid} 的游戏 ${gameId} 在服务器 ${gameServerId} 的 UID ${gameUid} 的体力推送任务`
+    `准备执行 QQ ${uin} 的账号 ${kuroUid} 的游戏 ${gameId} 在服务器 ${gameServerId} 的 UID ${gameUid} 的体力推送任务`,
   )
   // 先判断推送时间是否是十分钟之内, 避免重复推送
   let user = new userConfig()
   let lastPushTime = await user.getEnergyLastPushTime(uin, gameId, gameUid)
   if (lastPushTime !== -1 && Date.now() - lastPushTime < 600000) {
     kuroLogger.debug(
-      `账号 ${kuroUid} 的游戏 ${gameId} 在服务器 ${gameServerId} 的 UID ${gameUid} 的体力推送任务已在十分钟之内执行过, 跳过`
+      `账号 ${kuroUid} 的游戏 ${gameId} 在服务器 ${gameServerId} 的 UID ${gameUid} 的体力推送任务已在十分钟之内执行过, 跳过`,
     )
     return false
   }
@@ -378,7 +378,7 @@ export async function doEnergyPush(
     energyMax = rsp.data.energyData.total
   }
   kuroLogger.info(
-    `准备执行 QQ ${uin} 的账号 ${kuroUid} 的游戏 ${gameId} 体力: ${energy}/${energyMax}`
+    `准备执行 QQ ${uin} 的账号 ${kuroUid} 的游戏 ${gameId} 体力: ${energy}/${energyMax}`,
   )
 
   let apiDataIsFull = true
@@ -395,7 +395,7 @@ export async function doEnergyPush(
   lastPushTime = await user.getEnergyLastPushTime(uin, gameId, gameUid)
   if (lastPushTime !== -1 && Date.now() - lastPushTime < 600000) {
     kuroLogger.debug(
-      `账号 ${kuroUid} 的游戏 ${gameId} 在服务器 ${gameServerId} 的 UID ${gameUid} 的体力推送任务已在十分钟之内执行过, 跳过`
+      `账号 ${kuroUid} 的游戏 ${gameId} 在服务器 ${gameServerId} 的 UID ${gameUid} 的体力推送任务已在十分钟之内执行过, 跳过`,
     )
     return false
   }
@@ -404,26 +404,26 @@ export async function doEnergyPush(
   let pushMsg = apiDataIsFull
     ? `未知的游戏 ${gameId} UID ${gameUid} 的体力恢复啦 (${energy}/${energyMax}) ~`
     : apiDataWillFull
-    ? `未知的游戏 ${gameId} UID ${gameUid} 的体力此时应已恢复 (${energy}/${energyMax}) ~`
-    : ``
+      ? `未知的游戏 ${gameId} UID ${gameUid} 的体力此时应已恢复 (${energy}/${energyMax}) ~`
+      : ``
   if (gameId === 2)
     pushMsg = apiDataIsFull
       ? `你的战双 UID ${gameUid} 的血清恢复啦 (${energy}/${energyMax}) ~`
       : apiDataWillFull
-      ? `你的战双 UID ${gameUid} 的血清此时应已恢复 (${energy}/${energyMax}) ~`
-      : ``
+        ? `你的战双 UID ${gameUid} 的血清此时应已恢复 (${energy}/${energyMax}) ~`
+        : ``
   if (gameId === 3)
     pushMsg = apiDataIsFull
       ? `你的鸣潮 UID ${gameUid} 的结晶波片恢复啦 (${energy}/${energyMax}) ~`
       : apiDataWillFull
-      ? `你的鸣潮 UID ${gameUid} 的结晶波片此时应已恢复 (${energy}/${energyMax}) ~`
-      : ``
+        ? `你的鸣潮 UID ${gameUid} 的结晶波片此时应已恢复 (${energy}/${energyMax}) ~`
+        : ``
 
   if (pushMsg) {
     await sendMsgFriend(uin, pushMsg)
   } else {
     kuroLogger.warn(
-      `QQ ${uin} 的 UID ${gameUid} 推送消息为空, 体力未恢复, 取消推送`
+      `QQ ${uin} 的 UID ${gameUid} 推送消息为空, 体力未恢复, 取消推送`,
     )
   }
 

@@ -17,7 +17,7 @@ export default class bbsTask {
       await this.e.reply(
         `QQ ${uin} 绑定了 ${accNum} 个 token\n开始库街区每日, 预计需要 ${
           10 * accNum
-        }s~`
+        }s~`,
       )
       let startTime = Date.now()
       let msg = '[库洛插件] 社区任务\n\n'
@@ -77,7 +77,7 @@ export async function doBBSDailyTask(uin, kuro_uid) {
     let rsp_forumSignInInfo = await kuroapi.forumSignInInfo(kuro_uid)
     kuroLogger.debug(
       'rsp_forumSignInInfo:',
-      JSON.stringify(rsp_forumSignInInfo)
+      JSON.stringify(rsp_forumSignInInfo),
     )
     if (typeof rsp_getTotalGold == 'string' || rsp_getTotalGold.code !== 200)
       return `账号 ${

@@ -168,28 +168,28 @@ export async function gameEnergyPushTask(checkTimeInterval = 0) {
     if (now - lastGameEnergyPushTime < checkTimeInterval) {
       kuroLogger.info(
         `游戏体力推送: 上次检查时间 ${new Date(
-          lastGameEnergyPushTime
-        )}, 距离上次将查体力不足 ${checkTimeInterval}s, 跳过本次检查`
+          lastGameEnergyPushTime,
+        )}, 距离上次将查体力不足 ${checkTimeInterval}s, 跳过本次检查`,
       )
       // 取出 taskProcess.gameEnergy.waitingPushList , 用这些账号调 doMcEnergy 和 doPnsEnergy
       let waitingPushList = taskProcess.gameEnergy.waitingPushList || []
       if (waitingPushList.length) {
         kuroLogger.info(
           `游戏体力推送: 上次检查时间 ${new Date(
-            lastGameEnergyPushTime
+            lastGameEnergyPushTime,
           )}, 距离上次将查体力不足 ${checkTimeInterval}s, 但有 ${
             waitingPushList.length
-          } 个账号需要推送体力, 开始推送体力`
+          } 个账号需要推送体力, 开始推送体力`,
         )
         for (let i in waitingPushList) {
           let { gameSignUin, kuro_uid } = waitingPushList[i]
           kuroLogger.info(
-            `游戏体力推送: 开始为 ${gameSignUin} 的库洛账号 ${kuro_uid} 推送体力`
+            `游戏体力推送: 开始为 ${gameSignUin} 的库洛账号 ${kuro_uid} 推送体力`,
           )
           let mcRet = await doMcEnergy(gameSignUin, kuro_uid, true)
           let pnsRet = await doPnsEnergy(gameSignUin, kuro_uid, true)
           kuroLogger.info(
-            `游戏体力推送 ${gameSignUin} : 推送检查完成, 鸣潮: ${mcRet.trim()}, 战双: ${pnsRet.trim()}`
+            `游戏体力推送 ${gameSignUin} : 推送检查完成, 鸣潮: ${mcRet.trim()}, 战双: ${pnsRet.trim()}`,
           )
         }
         kuroLogger.info(`游戏体力推送: 推送检查完成`)
@@ -205,16 +205,16 @@ export async function gameEnergyPushTask(checkTimeInterval = 0) {
       } else {
         kuroLogger.info(
           `游戏体力推送: 上次检查时间 ${new Date(
-            lastGameEnergyPushTime
-          )}, 距离上次将查体力不足 ${checkTimeInterval}s, 且没有账号需要推送体力, 跳过本次检查`
+            lastGameEnergyPushTime,
+          )}, 距离上次将查体力不足 ${checkTimeInterval}s, 且没有账号需要推送体力, 跳过本次检查`,
         )
       }
       return false
     } else {
       kuroLogger.info(
         `游戏体力推送: 上次检查时间 ${new Date(
-          lastGameEnergyPushTime
-        )}, 距离上次将查体力超过 ${checkTimeInterval}s, 开始本次检查`
+          lastGameEnergyPushTime,
+        )}, 距离上次将查体力超过 ${checkTimeInterval}s, 开始本次检查`,
       )
     }
   }
@@ -295,7 +295,7 @@ export async function checkUpdateTask() {
     kuroLogger.warn(`检查更新任务失败`)
     await sendMsgFriend(
       cfg.masterQQ[0],
-      `[库洛插件] 自动检查更新失败\n请检查网络或前往项目地址检查版本信息\nhttps://github.com/TomyJan/Yunzai-Kuro-Plugin`
+      `[库洛插件] 自动检查更新失败\n请检查网络或前往项目地址检查版本信息\nhttps://github.com/TomyJan/Yunzai-Kuro-Plugin`,
     )
     return false
   }
@@ -307,13 +307,13 @@ export async function checkUpdateTask() {
     kuroLogger.info(`检查更新任务: 解析版本信息失败`)
     await sendMsgFriend(
       cfg.masterQQ[0],
-      `[库洛插件] 自动检查更新\n解析版本信息失败\n请检查网络或前往项目地址检查版本信息\nhttps://github.com/TomyJan/Yunzai-Kuro-Plugin`
+      `[库洛插件] 自动检查更新\n解析版本信息失败\n请检查网络或前往项目地址检查版本信息\nhttps://github.com/TomyJan/Yunzai-Kuro-Plugin`,
     )
     return false
   }
 
   kuroLogger.info(
-    `检查更新任务: 获取到最新版本 ${remoteVersion}, 本地版本 ${pluginVer}`
+    `检查更新任务: 获取到最新版本 ${remoteVersion}, 本地版本 ${pluginVer}`,
   )
   if (remoteVersion != pluginVer) {
     // 推送并缓存
@@ -331,7 +331,7 @@ export async function checkUpdateTask() {
         '读取 versionCache:',
         versionCache,
         ', 解析到缓存的版本:',
-        versionCache?.remoteVersion
+        versionCache?.remoteVersion,
       )
     } catch (err) {
       kuroLogger.error('读取 versionCache.json 时出现错误:', err.message)
@@ -355,7 +355,7 @@ export async function checkUpdateTask() {
     await sendMsgFriend(
       cfg.masterQQ[0],
       `[库洛插件] 自动检查更新\n发现新版: ${remoteVersion}\n本地版本: ${pluginVer}\n更新日志: https://kuro.amoe.cc/repo/raw/TomyJan/Yunzai-Kuro-Plugin/master/CHANGELOG.md?type=preview\n建议尽快更新~` +
-        (isCacheSucceed ? '' : '\n缓存新版本信息失败, 该信息可能会重复推送')
+        (isCacheSucceed ? '' : '\n缓存新版本信息失败, 该信息可能会重复推送'),
     )
   }
 
@@ -385,7 +385,7 @@ export async function checkUpdateTask() {
         let rsp = await fetch(source.url)
         if (!rsp.ok) {
           kuroLogger.warn(
-            `从 ${source.name} 获取更新信息失败: ${rsp.status} ${rsp.statusText}`
+            `从 ${source.name} 获取更新信息失败: ${rsp.status} ${rsp.statusText}`,
           )
           continue
         }

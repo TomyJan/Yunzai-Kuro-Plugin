@@ -27,7 +27,7 @@ export default class mcGachaData {
   async check() {
     const tokenData = await getToken(this.e.user_id)
     kuroLogger.debug(
-      `QQ ${this.e.user_id} 的 tokenData: ${JSON.stringify(tokenData)}`
+      `QQ ${this.e.user_id} 的 tokenData: ${JSON.stringify(tokenData)}`,
     )
 
     // 尝试获取用户的绑定信息和抽卡链接
@@ -37,7 +37,7 @@ export default class mcGachaData {
       ?.gameUid
     let gachaLink = await user.getMcGachaDataLink(this.e.user_id, gameUid)
     kuroLogger.debug(
-      `QQ ${this.e.user_id} 的游戏 uid: ${gameUid}, 抽卡链接: ${gachaLink}`
+      `QQ ${this.e.user_id} 的游戏 uid: ${gameUid}, 抽卡链接: ${gachaLink}`,
     )
 
     // 先检查本地是否既没有抽卡记录也没有抽卡链接, 如果没有就提示获取抽卡记录
@@ -45,7 +45,7 @@ export default class mcGachaData {
       await this.e.reply(
         `QQ ${this.e.user_id}${
           gameUid ? ` 的游戏 uid ${gameUid}` : ''
-        } 暂未获取过抽卡记录\n请发送 #鸣潮抽卡记录帮助 以获取帮助信息`
+        } 暂未获取过抽卡记录\n请发送 #鸣潮抽卡记录帮助 以获取帮助信息`,
       )
       return false
     }
@@ -53,7 +53,7 @@ export default class mcGachaData {
     // 然后检查是否是通过链接上传的信息, 如果是链接上传就更新再生成, 如果是本地上传就直接生成
     if (gachaLink) {
       let willUpdateMsg = await this.e.reply(
-        `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 本地存在抽卡链接, 尝试更新抽卡记录...`
+        `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 本地存在抽卡链接, 尝试更新抽卡记录...`,
       )
       setTimeout(() => {
         if (willUpdateMsg) {
@@ -77,7 +77,7 @@ export default class mcGachaData {
           }
         }
         let updateFailMsg = await this.e.reply(
-          `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 更新抽卡记录失败: \n${gachaRecord} \n将展示历史抽卡记录 `
+          `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 更新抽卡记录失败: \n${gachaRecord} \n将展示历史抽卡记录 `,
         )
         setTimeout(() => {
           if (updateFailMsg) {
@@ -106,11 +106,11 @@ export default class mcGachaData {
           let saveFailedMsg
           if (gachaUpdateRet == 'ERROR_NO_NEWER_RECORD') {
             saveFailedMsg = await this.e.reply(
-              `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 没有更新的抽卡记录啦, 晚点再来试试吧~`
+              `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 没有更新的抽卡记录啦, 晚点再来试试吧~`,
             )
           } else {
             saveFailedMsg = await this.e.reply(
-              `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 抽卡更新记录成功但保存失败: \n${gachaUpdateRet} \n将展示历史抽卡记录 `
+              `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 抽卡更新记录成功但保存失败: \n${gachaUpdateRet} \n将展示历史抽卡记录 `,
             )
           }
           setTimeout(() => {
@@ -137,7 +137,7 @@ export default class mcGachaData {
       }
     } else {
       let localUploadedMsg = await this.e.reply(
-        `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 通过本地上传的抽卡记录, 将展示历史抽卡记录`
+        `QQ ${this.e.user_id} 的游戏 uid ${gameUid} 通过本地上传的抽卡记录, 将展示历史抽卡记录`,
       )
       setTimeout(() => {
         if (localUploadedMsg) {
@@ -199,10 +199,10 @@ export default class mcGachaData {
     // 检查链接及参数
     if (
       !link.startsWith(
-        'https://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record?'
+        'https://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record?',
       ) &&
       !link.startsWith(
-        'https://aki-gm-resources-oversea.aki-game.net/aki/gacha/index.html#/record?'
+        'https://aki-gm-resources-oversea.aki-game.net/aki/gacha/index.html#/record?',
       )
     ) {
       kuroLogger.debug(`QQ ${qq} 的抽卡链接 ${link} 格式错误`)
@@ -214,7 +214,7 @@ export default class mcGachaData {
     let cardPoolId = link.match(/resources_id=([^&]*)/)[1]
     if (!serverId || !playerId || !recordId || !cardPoolId) {
       kuroLogger.debug(
-        `QQ ${qq} 的抽卡链接 ${link} 参数缺失, serverId: ${serverId}, playerId: ${playerId}, recordId: ${recordId}, cardPoolId: ${cardPoolId}`
+        `QQ ${qq} 的抽卡链接 ${link} 参数缺失, serverId: ${serverId}, playerId: ${playerId}, recordId: ${recordId}, cardPoolId: ${cardPoolId}`,
       )
       return '抽卡链接参数缺失'
     }
@@ -225,7 +225,7 @@ export default class mcGachaData {
       !cardPoolId.match(/^[a-z0-9]{32}$/)
     ) {
       kuroLogger.debug(
-        `QQ ${qq} 的抽卡链接 ${link} 参数格式错误, serverId: ${serverId}, playerId: ${playerId}, recordId: ${recordId}, cardPoolId: ${cardPoolId}`
+        `QQ ${qq} 的抽卡链接 ${link} 参数格式错误, serverId: ${serverId}, playerId: ${playerId}, recordId: ${recordId}, cardPoolId: ${cardPoolId}`,
       )
       return '抽卡链接参数格式错误'
     }
@@ -241,7 +241,7 @@ export default class mcGachaData {
     })
     if (typeof rsp_mcGachaRecord === 'string') {
       kuroLogger.debug(
-        `QQ ${qq} 的抽卡链接 ${link} 获取失败: ${rsp_mcGachaRecord}`
+        `QQ ${qq} 的抽卡链接 ${link} 获取失败: ${rsp_mcGachaRecord}`,
       )
       if (rsp_mcGachaRecord === '请求游戏获取日志异常!') return '抽卡链接已过期'
       return `获取失败: ${rsp_mcGachaRecord}`
@@ -250,7 +250,7 @@ export default class mcGachaData {
     // 完成测试, 保存记录到本地
     let user = new userConfig()
     kuroLogger.debug(
-      `QQ ${qq} 的抽卡链接 ${link} 获取成功, 保存链接及游戏 uid...`
+      `QQ ${qq} 的抽卡链接 ${link} 获取成功, 保存链接及游戏 uid...`,
     )
     await user.saveMcGachaDataLink(qq, playerId, link)
     await user.saveCurGameUid(qq, playerId, 0, 3)
@@ -287,16 +287,16 @@ export default class mcGachaData {
         rsp_mcGachaRecord = { code: -1, message: rsp_mcGachaRecord, data: [] }
       kuroLogger.debug(
         `QQ ${qq} 的抽卡链接 ${link} 获取卡池 ${curCardPoolToFetch} 的抽卡记录结果: ${JSON.stringify(
-          rsp_mcGachaRecord
-        )}`
+          rsp_mcGachaRecord,
+        )}`,
       )
       gachaDataJson.gachaData[curCardPoolToFetch] = rsp_mcGachaRecord
     }
 
     kuroLogger.debug(
       `QQ ${qq} 的抽卡链接 ${link} 获取抽卡记录完成: ${JSON.stringify(
-        gachaDataJson
-      )}`
+        gachaDataJson,
+      )}`,
     )
     return gachaDataJson
   }
@@ -307,12 +307,12 @@ export default class mcGachaData {
    */
   async update(qq, gachaDataJson) {
     kuroLogger.debug(
-      `尝试保存 QQ ${qq} 的抽卡记录 ${JSON.stringify(gachaDataJson)} 到本地...`
+      `尝试保存 QQ ${qq} 的抽卡记录 ${JSON.stringify(gachaDataJson)} 到本地...`,
     )
     // 检查 gachaDataJson 版本是否兼容
     if (!gachaDataJson.version || gachaDataJson.version !== 1) {
       kuroLogger.debug(
-        `QQ ${qq} 的抽卡记录版本 ${gachaDataJson?.version} 不兼容: ${gachaDataJson.version}`
+        `QQ ${qq} 的抽卡记录版本 ${gachaDataJson?.version} 不兼容: ${gachaDataJson.version}`,
       )
       return `抽卡记录版本 ${gachaDataJson?.version} 暂不兼容`
     }
@@ -350,8 +350,8 @@ export default class mcGachaData {
 
     kuroLogger.debug(
       `准备转换 QQ ${qq} 的抽卡记录到 WWGF 格式: ${JSON.stringify(
-        gachaDataInUniform
-      )}`
+        gachaDataInUniform,
+      )}`,
     )
 
     for (let i = 1; i <= 7; i++) {
@@ -532,14 +532,14 @@ export default class mcGachaData {
       if (this.e.isGroup) {
         let ret = await this.e.group.sendFile(tempPath)
         kuroLogger.debug(
-          `QQ ${this.e.user_id} 的抽卡记录文件发送返回: ${JSON.stringify(ret)}`
+          `QQ ${this.e.user_id} 的抽卡记录文件发送返回: ${JSON.stringify(ret)}`,
         )
         fs.unlinkSync(tempPath)
         if (ret !== null && typeof ret !== 'object') {
           kuroLogger.warn(
             `QQ ${this.e.user_id} 的抽卡记录文件发送失败: ${JSON.stringify(
-              ret
-            )}`
+              ret,
+            )}`,
           )
           return `文件发送失败, 可能是协议不支持`
         }
@@ -547,14 +547,14 @@ export default class mcGachaData {
       } else if (this.e.isPrivate) {
         let ret = await this.e.friend.sendFile(tempPath)
         kuroLogger.debug(
-          `QQ ${this.e.user_id} 的抽卡记录文件发送返回: ${JSON.stringify(ret)}`
+          `QQ ${this.e.user_id} 的抽卡记录文件发送返回: ${JSON.stringify(ret)}`,
         )
         fs.unlinkSync(tempPath)
         if (ret !== null && typeof ret !== 'object') {
           kuroLogger.warn(
             `QQ ${this.e.user_id} 的抽卡记录文件发送失败: ${JSON.stringify(
-              ret
-            )}`
+              ret,
+            )}`,
           )
           return `文件发送失败, 可能是协议不支持`
         }

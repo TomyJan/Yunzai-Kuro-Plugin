@@ -25,7 +25,7 @@ export default class PnnTownActivity {
         '2. 收到验证码后, 再次给 Bot 私聊发送手机号和相应验证码 \n格式: 帕尼尼小镇18888888888,验证码114514',
         '3. Bot 使用正确的验证码登录后, 将开始自动完成活动任务, 抽奖后返回奖品信息和兑换码',
       ],
-      '[库洛插件] 帕尼尼小镇活动任务帮助'
+      '[库洛插件] 帕尼尼小镇活动任务帮助',
     )
     await this.e.reply(pnnTownHelpMsg)
     return true
@@ -53,7 +53,7 @@ export default class PnnTownActivity {
       return false
     }
     this.e.reply(
-      '验证码发送成功, 请再次发送手机号和验证码, 以完成登录 \n格式: 帕尼尼小镇18888888888,验证码114514'
+      '验证码发送成功, 请再次发送手机号和验证码, 以完成登录 \n格式: 帕尼尼小镇18888888888,验证码114514',
     )
     return true
   }
@@ -62,7 +62,7 @@ export default class PnnTownActivity {
     let msg = this.e.msg
       .replace(
         /帕尼尼小镇|：|:|一键|活动|任务|登录|登陆|账号|手机号|验证码/g,
-        ''
+        '',
       )
       .replace(/,|，/g, ',')
       .replace(/#| /g, '')
@@ -90,7 +90,7 @@ export default class PnnTownActivity {
     if (!rspPnsTownLogin.data.token || rspPnsTownLogin.data.token == '') {
       this.e.reply(
         '登录失败: 未知错误, 取消任务. 活动页返回: \n' +
-          JSON.stringify(rspPnsTownLogin)
+          JSON.stringify(rspPnsTownLogin),
       )
       return false
     }
@@ -102,7 +102,7 @@ export default class PnnTownActivity {
     if (typeof rspPnsTownUserInfo == 'string') {
       // 不是 json, 即返回报错
       this.e.reply(
-        `查询任务进度失败, 取消任务. 活动页返回: \n${rspPnsTownUserInfo}`
+        `查询任务进度失败, 取消任务. 活动页返回: \n${rspPnsTownUserInfo}`,
       )
       return false
     }
@@ -113,7 +113,7 @@ export default class PnnTownActivity {
     ) {
       this.e.reply(
         '查询任务进度失败: 未知错误, 取消任务. 活动页返回: \n' +
-          JSON.stringify(rspPnsTownUserInfo)
+          JSON.stringify(rspPnsTownUserInfo),
       )
       return false
     }
@@ -126,7 +126,7 @@ export default class PnnTownActivity {
             ? '已完成所有任务, 跳过自动任务'
             : `已完成 ${taskNum} 个任务, 开始继续自动任务`
           : '未完成任何任务, 开始自动任务'
-      }`
+      }`,
     )
     let continueTask = true
     if (taskNum == 20) {
@@ -144,31 +144,31 @@ export default class PnnTownActivity {
             `用户 ${this.e.user_id} 手机号 ${
               msg[0]
             } 帕尼尼小镇在第 ${i} 个蛋时出错, 接口返回: ${JSON.stringify(
-              rsp
-            )} , 重试一次`
+              rsp,
+            )} , 重试一次`,
           )
           rsp = await pnnAct.pnnTownActCollectEgg(token, i)
           kuroLogger.debug(
             'rsp_pnnTownActCollectEgg_retry:',
-            JSON.stringify(rsp)
+            JSON.stringify(rsp),
           )
           if (typeof rsp == 'string') {
             kuroLogger.error(
               `用户 ${this.e.user_id} 手机号 ${
                 msg[0]
               } 帕尼尼小镇在第 ${i} 个蛋时出错, 接口返回: ${JSON.stringify(
-                rsp
-              )}, 重试失败, 跳过这个蛋`
+                rsp,
+              )}, 重试失败, 跳过这个蛋`,
             )
             this.e.reply(
               `收集第 ${i} 个蛋出错, 将跳过这个蛋. 活动页返回: \n ${JSON.stringify(
-                rsp
-              )}`
+                rsp,
+              )}`,
             )
           }
         }
         await new Promise((resolve) =>
-          setTimeout(resolve, Math.floor(Math.random() * 100 + 100))
+          setTimeout(resolve, Math.floor(Math.random() * 100 + 100)),
         )
       }
       // 还有个分享任务
@@ -180,8 +180,8 @@ export default class PnnTownActivity {
           `用户 ${this.e.user_id} 手机号 ${
             msg[0]
           } 帕尼尼小镇分享任务出错, 接口返回: ${JSON.stringify(
-            rspShare
-          )} , 重试一次`
+            rspShare,
+          )} , 重试一次`,
         )
         rspShare = await pnnAct.pnnTownActShare(token)
         kuroLogger.debug('rsp_pnnTownActShare_retry:', JSON.stringify(rspShare))
@@ -190,8 +190,8 @@ export default class PnnTownActivity {
             `用户 ${this.e.user_id} 手机号 ${
               msg[0]
             } 帕尼尼小镇分享任务出错, 接口返回: ${JSON.stringify(
-              rspShare
-            )}, 重试失败, 跳过这个任务`
+              rspShare,
+            )}, 重试失败, 跳过这个任务`,
           )
           this.e.reply('分享任务出错, 跳过此任务. 活动页返回: \n' + rspShare)
         }
@@ -206,7 +206,7 @@ export default class PnnTownActivity {
     if (typeof rspPnsTownUserInfo == 'string') {
       // 不是 json, 即返回报错
       this.e.reply(
-        `查询任务进度失败, 取消抽奖. 活动页返回: \n${rspPnsTownUserInfo}`
+        `查询任务进度失败, 取消抽奖. 活动页返回: \n${rspPnsTownUserInfo}`,
       )
     } else {
       chanceRemain = rspPnsTownUserInfo?.data?.chance_num
@@ -216,7 +216,7 @@ export default class PnnTownActivity {
           continueTask
             ? `剩余 ${chanceRemain} 次抽奖机会, 开始抽奖`
             : '抽奖机会已用完, 跳过抽奖, 开始查询奖品'
-        }`
+        }`,
       )
     }
 
@@ -236,11 +236,11 @@ export default class PnnTownActivity {
           kuroLogger.warn(
             `用户 ${this.e.user_id} 手机号 ${msg[0]} 帕尼尼小镇第 ${i}/${
               chanceRemain + 4
-            } 次抽奖时出错, 接口返回: ${JSON.stringify(rsp)}`
+            } 次抽奖时出错, 接口返回: ${JSON.stringify(rsp)}`,
           )
         }
         await new Promise((resolve) =>
-          setTimeout(resolve, Math.floor(Math.random() * 100 + 100))
+          setTimeout(resolve, Math.floor(Math.random() * 100 + 100)),
         )
       }
       this.e.reply('抽奖已完成, 开始查询奖品')
@@ -280,7 +280,7 @@ export default class PnnTownActivity {
     let priceMsgs = ['[库洛插件] 帕尼尼小镇 奖品信息']
     if (otherList.length > 0) {
       priceMsgs.push(
-        `这就是首席的实力! 你居然抽到了 ${otherList.length} 个蚊子腿以外的东西! 快看看有什么吧~`
+        `这就是首席的实力! 你居然抽到了 ${otherList.length} 个蚊子腿以外的东西! 快看看有什么吧~`,
       )
       for (let i = 0; i < otherList.length; i++) {
         priceMsgs.push(`${otherList[i].name}`)
@@ -297,7 +297,7 @@ export default class PnnTownActivity {
     let forwardMsg = await common.makeForwardMsg(
       this.e,
       priceMsgs,
-      '[库洛插件] 帕尼尼小镇 奖品信息'
+      '[库洛插件] 帕尼尼小镇 奖品信息',
     )
     this.e.reply(forwardMsg)
   }
