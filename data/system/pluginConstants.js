@@ -685,4 +685,76 @@ export const mcGachaUpPools = [
     itemType: 2,
     cardPoolName: '浮声沉兵',
   },
+  {
+    // 2.5 上半
+    startTime: '1753322400', // 2025.07.24 10:00
+    endTime: '1755136740', // 2025.08.14 09:59
+    itemId: '1608',
+    itemName: '弗洛洛',
+    itemType: 1,
+    cardPoolName: '挽歌永不落幕',
+  },
+  {
+    // 2.5 上半
+    startTime: '1753322400', // 2025.07.24 10:00
+    endTime: '1755136740', // 2025.08.14 09:59
+    itemId: '1606',
+    itemName: '洛可可',
+    itemType: 1,
+    cardPoolName: '箱中舞台',
+  },
+  {
+    // 2.5 上半
+    startTime: '1753322400', // 2025.07.24 10:00
+    endTime: '1755136740', // 2025.08.14 09:59
+    itemId: '21050066',
+    itemName: '幽冥的忘忧草',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 2.5 上半
+    startTime: '1753322400', // 2025.07.24 10:00
+    endTime: '1755136740', // 2025.08.14 09:59
+    itemId: '21040026',
+    itemName: '悲喜剧',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 2.5 下半
+    startTime: '1755136800', // 2025.08.14 10:00
+    endTime: '1756267140', // 2025.08.27 11:59
+    itemId: '1607',
+    itemName: '坎特蕾拉',
+    itemType: 1,
+    cardPoolName: '映海之梦',
+  },
+  {
+    // 2.5 下半
+    startTime: '1755136800', // 2025.08.14 10:00
+    endTime: '1756267140', // 2025.08.27 11:59
+    itemId: '1206',
+    itemName: '布兰特',
+    itemType: 1,
+    cardPoolName: '燃焰于海',
+  },
+  {
+    // 2.5 下半
+    startTime: '1755136800', // 2025.08.14 10:00
+    endTime: '1756267140', // 2025.08.27 11:59
+    itemId: '21050056',
+    itemName: '海的呢喃',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 2.5 下半
+    startTime: '1755136800', // 2025.08.14 10:00
+    endTime: '1756267140', // 2025.08.27 11:59
+    itemId: '21020036',
+    itemName: '不灭航路',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
 ]
