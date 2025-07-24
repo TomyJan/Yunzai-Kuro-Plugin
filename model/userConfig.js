@@ -18,7 +18,7 @@ export default class userConfig {
     if (!gameUid || !inKuroUid) {
       // 如果没找到使用的 uid, 就设置为第一个 uid
       kuroLogger.debug(
-        `用户 ${qq} 未设置使用的游戏 ${gameId} 的 uid, 尝试获取第一个 uid...`
+        `用户 ${qq} 未设置使用的游戏 ${gameId} 的 uid, 尝试获取第一个 uid...`,
       )
       let tokenData = await getToken(qq)
       let kuroUidToFetch = 0
@@ -31,7 +31,7 @@ export default class userConfig {
         if (typeof rsp_roleList !== 'string') {
           if (rsp_roleList.data.length > 0) {
             kuroLogger.debug(
-              `成功在第 ${kuroUidIndex} 个库洛 id 下找到 uid: ${rsp_roleList.data[0].roleId}`
+              `成功在第 ${kuroUidIndex} 个库洛 id 下找到 uid: ${rsp_roleList.data[0].roleId}`,
             )
             fetchedUid = rsp_roleList.data[0].roleId
           }
@@ -45,7 +45,7 @@ export default class userConfig {
 
       if (fetchedUid !== 0) {
         kuroLogger.debug(
-          `将 ${qq} 使用的游戏 ${gameId} 的 uid 设置为 ${fetchedUid}, 库洛 uid 为 ${kuroUidToFetch}, 保存文件...`
+          `将 ${qq} 使用的游戏 ${gameId} 的 uid 设置为 ${fetchedUid}, 库洛 uid 为 ${kuroUidToFetch}, 保存文件...`,
         )
         this.saveCurGameUid(qq, fetchedUid, kuroUidToFetch, gameId)
         return kuroUidIndex - 1
@@ -54,7 +54,7 @@ export default class userConfig {
     }
 
     kuroLogger.debug(
-      `用户 ${qq} 使用的游戏 ${gameId} 的 uid 为 ${gameUid}, 对应库洛帐号 uid 为 ${inKuroUid}, 尝试获取索引...`
+      `用户 ${qq} 使用的游戏 ${gameId} 的 uid 为 ${gameUid}, 对应库洛帐号 uid 为 ${inKuroUid}, 尝试获取索引...`,
     )
     // 如果本地获取到uid了, 就查找uid的索引
     let uidIndex = 0
@@ -66,7 +66,7 @@ export default class userConfig {
       kuroLogger.debug(
         `尝试从第 ${
           uidIndex + 1
-        } 个库洛 id ${kuro_uid} 下查找 uid ${gameUid}...`
+        } 个库洛 id ${kuro_uid} 下查找 uid ${gameUid}...`,
       )
       let rsp_roleList = await kuroapi.roleList(kuro_uid, { gameId })
       if (typeof rsp_roleList !== 'string') {
@@ -76,7 +76,7 @@ export default class userConfig {
               rsp_roleList.data.length
             } 个 uid: ${rsp_roleList.data
               .map((role) => role.roleId)
-              .join(', ')}`
+              .join(', ')}`,
           )
           // 遍历data数组查找uid
           for (const role of rsp_roleList.data) {
@@ -94,7 +94,7 @@ export default class userConfig {
     kuroLogger.debug(
       `用户 ${qq} 使用的游戏 ${gameId} 的 uid 索引 ${
         succeed ? '已' : '未'
-      } 获取`
+      } 获取`,
     )
     // TODO: 如果没有获取到, 应该再写入一下配置文件, 这里的代码以后再整理
     return succeed ? uidIndex : 0
@@ -112,11 +112,11 @@ export default class userConfig {
     try {
       const fileData = await fs.promises.readFile(
         dataPath + `/userSetting/${qq}.json`,
-        'utf-8'
+        'utf-8',
       )
       qqData = JSON.parse(fileData)?.curGameUid?.[gameId] || {}
       kuroLogger.debug(
-        `获取用户当前游戏 uid: 用户设置文件已读取: ${JSON.stringify(qqData)}`
+        `获取用户当前游戏 uid: 用户设置文件已读取: ${JSON.stringify(qqData)}`,
       )
       return {
         gameUid: qqData.gameUid || 0,
@@ -138,7 +138,7 @@ export default class userConfig {
    */
   async saveCurGameUid(qq, uid, kuro_uid, gameId) {
     kuroLogger.debug(
-      `保存用户 ${qq} 使用的游戏 ${gameId} 的 uid ${uid} 和所在库洛 uid ${kuro_uid}...`
+      `保存用户 ${qq} 使用的游戏 ${gameId} 的 uid ${uid} 和所在库洛 uid ${kuro_uid}...`,
     )
     // 如果 kuro_uid 为 0, 则通过 api 遍历找出 uid
     if (kuro_uid === 0) {
@@ -151,7 +151,7 @@ export default class userConfig {
         do {
           if (!kuroUidToFetch) {
             kuroLogger.warn(
-              `用户 ${qq} 没有绑定 token, 无法通过 api 遍历找出 uid`
+              `用户 ${qq} 没有绑定 token, 无法通过 api 遍历找出 uid`,
             )
             break
           }
@@ -162,7 +162,7 @@ export default class userConfig {
                 if (role.roleId === uid) {
                   kuro_uid = kuroUidToFetch
                   kuroLogger.debug(
-                    `找到 uid: ${uid} 所在的库洛 uid: ${kuro_uid}`
+                    `找到 uid: ${uid} 所在的库洛 uid: ${kuro_uid}`,
                   )
                   break
                 }
@@ -205,7 +205,7 @@ export default class userConfig {
 
       await fs.promises.writeFile(filePath, newJsonData)
       kuroLogger.debug(
-        `保存用户 ${qq} 使用的游戏 ${gameId} 的 uid ${uid} 和所在库洛 uid ${kuro_uid} 到文件: ${filePath}, 内容: ${newJsonData}`
+        `保存用户 ${qq} 使用的游戏 ${gameId} 的 uid ${uid} 和所在库洛 uid ${kuro_uid} 到文件: ${filePath}, 内容: ${newJsonData}`,
       )
       return true
     } catch (error) {
@@ -223,7 +223,7 @@ export default class userConfig {
    */
   async saveCurGameUidByIndex(qq, uidIndex, gameId) {
     kuroLogger.debug(
-      `保存用户 ${qq} 使用的游戏 ${gameId} 的 uid 索引 ${uidIndex}...`
+      `保存用户 ${qq} 使用的游戏 ${gameId} 的 uid 索引 ${uidIndex}...`,
     )
     let tokenData = await getToken(qq)
     let kuroUidIndex = 0
@@ -249,7 +249,7 @@ export default class userConfig {
     } while (kuroUidIndex < Object.keys(tokenData).length)
 
     kuroLogger.warn(
-      `保存用户 ${qq} 使用的游戏 ${gameId} 的 uid 索引 ${uidIndex} 失败: 未找到 uid`
+      `保存用户 ${qq} 使用的游戏 ${gameId} 的 uid 索引 ${uidIndex} 失败: 未找到 uid`,
     )
 
     return false
@@ -263,17 +263,17 @@ export default class userConfig {
    */
   async getMcGachaDataLink(qq, gameUid) {
     kuroLogger.debug(
-      `获取用户 ${qq} 的鸣潮 uid ${gameUid} 提交的鸣潮抽卡记录链接...`
+      `获取用户 ${qq} 的鸣潮 uid ${gameUid} 提交的鸣潮抽卡记录链接...`,
     )
     let qqData = {}
     try {
       const fileData = await fs.promises.readFile(
         dataPath + `/userSetting/${qq}.json`,
-        'utf-8'
+        'utf-8',
       )
       qqData = JSON.parse(fileData)?.mcGachaDataLink || {}
       kuroLogger.debug(
-        `获取鸣潮抽卡记录链接: 用户设置文件已读取: ${JSON.stringify(qqData)}`
+        `获取鸣潮抽卡记录链接: 用户设置文件已读取: ${JSON.stringify(qqData)}`,
       )
       // 如果 gameUid 为 0, 则返回第一个 uid 的链接
       if (gameUid === 0) {
@@ -295,7 +295,7 @@ export default class userConfig {
    */
   async saveMcGachaDataLink(qq, gameUid, link) {
     kuroLogger.debug(
-      `保存用户 ${qq} 的鸣潮 uid ${gameUid} 提交的鸣潮抽卡记录链接 ${link} ...`
+      `保存用户 ${qq} 的鸣潮 uid ${gameUid} 提交的鸣潮抽卡记录链接 ${link} ...`,
     )
     try {
       const filePath = dataPath + `/userSetting/${qq}.json`
@@ -323,7 +323,7 @@ export default class userConfig {
 
       await fs.promises.writeFile(filePath, newJsonData)
       kuroLogger.debug(
-        `保存用户 ${qq} 的鸣潮 uid ${gameUid} 提交的抽卡记录链接 ${link} 到文件: ${filePath}, 内容: ${newJsonData}`
+        `保存用户 ${qq} 的鸣潮 uid ${gameUid} 提交的抽卡记录链接 ${link} 到文件: ${filePath}, 内容: ${newJsonData}`,
       )
       return true
     } catch (error) {
@@ -341,7 +341,7 @@ export default class userConfig {
    */
   async getEnergyLastPushTime(qq, gameId, gameUid) {
     kuroLogger.debug(
-      `获取用户 ${qq} 的游戏 ${gameId} 的 uid ${gameUid} 的体力最后推送时间`
+      `获取用户 ${qq} 的游戏 ${gameId} 的 uid ${gameUid} 的体力最后推送时间`,
     )
     let qqData = {}
     try {
@@ -354,11 +354,11 @@ export default class userConfig {
       }
       const fileData = await fs.promises.readFile(
         dataPath + `/userSetting/${qq}.json`,
-        'utf-8'
+        'utf-8',
       )
       qqData = JSON.parse(fileData)?.energy?.[gameId]?.lastPushTime || 0
       kuroLogger.debug(
-        `获取体力最后推送时间: 用户设置文件已读取: ${JSON.stringify(qqData)}`
+        `获取体力最后推送时间: 用户设置文件已读取: ${JSON.stringify(qqData)}`,
       )
       return qqData || 0
     } catch (error) {
@@ -377,7 +377,7 @@ export default class userConfig {
    */
   async saveEnergyLastPushTime(qq, gameId, gameUid, lastPushTime) {
     kuroLogger.debug(
-      `保存用户 ${qq} 的游戏 ${gameId} 的 uid ${gameUid} 的体力最后推送时间 ${lastPushTime}`
+      `保存用户 ${qq} 的游戏 ${gameId} 的 uid ${gameUid} 的体力最后推送时间 ${lastPushTime}`,
     )
     try {
       const filePath = dataPath + `/userSetting/${qq}.json`
@@ -409,7 +409,7 @@ export default class userConfig {
 
       await fs.promises.writeFile(filePath, newJsonData)
       kuroLogger.debug(
-        `保存用户 ${qq} 的游戏 ${gameId} 的 uid ${gameUid} 的体力最后推送时间 ${lastPushTime} 到文件: ${filePath}, 内容: ${newJsonData}`
+        `保存用户 ${qq} 的游戏 ${gameId} 的 uid ${gameUid} 的体力最后推送时间 ${lastPushTime} 到文件: ${filePath}, 内容: ${newJsonData}`,
       )
       return true
     } catch (error) {

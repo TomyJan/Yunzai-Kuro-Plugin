@@ -114,7 +114,7 @@ export class mcGachaApp extends plugin {
       let data = await mcGachaCard.get(
         this.e,
         gachaType,
-        mcGachaType[gachaType]
+        mcGachaType[gachaType],
       )
       if (!data) {
         kuroLogger.warn('抽卡记录卡片数据获取失败')
@@ -139,7 +139,7 @@ export class mcGachaApp extends plugin {
     updateCardBg()
     mcGachaApp.mcGachaCardData.img = await puppeteer.screenshot(
       'mcGachaRecord',
-      data
+      data,
     )
     mcGachaApp.mcGachaCardData.md5 = tmp
 
@@ -167,7 +167,7 @@ export class mcGachaApp extends plugin {
         '========== iOS ==========',
         '参照此教程抓包获取并发给我即可: https://blog.tomys.top/2023-07/kuro-token/#iOS \n\n你发送的内容格式应为: \n{ \n  "recordId": "TomyJan", \n  "playerId": "101812955", \n  "serverId": "TomyJan", \n  "cardPoolId": "TomyJan", \n  "cardPoolType": 1, \n  "languageCode": "zh-Hans" \n}',
       ],
-      '[库洛插件] 鸣潮抽卡记录获取帮助'
+      '[库洛插件] 鸣潮抽卡记录获取帮助',
     )
     e.reply(mcGachaHelpMsg)
     return true
@@ -176,7 +176,7 @@ export class mcGachaApp extends plugin {
   async mcGachaHelpLocalGet(e) {
     // 该方法已经失效
     e.reply(
-      '该方法已失效, 请使用 #鸣潮抽卡帮助 ~ \n(没错, 小丑开发者写了一下午, 都基本写完了, 才发现库洛把这玩意修了)'
+      '该方法已失效, 请使用 #鸣潮抽卡帮助 ~ \n(没错, 小丑开发者写了一下午, 都基本写完了, 才发现库洛把这玩意修了)',
     )
     return true
   }
@@ -193,10 +193,10 @@ export class mcGachaApp extends plugin {
       .replace('index.html/record', 'index.html#/record')
     if (
       !gachaLink.startsWith(
-        'https://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record'
+        'https://aki-gm-resources.aki-game.com/aki/gacha/index.html#/record',
       ) &&
       !gachaLink.startsWith(
-        'https://aki-gm-resources-oversea.aki-game.net/aki/gacha/index.html#/record'
+        'https://aki-gm-resources-oversea.aki-game.net/aki/gacha/index.html#/record',
       )
     ) {
       // 上传了 json, 校验并转换为链接
@@ -286,7 +286,7 @@ export class mcGachaApp extends plugin {
             '当然, 你也可以手动更新, 使用 \n  #鸣潮更新抽卡',
             '导出抽卡记录使用 \n  #鸣潮导出抽卡 \n导出的记录为 WWGF 格式, 可以导入其他支持 WWGF 的工具中使用~',
           ],
-          '[库洛插件] 鸣潮抽卡记录更新结果'
+          '[库洛插件] 鸣潮抽卡记录更新结果',
         )
         e.reply(forWardMsg)
         return true

@@ -19,8 +19,8 @@ export default class bbsHeadUpload {
       '例2: \n#库洛头像上传账号10065669,头像',
       // eslint-disable-next-line no-undef
       segment.image(
-        'http://gchat.qpic.cn/gchatpic_new/0/0-0-A61649D801BABCE4CACD685296461175/0'
-      )
+        'http://gchat.qpic.cn/gchatpic_new/0/0-0-A61649D801BABCE4CACD685296461175/0',
+      ),
     )
 
     const tokenData = await getToken(this.e.user_id)
@@ -42,7 +42,7 @@ export default class bbsHeadUpload {
         '机器人会下载头像重新上传为库街区内图片后进行设置',
         tmp2,
       ],
-      '[库洛插件] 库洛头像上传帮助'
+      '[库洛插件] 库洛头像上传帮助',
     )
     await this.e.reply(bbsHeadUploadHelpMsg)
     return true

@@ -28,9 +28,7 @@ export default class mcGachaCard {
     let user = new userConfig()
     let OriginGachaRecord = await gacha.getWwgfRecord(
       e.user_id,
-      (
-        await user.getCurGameUidLocal(e.user_id, 3)
-      )?.gameUid
+      (await user.getCurGameUidLocal(e.user_id, 3))?.gameUid,
     )
     if (
       typeof OriginGachaRecord !== 'object' ||
@@ -140,7 +138,7 @@ export default class mcGachaCard {
       }
       eachGoldCost =
         Math.floor(
-          (eachGoldCost / (goldCardRecord.length - (hasNoGold ? 1 : 0))) * 100
+          (eachGoldCost / (goldCardRecord.length - (hasNoGold ? 1 : 0))) * 100,
         ) / 100
       // 计算每张 up 金平均抽数
       hasNoGold = false
@@ -156,7 +154,7 @@ export default class mcGachaCard {
         Math.floor(
           (eachUpGoldCost /
             goldCardRecord.filter((item) => item.isUpItem).length) *
-            100
+            100,
         ) / 100
     }
     // goldCount - up 数量=非 up 数量

@@ -17,7 +17,7 @@ export default class gameSignIn {
       await this.e.reply(
         `QQ ${uin} 绑定了 ${accNum} 个 token\n开始战双签到, 预计需要 ${
           accNum * 5
-        }s~`
+        }s~`,
       )
       let startTime = Date.now()
       let msg = '[库洛插件] 游戏签到 - 战双\n\n'
@@ -49,7 +49,7 @@ export default class gameSignIn {
       await this.e.reply(
         `QQ ${uin} 绑定了 ${accNum} 个 token\n开始鸣潮签到, 预计需要 ${
           accNum * 5
-        }s~`
+        }s~`,
       )
       let startTime = Date.now()
       let msg = '[库洛插件] 游戏签到 - 鸣潮\n\n'
@@ -153,11 +153,11 @@ export async function doPnsSignIn(uin, kuro_uid) {
         gameId: 2,
         serverId: data.serverId,
         roleId: data.roleId,
-      }
+      },
     )
     kuroLogger.debug(
       'rsp_queryGameSignInRecordV2:',
-      JSON.stringify(rsp_queryGameSignInRecordV2)
+      JSON.stringify(rsp_queryGameSignInRecordV2),
     )
     if (typeof rsp_queryGameSignInRecordV2 == 'string') {
       // 不是 json, 即返回报错
@@ -181,7 +181,7 @@ export async function doPnsSignIn(uin, kuro_uid) {
           }
           if (item.sigInDate === todayStr) {
             kuroLogger.debug(
-              `取到 ${data.roleId} 今日签到奖励: 类型: ${item.type} ${item.goodsName}x${item.goodsNum}`
+              `取到 ${data.roleId} 今日签到奖励: 类型: ${item.type} ${item.goodsName}x${item.goodsNum}`,
             )
             // 只输出今天获得的物品
             hasTodayGoods = true
@@ -290,11 +290,11 @@ export async function doMcSignIn(uin, kuro_uid) {
         gameId: 3,
         serverId: data.serverId,
         roleId: data.roleId,
-      }
+      },
     )
     kuroLogger.debug(
       'rsp_queryGameSignInRecordV2:',
-      JSON.stringify(rsp_queryGameSignInRecordV2)
+      JSON.stringify(rsp_queryGameSignInRecordV2),
     )
     if (typeof rsp_queryGameSignInRecordV2 == 'string') {
       // 不是 json, 即返回报错
@@ -318,7 +318,7 @@ export async function doMcSignIn(uin, kuro_uid) {
           }
           if (item.sigInDate === todayStr) {
             kuroLogger.debug(
-              `取到 ${data.roleId} 今日签到奖励: 类型: ${item.type} ${item.goodsName}x${item.goodsNum}`
+              `取到 ${data.roleId} 今日签到奖励: 类型: ${item.type} ${item.goodsName}x${item.goodsNum}`,
             )
             // 只输出今天获得的物品
             hasTodayGoods = true

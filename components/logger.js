@@ -8,7 +8,7 @@ import { sleepAsync } from '../model/utils.js'
 class Logger {
   constructor(
     logLevel = config.getConfig()?.logger?.logLevel || 'info',
-    logDirectory = dataPath + '/logs'
+    logDirectory = dataPath + '/logs',
   ) {
     this.logLevel = logLevel.toLowerCase()
     this.logDirectory = logDirectory
@@ -40,7 +40,7 @@ class Logger {
       const logToFile = `[${this.getTimeForLog()}] ${baseLogContent}`
       const currentLogFilePath = path.join(
         this.logDirectory,
-        this.currentLogFile
+        this.currentLogFile,
       )
 
       if (fs.existsSync(currentLogFilePath)) {
@@ -55,8 +55,8 @@ class Logger {
           // eslint-disable-next-line no-undef
           logger.info(
             chalk.yellow(
-              `[库洛插件][WARN  ] 写入日志文件时发生错误：${err.message}`
-            )
+              `[库洛插件][WARN  ] 写入日志文件时发生错误：${err.message}`,
+            ),
           )
         }
       })

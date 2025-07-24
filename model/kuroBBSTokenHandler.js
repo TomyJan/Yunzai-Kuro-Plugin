@@ -13,11 +13,11 @@ export async function checkTokenValidity(kuro_uid, kuro_token) {
   let kuroapi = new kuroApi(false)
   let rsp_checkToken_mineV2 = await kuroapi.checkToken_mineV2(
     kuro_uid,
-    kuro_token
+    kuro_token,
   )
   kuroLogger.debug(
     'rsp_checkToken_mineV2:',
-    JSON.stringify(rsp_checkToken_mineV2)
+    JSON.stringify(rsp_checkToken_mineV2),
   )
 
   kuroLogger.debug('token 检测:', JSON.stringify(rsp_checkToken_mineV2))

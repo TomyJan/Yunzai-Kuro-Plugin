@@ -11,7 +11,7 @@ export default class bbsActivityTask {
   async bbsActivityTask() {
     const tokenData = await getToken(this.e.user_id)
     kuroLogger.debug(
-      `QQ ${this.e.user_id} 的 tokenData: ${JSON.stringify(tokenData)}`
+      `QQ ${this.e.user_id} 的 tokenData: ${JSON.stringify(tokenData)}`,
     )
 
     if (tokenData && Object.keys(tokenData).length > 0) {
@@ -19,7 +19,7 @@ export default class bbsActivityTask {
       await this.e.reply(
         `QQ ${
           this.e.user_id
-        } 绑定了 ${accNum} 个 token\n开始活动任务, 预计需要${10 * accNum}s~`
+        } 绑定了 ${accNum} 个 token\n开始活动任务, 预计需要${10 * accNum}s~`,
       )
       let startTime = Date.now()
       let msg = ''
@@ -39,7 +39,7 @@ export default class bbsActivityTask {
       return true
     } else {
       this.e.reply(
-        `QQ ${this.e.user_id} 暂未绑定 token, 请发送 #库洛在线登录 绑定 token `
+        `QQ ${this.e.user_id} 暂未绑定 token, 请发送 #库洛在线登录 绑定 token `,
       )
       return false
     }
@@ -131,7 +131,7 @@ export async function doBbsActivityTask(uin, kuro_uid) {
   rsp_getActivityTaskList = await kuroapi.getActivityTaskList(kuro_uid)
   kuroLogger.debug(
     'rsp_getActivityTaskList:',
-    JSON.stringify(rsp_getActivityTaskList)
+    JSON.stringify(rsp_getActivityTaskList),
   )
   if (typeof rsp_getActivityTaskList == 'string') {
     doBbsActivityTaskRet += `获取任务列表失败: ${rsp_getActivityTaskList}\n`
@@ -197,7 +197,7 @@ export async function doBbsActivityTask(uin, kuro_uid) {
         kuro_uid,
         {
           taskId: curTask.taskId,
-        }
+        },
       )
       if (typeof rsp_completeActivityTask == 'string') {
         doBbsActivityTaskRet += `完成失败: ${rsp_completeActivityTask}\n`
@@ -212,7 +212,7 @@ export async function doBbsActivityTask(uin, kuro_uid) {
       await sleepAsync(getRandomInt(500, 1000))
       let rsp_receiveActivityTask = await kuroapi.receiveActivityTask(
         kuro_uid,
-        { taskId: curTask.taskId }
+        { taskId: curTask.taskId },
       )
       if (typeof rsp_receiveActivityTask == 'string') {
         doBbsActivityTaskRet += `领取失败: ${rsp_receiveActivityTask}\n`
@@ -231,7 +231,7 @@ export async function doBbsActivityTask(uin, kuro_uid) {
   rsp_getActivityTaskList = await kuroapi.getActivityTaskList(kuro_uid)
   kuroLogger.debug(
     'rsp_getActivityTaskList:',
-    JSON.stringify(rsp_getActivityTaskList)
+    JSON.stringify(rsp_getActivityTaskList),
   )
   let noAnyPrize = true
   if (typeof rsp_getActivityTaskList == 'string') {
@@ -248,7 +248,7 @@ export async function doBbsActivityTask(uin, kuro_uid) {
       await sleepAsync(getRandomInt(1000, 3000))
       let rsp_receiveActivityTask = await kuroapi.receiveActivityTask(
         kuro_uid,
-        { taskId: curTaskMilestone.taskId }
+        { taskId: curTaskMilestone.taskId },
       )
       if (typeof rsp_receiveActivityTask == 'string') {
         doBbsActivityTaskRet += `领取失败: ${rsp_receiveActivityTask}\n`
@@ -263,9 +263,8 @@ export async function doBbsActivityTask(uin, kuro_uid) {
   doBbsActivityTaskRet += `\n`
   // 取奖券数量
   await sleepAsync(getRandomInt(500, 1000))
-  let rsp_getActivityLotteryRemain = await kuroapi.getActivityLotteryRemain(
-    kuro_uid
-  )
+  let rsp_getActivityLotteryRemain =
+    await kuroapi.getActivityLotteryRemain(kuro_uid)
   if (typeof rsp_getActivityLotteryRemain == 'string') {
     doBbsActivityTaskRet += `获取奖券数量失败: ${rsp_getActivityLotteryRemain}, 取消自动抽奖\n`
     return doBbsActivityTaskRet

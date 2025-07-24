@@ -17,7 +17,7 @@ class ConfigReader {
         fs.writeFileSync(
           this.filePath,
           fs.readFileSync(defaultConfigPath),
-          'utf8'
+          'utf8',
         )
       }
       const data = fs.readFileSync(this.filePath, 'utf8')
@@ -26,7 +26,7 @@ class ConfigReader {
     } catch (error) {
       // eslint-disable-next-line no-undef
       logger.error(
-        chalk.red(`[库洛插件][WARN  ] 读取配置文件失败: ${error.message}`)
+        chalk.red(`[库洛插件][WARN  ] 读取配置文件失败: ${error.message}`),
       )
       return {}
     }
