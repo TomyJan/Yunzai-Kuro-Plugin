@@ -757,4 +757,94 @@ export const mcGachaUpPools = [
     itemType: 2,
     cardPoolName: '浮声沉兵',
   },
+  {
+    // 2.6 上半
+    startTime: '1756346400', // 2025.08.28 10:00
+    endTime: '1758074340', // 2025.09.17 09:59
+    itemId: '1306',
+    itemName: '奥古斯塔',
+    itemType: 1,
+    cardPoolName: '不坠烜冕',
+  },
+  {
+    // 2.6 上半
+    startTime: '1756346400', // 2025.08.28 10:00
+    endTime: '1758074340', // 2025.09.17 09:59
+    itemId: '1107',
+    itemName: '珂莱塔',
+    itemType: 1,
+    cardPoolName: '另一种喧嚣',
+  },
+  {
+    // 2.6 上半
+    startTime: '1756346400', // 2025.08.28 10:00
+    endTime: '1758074340', // 2025.09.17 09:59
+    itemId: '1505',
+    itemName: '守岸人',
+    itemType: 1,
+    cardPoolName: '直至海水褪色',
+  },
+  {
+    // 2.6 上半
+    startTime: '1756346400', // 2025.08.28 10:00
+    endTime: '1758074340', // 2025.09.17 09:59
+    itemId: '21010046',
+    itemName: '驭冕铸雷之权',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 2.6 上半
+    startTime: '1756346400', // 2025.08.28 10:00
+    endTime: '1758074340', // 2025.09.17 09:59
+    itemId: '21030016',
+    itemName: '死与舞',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 2.6 上半
+    startTime: '1756346400', // 2025.08.28 10:00
+    endTime: '1758074340', // 2025.09.17 09:59
+    itemId: '21050036',
+    itemName: '星序协响',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 2.6 下半
+    startTime: '1758074400', // 2025.09.17 10:00
+    endTime: '1759895940', // 2025.10.08 11:59
+    itemId: '1410',
+    itemName: '尤诺',
+    itemType: 1,
+    cardPoolName: '漫于盈缺时轴',
+  },
+  {
+    // 2.6 下半
+    startTime: '1758074400', // 2025.09.17 10:00
+    endTime: '1759895940', // 2025.10.08 11:59
+    itemId: '1407',
+    itemName: '夏空',
+    itemType: 1,
+    cardPoolName: '诗与乐的交响',
+  },
+  {
+    // 2.6 下半
+    startTime: '1758074400', // 2025.09.17 10:00
+    endTime: '1759895940', // 2025.10.08 11:59
+    itemId: '21040046',
+    itemName: '万物持存的注释',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 2.6 下半
+    startTime: '1758074400', // 2025.09.17 10:00
+    endTime: '1759895940', // 2025.10.08 11:59
+    itemId: '21030026',
+    itemName: '林间的咏叹调',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
 ]
