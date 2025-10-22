@@ -847,4 +847,76 @@ export const mcGachaUpPools = [
     itemType: 2,
     cardPoolName: '浮声沉兵',
   },
+  {
+    // 2.7 上半
+    startTime: '1759975200', // 2025.10.09 10:00
+    endTime: '1761789540', // 2025.10.30 09:59
+    itemId: '1208',
+    itemName: '嘉贝莉娜',
+    itemType: 1,
+    cardPoolName: '于灰烬中',
+  },
+  {
+    // 2.7 上半
+    startTime: '1759975200', // 2025.10.09 10:00
+    endTime: '1761789540', // 2025.10.30 09:59
+    itemId: '1207',
+    itemName: '露帕',
+    itemType: 1,
+    cardPoolName: '胜利为我喝彩',
+  },
+  {
+    // 2.7 上半
+    startTime: '1759975200', // 2025.10.09 10:00
+    endTime: '1761789540', // 2025.10.30 09:59
+    itemId: '21030036',
+    itemName: '光影双生',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 2.7 上半
+    startTime: '1759975200', // 2025.10.09 10:00
+    endTime: '1761789540', // 2025.10.30 09:59
+    itemId: '21010036',
+    itemName: '焰痕',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 2.7 下半
+    startTime: '1761789600', // 2025.10.30 10:00
+    endTime: '1763524740', // 2025.11.19 11:59
+    itemId: '1411',
+    itemName: '仇远',
+    itemType: 1,
+    cardPoolName: '倦客不知身近远',
+  },
+  {
+    // 2.7 下半
+    startTime: '1761789600', // 2025.10.30 10:00
+    endTime: '1763524740', // 2025.11.19 11:59
+    itemId: '1507',
+    itemName: '赞妮',
+    itemType: 1,
+    cardPoolName: '行于光影之间',
+  },
+  {
+    // 2.7 下半
+    startTime: '1761789600', // 2025.10.30 10:00
+    endTime: '1763524740', // 2025.11.19 11:59
+    itemId: '21020066',
+    itemName: '裁竹',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 2.7 下半
+    startTime: '1761789600', // 2025.10.30 10:00
+    endTime: '1763524740', // 2025.11.19 11:59
+    itemId: '21040036',
+    itemName: '焰光裁定',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
 ]
