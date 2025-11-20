@@ -919,4 +919,76 @@ export const mcGachaUpPools = [
     itemType: 2,
     cardPoolName: '浮声沉兵',
   },
+  {
+    // 2.8 上半
+    startTime: '1760925600', // 2025.10.20 10:00
+    endTime: '1765418340', // 2025.12.11 09:59
+    itemId: '1508',
+    itemName: '千咲',
+    itemType: 1,
+    cardPoolName: '曙暮一线之间',
+  },
+  {
+    // 2.8 上半
+    startTime: '1760925600', // 2025.10.20 10:00
+    endTime: '1765418340', // 2025.12.11 09:59
+    itemId: '1506',
+    itemName: '菲比',
+    itemType: 1,
+    cardPoolName: '于静谧呢喃',
+  },
+  {
+    // 2.8 上半
+    startTime: '1760925600', // 2025.10.20 10:00
+    endTime: '1765418340', // 2025.12.11 09:59
+    itemId: '21010056',
+    itemName: '昙切',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 2.8 上半
+    startTime: '1760925600', // 2025.10.20 10:00
+    endTime: '1765418340', // 2025.12.11 09:59
+    itemId: '21050046',
+    itemName: '和光回唱',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 2.8 下半
+    startTime: '1765418400', // 2025.12.11 10:00
+    endTime: '1766548740', // 2025.12.24 11:59
+    itemId: '1608',
+    itemName: '弗洛洛',
+    itemType: 1,
+    cardPoolName: '挽歌永不落幕',
+  },
+  {
+    // 2.8 下半
+    startTime: '1765418400', // 2025.12.11 10:00
+    endTime: '1766548740', // 2025.12.24 11:59
+    itemId: '1607',
+    itemName: '坎特蕾拉',
+    itemType: 1,
+    cardPoolName: '映海之梦',
+  },
+  {
+    // 2.8 下半
+    startTime: '1765418400', // 2025.12.11 10:00
+    endTime: '1766548740', // 2025.12.24 11:59
+    itemId: '21050066',
+    itemName: '幽冥的忘忧草',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 2.8 下半
+    startTime: '1765418400', // 2025.12.11 10:00
+    endTime: '1766548740', // 2025.12.24 11:59
+    itemId: '21050056',
+    itemName: '海的呢喃',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
 ]
