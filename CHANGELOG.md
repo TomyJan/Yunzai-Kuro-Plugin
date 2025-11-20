@@ -1,3 +1,12 @@
+## [0.3.30-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.29-rel...v0.3.30-rel) (2025-11-20)
+
+
+### Features
+
+* 新增鸣潮 `2.8` 卡池/角色/武器 ([f07bc64](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/f07bc64ac688ad5a11eba8dbcbee9dd4de00ec82))
+
+
+
 ## [0.3.29-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.28-rel...v0.3.29-rel) (2025-10-22)
 
 
