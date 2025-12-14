@@ -651,7 +651,7 @@ export const mcGachaUpPools = [
   },
   {
     // 2.4 上半
-    startTime: '1749780000', // 2025.06.13 10:00
+    startTime: '1749693600', // 2025.06.12 10:00
     endTime: '1751507940', // 2025.07.03 09:59
     itemId: '1409',
     itemName: '卡提希娅',
@@ -660,7 +660,7 @@ export const mcGachaUpPools = [
   },
   {
     // 2.4 上半
-    startTime: '1749780000', // 2025.06.13 10:00
+    startTime: '1749693600', // 2025.06.12 10:00
     endTime: '1751507940', // 2025.07.03 09:59
     itemId: '21020056',
     itemName: '不屈命定之冠',
