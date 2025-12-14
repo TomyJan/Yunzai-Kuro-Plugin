@@ -1,3 +1,12 @@
+## [0.3.31-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.30-rel...v0.3.31-rel) (2025-12-14)
+
+
+### Bug Fixes
+
+* 2.4 版本 卡提希娅 卡池 时间错误 ([06b66fa](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/06b66fa30a002d25f8021cf0603ffba30685284f))
+
+
+
 ## [0.3.30-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.29-rel...v0.3.30-rel) (2025-11-20)
 
 
