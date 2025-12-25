@@ -52,8 +52,8 @@ export const mcGachaType = [
 ]
 
 // 鸣潮历史 up 池时间和物品 id
-// 注意, 解包得到 IconRup 中的 id 自 1.1 版本开始并不与角色 id 对应, 需要在 roleinfo 中找到相应 id
-// 注意, 解包得到 IconWeapon 中的新五星武器 id 自 1.3 版本开始并不与武器 id 对应, 新四星武器 id 自 ~2.1 版本开始不对应, 需要在 weaponconf 中找到相应 id
+// 注意, 解包得到 IconRup 中的 id 自 1.1 版本开始并不与角色 id 对应, 需要在 roleinfo 中找到相应 id, 但在后续 2.? 版本中又变对应了
+// 注意, 解包得到 IconWeapon 中的新五星武器 id 自 1.3 版本开始并不与武器 id 对应, 新四星武器 id 自 ~2.1 版本开始不对应, 需要在 weaponconf 中找到相应 id, 但在后续 2.? 版本中又变对应了
 export const mcGachaUpPools = [
   {
     // 1.0 上半, 提前开服故时间提前
@@ -988,6 +988,114 @@ export const mcGachaUpPools = [
     endTime: '1766548740', // 2025.12.24 11:59
     itemId: '21050056',
     itemName: '海的呢喃',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.0 上半
+    startTime: '1766628000', // 2025.12.25 10:00
+    endTime: '1768442340', // 2026.01.15 09:59
+    itemId: '1509',
+    itemName: '琳奈',
+    itemType: 1,
+    cardPoolName: '非定义光谱',
+  },
+  {
+    // 3.0 上半
+    startTime: '1766628000', // 2025.12.25 10:00
+    endTime: '1768442340', // 2026.01.15 09:59
+    itemId: '1409',
+    itemName: '卡提希娅',
+    itemType: 1,
+    cardPoolName: '却也在风潮后轻舞',
+  },
+  {
+    // 3.0 上半
+    startTime: '1766628000', // 2025.12.25 10:00
+    endTime: '1768442340', // 2026.01.15 09:59
+    itemId: '1407',
+    itemName: '夏空',
+    itemType: 1,
+    cardPoolName: '诗与乐的交响',
+  },
+  {
+    // 3.0 上半
+    startTime: '1766628000', // 2025.12.25 10:00
+    endTime: '1768442340', // 2026.01.15 09:59
+    itemId: '21030046',
+    itemName: '溢彩荧辉',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.0 上半
+    startTime: '1766628000', // 2025.12.25 10:00
+    endTime: '1768442340', // 2026.01.15 09:59
+    itemId: '21020056',
+    itemName: '不屈命定之冠',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.0 上半
+    startTime: '1766628000', // 2025.12.25 10:00
+    endTime: '1768442340', // 2026.01.15 09:59
+    itemId: '21030026',
+    itemName: '林间的咏叹调',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.0 下半
+    startTime: '1768442400', // 2026.01.15 10:00
+    endTime: '1770177540', // 2026.02.04 11:59
+    itemId: '1209',
+    itemName: '莫宁',
+    itemType: 1,
+    cardPoolName: '纵使星光于无穷远',
+  },
+  {
+    // 3.0 下半
+    startTime: '1768442400', // 2026.01.15 10:00
+    endTime: '1770177540', // 2026.02.04 11:59
+    itemId: '1306',
+    itemName: '奥古斯塔',
+    itemType: 1,
+    cardPoolName: '不坠烜冕',
+  },
+  {
+    // 3.0 下半
+    startTime: '1768442400', // 2026.01.15 10:00
+    endTime: '1770177540', // 2026.02.04 11:59
+    itemId: '1410',
+    itemName: '尤诺',
+    itemType: 1,
+    cardPoolName: '漫于盈缺时轴',
+  },
+  {
+    // 3.0 下半
+    startTime: '1768442400', // 2026.01.15 10:00
+    endTime: '1770177540', // 2026.02.04 11:59
+    itemId: '21010066',
+    itemName: '宙算仪轨',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.0 下半
+    startTime: '1768442400', // 2026.01.15 10:00
+    endTime: '1770177540', // 2026.02.04 11:59
+    itemId: '21010046',
+    itemName: '驭冕铸雷之权',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.0 下半
+    startTime: '1768442400', // 2026.01.15 10:00
+    endTime: '1770177540', // 2026.02.04 11:59
+    itemId: '21040046',
+    itemName: '万物持存的注释',
     itemType: 2,
     cardPoolName: '浮声沉兵',
   },
