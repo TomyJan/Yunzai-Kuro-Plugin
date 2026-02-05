@@ -1,3 +1,17 @@
+## [0.3.33-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.32-rel...v0.3.33-rel) (2026-02-05)
+
+
+### Features
+
+* 新增鸣潮 `3.1` 卡池/角色/武器 ([fee07b8](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/fee07b8fe417cb3d71124781855fee0acdccfee5))
+
+
+### Reverts
+
+* Revert "chore: fix action" ([dccf085](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/dccf085c5d0c90806fb3eb0ec6d4847daa49f32b))
+
+
+
 ## [0.3.32-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.31-rel...v0.3.32-rel) (2025-12-25)
 
 
@@ -563,6 +577,7 @@
 ### Bug Fixes
 
 * 防止飞舞小功能无限复读 ([5235c07](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/5235c0735ba97b6c1f164e8b26ca1ccc82c276bf))
+* 明朝抽卡记录增加更多判定词缀 ([3762e7c](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/3762e7cba5df2622b4dc77a408729179d68b7a2e))
 * 修复延迟失效 ([d6a5ae8](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/d6a5ae83c937b451fa0ab84279592804978fe042))
 
 
@@ -580,21 +595,11 @@
 
 
 
-## [0.2.5-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.4-rel...v0.2.5-rel) (2024-06-03)
-
-
-### Bug Fixes
-
-* 明朝抽卡记录增加更多判定词缀 ([3762e7c](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/3762e7cba5df2622b4dc77a408729179d68b7a2e))
-
-
-
 ## [0.2.6-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.2.5-rel...v0.2.6-rel) (2024-06-03)
 
 
 ### Bug Fixes
 
-* 鸣潮抽卡记录增加更多判定词缀 ([b6a57f5](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/b6a57f5293253f7db158be4605c4fa87190cffb9))
 * 完善鸣潮卡片, 修改资源路径 ([f3d84ee](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/f3d84ee3b6f74508f0423b3b7580b3734dec6959))
 
 
@@ -610,7 +615,7 @@
 
 ### Bug Fixes
 
-* 明朝抽卡记录增加更多判定词缀 ([3762e7c](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/3762e7cba5df2622b4dc77a408729179d68b7a2e))
+* 鸣潮抽卡记录增加更多判定词缀 ([b6a57f5](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/b6a57f5293253f7db158be4605c4fa87190cffb9))
 * 忘了写鸣潮签到获得的物品了 ([ee80c4c](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/ee80c4cca5818a7cbb5d5ff7445ac0257afbca07))
 * 修复鸣言误判 ([cd3ff73](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/cd3ff73765241d1a886515665c1f544856027300))
 
@@ -880,16 +885,28 @@
 
 ### Bug Fixes
 
-* return ([eef4bb9](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/eef4bb9a5e5618ad9974f390c4c7e5c572c04ad3))
 * token login ([16ebe73](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/16ebe731e8acb4091d6a82e3b1ed670f1168afdb))
 
 
 ### Features
 
-* [WIP]token login ([da1f38a](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/da1f38a3efa44109fb033d16b907673aff5fbdf5))
 * 库街区自定义头像 ([5f354eb](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/5f354ebea5e105839d368d7cd4c8d8afd51996fa))
 * auto game sign ([51d4e04](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/51d4e04fba05b1a16ddf0d031f414d5433bf4c6a))
 * token login ([edee5a5](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/edee5a5733287a1db87515aa966931e641809681))
+
+
+
+## [0.0.1-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/3f03833dd37d374abc98d90290420ff328165dcc...v0.0.1-rel) (2023-07-18)
+
+
+### Bug Fixes
+
+* return ([eef4bb9](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/eef4bb9a5e5618ad9974f390c4c7e5c572c04ad3))
+
+
+### Features
+
+* [WIP]token login ([da1f38a](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/da1f38a3efa44109fb033d16b907673aff5fbdf5))
 
 
 ### Reverts
