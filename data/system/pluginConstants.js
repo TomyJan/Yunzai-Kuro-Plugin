@@ -1099,4 +1099,94 @@ export const mcGachaUpPools = [
     itemType: 2,
     cardPoolName: '浮声沉兵',
   },
+  {
+    // 3.1 上半
+    startTime: '1770256800', // 2026.02.05 10:00
+    endTime: '1772071140', // 2026.02.26 09:59
+    itemId: '1210',
+    itemName: '爱弥斯',
+    itemType: 1,
+    cardPoolName: '飞星自春天启航',
+  },
+  {
+    // 3.1 上半
+    startTime: '1770256800', // 2026.02.05 10:00
+    endTime: '1772071140', // 2026.02.26 09:59
+    itemId: '1508',
+    itemName: '千咲',
+    itemType: 1,
+    cardPoolName: '曙暮一线之间',
+  },
+  {
+    // 3.1 上半
+    startTime: '1770256800', // 2026.02.05 10:00
+    endTime: '1772071140', // 2026.02.26 09:59
+    itemId: '1207',
+    itemName: '露帕',
+    itemType: 1,
+    cardPoolName: '胜利为我喝彩',
+  },
+  {
+    // 3.1 上半
+    startTime: '1770256800', // 2026.02.05 10:00
+    endTime: '1772071140', // 2026.02.26 09:59
+    itemId: '21020076',
+    itemName: '永远的启明星',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.1 上半
+    startTime: '1770256800', // 2026.02.05 10:00
+    endTime: '1772071140', // 2026.02.26 09:59
+    itemId: '21010056',
+    itemName: '昙切',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.1 上半
+    startTime: '1770256800', // 2026.02.05 10:00
+    endTime: '1772071140', // 2026.02.26 09:59
+    itemId: '21010036',
+    itemName: '焰痕',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.1 下半
+    startTime: '1772071200', // 2026.02.26 10:00
+    endTime: '1773806340', // 2026.03.18 11:59
+    itemId: '1510',
+    itemName: '陆·赫斯',
+    itemType: 1,
+    cardPoolName: '逾此长冬',
+  },
+  {
+    // 3.1 下半
+    startTime: '1772071200', // 2026.02.26 10:00
+    endTime: '1773806340', // 2026.03.18 11:59
+    itemId: '1208',
+    itemName: '嘉贝莉娜',
+    itemType: 1,
+    cardPoolName: '于灰烬中',
+  },
+  {
+    // 3.1 下半
+    startTime: '1772071200', // 2026.02.26 10:00
+    endTime: '1773806340', // 2026.03.18 11:59
+    itemId: '21040056',
+    itemName: '白昼之脊',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.1 下半
+    startTime: '1772071200', // 2026.02.26 10:00
+    endTime: '1773806340', // 2026.03.18 11:59
+    itemId: '21030036',
+    itemName: '光影双生',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
 ]
