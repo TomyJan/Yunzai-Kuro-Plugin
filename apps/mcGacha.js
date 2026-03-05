@@ -69,7 +69,7 @@ export class mcGachaApp extends plugin {
       let msg = this.e.msg
         .replace(/#| /g, '')
         .replace(/鸣潮|记录|抽卡|卡池|唤取|分析|池/g, '')
-      let gachaType = 1
+      let gachaType
       switch (msg) {
         case '抽卡':
         case '角色':

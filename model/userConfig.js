@@ -21,7 +21,7 @@ export default class userConfig {
         `用户 ${qq} 未设置使用的游戏 ${gameId} 的 uid, 尝试获取第一个 uid...`,
       )
       let tokenData = await getToken(qq)
-      let kuroUidToFetch = 0
+      let kuroUidToFetch
       let kuroUidIndex = 0
       let fetchedUid = 0
       do {
@@ -108,7 +108,7 @@ export default class userConfig {
    */
   async getCurGameUidLocal(qq, gameId) {
     // 从 dataPath/userSetting/qq.json 中读取
-    let qqData = {}
+    let qqData
     try {
       const fileData = await fs.promises.readFile(
         dataPath + `/userSetting/${qq}.json`,
@@ -265,7 +265,7 @@ export default class userConfig {
     kuroLogger.debug(
       `获取用户 ${qq} 的鸣潮 uid ${gameUid} 提交的鸣潮抽卡记录链接...`,
     )
-    let qqData = {}
+    let qqData
     try {
       const fileData = await fs.promises.readFile(
         dataPath + `/userSetting/${qq}.json`,
@@ -343,7 +343,7 @@ export default class userConfig {
     kuroLogger.debug(
       `获取用户 ${qq} 的游戏 ${gameId} 的 uid ${gameUid} 的体力最后推送时间`,
     )
-    let qqData = {}
+    let qqData
     try {
       // 如果文件不存在, 创建
       if (!fs.existsSync(dataPath + `/userSetting/${qq}.json`)) {

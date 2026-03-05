@@ -40,7 +40,7 @@ export default class kuroApiHandler {
     // kuroLogger.info('body:   ' + body)
     // kuroLogger.info('method: ' + method)
 
-    let response = {}
+    let response
     try {
       response = await fetch(url, param)
     } catch (error) {

@@ -127,7 +127,7 @@ export async function doPnsSignIn(uin, kuro_uid) {
         roleId: data.roleId,
       })
       kuroLogger.debug('rsp_gameSignInV2:', JSON.stringify(rsp_gameSignInV2))
-      let tmp = ''
+      let tmp
       if (typeof rsp_gameSignInV2 !== 'string') {
         // 是 json
         tmp = '签到成功'
@@ -264,7 +264,7 @@ export async function doMcSignIn(uin, kuro_uid) {
         roleId: data.roleId,
       })
       kuroLogger.debug('rsp_gameSignInV2:', JSON.stringify(rsp_gameSignInV2))
-      let tmp = ''
+      let tmp
       if (typeof rsp_gameSignInV2 !== 'string') {
         // 是 json
         tmp = '签到成功'

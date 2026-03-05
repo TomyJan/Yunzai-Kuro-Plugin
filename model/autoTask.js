@@ -145,7 +145,7 @@ async function bbsDailyTask() {
 
 export async function gameEnergyPushTask(checkTimeInterval = 0) {
   const taskProcessFile = _DataPath + '/system/taskProcess.json'
-  let taskProcess = {}
+  let taskProcess
   try {
     if (!fs.existsSync(taskProcessFile)) {
       fs.writeFileSync(taskProcessFile, '{}')

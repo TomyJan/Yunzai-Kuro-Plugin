@@ -145,7 +145,7 @@ export async function doBBSDailyTask(uin, kuro_uid) {
   // 开始尝试 2 次取帖子列表, 获取不到就不浏览和点赞
   tryAgain = true
   tryTimes = 0
-  let rsp_forumList = ''
+  let rsp_forumList
   do {
     rsp_forumList = await kuroapi.forumList(kuro_uid, { forumId: 2, gameId: 2 }) // 默认获取推荐板块
     kuroLogger.debug('rsp_forumList:', JSON.stringify(rsp_forumList))

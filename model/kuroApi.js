@@ -34,7 +34,7 @@ export default class kuroApi {
     }
 
     this.kuroApiHandler = new kuroApiHandler()
-    let rsp = ''
+    let rsp
 
     // 特殊 API 的调用处理
     if (

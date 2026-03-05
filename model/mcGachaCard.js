@@ -141,11 +141,10 @@ export default class mcGachaCard {
           (eachGoldCost / (goldCardRecord.length - (hasNoGold ? 1 : 0))) * 100,
         ) / 100
       // 计算每张 up 金平均抽数
-      hasNoGold = false
       for (let i = 0; i < goldCardRecord.length; i++) {
         if (goldCardRecord[i].itemId == -1) {
           // 排除未出金记录
-          hasNoGold = true
+          // hasNoGold = true
           continue
         }
         eachUpGoldCost += goldCardRecord[i].thisCardCost
