@@ -174,7 +174,11 @@ export async function gameEnergyPushTask(checkTimeInterval = 0) {
     }
   }
 
-  if (!taskProcess || typeof taskProcess !== 'object' || Array.isArray(taskProcess)) {
+  if (
+    !taskProcess ||
+    typeof taskProcess !== 'object' ||
+    Array.isArray(taskProcess)
+  ) {
     kuroLogger.warn('taskProcess.json 根节点不是对象，已回退到默认值 {}')
     taskProcess = {}
   }
