@@ -145,19 +145,40 @@ async function bbsDailyTask() {
 
 export async function gameEnergyPushTask(checkTimeInterval = 0) {
   const taskProcessFile = _DataPath + '/system/taskProcess.json'
-  let taskProcess = ''
+  let taskProcess = {}
   try {
     if (!fs.existsSync(taskProcessFile)) {
       fs.writeFileSync(taskProcessFile, '{}')
       kuroLogger.debug('创建 taskProcess.json')
     }
-    taskProcess = fs.readFileSync(taskProcessFile, 'utf8')
-    kuroLogger.debug('读取 taskProcess:', taskProcess.trim())
+    const taskProcessRaw = fs.readFileSync(taskProcessFile, 'utf8')
+    const taskProcessContent = taskProcessRaw.trim()
+    kuroLogger.debug('读取 taskProcess:', taskProcessContent)
+
+    if (!taskProcessContent) {
+      kuroLogger.warn('taskProcess.json 内容为空，已使用默认值 {}')
+      taskProcess = {}
+    } else {
+      taskProcess = JSON.parse(taskProcessContent)
+    }
   } catch (err) {
-    kuroLogger.error('读取 taskProcess.json 时出现错误:', err.message)
-    taskProcess = '{}'
+    kuroLogger.error(
+      `读取或解析 taskProcess.json 时出现错误: ${err.message}，已重置为默认值 {}`,
+    )
+    taskProcess = {}
+    try {
+      fs.writeFileSync(taskProcessFile, '{}')
+      kuroLogger.warn('taskProcess.json 已重置为默认值 {}')
+    } catch (writeErr) {
+      kuroLogger.error('重置 taskProcess.json 失败:', writeErr.message)
+    }
   }
-  taskProcess = JSON.parse(taskProcess)
+
+  if (!taskProcess || typeof taskProcess !== 'object' || Array.isArray(taskProcess)) {
+    kuroLogger.warn('taskProcess.json 根节点不是对象，已回退到默认值 {}')
+    taskProcess = {}
+  }
+
   taskProcess.gameEnergy = taskProcess.gameEnergy || {}
   taskProcess.gameEnergy.waitingPushList =
     taskProcess.gameEnergy.waitingPushList || []
