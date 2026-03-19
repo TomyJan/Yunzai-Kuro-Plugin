@@ -11,7 +11,7 @@ const packageJson = JSON.parse(rawData)
 
 // 插件包信息
 export const pluginAuthor = packageJson.author || '获取失败'
-export const pluginName = packageJson.name || '获取失败'
+export const pluginName = packageJson.displayName || '获取失败'
 export const pluginNameReadable = '库洛插件'
 export const pluginVer = packageJson.version || 'unkVer'
 export const pluginDesc = packageJson.description || '获取失败'
