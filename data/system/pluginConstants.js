@@ -708,7 +708,7 @@ export const mcGachaUpPools = [
     startTime: '1753322400', // 2025.07.24 10:00
     endTime: '1755136740', // 2025.08.14 09:59
     itemId: '21050066',
-    itemName: '幽冥的忘忧草',
+    itemName: '幽冥的忘忧章',
     itemType: 2,
     cardPoolName: '浮声沉兵',
   },
@@ -978,7 +978,7 @@ export const mcGachaUpPools = [
     startTime: '1765418400', // 2025.12.11 10:00
     endTime: '1766548740', // 2025.12.24 11:59
     itemId: '21050066',
-    itemName: '幽冥的忘忧草',
+    itemName: '幽冥的忘忧章',
     itemType: 2,
     cardPoolName: '浮声沉兵',
   },
@@ -1276,6 +1276,114 @@ export const mcGachaUpPools = [
     endTime: '1777435140', // 2026.04.29 11:59
     itemId: '21050046',
     itemName: '和光回唱',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.3 上半
+    startTime: '1777514400', // 2026.04.30 10:00
+    endTime: '1779328740', // 2026.05.21 09:59
+    itemId: '1108',
+    itemName: '绯雪',
+    itemType: 1,
+    cardPoolName: '雪色所映千般未来',
+  },
+  {
+    // 3.3 上半
+    startTime: '1777514400', // 2026.04.30 10:00
+    endTime: '1779328740', // 2026.05.21 09:59
+    itemId: '1209',
+    itemName: '莫宁',
+    itemType: 1,
+    cardPoolName: '纵使星光于无穷远',
+  },
+  {
+    // 3.3 上半
+    startTime: '1777514400', // 2026.04.30 10:00
+    endTime: '1779328740', // 2026.05.21 09:59
+    itemId: '1410',
+    itemName: '尤诺',
+    itemType: 1,
+    cardPoolName: '漫于盈缺时轴',
+  },
+  {
+    // 3.3 上半
+    startTime: '1777514400', // 2026.04.30 10:00
+    endTime: '1779328740', // 2026.05.21 09:59
+    itemId: '21020086',
+    itemName: '灼霜',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.3 上半
+    startTime: '1777514400', // 2026.04.30 10:00
+    endTime: '1779328740', // 2026.05.21 09:59
+    itemId: '21010066',
+    itemName: '宙算仪轨',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.3 上半
+    startTime: '1777514400', // 2026.04.30 10:00
+    endTime: '1779328740', // 2026.05.21 09:59
+    itemId: '21040046',
+    itemName: '万物持存的注释',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.3 下半
+    startTime: '1779328800', // 2026.05.21 10:00
+    endTime: '1781063940', // 2026.06.10 11:59
+    itemId: '1211',
+    itemName: '达妮娅',
+    itemType: 1,
+    cardPoolName: '予明日以谎言',
+  },
+  {
+    // 3.3 下半
+    startTime: '1779328800', // 2026.05.21 10:00
+    endTime: '1781063940', // 2026.06.10 11:59
+    itemId: '1508',
+    itemName: '千咲',
+    itemType: 1,
+    cardPoolName: '曙暮一线之间',
+  },
+  {
+    // 3.3 下半
+    startTime: '1779328800', // 2026.05.21 10:00
+    endTime: '1781063940', // 2026.06.10 11:59
+    itemId: '1608',
+    itemName: '弗洛洛',
+    itemType: 1,
+    cardPoolName: '挽歌永不落幕',
+  },
+  {
+    // 3.3 下半
+    startTime: '1779328800', // 2026.05.21 10:00
+    endTime: '1781063940', // 2026.06.10 11:59
+    itemId: '21050076',
+    itemName: '赝作的矮星',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.3 下半
+    startTime: '1779328800', // 2026.05.21 10:00
+    endTime: '1781063940', // 2026.06.10 11:59
+    itemId: '21010056',
+    itemName: '昙切',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.3 下半
+    startTime: '1779328800', // 2026.05.21 10:00
+    endTime: '1781063940', // 2026.06.10 11:59
+    itemId: '21050066',
+    itemName: '幽冥的忘忧章',
     itemType: 2,
     cardPoolName: '浮声沉兵',
   },
