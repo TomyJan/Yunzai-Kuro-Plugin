@@ -1336,7 +1336,7 @@ export const mcGachaUpPools = [
   {
     // 3.3 下半
     startTime: '1779328800', // 2026.05.21 10:00
-    endTime: '1781063940', // 2026.06.10 11:59
+    endTime: '1780804740', // 2026.06.07 11:59
     itemId: '1211',
     itemName: '达妮娅',
     itemType: 1,
@@ -1345,7 +1345,7 @@ export const mcGachaUpPools = [
   {
     // 3.3 下半
     startTime: '1779328800', // 2026.05.21 10:00
-    endTime: '1781063940', // 2026.06.10 11:59
+    endTime: '1780804740', // 2026.06.07 11:59
     itemId: '1508',
     itemName: '千咲',
     itemType: 1,
@@ -1354,7 +1354,7 @@ export const mcGachaUpPools = [
   {
     // 3.3 下半
     startTime: '1779328800', // 2026.05.21 10:00
-    endTime: '1781063940', // 2026.06.10 11:59
+    endTime: '1780804740', // 2026.06.07 11:59
     itemId: '1608',
     itemName: '弗洛洛',
     itemType: 1,
@@ -1363,7 +1363,7 @@ export const mcGachaUpPools = [
   {
     // 3.3 下半
     startTime: '1779328800', // 2026.05.21 10:00
-    endTime: '1781063940', // 2026.06.10 11:59
+    endTime: '1780804740', // 2026.06.07 11:59
     itemId: '21050076',
     itemName: '赝作的矮星',
     itemType: 2,
@@ -1372,7 +1372,7 @@ export const mcGachaUpPools = [
   {
     // 3.3 下半
     startTime: '1779328800', // 2026.05.21 10:00
-    endTime: '1781063940', // 2026.06.10 11:59
+    endTime: '1780804740', // 2026.06.07 11:59
     itemId: '21010056',
     itemName: '昙切',
     itemType: 2,
@@ -1381,7 +1381,7 @@ export const mcGachaUpPools = [
   {
     // 3.3 下半
     startTime: '1779328800', // 2026.05.21 10:00
-    endTime: '1781063940', // 2026.06.10 11:59
+    endTime: '1780804740', // 2026.06.07 11:59
     itemId: '21050066',
     itemName: '幽冥的忘忧章',
     itemType: 2,
