@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "chalk": "^5.6.2",
-    "date-fns": "^4.1.0",
+    "date-fns": "^4.4.0",
     "form-data": "^4.0.5"
   },
   "devDependencies": {
@@ -37,8 +37,8 @@
     "conventional-changelog": "^7.2.0",
     "conventional-changelog-angular": "^8.3.1",
     "conventional-changelog-custom-config": "^0.3.1",
-    "eslint": "^10.2.1",
-    "globals": "^17.5.0",
+    "eslint": "^10.4.1",
+    "globals": "^17.6.0",
     "prettier": "^3.8.3"
   },
   "prettier": {
