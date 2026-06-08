@@ -1387,4 +1387,76 @@ export const mcGachaUpPools = [
     itemType: 2,
     cardPoolName: '浮声沉兵',
   },
+  {
+    // 3.4 批次 1/3
+    startTime: '1780884000', // 2026.06.08 10:00
+    endTime: '1783569540', // 2026.07.09 11:59
+    itemId: '1511',
+    itemName: '露西',
+    itemType: 1,
+    cardPoolName: '梦 行于月畔',
+  },
+  {
+    // 3.4 批次 1/3
+    startTime: '1780884000', // 2026.06.08 10:00
+    endTime: '1783569540', // 2026.07.09 11:59
+    itemId: '1308',
+    itemName: '丽贝卡',
+    itemType: 1,
+    cardPoolName: '怒 烬中重燃',
+  },
+  {
+    // 3.4 批次 1/3
+    startTime: '1780884000', // 2026.06.08 10:00
+    endTime: '1783569540', // 2026.07.09 11:59
+    itemId: '21030056',
+    itemName: '蜃影',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.4 批次 1/3
+    startTime: '1780884000', // 2026.06.08 10:00
+    endTime: '1783569540', // 2026.07.09 11:59
+    itemId: '21030066',
+    itemName: '碎骨',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.4 批次 2/3
+    startTime: '1781316000', // 2026.06.13 10:00
+    endTime: '1783569540', // 2026.07.09 11:59
+    itemId: '1109',
+    itemName: '洛瑟菈',
+    itemType: 1,
+    cardPoolName: '显影于明日',
+  },
+  {
+    // 3.4 批次 2/3
+    startTime: '1781316000', // 2026.06.13 10:00
+    endTime: '1783569540', // 2026.07.09 11:59
+    itemId: '21050086',
+    itemName: '存帧',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.4 批次 3/3
+    startTime: '1781748000', // 2026.06.18 10:00
+    endTime: '1783569540', // 2026.07.09 11:59
+    itemId: '1409',
+    itemName: '卡提希娅',
+    itemType: 1,
+    cardPoolName: '却也在风潮后轻舞',
+  },
+  {
+    // 3.4 批次 3/3
+    startTime: '1781748000', // 2026.06.18 10:00
+    endTime: '1783569540', // 2026.07.09 11:59
+    itemId: '21020056',
+    itemName: '不屈命定之冠',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
 ]
