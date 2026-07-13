@@ -39,7 +39,7 @@
     "conventional-changelog-custom-config": "^0.3.1",
     "eslint": "^10.4.1",
     "globals": "^17.6.0",
-    "prettier": "^3.8.3"
+    "prettier": "^3.9.1"
   },
   "prettier": {
     "semi": false,
