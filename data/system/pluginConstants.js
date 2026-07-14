@@ -1459,4 +1459,94 @@ export const mcGachaUpPools = [
     itemType: 2,
     cardPoolName: '浮声沉兵',
   },
+  {
+    // 3.5 上半
+    startTime: '1783648800', // 2026.07.10 10:00
+    endTime: '1785376740', // 2026.07.30 09:59
+    itemId: '1610',  // T_IconRoleHeadCircle256_70_UI
+    itemName: '秧秧·玄翎',
+    itemType: 1,
+    cardPoolName: '牵翎祈万声',
+  },
+  {
+    // 3.5 上半
+    startTime: '1783648800', // 2026.07.10 10:00
+    endTime: '1785376740', // 2026.07.30 09:59
+    itemId: '1510',
+    itemName: '陆·赫斯',
+    itemType: 1,
+    cardPoolName: '逾此长冬',
+  },
+  {
+    // 3.5 上半
+    startTime: '1783648800', // 2026.07.10 10:00
+    endTime: '1785376740', // 2026.07.30 09:59
+    itemId: '1509',
+    itemName: '琳奈',
+    itemType: 1,
+    cardPoolName: '非定义光谱',
+  },
+  {
+    // 3.5 上半
+    startTime: '1783648800', // 2026.07.10 10:00
+    endTime: '1785376740', // 2026.07.30 09:59
+    itemId: '21020096',
+    itemName: '天之苍苍',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.5 上半
+    startTime: '1783648800', // 2026.07.10 10:00
+    endTime: '1785376740', // 2026.07.30 09:59
+    itemId: '21040056',
+    itemName: '白昼之脊',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.5 上半
+    startTime: '1783648800', // 2026.07.10 10:00
+    endTime: '1785376740', // 2026.07.30 09:59
+    itemId: '21030046',
+    itemName: '溢彩荧辉',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.5 下半 
+    startTime: '1785376800', // 2026.07.30 10:00
+    endTime: '1787111940', // 2026.08.19 11:59
+    itemId: '1110',  // T_IconRoleHeadCircle256_71_UI
+    itemName: '穗穗',
+    itemType: 1,
+    cardPoolName: '斟雨祝荷风',
+  },
+  {
+    // 3.5 下半 
+    startTime: '1785376800', // 2026.07.30 10:00
+    endTime: '1787111940', // 2026.08.19 11:59
+    itemId: '1210',
+    itemName: '爱弥斯',
+    itemType: 1,
+    cardPoolName: '飞星自春天启航',
+  },
+  {
+    // 3.5 下半 
+    startTime: '1785376800', // 2026.07.30 10:00
+    endTime: '1787111940', // 2026.08.19 11:59
+    itemId: '21050096',
+    itemName: '栖霞饮露',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.5 下半 
+    startTime: '1785376800', // 2026.07.30 10:00
+    endTime: '1787111940', // 2026.08.19 11:59
+    itemId: '21020076',
+    itemName: '永远的启明星',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
 ]
