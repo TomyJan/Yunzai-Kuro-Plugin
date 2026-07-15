@@ -1463,7 +1463,7 @@ export const mcGachaUpPools = [
     // 3.5 上半
     startTime: '1783648800', // 2026.07.10 10:00
     endTime: '1785376740', // 2026.07.30 09:59
-    itemId: '1610', // T_IconRoleHeadCircle256_70_UI
+    itemId: '1610',
     itemName: '秧秧·玄翎',
     itemType: 1,
     cardPoolName: '牵翎祈万声',
@@ -1517,7 +1517,7 @@ export const mcGachaUpPools = [
     // 3.5 下半
     startTime: '1785376800', // 2026.07.30 10:00
     endTime: '1787111940', // 2026.08.19 11:59
-    itemId: '1110', // T_IconRoleHeadCircle256_71_UI
+    itemId: '1110',
     itemName: '穗穗',
     itemType: 1,
     cardPoolName: '斟雨祝荷风',
