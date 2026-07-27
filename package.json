@@ -28,7 +28,7 @@
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "dependencies": {
-    "chalk": "^5.6.2",
+    "chalk": "^6.0.0",
     "date-fns": "^4.4.0",
     "form-data": "^4.0.6"
   },
