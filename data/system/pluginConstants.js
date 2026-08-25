@@ -1549,4 +1549,94 @@ export const mcGachaUpPools = [
     itemType: 2,
     cardPoolName: '浮声沉兵',
   },
+  {
+    // 3.6 上半
+    startTime: '1787191200', // 2026.08.20 10:00
+    endTime: '1789005540', // 2026.09.10 09:59
+    itemId: '1413',
+    itemName: '清宵',
+    itemType: 1,
+    cardPoolName: '仙风玉影水天清',
+  },
+  {
+    // 3.6 上半
+    startTime: '1787191200', // 2026.08.20 10:00
+    endTime: '1789005540', // 2026.09.10 09:59
+    itemId: '1211',
+    itemName: '达妮娅',
+    itemType: 1,
+    cardPoolName: '予明日以谎言',
+  },
+  {
+    // 3.6 上半
+    startTime: '1787191200', // 2026.08.20 10:00
+    endTime: '1789005540', // 2026.09.10 09:59
+    itemId: '21020106',
+    itemName: '云琅',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.6 上半
+    startTime: '1787191200', // 2026.08.20 10:00
+    endTime: '1789005540', // 2026.09.10 09:59
+    itemId: '21050076',
+    itemName: '赝作的矮星',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.6 下半
+    startTime: '1789005600', // 2026.09.10 10:00
+    endTime: '1790654340', // 2026.09.29 11:59
+    itemId: '1212',
+    itemName: '景燃',
+    itemType: 1,
+    cardPoolName: '身赴三途',
+  },
+  {
+    // 3.6 下半
+    startTime: '1789005600', // 2026.09.10 10:00
+    endTime: '1790654340', // 2026.09.29 11:59
+    itemId: '1108',
+    itemName: '绯雪',
+    itemType: 1,
+    cardPoolName: '雪色所映千般未来',
+  },
+  {
+    // 3.6 下半
+    startTime: '1789005600', // 2026.09.10 10:00
+    endTime: '1790654340', // 2026.09.29 11:59
+    itemId: '1209',
+    itemName: '莫宁',
+    itemType: 1,
+    cardPoolName: '纵使星光于无穷远',
+  },
+  {
+    // 3.6 下半
+    startTime: '1789005600', // 2026.09.10 10:00
+    endTime: '1790654340', // 2026.09.29 11:59
+    itemId: '21010076',
+    itemName: '千般渡',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.6 下半
+    startTime: '1789005600', // 2026.09.10 10:00
+    endTime: '1790654340', // 2026.09.29 11:59
+    itemId: '21020086',
+    itemName: '灼霜',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.6 下半
+    startTime: '1789005600', // 2026.09.10 10:00
+    endTime: '1790654340', // 2026.09.29 11:59
+    itemId: '21010066',
+    itemName: '宙算仪轨',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
 ]
