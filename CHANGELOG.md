@@ -1,3 +1,13 @@
+## [0.3.40-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.39-rel...v0.3.40-rel) (2026-10-08)
+
+### Bug Fixes
+
+* multi_agent.cwe-328 security vulnerability ([#138](https://github.com/TomyJan/Yunzai-Kuro-Plugin/issues/138)) ([9c95a3d](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/9c95a3dd5d01c6624ffca764d6e5ff41bc6d4246))
+
+### Features
+
+* 新增鸣潮 `3.7` 卡池/角色/武器 ([3411003](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/3411003dddd9279670eaebe524af47807cc809ef))
+
 ## [0.3.39-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.38-rel...v0.3.39-rel) (2026-08-25)
 
 ### Features
