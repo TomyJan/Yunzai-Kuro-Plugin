@@ -49,9 +49,9 @@ export async function mGetDate() {
  * @returns {string} UUID
  */
 export function generateUUID(inputString) {
-  const md5Hash = crypto.createHash('md5')
-  md5Hash.update(inputString)
-  const hash = md5Hash.digest('hex')
+  const sha256Hash = crypto.createHash('sha256')
+  sha256Hash.update(inputString)
+  const hash = sha256Hash.digest('hex')
 
   // Format the hash into UUID-like string
   const uuid =
