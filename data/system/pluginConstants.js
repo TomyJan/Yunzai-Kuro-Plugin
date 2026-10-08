@@ -1639,4 +1639,112 @@ export const mcGachaUpPools = [
     itemType: 2,
     cardPoolName: '浮声沉兵',
   },
+  {
+    // 3.7 上半
+    startTime: '1790733600', // 2026.09.30 10:00
+    endTime: '1792634340', // 2026.10.22 09:59
+    itemId: '1311',
+    itemName: '心',
+    itemType: 1,
+    cardPoolName: '但愿长圆如此夜',
+  },
+  {
+    // 3.7 上半
+    startTime: '1790733600', // 2026.09.30 10:00
+    endTime: '1792634340', // 2026.10.22 09:59
+    itemId: '1508',
+    itemName: '千咲',
+    itemType: 1,
+    cardPoolName: '曙暮一线之间',
+  },
+  {
+    // 3.7 上半
+    startTime: '1790733600', // 2026.09.30 10:00
+    endTime: '1792634340', // 2026.10.22 09:59
+    itemId: '1410',
+    itemName: '尤诺',
+    itemType: 1,
+    cardPoolName: '漫于盈缺时轴',
+  },
+  {
+    // 3.7 上半
+    startTime: '1790733600', // 2026.09.30 10:00
+    endTime: '1792634340', // 2026.10.22 09:59
+    itemId: '21050116',
+    itemName: '玉阙玄华',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.7 上半
+    startTime: '1790733600', // 2026.09.30 10:00
+    endTime: '1792634340', // 2026.10.22 09:59
+    itemId: '21010056',
+    itemName: '昙切',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.7 上半
+    startTime: '1790733600', // 2026.09.30 10:00
+    endTime: '1792634340', // 2026.10.22 09:59
+    itemId: '21040046',
+    itemName: '万物持存的注释',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.7 下半
+    startTime: '1792634400', // 2026.10.22 10:00
+    endTime: '1794369540', // 2026.11.11 11:59
+    itemId: '1312',
+    itemName: '锁暝',
+    itemType: 1,
+    cardPoolName: '余心所向九死未悔',
+  },
+  {
+    // 3.7 下半
+    startTime: '1792634400', // 2026.10.22 10:00
+    endTime: '1794369540', // 2026.11.11 11:59
+    itemId: '1109',
+    itemName: '洛瑟菈',
+    itemType: 1,
+    cardPoolName: '显影于明日',
+  },
+  {
+    // 3.7 下半
+    startTime: '1792634400', // 2026.10.22 10:00
+    endTime: '1794369540', // 2026.11.11 11:59
+    itemId: '1509',
+    itemName: '琳奈',
+    itemType: 1,
+    cardPoolName: '非定义光谱',
+  },
+  {
+    // 3.7 下半
+    startTime: '1792634400', // 2026.10.22 10:00
+    endTime: '1794369540', // 2026.11.11 11:59
+    itemId: '21020107',
+    itemName: '沉冥',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.7 下半
+    startTime: '1792634400', // 2026.10.22 10:00
+    endTime: '1794369540', // 2026.11.11 11:59
+    itemId: '21050086',
+    itemName: '存帧',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.7 下半
+    startTime: '1792634400', // 2026.10.22 10:00
+    endTime: '1794369540', // 2026.11.11 11:59
+    itemId: '21030046',
+    itemName: '溢彩荧辉',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
 ]
