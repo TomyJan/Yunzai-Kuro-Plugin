@@ -1747,4 +1747,112 @@ export const mcGachaUpPools = [
     itemType: 2,
     cardPoolName: '浮声沉兵',
   },
+  {
+    // 3.8 上半
+    startTime: '1794448800', // 2026.11.12 10:00
+    endTime: '1796263140', // 2026.12.03 09:59
+    itemId: '1512',
+    itemName: '莉莉',
+    itemType: 1,
+    cardPoolName: '盛放于昨日梦土的花朵',
+  },
+  {
+    // 3.8 上半
+    startTime: '1794448800', // 2026.11.12 10:00
+    endTime: '1796263140', // 2026.12.03 09:59
+    itemId: '1412',
+    itemName: '西格莉卡',
+    itemType: 1,
+    cardPoolName: '符文烁醒之刻',
+  },
+  {
+    // 3.8 上半
+    startTime: '1794448800', // 2026.11.12 10:00
+    endTime: '1796263140', // 2026.12.03 09:59
+    itemId: '1411',
+    itemName: '仇远',
+    itemType: 1,
+    cardPoolName: '倦客不知身近远',
+  },
+  {
+    // 3.8 上半
+    startTime: '1794448800', // 2026.11.12 10:00
+    endTime: '1796263140', // 2026.12.03 09:59
+    itemId: '21030076',
+    itemName: '安魂',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.8 上半
+    startTime: '1794448800', // 2026.11.12 10:00
+    endTime: '1796263140', // 2026.12.03 09:59
+    itemId: '21040066',
+    itemName: '昭日译注',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.8 上半
+    startTime: '1794448800', // 2026.11.12 10:00
+    endTime: '1796263140', // 2026.12.03 09:59
+    itemId: '21020066',
+    itemName: '裁竹',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.8 下半
+    startTime: '1796263200', // 2026.12.03 10:00
+    endTime: '1797825540', // 2026.12.21 11:59
+    itemId: '1610',
+    itemName: '秧秧·玄翎',
+    itemType: 1,
+    cardPoolName: '牵翎祈万声',
+  },
+  {
+    // 3.8 下半
+    startTime: '1796263200', // 2026.12.03 10:00
+    endTime: '1797825540', // 2026.12.21 11:59
+    itemId: '1110',
+    itemName: '穗穗',
+    itemType: 1,
+    cardPoolName: '斟雨祝荷风',
+  },
+  {
+    // 3.8 下半
+    startTime: '1796263200', // 2026.12.03 10:00
+    endTime: '1797825540', // 2026.12.21 11:59
+    itemId: '1108',
+    itemName: '绯雪',
+    itemType: 1,
+    cardPoolName: '雪色所映千般未来',
+  },
+  {
+    // 3.8 下半
+    startTime: '1796263200', // 2026.12.03 10:00
+    endTime: '1797825540', // 2026.12.21 11:59
+    itemId: '21020096',
+    itemName: '天之苍苍',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.8 下半
+    startTime: '1796263200', // 2026.12.03 10:00
+    endTime: '1797825540', // 2026.12.21 11:59
+    itemId: '21050096',
+    itemName: '栖霞饮露',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
+  {
+    // 3.8 下半
+    startTime: '1796263200', // 2026.12.03 10:00
+    endTime: '1797825540', // 2026.12.21 11:59
+    itemId: '21020086',
+    itemName: '灼霜',
+    itemType: 2,
+    cardPoolName: '浮声沉兵',
+  },
 ]

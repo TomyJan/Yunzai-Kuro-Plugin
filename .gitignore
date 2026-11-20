@@ -14,3 +14,7 @@ data/userSetting/
 
 #nodejs
 node_modules/
+resources/roleinfo.json
+resources/roleskin.json
+resources/weaponconf.json
+resources/weaponskin.json
