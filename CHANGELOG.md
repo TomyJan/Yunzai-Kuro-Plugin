@@ -1,3 +1,13 @@
+## [0.3.41-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.40-rel...v0.3.41-rel) (2026-11-20)
+
+### Bug Fixes
+
+* add URL validation in bbsHeadUpload.js ([#143](https://github.com/TomyJan/Yunzai-Kuro-Plugin/issues/143)) ([0aac3a7](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/0aac3a7c6f3bff742960c3ddd3b45fba8973ad65))
+
+### Features
+
+* 新增鸣潮 `3.8` 卡池/角色/武器 ([eb1b44e](https://github.com/TomyJan/Yunzai-Kuro-Plugin/commit/eb1b44eb918f3287d20a9b6fe556c124647bb350))
+
 ## [0.3.40-rel](https://github.com/TomyJan/Yunzai-Kuro-Plugin/compare/v0.3.39-rel...v0.3.40-rel) (2026-10-08)
 
 ### Bug Fixes
