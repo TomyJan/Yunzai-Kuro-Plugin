@@ -129,6 +129,17 @@ export default class bbsHeadUpload {
 
   async downloadImage(url) {
     try {
+      const parsedUrl = new URL(url)
+      const privateHostPattern =
+        /^(localhost|127\.|10\.|192\.168\.|169\.254\.|0\.|::1$|\[::1\]$|172\.(1[6-9]|2\d|3[01])\.)/i
+      if (
+        !/^https?:$/.test(parsedUrl.protocol) ||
+        privateHostPattern.test(parsedUrl.hostname)
+      ) {
+        this.e.reply('图片链接不合法')
+        kuroLogger.error('图片链接不合法: ' + url)
+        return null
+      }
       const response = await fetch(url)
       if (!response.ok) {
         this.e.reply(`请求失败: ${response.status} ${response.statusText}`)
